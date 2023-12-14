@@ -4,6 +4,8 @@ import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
+import com.tobeto.pair3.services.abstracts.ColorService;
+import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
@@ -17,10 +19,19 @@ import java.util.List;
 @AllArgsConstructor
 public class CarManager implements CarService {
     private final CarRepository carRepository;
+    private final ModelService modelService;
+    private final ColorService colorService;
     private final ModelMapperService mapperService;
 
 
     public void add(CreateCarRequest createCarRequest) {
+        if(carRepository.existsByPlate(createCarRequest.getPlate())){
+            throw new RuntimeException("aynı plaka mevcut");
+        }
+        if (!colorService.existsColorById(createCarRequest.getColorId())){
+            throw new RuntimeException("Böyle bir renk yok");
+        }
+        modelService.getById(createCarRequest.getModelId());
         Car car = mapperService.forRequest().map(createCarRequest, Car.class);
         carRepository.save(car);
     }

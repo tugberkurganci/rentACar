@@ -23,7 +23,7 @@ public class CarController {
     }
 
     @GetMapping("{id}")
-    public GetCarResponse getById(@PathVariable Integer id) {
+    public GetCarResponse getById(@PathVariable("id") Integer id) {
         return carService.getById(id);
     }
 

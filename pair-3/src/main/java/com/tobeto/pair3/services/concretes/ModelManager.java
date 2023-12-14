@@ -53,7 +53,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public GetModelResponse getById(Integer id) {
-        Model model = modelRepository.findById(id).orElseThrow();
+        Model model = modelRepository.findById(id).orElseThrow( () -> new RuntimeException("model yok"));
         GetModelResponse response = mapperService.forResponse().map(model,GetModelResponse.class);
 
         return response;

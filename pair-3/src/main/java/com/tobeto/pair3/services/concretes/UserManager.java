@@ -20,13 +20,17 @@ public class UserManager implements UserService {
     private final ModelMapperService mapperService;
     @Override
     public void add(CreateUserRequest createUserRequest) {
+        if(userRepository.existsByEmail(createUserRequest.getEmail())){
+            throw new RuntimeException("Email mevcut");
+        }
         User user = mapperService.forRequest().map(createUserRequest, User.class);
         userRepository.save(user);
     }
 
     @Override
     public void update(UpdateUserRequest updateUserRequest) {
-        User user = mapperService.forRequest().map(updateUserRequest, User.class);
+        User user = userRepository.findById(updateUserRequest.getId()).orElseThrow();
+        mapperService.forRequest().map(updateUserRequest, user);
         userRepository.save(user);
     }
 

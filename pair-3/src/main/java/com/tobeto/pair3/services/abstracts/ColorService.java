@@ -18,6 +18,7 @@ public interface ColorService {
     List<GetAllColorResponse> getAll();
 
     GetColorResponse getById(int id);
+    boolean existsColorById(Integer id);
 }
 
 

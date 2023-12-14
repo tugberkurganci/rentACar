@@ -12,6 +12,4 @@ public class UpdateUserRequest {
     private Integer id;
     private String name;
     private String surname;
-    private String email;
-    private LocalDate birthDate;
 }

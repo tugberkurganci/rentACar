@@ -56,4 +56,9 @@ public class ColorManager implements ColorService {
         GetColorResponse response = mapperService.forResponse().map(color,GetColorResponse.class);
         return response;
     }
+
+    @Override
+    public boolean existsColorById(Integer id) {
+        return colorRepository.existsById(id);
+    }
 }
