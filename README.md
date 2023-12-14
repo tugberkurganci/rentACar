@@ -1,12 +1,12 @@
-# 🌟 Rent A Car
+# 🌟 Tobeto Full Stack Training Project- RentACar
 
-Proje Açıklaması ve Kısa Tanıtım
+This project is a result of the comprehensive full-stack training program conducted by Tobeto. It serves as a practical application of the skills and knowledge acquired during the training.
 
 ---
 
 ## 🚀 Contributors
 
-Bu projeye katkıda bulunanlar:
+The contributors to this project are individuals who actively participated in Tobeto's full-stack training program:
 
 - [Tuğberk Urgancı](https://github.com/tugberkurganci)
 - [Duygu Yalçın](https://github.com/Duyguyalcn)
@@ -15,10 +15,11 @@ Bu projeye katkıda bulunanlar:
 
 ---
 
-## 🛠️ Kurulum
+## 🛠️ Installation
 
-Projenin yerel ortamda çalıştırılması için gerekli adımlar:
+To run the project locally and experience the skills developed in Tobeto's full-stack training, follow these steps:
 
-1. İlk adım
+1. **First step**
    ```bash
-   git clone https://github.com/sizin/proje.git
+   git clone https://github.com/your/project.git
+
