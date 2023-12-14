@@ -1,7 +1,6 @@
 package com.tobeto.pair3.entities;
-
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
 
     @Column(name = "name")
     private String name;
