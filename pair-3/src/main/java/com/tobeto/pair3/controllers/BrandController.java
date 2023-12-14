@@ -25,7 +25,7 @@ public class BrandController {
         brandService.update(updateBrandRequest);
     }
     @DeleteMapping("{id}")
-    public void delete (@PathVariable Integer id ){
+    public void delete (@PathVariable("id") Integer id ){
         brandService.delete(id);
     }
     @GetMapping
@@ -34,7 +34,7 @@ public class BrandController {
         return brandService.getAll();
     }
     @GetMapping("{id}")
-    public GetBrandResponse getById(@PathVariable  Integer id){
+    public GetBrandResponse getById(@PathVariable("id")  Integer id){
         return brandService.getById(id);
     }
 }

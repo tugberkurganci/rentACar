@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="78b1f4e4-12a2-45a6-b139-fb312951f2db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ColorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ColorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ModelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/CarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/ColorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/ColorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2ZOB5uXOJaEQFdTJIRYTynx0B7X" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Pair3Application.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.tobeto.pair3.services.dtos.responses" />
+      <recent name="com.tobeto.pair3.services.dtos.requests" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.Pair3Application" />
+      <module name="pair-3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-8336523bb0d9-b81783ad" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="78b1f4e4-12a2-45a6-b139-fb312951f2db" name="Changes" comment="" />
+      <created>1702283066374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702283066374</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

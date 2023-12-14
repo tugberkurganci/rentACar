@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "cars")
+@Table(name = "cars",uniqueConstraints = @UniqueConstraint(columnNames = "plate"))
 @Data
 public class Car {
 

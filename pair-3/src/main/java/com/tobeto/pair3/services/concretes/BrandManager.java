@@ -11,9 +11,7 @@ import com.tobeto.pair3.services.dtos.responses.GetBrandResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.PrimitiveIterator;
 @AllArgsConstructor
 @Service
 public class BrandManager implements BrandService {
