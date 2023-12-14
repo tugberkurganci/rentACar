@@ -1,11 +1,13 @@
 # 🌟 Tobeto Full Stack Training Project- RentACar
 
 ![2b2](https://www.comet.com.tr/resimler/rentacar-334Resim_Adi.JPG)
+
+----
 This project is a result of the comprehensive Java-React Full-stack training program conducted by Tobeto. It serves as a practical application of the skills and knowledge acquired during the training.
 
 ---
 
-![2b2](https://www.comet.com.tr/resimler/rentacar-334Resim_Adi.JPG)
+
 
 ## 🚀 Contributors
 
