@@ -4,6 +4,8 @@ This project is a result of the comprehensive Java-React Full-stack training pro
 
 ---
 
+![Alternatif Metin](https://www.comet.com.tr/resimler/rentacar-334Resim_Adi.JPG)
+
 ## 🚀 Contributors
 
 The contributors to this project are individuals who actively participated in Tobeto's full-stack training program:
