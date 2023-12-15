@@ -25,7 +25,7 @@ public class ModelController {
     }
 
     @DeleteMapping("{id}")
-    public void delete (@PathVariable Integer id ){
+    public void delete (@PathVariable("id") Integer id ){
         modelService.delete(id);
     }
 
@@ -35,7 +35,7 @@ public class ModelController {
     }
 
     @GetMapping("{id}")
-    public GetModelResponse getById(@PathVariable  Integer id){
+    public GetModelResponse getById(@PathVariable("id")  Integer id){
         return modelService.getById(id);
     }
 

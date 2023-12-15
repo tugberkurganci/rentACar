@@ -18,4 +18,6 @@ public interface BrandService {
     List<GetAllBrandResponse> getAll();
 
     GetBrandResponse getById(Integer id);
+
+    boolean existsById(Integer brandId);
 }

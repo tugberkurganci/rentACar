@@ -5,7 +5,6 @@ import com.tobeto.pair3.entities.User;
 import com.tobeto.pair3.repositories.UserRepository;
 import com.tobeto.pair3.services.abstracts.UserService;
 import com.tobeto.pair3.services.dtos.requests.CreateUserRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateUserRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetUserResponse;
@@ -57,4 +56,11 @@ public class UserManager implements UserService {
         GetUserResponse response = mapperService.forResponse().map(user, GetUserResponse.class);
         return response;
     }
+
+    @Override
+    public boolean existsById(int userId) {
+        return userRepository.existsById(userId);
+    }
+
+
 }
