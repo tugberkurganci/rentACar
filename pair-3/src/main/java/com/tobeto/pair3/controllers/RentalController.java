@@ -25,7 +25,7 @@ public class RentalController {
     }
 
     @GetMapping("{id}")
-    public GetRentalResponse getById(@PathVariable int id) {
+    public GetRentalResponse getById(@PathVariable("id") int id) {
         return rentalService.getById(id);
     }
 
@@ -40,7 +40,7 @@ public class RentalController {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable("id") int id) {
         rentalService.delete(id);
     }
 }

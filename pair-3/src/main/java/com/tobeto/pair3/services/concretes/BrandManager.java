@@ -21,6 +21,9 @@ public class BrandManager implements BrandService {
     public void add(CreateBrandRequest createBrandRequest) {
         /*Brand brand = new Brand();
         brand.setName(createBrandRequest.getName());*/
+        if(brandRepository.existsByName(createBrandRequest.getName())){
+            throw new RuntimeException("brand is already exists");
+        }
         Brand brand = mapperService.forRequest().map(createBrandRequest, Brand.class);
         brandRepository.save(brand);
     }
@@ -72,5 +75,10 @@ public class BrandManager implements BrandService {
 
 
         return response;
+    }
+
+    @Override
+    public boolean existsById(Integer brandId) {
+        return brandRepository.existsById(brandId);
     }
 }

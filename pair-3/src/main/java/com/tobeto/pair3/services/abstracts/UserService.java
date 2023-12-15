@@ -17,4 +17,8 @@ public interface UserService {
     List<GetAllUsersResponse> getAll();
 
     GetUserResponse getById(int id);
+
+    boolean existsById(int userId);
+
+
 }

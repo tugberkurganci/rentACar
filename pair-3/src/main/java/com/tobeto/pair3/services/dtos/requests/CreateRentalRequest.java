@@ -5,6 +5,8 @@ import com.tobeto.pair3.entities.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -14,23 +16,12 @@ import java.time.LocalDate;
 public class CreateRentalRequest {
 
 
-
+    @NotNull(message = "Start date cannot be null")
     private LocalDate startDate;
-
 
     private LocalDate endDate;
 
 
-    private LocalDate returnDate;
-
-
-    private int startKilometer;
-
-
-    private int endKilometer;
-
-
-    private BigDecimal totalPrice;
 
 
     private int carId;
