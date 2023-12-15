@@ -23,7 +23,12 @@ public class ColorManager implements ColorService {
     private final ModelMapperService mapperService;
 
     @Override
+
     public void add(CreateColorRequest createColorRequest) {
+        if(colorRepository.existsByName(createColorRequest.getName())){
+            throw new RuntimeException("Color is already exists");
+        }
+
         Color color = mapperService.forRequest().map(createColorRequest, Color.class);
         colorRepository.save(color);
     }

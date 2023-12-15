@@ -29,7 +29,7 @@ public class InvoiceController {
         invoiceService.update(updateInvoiceRequest);
     }
     @DeleteMapping("{id}")
-    public void delete (@PathVariable Integer id ){
+    public void delete (@PathVariable("id") Integer id ){
         invoiceService.delete(id);
     }
     @GetMapping
@@ -38,7 +38,7 @@ public class InvoiceController {
         return invoiceService.getAll();
     }
     @GetMapping("{id}")
-    public GetInvoiceResponse getById(@PathVariable  Integer id){
+    public GetInvoiceResponse getById(@PathVariable("id")  Integer id){
         return invoiceService.getById(id);
     }
 }

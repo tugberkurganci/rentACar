@@ -63,4 +63,9 @@ public class CarManager implements CarService {
         GetCarResponse response = mapperService.forResponse().map(car, GetCarResponse.class);
         return response;
     }
+
+    @Override
+    public boolean existsById(int carId) {
+        return carRepository.existsById(carId);
+    }
 }

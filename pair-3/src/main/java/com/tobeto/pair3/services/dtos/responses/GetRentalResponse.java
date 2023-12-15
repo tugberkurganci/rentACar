@@ -20,7 +20,7 @@ public class GetRentalResponse {
     private int startKilometer;
 
 
-    private int endKilometer;
+    private Integer endKilometer;
 
 
     private BigDecimal totalPrice;

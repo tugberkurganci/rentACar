@@ -27,7 +27,7 @@ public class ColorController {
       colorService.update(updateColorRequest);
    }
    @DeleteMapping("{id}")
-   public void delete (@PathVariable Integer id ){
+   public void delete (@PathVariable("id") Integer id ){
       colorService.delete(id);
    }
    @GetMapping
@@ -36,7 +36,7 @@ public class ColorController {
       return colorService.getAll();
    }
    @GetMapping("{id}")
-   public GetColorResponse getById(@PathVariable  Integer id){
+   public GetColorResponse getById(@PathVariable("id")  Integer id){
       return colorService.getById(id);
    }
 }
