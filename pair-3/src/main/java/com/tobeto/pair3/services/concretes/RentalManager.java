@@ -73,7 +73,7 @@ public class RentalManager implements RentalService {
 
         rental.setTotalPrice(totalPrice);
 
-        rental.setEndKilometer(null);
+
 
         rentalRepository.save(rental);
     }
