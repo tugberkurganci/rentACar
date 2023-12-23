@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.dtos.requests;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.entities.User;
 import jakarta.persistence.Column;
@@ -17,8 +18,15 @@ public class CreateRentalRequest {
 
 
     @NotNull(message = "Start date cannot be null")
-    private LocalDate startDate;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate startDate;
+   
+
+   
+
+
+   @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
 
