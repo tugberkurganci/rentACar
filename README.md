@@ -23,5 +23,5 @@ To run the project locally and experience the skills developed in Tobeto's full-
 
 1. **First step**
    ```bash
-   git clone https://github.com/your/project.git
+   git clone https://github.com/tugberkurganci/rentACar.git
 

@@ -18,9 +18,15 @@ public class CreateRentalRequest {
 
 
     @NotNull(message = "Start date cannot be null")
+
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate startDate;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+   
+
+   
+
+
+   @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 
 
