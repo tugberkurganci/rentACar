@@ -16,6 +16,7 @@ import com.tobeto.pair3.services.dtos.responses.GetInvoiceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,6 +25,8 @@ public class InvoiceManager implements InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
     private final ModelMapperService mapperService;
+
+
 
     @Override
     public void update(UpdateInvoiceRequest updateInvoiceRequest) {
@@ -34,6 +37,7 @@ public class InvoiceManager implements InvoiceService {
     @Override
     public void add(CreateInvoiceRequest createInvoiceRequest) {
         Invoice invoice = mapperService.forRequest().map(createInvoiceRequest, Invoice.class);
+        invoice.setCreateDate(LocalDate.now());
         invoiceRepository.save(invoice);
 
     }
