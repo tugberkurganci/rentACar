@@ -62,5 +62,10 @@ public class UserManager implements UserService {
         return userRepository.existsById(userId);
     }
 
+    @Override
+    public User getOriginalUserById(int userId) {
+        return userRepository.findById(userId).orElseThrow();
+    }
+
 
 }

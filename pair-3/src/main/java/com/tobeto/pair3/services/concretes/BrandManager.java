@@ -32,7 +32,8 @@ public class BrandManager implements BrandService {
     public void update(UpdateBrandRequest updateBrandRequest) {
        /* Brand brand = brandRepository.findById(updateBrandRequest.getId()).orElseThrow();
         brand.setName(updateBrandRequest.getName());*/
-        Brand brand = mapperService.forRequest().map(updateBrandRequest, Brand.class);
+        Brand brand=brandRepository.findById(updateBrandRequest.getId()).orElseThrow();
+        mapperService.forRequest().map(updateBrandRequest,brand);
         brandRepository.save(brand);
     }
 

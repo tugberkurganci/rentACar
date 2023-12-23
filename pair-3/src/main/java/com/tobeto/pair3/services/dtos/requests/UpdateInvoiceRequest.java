@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 public class UpdateInvoiceRequest {
     private int id;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
     private int rental;

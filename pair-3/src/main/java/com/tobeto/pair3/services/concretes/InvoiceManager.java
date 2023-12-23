@@ -30,7 +30,8 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public void update(UpdateInvoiceRequest updateInvoiceRequest) {
-       Invoice invoice= mapperService.forRequest().map(updateInvoiceRequest, Invoice.class);
+        Invoice invoice=invoiceRepository.findById(updateInvoiceRequest.getId()).orElseThrow();
+     mapperService.forRequest().map(updateInvoiceRequest, invoice);
         invoiceRepository.save(invoice);
     }
 

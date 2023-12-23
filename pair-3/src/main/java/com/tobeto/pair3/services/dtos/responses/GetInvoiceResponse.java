@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class GetInvoiceResponse {
 
     private int id;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
     private int rental;

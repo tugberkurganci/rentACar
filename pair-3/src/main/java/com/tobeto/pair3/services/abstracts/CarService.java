@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.services.dtos.requests.CreateBrandRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateBrandRequest;
@@ -24,4 +25,6 @@ public interface CarService {
 
 
     boolean existsById(int carId);
+
+    Car getOriginalCarById(int carId);
 }

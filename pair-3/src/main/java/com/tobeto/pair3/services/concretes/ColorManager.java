@@ -35,7 +35,8 @@ public class ColorManager implements ColorService {
 
     @Override
     public void update(UpdateColorRequest updateColorRequest) {
-        Color color = mapperService.forRequest().map(updateColorRequest, Color.class);
+        Color color=colorRepository.findById(updateColorRequest.getId()).orElseThrow();
+        mapperService.forRequest().map(updateColorRequest, color);
         colorRepository.save(color);
     }
 

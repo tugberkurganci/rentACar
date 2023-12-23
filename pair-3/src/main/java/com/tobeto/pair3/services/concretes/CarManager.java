@@ -68,4 +68,9 @@ public class CarManager implements CarService {
     public boolean existsById(int carId) {
         return carRepository.existsById(carId);
     }
+
+    @Override
+    public Car getOriginalCarById(int carId) {
+        return carRepository.findById(carId).orElseThrow();
+    }
 }

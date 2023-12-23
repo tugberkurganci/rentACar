@@ -12,6 +12,6 @@ public class CreateUserRequest {
     private String name;
     private String surname;
     private String email;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 }

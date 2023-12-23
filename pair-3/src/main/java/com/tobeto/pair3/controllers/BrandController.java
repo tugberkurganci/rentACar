@@ -19,6 +19,7 @@ public class BrandController {
     @PostMapping
     public void add (@RequestBody CreateBrandRequest createBrandRequest ){
         brandService.add(createBrandRequest);
+
     }
     @PutMapping("{id}")
     public void update (@RequestBody UpdateBrandRequest updateBrandRequest ){

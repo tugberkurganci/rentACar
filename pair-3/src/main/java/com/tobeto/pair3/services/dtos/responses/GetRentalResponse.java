@@ -8,13 +8,15 @@ import java.time.LocalDate;
 
 @Data
 public class GetRentalResponse {
+    private int id;
+
 
     private LocalDate startDate;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 
 

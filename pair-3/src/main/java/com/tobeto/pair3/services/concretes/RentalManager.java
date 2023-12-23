@@ -1,11 +1,14 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.RentalRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.abstracts.UserService;
+import com.tobeto.pair3.services.businessrules.CarRules;
+import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
@@ -28,59 +31,64 @@ public class RentalManager implements RentalService {
 
     private final UserService userService;
 
+    private final RentalRules rentalRules;
+
+
 
 
 
 
     public void add(CreateRentalRequest createRentalRequest) {
 
-        if(createRentalRequest.getStartDate().isBefore(LocalDate.now())){
+         rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
 
-            throw new RuntimeException("Start date cannot be in the past");
-        }
+        rentalRules.checkEndDateIsBeforeStartDate(createRentalRequest.getEndDate(),createRentalRequest.getStartDate());
 
-        if (createRentalRequest.getEndDate().isBefore(createRentalRequest.getStartDate())) {
-            throw new RuntimeException("End date cannot be before the start date");
-        }
+        checkIsCarExist(createRentalRequest.getCarId());
 
-        if (!carService.existsById(createRentalRequest.getCarId())) {
-            throw new RuntimeException("there is no car with this id");
-        }
+        checkIsUserExists(createRentalRequest.getUserId());
 
-        if(!userService.existsById(createRentalRequest.getUserId())){
-            throw new RuntimeException("there is no user with this id");
-        }
-
-        if( ChronoUnit.DAYS.between(createRentalRequest.getStartDate(),createRentalRequest.getEndDate())>25){
-
-            throw new RuntimeException("its no longer than 25 days");
-
-        }
-
-        //car daily price
-        // rental süresi  end date -startdate
+        rentalRules.checkIsRentalDateLongerThan25Days(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
 
         Rental rental = mapperService.forRequest().map(createRentalRequest, Rental.class);
 
-        GetCarResponse response= carService.getById(createRentalRequest.getCarId());
-        Integer actualKilometers=response.getKilometer();
-        rental.setStartKilometer(actualKilometers);
+        setActualKılometerToRentalInfo(rental,createRentalRequest);
 
-        GetCarResponse response2= carService.getById(createRentalRequest.getCarId());
-        BigDecimal dailyPrice=response2.getDailyPrice();
-        long rentalTime= ChronoUnit.DAYS.between(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
-        BigDecimal totalPrice = dailyPrice.multiply(new BigDecimal(rentalTime));
-
-        rental.setTotalPrice(totalPrice);
-
-
+        setTotalPriceToRentalInfo(rental,createRentalRequest);
 
         rentalRepository.save(rental);
     }
 
+
     public void update(UpdateRentalRequest updateRentalRequest) {
-        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow();
-        mapperService.forRequest().map(updateRentalRequest, rentalToUpdate);
+        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow(() -> new BusinessException("there is no rental"));
+        Rental rental=new Rental();
+
+        if(updateRentalRequest.getReturnDate()!=null){
+            rental.setReturnDate(updateRentalRequest.getReturnDate());
+        }
+        if(updateRentalRequest.getEndKilometer()!=0){
+            rental.setEndKilometer(updateRentalRequest.getEndKilometer());
+        }
+        if(updateRentalRequest.getTotalPrice()!=null){
+            rental.setTotalPrice(updateRentalRequest.getTotalPrice());
+        }
+        if(updateRentalRequest.getUserId()!=0){
+            rental.setUser(userService.getOriginalUserById(updateRentalRequest.getUserId()));
+        }
+
+        if(updateRentalRequest.getCarId()!=0){
+            rental.setCar(carService.getOriginalCarById(updateRentalRequest.getCarId()));
+        }
+        rental.setStartKilometer(rentalToUpdate.getStartKilometer());
+        rental.setStartDate(rentalToUpdate.getStartDate());
+        rental.setEndDate(rentalToUpdate.getEndDate());
+
+
+        checkIsCarExist(rentalToUpdate.getUser().getId());
+        checkIsUserExists(rentalToUpdate.getUser().getId());
+
+
         rentalRepository.save(rentalToUpdate);
     }
 
@@ -102,4 +110,36 @@ public class RentalManager implements RentalService {
         GetRentalResponse response = mapperService.forResponse().map(rental, GetRentalResponse.class);
         return response;
     }
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////// Business Methods//////////////////////////////////////
+
+    private void checkIsUserExists(int userId) {
+        if(!userService.existsById(userId)) {
+            throw new RuntimeException("there is no user with this id");
+        }
+    }
+
+    private void checkIsCarExist(int carId) {
+        if (!carService.existsById(carId)) {
+            throw new RuntimeException("there is no car with this id");
+        }
+    }
+
+    private void setTotalPriceToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
+        GetCarResponse response2= carService.getById(createRentalRequest.getCarId());
+        BigDecimal dailyPrice=response2.getDailyPrice();
+        long rentalTime= ChronoUnit.DAYS.between(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
+        BigDecimal totalPrice = dailyPrice.multiply(new BigDecimal(rentalTime));
+        rental.setTotalPrice(totalPrice);
+    }
+
+    private void setActualKılometerToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
+        GetCarResponse response= carService.getById(createRentalRequest.getCarId());
+        Integer actualKilometers=response.getKilometer();
+        rental.setStartKilometer(actualKilometers);
+    }
+
+
 }

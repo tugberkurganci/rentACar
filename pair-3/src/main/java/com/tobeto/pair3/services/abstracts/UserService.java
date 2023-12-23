@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.User;
 import com.tobeto.pair3.services.dtos.requests.CreateUserRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateUserRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
@@ -21,4 +22,5 @@ public interface UserService {
     boolean existsById(int userId);
 
 
+    User getOriginalUserById(int userId);
 }

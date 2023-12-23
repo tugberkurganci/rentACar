@@ -41,7 +41,8 @@ public class ModelManager implements ModelService {
     @Override
     public void update(UpdateModelRequest updateModelRequest) {
 
-        Model model = mapperService.forRequest().map(updateModelRequest, Model.class);
+        Model model=modelRepository.findById(updateModelRequest.getId()).orElseThrow();
+         mapperService.forRequest().map(updateModelRequest, Model.class);
         modelRepository.save(model);
     }
 

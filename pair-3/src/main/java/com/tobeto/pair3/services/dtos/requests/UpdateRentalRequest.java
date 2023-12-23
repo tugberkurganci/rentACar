@@ -11,27 +11,17 @@ public class UpdateRentalRequest {
 
     private int id;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate startDate;
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate endDate;
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
-
-
-    private int startKilometer;
 
 
     private int endKilometer;
 
-
     private BigDecimal totalPrice;
 
+    private int userId;
 
     private int carId;
 
 
-    private int userId;
 }
