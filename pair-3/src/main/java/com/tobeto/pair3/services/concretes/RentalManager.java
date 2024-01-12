@@ -40,7 +40,7 @@ public class RentalManager implements RentalService {
 
     public void add(CreateRentalRequest createRentalRequest) {
 
-         rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
+        rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
 
         rentalRules.checkEndDateIsBeforeStartDate(createRentalRequest.getEndDate(),createRentalRequest.getStartDate());
 

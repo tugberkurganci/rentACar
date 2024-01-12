@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @Data
 public class GetCarResponse {
 
+    private int id;
+
 
     private int kilometer;
 
@@ -29,4 +31,6 @@ public class GetCarResponse {
 
 
     private String colorName;
+
+
 }

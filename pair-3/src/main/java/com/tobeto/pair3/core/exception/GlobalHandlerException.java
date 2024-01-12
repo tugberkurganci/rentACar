@@ -21,25 +21,26 @@ public class GlobalHandlerException {
     }
 
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, RuntimeException.class, Exception.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class,BusinessException.class, RuntimeException.class, Exception.class})
     public ResponseEntity<ApiError> handleException(Exception ex) {
 
         ApiError apiError = new ApiError();
         apiError.setStatus(HttpStatus.BAD_REQUEST.value());
         apiError.setPath(request.getRequestURI());
+        apiError.setMessage(ex.getMessage());
 
         if (ex instanceof MethodArgumentNotValidException) {
-            // Validation exception handling
-            apiError.setMessage(ex.getMessage());
+
+
             apiError.setValidationErrors(new HashMap<>());
+
+            //validation errors
             for (FieldError fieldError : ((MethodArgumentNotValidException) ex).getBindingResult().getFieldErrors()) {
-
                 apiError.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
-
             }
         } else if (ex instanceof BusinessException) {
             // Business exception handling
-            apiError.setMessage(ex.getMessage());
+
             apiError.setStatus(400);
 
         }
