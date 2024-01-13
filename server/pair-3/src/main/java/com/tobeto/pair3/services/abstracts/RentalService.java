@@ -4,6 +4,7 @@ import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface RentalService {
@@ -11,9 +12,11 @@ public interface RentalService {
 
     GetRentalResponse getById(int id);
 
-    void add(CreateRentalRequest createRentalRequest);
+    GetRentalResponse add(CreateRentalRequest createRentalRequest);
 
     void update(UpdateRentalRequest updateRentalRequest);
 
     void delete(int id);
+
+    BigDecimal getPrice(CreateRentalRequest createRentalRequest);
 }

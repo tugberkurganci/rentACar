@@ -5,19 +5,20 @@ import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.RentalRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
+import com.tobeto.pair3.services.abstracts.InvoiceService;
 import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.abstracts.UserService;
-import com.tobeto.pair3.services.businessrules.CarRules;
 import com.tobeto.pair3.services.businessrules.RentalRules;
+import com.tobeto.pair3.services.dtos.requests.CreateInvoiceRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -32,13 +33,14 @@ public class RentalManager implements RentalService {
     private final UserService userService;
 
     private final RentalRules rentalRules;
+    private final InvoiceService invoiceService;
 
 
 
 
 
-
-    public void add(CreateRentalRequest createRentalRequest) {
+    @Transactional
+    public GetRentalResponse add(CreateRentalRequest createRentalRequest) {
 
         rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
 
@@ -52,11 +54,14 @@ public class RentalManager implements RentalService {
 
         Rental rental = mapperService.forRequest().map(createRentalRequest, Rental.class);
 
-        setActualKılometerToRentalInfo(rental,createRentalRequest);
+        setActualKilometerToRentalInfo(rental,createRentalRequest);
 
         setTotalPriceToRentalInfo(rental,createRentalRequest);
 
-        rentalRepository.save(rental);
+        Rental rental2 =   rentalRepository.save(rental);
+        invoiceService.add(new CreateInvoiceRequest(rental2.getId()));
+        GetRentalResponse  response = mapperService.forResponse().map(rental2, GetRentalResponse.class);
+        return response;
     }
 
 
@@ -97,6 +102,12 @@ public class RentalManager implements RentalService {
         rentalRepository.delete(rental);
     }
 
+    @Override
+    public BigDecimal getPrice(CreateRentalRequest createRentalRequest) {
+
+        return setTotalPriceToRentalInfo(null,createRentalRequest);
+    }
+
     public List<GetRentalResponse> getAll() {
         List<Rental> rentalList = rentalRepository.findAll();
         List<GetRentalResponse> responseList = rentalList.stream()
@@ -127,15 +138,21 @@ public class RentalManager implements RentalService {
         }
     }
 
-    private void setTotalPriceToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
+    private BigDecimal setTotalPriceToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
         GetCarResponse response2= carService.getById(createRentalRequest.getCarId());
         BigDecimal dailyPrice=response2.getDailyPrice();
         long rentalTime= ChronoUnit.DAYS.between(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
+        rentalTime++;
         BigDecimal totalPrice = dailyPrice.multiply(new BigDecimal(rentalTime));
-        rental.setTotalPrice(totalPrice);
+
+        if(rental !=null) {
+            rental.setTotalPrice(totalPrice);
+        }
+
+        return totalPrice;
     }
 
-    private void setActualKılometerToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
+    private void setActualKilometerToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
         GetCarResponse response= carService.getById(createRentalRequest.getCarId());
         Integer actualKilometers=response.getKilometer();
         rental.setStartKilometer(actualKilometers);

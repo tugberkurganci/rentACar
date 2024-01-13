@@ -18,16 +18,4 @@ public class Pair3Application {
 	}
 
 
-	/*
-	* Rental, Car Tuğberk
-	*
-	* User Halil
-	*
-	* Model Rami
-	*
-	* Color ,Invoice Duygu
-	*
-	*
-	* */
-
 }

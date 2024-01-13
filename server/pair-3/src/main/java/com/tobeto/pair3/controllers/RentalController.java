@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -30,10 +31,14 @@ public class RentalController {
     }
 
     @PostMapping
-    public void add(@RequestBody @Valid CreateRentalRequest createRentalRequest) {
-        rentalService.add(createRentalRequest);
+    public GetRentalResponse add(@RequestBody @Valid CreateRentalRequest createRentalRequest) {
+        return rentalService.add(createRentalRequest);
     }
+    @PostMapping("/total")
+    public BigDecimal getPrice (@RequestBody CreateRentalRequest createRentalRequest ) {
+        return rentalService.getPrice(createRentalRequest);
 
+    }
     @PutMapping
     public void update(@RequestBody @Valid UpdateRentalRequest updateRentalRequest) {
         rentalService.update(updateRentalRequest);
