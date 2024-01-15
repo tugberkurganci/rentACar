@@ -13,6 +13,6 @@ public class GetInvoiceResponse {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
-    private int rental;
+    private int rentalId;
 
 }

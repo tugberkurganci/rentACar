@@ -87,10 +87,18 @@ const Checkout = (props: Props) => {
   };
 
   return (
-    <div>
-      <div></div>
-      <div>
-        <div>{car?.modelName}</div>
+    <div className="  row  justify-content-center align-items-center">
+      <div className="col-12 col-md-6 ">
+        <img
+          className="img-fluid rounded"
+          src="https://www.taxi-times.com/wp-content/uploads/2020/08/2020-08-11-Togg-kommt-elektrisch-nach-Deutschland-Foto-TOGG-750x531.jpg"
+          alt=""
+        />
+      </div>
+      <div className="col-12 col-md-6 border   rounded border-3 p-md-5   border-warning ">
+        <div className="text-center fs-1 text-capitalize fw-bolder">
+          {car?.modelName}
+        </div>
         <div>
           <Formik
             initialValues={initialValues}
@@ -144,7 +152,7 @@ const Checkout = (props: Props) => {
                 </div>
 
                 <div className="text-center mt-4">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-warning">
                     Kiralama onayla
                   </button>
                 </div>

@@ -6,4 +6,4 @@ export interface CarModel  {
     plate: string;
     year: number;
     id:number;
-  };
+  }
