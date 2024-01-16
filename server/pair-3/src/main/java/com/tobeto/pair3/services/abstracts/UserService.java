@@ -23,4 +23,6 @@ public interface UserService {
 
 
     User getOriginalUserById(int userId);
+
+    User findByEmail(String username);
 }

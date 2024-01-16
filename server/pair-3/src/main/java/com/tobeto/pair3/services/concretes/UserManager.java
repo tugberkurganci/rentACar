@@ -1,6 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
+import com.tobeto.pair3.entities.Role;
 import com.tobeto.pair3.entities.User;
 import com.tobeto.pair3.repositories.UserRepository;
 import com.tobeto.pair3.services.abstracts.UserService;
@@ -9,6 +10,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateUserRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetUserResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +19,16 @@ import java.util.List;
 public class UserManager implements UserService {
     private final UserRepository userRepository;
     private final ModelMapperService mapperService;
+
+    private final PasswordEncoder passwordEncoder;
     @Override
     public void add(CreateUserRequest createUserRequest) {
         if(userRepository.existsByEmail(createUserRequest.getEmail())){
             throw new RuntimeException("Email mevcut");
         }
         User user = mapperService.forRequest().map(createUserRequest, User.class);
+        user.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
     }
 
@@ -65,6 +71,11 @@ public class UserManager implements UserService {
     @Override
     public User getOriginalUserById(int userId) {
         return userRepository.findById(userId).orElseThrow();
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 
