@@ -2,7 +2,7 @@ package com.tobeto.pair3.security;
 
 
 import com.tobeto.pair3.entities.User;
-import com.tobeto.pair3.security.token.TokenService;
+import com.tobeto.pair3.security.token.JwtTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ import java.io.IOException;
 public class TokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    private TokenService tokenService;
+    private JwtTokenService tokenService;
 
     @Qualifier("handlerExceptionResolver")
     @Autowired

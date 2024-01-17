@@ -36,7 +36,7 @@ public class AuthController {
 
         var tokenWithPrefix=authHeader;
         if (cookies!=null)tokenWithPrefix="Any-Prefix "+cookies;
-        authService.logout(tokenWithPrefix);
+
         var cookie=ResponseCookie.from("car-token","").path("/").maxAge(0).httpOnly(true).build();
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,cookie.toString()).body(new GenericMessage("logout success"));
