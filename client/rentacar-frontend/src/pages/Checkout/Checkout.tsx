@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ type CarSearchValues = {
 };
 
 const Checkout = (props: Props) => {
+  const authState = useSelector((store: any) => store.auth);
   const { id } = useParams();
   const [car, setCar] = useState<CarModel>();
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ const Checkout = (props: Props) => {
       const response = await axiosInstance.post("/v1/rentals", {
         carId: id,
         ...values,
-        userId: 2,
+        userId: authState.id,
       });
       //İf no response throw tastify error
       navigate(`/order-complete`, {

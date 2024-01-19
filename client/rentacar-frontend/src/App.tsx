@@ -8,8 +8,10 @@ import CarsPage from "./pages/CarsPage/CarsPage";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderComplete from "./pages/OrderComplete/OrderComplete";
 import CarDetail from "./pages/CarDetail/CarDetail";
-import Profile from "./pages/Profle/Profile";
+import Profile from "./pages/Profile/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
           <Route path="/checkout/:id" element={<Checkout />} />
           <Route path="/order-complete" element={<OrderComplete />} />
           <Route path="/car-detail/:id" element={<CarDetail />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+
           <Route
             path="/profile"
             element={

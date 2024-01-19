@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import video from "../../../public/assets/ArabaTanıtım.mp4";
+import video from "/src/assets/ArabaTanıtım.mp4";
 type Props = {};
 
 const Homepage = (props: Props) => {

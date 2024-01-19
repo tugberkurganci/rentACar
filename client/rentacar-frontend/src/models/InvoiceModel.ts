@@ -1,4 +1,5 @@
 export interface InvoiceModel {
-    rentalId: number;
+    id: number;
     createDate: string;
+    rentalId: number;
   }
