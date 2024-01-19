@@ -17,13 +17,13 @@ public class AuthService {
     private UserService userService;
 
 
-    private JwtTokenService tokenService;
+    private JwtTokenService jwtService;
 
     private PasswordEncoder passwordEncoder ;
 
     public AuthService(UserService userService, JwtTokenService tokenService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.tokenService = tokenService;
+        this.jwtService = tokenService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -41,7 +41,7 @@ public class AuthService {
             throw new AuthenticationException();
         }
 
-        Token token=tokenService.CreateToken(user,credentials);
+        Token token=jwtService.CreateToken(user,credentials);
 
         return new AuthResponse(new UserResponse(user),token);
 

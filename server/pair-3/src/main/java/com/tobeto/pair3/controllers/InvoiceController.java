@@ -8,6 +8,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateInvoiceRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetInvoiceResponse;
+import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,12 @@ import java.util.List;
 @RequestMapping("api/v1/invoices")
 public class InvoiceController {
     private final InvoiceService invoiceService;
+
+    @GetMapping("/invoices-rentalid")
+    public List<GetInvoiceResponse> getInvoicesByRentalId(@RequestParam("rental") int id ){
+
+        return invoiceService.getInvoicesByRentalId(id);
+    }
 
 
     @PostMapping

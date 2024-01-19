@@ -19,4 +19,6 @@ public interface RentalService {
     void delete(int id);
 
     BigDecimal getPrice(CreateRentalRequest createRentalRequest);
+
+    List<GetRentalResponse> getRentalsByUserId(int id);
 }

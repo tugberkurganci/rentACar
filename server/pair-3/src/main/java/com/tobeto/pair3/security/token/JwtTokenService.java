@@ -29,7 +29,7 @@ public class JwtTokenService {
     public Token CreateToken(User user, Credentials credentials) {
         TokenSubject tokenSubject=new TokenSubject(user.getId());
         //long expirationMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 saat
-        long expirationMillis = System.currentTimeMillis() + ( 60 * 1000);
+        long expirationMillis = System.currentTimeMillis() + ( 5*60 * 1000);
         Date expirationDate = new Date(expirationMillis);
         try {
             String subject=objectMapper.writeValueAsString(tokenSubject);

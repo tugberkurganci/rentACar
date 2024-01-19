@@ -24,10 +24,7 @@ const authSlice =createSlice({
             setToken()
         },
 
-        addFriend:(state,action)=>{
-
-            state.friendList=[...state.friendList,action.payload]
-        }
+       
 
     }
 })
@@ -45,4 +42,4 @@ store.subscribe(()=>{
 
 
 
-export const{ loginSuccess,logoutSuccess,addFriend}=authSlice.actions;
+export const{ loginSuccess,logoutSuccess}=authSlice.actions;

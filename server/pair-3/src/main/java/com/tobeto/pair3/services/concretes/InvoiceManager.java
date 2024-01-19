@@ -65,4 +65,10 @@ public class InvoiceManager implements InvoiceService {
         Invoice invoice = invoiceRepository.findById(id).orElseThrow();
         invoiceRepository.delete(invoice);
     }
+
+    @Override
+    public List<GetInvoiceResponse> getInvoicesByRentalId(int id) {
+        return invoiceRepository.findByRentalId(id).stream().map(invoice -> mapperService.forResponse().map(invoice
+        , GetInvoiceResponse.class)).toList();
+    }
 }

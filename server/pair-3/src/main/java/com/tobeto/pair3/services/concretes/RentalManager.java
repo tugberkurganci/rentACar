@@ -108,6 +108,13 @@ public class RentalManager implements RentalService {
         return setTotalPriceToRentalInfo(null,createRentalRequest);
     }
 
+    @Override
+    public List<GetRentalResponse> getRentalsByUserId(int id) {
+        return  rentalRepository.findByUserId(id).
+                stream().
+                map(rental-> mapperService.forResponse().map(rental,GetRentalResponse.class)).toList();
+    }
+
     public List<GetRentalResponse> getAll() {
         List<Rental> rentalList = rentalRepository.findAll();
         List<GetRentalResponse> responseList = rentalList.stream()

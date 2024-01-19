@@ -25,6 +25,12 @@ public class RentalController {
         return rentalService.getAll();
     }
 
+    @GetMapping("/rentals-userid")
+    public List<GetRentalResponse> getRentalsByUserId(@RequestParam("user") int id ){
+
+        return rentalService.getRentalsByUserId(id);
+    }
+
     @GetMapping("{id}")
     public GetRentalResponse getById(@PathVariable("id") int id) {
         return rentalService.getById(id);

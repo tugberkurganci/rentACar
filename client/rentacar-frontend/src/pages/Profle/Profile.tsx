@@ -11,10 +11,12 @@ const Profile = (props: Props) => {
   const [rentals, setRentals] = useState<RentalModel[]>();
   const [isDropped, setIsDropped] = useState<boolean>(false);
   const [invoice, setInvoice] = useState<InvoiceModel>();
+  
+  
 
   const fetchRentals = async () => {
     try {
-      const response = await axiosInstance.get("/v1/rentals");
+      const response = await axiosInstance.get(`/v1/rentals/`);
       setRentals(response.data);
     } catch (error) {
       console.log(error);
