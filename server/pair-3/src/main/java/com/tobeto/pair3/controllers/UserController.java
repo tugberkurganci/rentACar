@@ -6,6 +6,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateUserRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetUserResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public void add(@RequestBody CreateUserRequest createUserRequest){
+    public void add(@RequestBody @Valid CreateUserRequest createUserRequest){
         userService.add(createUserRequest);
     }
     @PutMapping("{id}")

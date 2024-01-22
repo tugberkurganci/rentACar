@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { RentalModel } from "../../models/RentalModel";
-import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import { InvoiceModel } from "../../models/InvoiceModel";
 import "./profile.css";
 import { DiVim } from "react-icons/di";
 import { useSelector } from "react-redux";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
+
+
+import axiosInstance from "../../utils/interceptors/axiosInterceptors";
+
 type Props = {};
 
 const Profile = (props: Props) => {

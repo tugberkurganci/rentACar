@@ -1,10 +1,7 @@
 package com.tobeto.pair3.services.abstracts;
 
 import com.tobeto.pair3.entities.Car;
-import com.tobeto.pair3.services.dtos.requests.CreateBrandRequest;
-import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateBrandRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
+import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetAllBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
@@ -27,4 +24,8 @@ public interface CarService {
     boolean existsById(int carId);
 
     Car getOriginalCarById(int carId);
+
+    List<GetCarResponse> getRentableCars(CreateRentableCarRequest request);
+
+    public boolean isReservable(Car car, CreateRentableCarRequest request) ;
 }

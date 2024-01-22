@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 public class Token {
 
     @Id
-    private String token;
+    private String refreshToken;
+
+    private String baseToken;
 
     @Transient
     private String prefix ="Bearer";
@@ -26,7 +28,7 @@ public class Token {
     private User user;
 
     public Token(String token, String prefix) {
-        this.token = token;
+        this.refreshToken = token;
         this.prefix = prefix;
     }
 }

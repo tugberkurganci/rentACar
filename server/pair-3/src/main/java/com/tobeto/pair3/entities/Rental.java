@@ -1,7 +1,9 @@
 package com.tobeto.pair3.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "rentals")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rental {
 
 
@@ -48,6 +52,11 @@ public class Rental {
 
     @OneToMany(mappedBy = "rental")
     private List<Invoice> invoices;
+
+    public Rental (LocalDate startDate,LocalDate endDate){
+        this.startDate=startDate;
+        this.endDate=endDate;
+    }
 
 
 }

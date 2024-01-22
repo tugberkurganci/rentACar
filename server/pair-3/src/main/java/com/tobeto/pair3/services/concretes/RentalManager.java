@@ -2,6 +2,7 @@ package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
+import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.RentalRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
@@ -10,13 +11,18 @@ import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.abstracts.UserService;
 import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateInvoiceRequest;
+import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
-import jakarta.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
@@ -39,7 +45,7 @@ public class RentalManager implements RentalService {
 
 
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public GetRentalResponse add(CreateRentalRequest createRentalRequest) {
 
         rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
@@ -47,6 +53,13 @@ public class RentalManager implements RentalService {
         rentalRules.checkEndDateIsBeforeStartDate(createRentalRequest.getEndDate(),createRentalRequest.getStartDate());
 
         checkIsCarExist(createRentalRequest.getCarId());
+
+        Car car =carService.getOriginalCarById(createRentalRequest.getCarId());
+
+        if(!carService.isReservable(car,new CreateRentableCarRequest(createRentalRequest.getStartDate(),createRentalRequest.getEndDate()))){
+            throw  new BusinessException("not suitable to reserve");
+        };
+
 
         checkIsUserExists(createRentalRequest.getUserId());
 

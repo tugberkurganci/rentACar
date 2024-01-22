@@ -51,18 +51,7 @@ const Navbar = (props: Props) => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className={`nav-link ${
-                    activeKey === "cars" &&
-                    "active bg-primary rounded-1 text-light"
-                  }`}
-                  to="/cars"
-                  onClick={() => handleNavClick("cars")}
-                >
-                  Cars
-                </Link>
-              </li>
+             
               <li className="nav-item">
                 <Link
                   className={`nav-link ${

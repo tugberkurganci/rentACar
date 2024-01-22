@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import Alert from "../../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type SignupFormValues = {
   email: string;
@@ -67,6 +68,8 @@ const SignUp = (props: Props) => {
       } else {
         // console.error("Signup failed:", error);
         setResponseAlert("danger");
+        console.log(error)
+        toast.error(error.response.data.message)
       }
     } finally {
       setSubmitting(false);
@@ -104,7 +107,7 @@ const SignUp = (props: Props) => {
                       name="confirmPassword"
                       type="password"
                     />
-                    // TODO: toaster
+                  
                     {responseAlert && (
                       <Alert styleType={responseAlert}>
                         {responseAlert === "success"

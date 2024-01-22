@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CarModel } from "../../models/CarModel";
 import { Link, useParams } from "react-router-dom";
-import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 
 type Props = {};
 

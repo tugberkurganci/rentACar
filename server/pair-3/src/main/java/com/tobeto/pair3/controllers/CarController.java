@@ -2,6 +2,8 @@ package com.tobeto.pair3.controllers;
 
 import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
+import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
+import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import jakarta.validation.Valid;
@@ -26,6 +28,13 @@ public class CarController {
     public GetCarResponse getById(@PathVariable("id") Integer id) {
         return carService.getById(id);
     }
+
+    @PostMapping("rentable-cars")
+    public List<GetCarResponse> getRentableCars(@RequestBody @Valid CreateRentableCarRequest request)
+    {
+        return carService.getRentableCars(request);
+    }
+
 
     @PostMapping
     public void add(@RequestBody @Valid CreateCarRequest createCarRequest) {

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import Alert from "../../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../../store/authStore/authSlice";
+import axiosInstance, { setToken } from "../../utils/interceptors/axiosInterceptors";
+import { toast } from "react-toastify";
 
 type SignInFormValues = {
   email: string;
@@ -45,11 +46,14 @@ const SignIn = (props: Props) => {
       console.log(response.data);
 
       dispatch(loginSuccess(response.data.user));
+      
+      console.log(response.data.token.refreshToken)
+      setToken(response.data.token.refreshToken)
 
       // Handle the response or redirect to another page if needed
       setResponseAlert("success"); // Set the alert type to success
 
-      navigate("/cars");
+      navigate("/");
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
@@ -61,6 +65,7 @@ const SignIn = (props: Props) => {
         setErrors(formikErrors);
       } else {
         // console.error("Signup failed:", error);
+        toast.error(error.response.data.message)
         setResponseAlert("danger");
       }
     } finally {
@@ -88,7 +93,6 @@ const SignIn = (props: Props) => {
                       name="password"
                       type="password"
                     />
-                    // TODO: toaster
                     {responseAlert && (
                       <Alert styleType={responseAlert}>
                         {responseAlert === "success"

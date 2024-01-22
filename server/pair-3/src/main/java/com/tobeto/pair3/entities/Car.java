@@ -42,4 +42,9 @@ public class Car {
     private List<Rental> rentals;
 
 
+    public void addRental(Rental rental) {
+        this.getRentals().add(rental);
+    this.setRentals(getRentals());
+    }
+
 }

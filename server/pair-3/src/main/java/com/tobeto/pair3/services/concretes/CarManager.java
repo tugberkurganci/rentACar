@@ -2,17 +2,21 @@ package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
+import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.abstracts.ColorService;
 import com.tobeto.pair3.services.abstracts.ModelService;
+import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
+import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,12 +27,14 @@ public class CarManager implements CarService {
     private final ColorService colorService;
     private final ModelMapperService mapperService;
 
+    private final RentalRules rentalRules;
+
 
     public void add(CreateCarRequest createCarRequest) {
-        if(carRepository.existsByPlate(createCarRequest.getPlate())){
+        if (carRepository.existsByPlate(createCarRequest.getPlate())) {
             throw new RuntimeException("aynı plaka mevcut");
         }
-        if (!colorService.existsColorById(createCarRequest.getColorId())){
+        if (!colorService.existsColorById(createCarRequest.getColorId())) {
             throw new RuntimeException("Böyle bir renk yok");
         }
         modelService.getById(createCarRequest.getModelId());
@@ -73,4 +79,52 @@ public class CarManager implements CarService {
     public Car getOriginalCarById(int carId) {
         return carRepository.findById(carId).orElseThrow();
     }
+
+    @Override
+    public List<GetCarResponse> getRentableCars(CreateRentableCarRequest request) {
+
+        rentalRules.checkIsDateBeforeNow(request.getStartDate());
+        rentalRules.checkEndDateIsBeforeStartDate(request.getEndDate(),request.getEndDate());
+        rentalRules.checkIsRentalDateLongerThan25Days(request.getStartDate(),request.getEndDate());
+
+
+        List<Car> carList = carRepository.findAll();
+        List<Car> rentableCarList = new ArrayList<>();
+
+        carList.forEach(car -> {
+            if (isReservable(car, request)) {
+                rentableCarList.add(car);
+            }
+
+        });
+
+        return rentableCarList.stream().map(car -> mapperService.forResponse().map(car,GetCarResponse.class)).toList();
+    }
+
+    public boolean isReservable(Car car, CreateRentableCarRequest request) {
+
+        boolean isReserable = true;
+
+        List<Rental> rentals = car.getRentals();
+
+        for (Rental rental : rentals) {
+
+
+            if (rental.getEndDate().isBefore(request.getStartDate()) || rental.getStartDate().isAfter(request.getEndDate())) {
+
+                if (rental.getEndDate().isBefore(request.getStartDate()) && rental.getStartDate().isAfter(request.getEndDate())) {
+                    isReserable = false;
+                    break;
+                }
+
+
+            } else {
+                isReserable = false;
+                break;
+            }
+        }
+
+        return isReserable;
+    }
+
 }

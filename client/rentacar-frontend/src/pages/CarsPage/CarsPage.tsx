@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { CarModel } from "../../models/CarModel";
 import { Link, useLocation } from "react-router-dom";
 import CarCard from "../../components/CarCard/CarCard";
+
 import CarPlaceholder from "../../components/CarPlaceholder/CarPlaceholder";
+
+
 
 type Props = {};
 

@@ -3,10 +3,10 @@ import { loadAuthState } from "../storage";
 import { setToken } from "../../utils/interceptors/axiosInterceptors";
 
 
+
 export const authSlice =createSlice({
     name:'auth',
     initialState: loadAuthState(), 
-    //{id:0}
     reducers:{
         
         loginSuccess:(state,action)=>{
@@ -29,11 +29,6 @@ export const authSlice =createSlice({
 
     }
 })
-
-
-
-
-
 
 
 export const{ loginSuccess,logoutSuccess}=authSlice.actions;

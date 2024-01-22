@@ -33,6 +33,7 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests((authentication) ->
                 authentication.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.PUT,"/api/v1/users/**")).authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/api/v1/rentals")).authenticated()
                         .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.DELETE,"/api/users/{id}")).authenticated()
                                 .
                         anyRequest().permitAll()

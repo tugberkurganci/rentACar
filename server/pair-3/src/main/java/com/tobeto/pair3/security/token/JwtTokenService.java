@@ -3,7 +3,7 @@ package com.tobeto.pair3.security.token;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tobeto.pair3.entities.User;
-import com.tobeto.pair3.security.dtos.Credentials;
+import com.tobeto.pair3.security.RefreshTokenRequest;
 import com.tobeto.pair3.services.abstracts.UserService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -23,19 +23,27 @@ public class JwtTokenService {
     private ObjectMapper objectMapper=new ObjectMapper();
 
     private final UserService userService;
+    private final TokenRepository tokenRepository;
 
 
 
 
-    public Token CreateToken(User user, Credentials credentials) {
+    public Token CreateToken(User user,boolean isRefresh) {
         TokenSubject tokenSubject=new TokenSubject(user.getId());
-        //long expirationMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 saat
-        long expirationMillis = System.currentTimeMillis() + ( 5*60 * 1000);
-        Date expirationDate = new Date(expirationMillis);
+        long expirationMillisForBaseToken = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 saat
+
+
+        long expirationMillisForRefreshToken = System.currentTimeMillis() + ( 60 * 1000);
+        Date expirationDateForRefresh = new Date(expirationMillisForRefreshToken);
+        Date expirationDateForBase = new Date(expirationMillisForBaseToken);
         try {
             String subject=objectMapper.writeValueAsString(tokenSubject);
-            String token= Jwts.builder().setSubject(subject).setExpiration(expirationDate).signWith(key).compact();
-            return new Token(token,"Bearer");
+            String token1= Jwts.builder().setSubject(subject).setExpiration(expirationDateForRefresh).signWith(key).compact();
+            String token2= Jwts.builder().setSubject(subject).setExpiration(expirationDateForBase).signWith(key).compact();
+            Token token=new Token(token1,token2,"Bearer",user);
+            if(isRefresh)tokenRepository.save(token);
+
+            return token ;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -64,6 +72,24 @@ public class JwtTokenService {
 
     }
 
+    public Token createRefeshToken(RefreshTokenRequest request) {
+
+        Token token=tokenRepository.findByUserId(request.getUserId());
+        User user=verifyToken("Bearer "+token.getBaseToken());
+        if(user!=null) {
+            Token token2=CreateToken(user,false);
+            token.setRefreshToken(token2.getRefreshToken());
+            return token;
+        };
+        return null;
+
+
+
+    }
+
+    public void deleteToken(int id) {
+        tokenRepository.deleteByUserId(id);
+    }
 
 
     public static record TokenSubject (int id){}

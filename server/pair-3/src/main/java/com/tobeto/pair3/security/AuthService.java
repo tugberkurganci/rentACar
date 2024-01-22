@@ -41,7 +41,9 @@ public class AuthService {
             throw new AuthenticationException();
         }
 
-        Token token=jwtService.CreateToken(user,credentials);
+        jwtService.deleteToken(user.getId());
+        Token token=jwtService.CreateToken(user,true);
+
 
         return new AuthResponse(new UserResponse(user),token);
 
