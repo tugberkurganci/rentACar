@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CarModel } from "../../models/CarModel";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { useSelector } from "react-redux";
 
 type Props = {};

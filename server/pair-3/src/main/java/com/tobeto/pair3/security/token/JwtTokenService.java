@@ -19,6 +19,7 @@ import java.util.Date;
 public class JwtTokenService {
 
     SecretKey key= Keys.hmacShaKeyFor("secret-must-be-at-least-32-chars".getBytes());
+    SecretKey key1 = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private ObjectMapper objectMapper=new ObjectMapper();
 
     private final UserService userService;

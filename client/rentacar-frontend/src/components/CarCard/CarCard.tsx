@@ -6,14 +6,11 @@ type Props = { car: CarModel };
 
 const CarCard = ({ car }: Props) => {
   return (
-    <div
-      key={car.id}
-      className=" d-flex justify-content-center  align-items-center  mb-3"
-    >
+    <div className=" d-flex justify-content-center  align-items-center  mb-3">
       <div className="card  ">
         <img
           src="https://picsum.photos/id/237/500/200"
-          className="card-img-top"
+          className="card-img-top img-fluid"
           alt="..."
         />
         <div className="card-body">

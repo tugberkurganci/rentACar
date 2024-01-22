@@ -6,18 +6,15 @@ import { InvoiceModel } from "../../models/InvoiceModel";
 import "./profile.css";
 import { DiVim } from "react-icons/di";
 import { useSelector } from "react-redux";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 type Props = {};
 
 const Profile = (props: Props) => {
   const authState = useSelector((store: any) => store.auth);
   const [isClicked, setIsClicked] = useState<number>(2);
   const [rentals, setRentals] = useState<RentalModel[]>();
-  const [invoice, setInvoice] = useState<InvoiceModel[]>([]);
+  const [isDropped, setIsDropped] = useState<boolean>(false);
+  const [invoice, setInvoice] = useState<Invoice>();
   const [user, setUser] = useState();
-  const [openInvoiceId, setOpenInvoiceId] = useState<number>(0);
-
   const fetchUser = async () => {
     try {
       const response = await axiosInstance.get(`/v1/users/${authState.id}`);
@@ -61,12 +58,7 @@ const Profile = (props: Props) => {
   };
   const handleDetailbutton = (id: number) => {
     fetchInvoice(id);
-    // setIsDropped(!isDropped);
-    if (openInvoiceId === id) {
-      setOpenInvoiceId(0); // Eğer aynı rentalId'ye sahip invoice zaten açıksa kapat
-    } else {
-      setOpenInvoiceId(id); // Değilse yeni invoice'ı aç
-    }
+    setIsDropped(!isDropped);
   };
 
   return (
@@ -89,16 +81,16 @@ const Profile = (props: Props) => {
         </div>
         {/* Aside-End */}
         {/* Main-Start */}
-        <div className="  col-9 ">
+        <div className="  col-9">
           {/* Siparişler-Start */}
-          <div className={`${isClicked === 1 ? "d-flex" : "d-none"} row `}>
+          <div className={`${isClicked === 1 ? "d-flex" : "d-none"} row`}>
             {rentals?.map((rental) => {
               return (
                 <div
                   key={rental.id}
-                  className="  row  justify-content-start align-items-center mb-3"
+                  className="  row  justify-content-center align-items-center mb-3"
                 >
-                  <div className="col-12 col-md-6 border-bottom  w-100  border-start  rounded border-3 p-md-5   border-warning">
+                  <div className="col-12 col-md-6 border-bottom  border-start  rounded border-3 p-md-5   border-warning">
                     <div className="text-center fs-1 text-capitalize fw-bolder">
                       <span>Rental Id : </span>
                       {rental?.id}
@@ -135,56 +127,52 @@ const Profile = (props: Props) => {
                       <span className="fw-bold"> Bitiş kilometresi: </span>
                       {rental?.endKilometer}
                     </div>
-                    {/* Show/Hide invoice Button start */}
-                    <div className="d-flex flex-row   justify-content-start mt-3 ">
-                      <button
-                        onClick={() => handleDetailbutton(rental.id)}
-                        className={`btn btn-primary row d-flex flex-row  align-items-center `}
-                      >
-                        <div className="col-10">
-                          {openInvoiceId === rental.id
-                            ? "Faturayı gizle "
-                            : "Faturayı görüntüle"}
-                        </div>
+                    {/* Invoce Start */}
+                    {/* invoice.rentalId === rental.id && */}
+                    {invoice &&
+                      isDropped &&
+                      invoice[0].rentalId === rental.id && (
                         <div
-                          className={` col-2   rotate ${
-                            openInvoiceId === rental.id
-                              ? "start-rotation rotate-180"
-                              : ""
+                          className={`card mt-3  ${
+                            isDropped
+                              ? "expanded start-height "
+                              : "expanded end-height "
                           }`}
                         >
-                          <GoTriangleDown size={"3rem"} />
-                        </div>
-                      </button>
-                    </div>
-                    {/* Show/Hide invoice Button end */}
-                    {/* Invoce Start */}
-                    {invoice.map((ivoice) => {
-                      return (
-                        openInvoiceId === rental.id &&
-                        ivoice?.rentalId === rental.id && (
-                          <div
-                            key={rental.id}
-                            className={`card mt-3 expanded start-height mb-3  `}
-                          >
-                            <div className="card-body">
-                              <h5 className="card-title">Invoice Details</h5>
-                              <p className="card-text">
-                                Rental Id: {ivoice?.rentalId}
-                              </p>
-                              <p className="card-text">
-                                Created Date: {ivoice?.createDate}
-                              </p>
-                            </div>
+                          <div className="card-body">
+                            <h5 className="card-title">Invoice Details</h5>
+                            <p className="card-text">
+                              Rental Id: {invoice[0]?.rentalId}
+                            </p>
+                            <p className="card-text">
+                              Created Date: {invoice[0]?.createDate}
+                            </p>
                           </div>
-                        )
-                      );
-                    })}
-                    {}
-                    {invoice.length < 1 && !invoice && (
+                        </div>
+                      )}
+                    {!invoice && isDropped && (
                       <div className="text-danger">Fatura Bulunamadı</div>
                     )}
                     {/* Invoce End */}
+                    <div className="d-flex flex-row justify-content-center mt-3 ">
+                      <button
+                        onClick={() => handleDetailbutton(rental.id)}
+                        className={`btn btn-primary mx-2 w-100 d-flex flex-column  align-items-center `}
+                      >
+                        <div className="row">
+                          {isDropped
+                            ? "Faturayı gizle... "
+                            : "Faturayı görüntüle..."}
+                        </div>
+                        <div
+                          className={` row mx-2 w-100  rotate ${
+                            isDropped ? "start-rotation rotate-180" : ""
+                          }`}
+                        >
+                          <GoTriangleDown />
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
               );

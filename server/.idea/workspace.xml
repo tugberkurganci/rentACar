@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profle/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profle/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profle/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profle/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/CarCard/CarCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/CarCard/CarCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Footer/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarsPage/CarsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarsPage/CarsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Homepage/Homepage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Homepage/Homepage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/SignIn/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/SignIn/SignIn.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/dtos/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/dtos/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/JwtTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/JwtTokenService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,15 +111,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/InvoiceController.java</url>
-          <line>47</line>
-          <properties class="com.tobeto.pair3.controllers.InvoiceController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/InvoiceManager.java</url>
           <line>59</line>

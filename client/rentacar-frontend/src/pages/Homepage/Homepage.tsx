@@ -2,12 +2,13 @@
 import { Link } from "react-router-dom";
 import "./homepage.css";
 import video from "/src/assets/ArabaTanıtım.mp4";
+import DatePicker from "../../components/DatePicker/DatePicker";
 type Props = {};
 
 const Homepage = (props: Props) => {
   // const [isLoaded, setIsLoaded] = useState<boolean>(false);
   return (
-    <div className="home row d-flex  justify-content-center  align-items-center col-12">
+    <div className="home row d-flex  justify-content-center justify-content-md-start  align-items-center  col-12">
       <div className="col-12 col-md-6  text-center">
         <video
           style={{ maxHeight: "700px" }}
@@ -21,7 +22,7 @@ const Homepage = (props: Props) => {
           Your browser does not support the video tag.
         </video>
       </div>
-      <div className="col-12 col-md-4  ">
+      <div className="col-12 col-md-4 text-center text-md-start  ">
         <h1>
           <span className="text-warning">Rent a car</span> and find great deal
           with us
@@ -30,9 +31,7 @@ const Homepage = (props: Props) => {
           Choose from collections of brand new cars, low prices are part of our
           day offer
         </p>
-        <Link to="/cars" className="text-decoration-none">
-          <button className="btn btn-warning ">Book online now!</button>
-        </Link>
+        <DatePicker />
       </div>
     </div>
   );

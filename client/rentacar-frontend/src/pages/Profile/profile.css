@@ -10,13 +10,17 @@
 
 @keyframes heightUpAnimation {
     from {
+        opacity: 0;
         max-height: 0;
     }
 
     to {
+        opacity: 1;
         max-height: 300px;
     }
 }
+
+
 
 
 
@@ -39,5 +43,6 @@
 }
 
 .expanded {
+
     transition: max-height 1s ease-in-out;
 }

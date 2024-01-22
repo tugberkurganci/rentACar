@@ -101,7 +101,7 @@ const SignIn = (props: Props) => {
                       className="btn btn-primary btn-block"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Signing Up..." : "Sign Up"}
+                      {isSubmitting ? "Logging in..." : "Login"}
                     </button>
                   </Form>
                 )}
