@@ -105,6 +105,7 @@ public class CarManager implements CarService {
 
         boolean isReserable = true;
 
+
         List<Rental> rentals = car.getRentals();
 
         for (Rental rental : rentals) {

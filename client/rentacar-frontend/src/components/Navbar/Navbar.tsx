@@ -58,7 +58,7 @@ const Navbar = (props: Props) => {
                     activeKey === "admin" &&
                     "active bg-primary rounded-1 text-light"
                   }`}
-                  to="#"
+                  to="/dashboard"
                   onClick={() => handleNavClick("admin")}
                 >
                   Admin

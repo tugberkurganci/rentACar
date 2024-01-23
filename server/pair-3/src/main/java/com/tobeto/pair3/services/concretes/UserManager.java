@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Role;
 import com.tobeto.pair3.entities.User;
@@ -10,10 +11,13 @@ import com.tobeto.pair3.services.dtos.requests.UpdateUserRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetUserResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class UserManager implements UserService {
@@ -21,9 +25,10 @@ public class UserManager implements UserService {
     private final ModelMapperService mapperService;
 
     private final PasswordEncoder passwordEncoder;
+
     @Override
     public void add(CreateUserRequest createUserRequest) {
-        if(userRepository.existsByEmail(createUserRequest.getEmail())){
+        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
             throw new RuntimeException("Email mevcut");
         }
         User user = mapperService.forRequest().map(createUserRequest, User.class);
@@ -35,6 +40,12 @@ public class UserManager implements UserService {
     @Override
     public void update(UpdateUserRequest updateUserRequest) {
         User user = userRepository.findById(updateUserRequest.getId()).orElseThrow();
+
+            if (userRepository.existsByEmail(updateUserRequest.getEmail())&& updateUserRequest.getEmail() != null) {
+                User updatedUser=userRepository.findByEmail(updateUserRequest.getEmail());
+                if(user.getId()!=updatedUser.getId()){
+                throw new RuntimeException("Email mevcut");}
+        }
         mapperService.forRequest().map(updateUserRequest, user);
         userRepository.save(user);
     }
@@ -76,6 +87,11 @@ public class UserManager implements UserService {
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Page<GetAllUsersResponse> getAllViaPage(Pageable pageable) {
+        return userRepository.findAll(pageable).map(user -> mapperService.forResponse().map(user, GetAllUsersResponse.class));
     }
 
 

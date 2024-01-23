@@ -5,29 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarDetail/CarDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarDetail/CarDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarsPage/CarsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/CarsPage/CarsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Checkout/Checkout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Checkout/Checkout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/Profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/SignIn/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/pages/SignIn/SignIn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/store/authStore/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/store/authStore/authSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/store/storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/store/storage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/rentacar-frontend/src/utils/interceptors/axiosInterceptors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/rentacar-frontend/src/utils/interceptors/axiosInterceptors.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/JwtTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/JwtTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/CarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,11 +108,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CarManagerTest.getRentableCarsv2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pair-3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
+      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
+      <option name="METHOD_NAME" value="getRentableCarsv2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarManagerTest.testReservableForOverlappingDates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pair-3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
+      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
+      <option name="METHOD_NAME" value="testReservableForOverlappingDates" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Pair3Application" />
-        <item itemvalue="JUnit.CarManagerTest" />
+        <item itemvalue="JUnit.CarManagerTest.getRentableCarsv2" />
         <item itemvalue="JUnit.CarManagerTest.getRentableCars" />
+        <item itemvalue="JUnit.CarManagerTest.testReservableForOverlappingDates" />
+        <item itemvalue="JUnit.CarManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -191,18 +210,13 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/AuthController.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/security/token/JwtTokenService.java</url>
           <line>53</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java</url>
-          <line>21</line>
+          <line>25</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -214,6 +228,16 @@
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/RentalController.java</url>
           <line>44</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/UserController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

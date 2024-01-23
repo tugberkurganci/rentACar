@@ -12,6 +12,7 @@ import Profile from "./pages/Profile/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/car-detail/:id" element={<CarDetail />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/dashboard" element={<Admin />} />
 
           <Route
             path="/profile"

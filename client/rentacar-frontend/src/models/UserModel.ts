@@ -3,5 +3,6 @@ export interface UserModel {
     name: string;
     surname: string;
     email: string;
-    birthDate: string; 
+    birthDate: string ; 
+    password:string;
   }
