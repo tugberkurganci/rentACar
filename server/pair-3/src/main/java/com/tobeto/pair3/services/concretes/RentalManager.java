@@ -18,6 +18,8 @@ import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Isolation;
@@ -103,11 +105,11 @@ public class RentalManager implements RentalService {
         rental.setEndDate(rentalToUpdate.getEndDate());
 
 
-        checkIsCarExist(rentalToUpdate.getUser().getId());
+        checkIsCarExist(rentalToUpdate.getCar().getId());
         checkIsUserExists(rentalToUpdate.getUser().getId());
 
 
-        rentalRepository.save(rentalToUpdate);
+        rentalRepository.save(rental);
     }
 
     public void delete(int id) {
@@ -119,6 +121,11 @@ public class RentalManager implements RentalService {
     public BigDecimal getPrice(CreateRentalRequest createRentalRequest) {
 
         return setTotalPriceToRentalInfo(null,createRentalRequest);
+    }
+
+    @Override
+    public Page<GetRentalResponse> getAllViaPage(Pageable pageable) {
+        return rentalRepository.findAll(pageable).map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class));
     }
 
     @Override

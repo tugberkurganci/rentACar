@@ -2,6 +2,8 @@ package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
+import com.tobeto.pair3.entities.Color;
+import com.tobeto.pair3.entities.Model;
 import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
@@ -11,9 +13,12 @@ import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
+import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,10 +50,21 @@ public class CarManager implements CarService {
     public void update(UpdateCarRequest updateCarRequest) {
 
         Car carToUpdate = carRepository.findById(updateCarRequest.getId()).orElseThrow();
+        Color color = colorService.getOriginalColorById(updateCarRequest.getColorName());
+        Model model = modelService.getOriginalModelById(updateCarRequest.getModelName());
+        Car car = Car
+                .builder()
+                .id(updateCarRequest.getId())
+                .color(color)
+                .model(model)
+                .year(updateCarRequest.getYear())
+                .dailyPrice(updateCarRequest.getDailyPrice())
+                .plate(updateCarRequest.getPlate())
+                .kilometer(updateCarRequest.getKilometer())
+                .rentals(carToUpdate.getRentals())
+                .build();
 
-        mapperService.forRequest().map(updateCarRequest, carToUpdate);
-
-        carRepository.save(carToUpdate);
+        carRepository.save(car);
     }
 
     public void delete(Integer id) {
@@ -126,6 +142,11 @@ public class CarManager implements CarService {
         }
 
         return isReserable;
+    }
+
+    @Override
+    public Page<GetCarResponse> getAllViaPage(Pageable pageable) {
+        return carRepository.findAll(pageable).map(car -> mapperService.forResponse().map(car, GetCarResponse.class));
     }
 
 }

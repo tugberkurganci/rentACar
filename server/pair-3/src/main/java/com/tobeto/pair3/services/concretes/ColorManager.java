@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.entities.Color;
@@ -54,6 +55,11 @@ public class ColorManager implements ColorService {
                 color -> mapperService.forResponse().map(color, GetAllColorResponse.class)
         ).toList();
         return responseList;
+    }
+
+    @Override
+    public Color getOriginalColorById(int colorId) {
+        return colorRepository.findById(colorId).orElseThrow(() -> new BusinessException("Color not found!") );
     }
 
     @Override

@@ -6,7 +6,9 @@ import Alert from "../../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../../store/authStore/authSlice";
-import axiosInstance, { setToken } from "../../utils/interceptors/axiosInterceptors";
+import axiosInstance, {
+  setToken,
+} from "../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
 
 type SignInFormValues = {
@@ -43,12 +45,10 @@ const SignIn = (props: Props) => {
       setResponseAlert(null);
 
       const response = await axiosInstance.post("/auth", values);
-      console.log(response.data);
 
       dispatch(loginSuccess(response.data.user));
-      
-      console.log(response.data.token.refreshToken)
-      setToken(response.data.token.refreshToken)
+
+      setToken(response.data.token.refreshToken);
 
       // Handle the response or redirect to another page if needed
       setResponseAlert("success"); // Set the alert type to success
@@ -65,7 +65,7 @@ const SignIn = (props: Props) => {
         setErrors(formikErrors);
       } else {
         // console.error("Signup failed:", error);
-        toast.error(error.response.data.message)
+        toast.error(error.response.data.message);
         setResponseAlert("danger");
       }
     } finally {

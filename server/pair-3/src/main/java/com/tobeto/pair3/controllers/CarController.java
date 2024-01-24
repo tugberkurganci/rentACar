@@ -5,9 +5,12 @@ import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
+import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +53,9 @@ public class CarController {
     public void delete(@PathVariable("id") Integer id) {
         carService.delete(id);
     }
-
+    @GetMapping("/via-page")
+    public Page<GetCarResponse> getAllViaPage(Pageable pageable){
+        return carService.getAllViaPage(pageable);
+    }
 
 }

@@ -1,0 +1,57 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    list-style: none;
+
+}
+
+.pagination-page {
+    border: 1px solid #757575;
+    margin: 0 5px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.active {
+    background-color: #007aff;
+    color: #fff;
+}
+
+.prev-button,
+.next-button {
+    border: 1px solid #757575;
+    border-radius: 10%;
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+    /* Diğer stillendirme özellikleri */
+}
+
+.prev-button:hover,
+.next-button:hover {
+    border-radius: 10%;
+    background-color: #007aff;
+
+    /* Diğer stillendirme özellikleri */
+}
+
+.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    /* Diğer stillendirme özellikleri */
+}
+
+.prev-link,
+.next-link {
+    color: black;
+    text-decoration: none;
+}
+
+.prev-link:hover,
+.next-link:hover {
+    color: #fff;
+    text-decoration: none;
+}

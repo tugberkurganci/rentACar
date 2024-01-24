@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Model;
 import com.tobeto.pair3.repositories.ModelRepository;
@@ -60,6 +61,11 @@ public class ModelManager implements ModelService {
                 model -> mapperService.forResponse().map(model,GetAllModelResponse.class)
         ).toList();
         return responseList;
+    }
+
+    @Override
+    public Model getOriginalModelById(int modelId) {
+        return modelRepository.findById(modelId).orElseThrow(() -> new BusinessException(("Model not found!")));
     }
 
     @Override

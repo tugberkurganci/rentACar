@@ -23,8 +23,9 @@ import java.util.List;
 public class UserManager implements UserService {
     private final UserRepository userRepository;
     private final ModelMapperService mapperService;
+    private PasswordEncoder passwordEncoder ;
 
-    private final PasswordEncoder passwordEncoder;
+
 
     @Override
     public void add(CreateUserRequest createUserRequest) {
@@ -41,13 +42,42 @@ public class UserManager implements UserService {
     public void update(UpdateUserRequest updateUserRequest) {
         User user = userRepository.findById(updateUserRequest.getId()).orElseThrow();
 
-            if (userRepository.existsByEmail(updateUserRequest.getEmail())&& updateUserRequest.getEmail() != null) {
+
+        if (userRepository.existsByEmail(updateUserRequest.getEmail())&& updateUserRequest.getEmail() != null) {
                 User updatedUser=userRepository.findByEmail(updateUserRequest.getEmail());
                 if(user.getId()!=updatedUser.getId()){
                 throw new RuntimeException("Email mevcut");}
         }
-        mapperService.forRequest().map(updateUserRequest, user);
-        userRepository.save(user);
+        if(updateUserRequest.getPassword()!=null){
+            User user1 = User
+                    .builder()
+                    .id(updateUserRequest.getId())
+                    .name(updateUserRequest.getName())
+                    .surname(updateUserRequest.getSurname())
+                    .birthDate(updateUserRequest.getBirthDate())
+                    .email(updateUserRequest.getEmail())
+                    .role(user.getRole())
+                    .rentals(user.getRentals())
+                    .password(passwordEncoder.encode(updateUserRequest.getPassword()))
+                    .build();
+            userRepository.save(user1);
+        }else {
+            User user1 = User
+                    .builder()
+                    .id(updateUserRequest.getId())
+                    .name(updateUserRequest.getName())
+                    .surname(updateUserRequest.getSurname())
+                    .birthDate(updateUserRequest.getBirthDate())
+                    .email(updateUserRequest.getEmail())
+                    .role(user.getRole())
+                    .rentals(user.getRentals())
+                    .password(user.getPassword())
+                    .build();
+            userRepository.save(user1);
+        }
+
+
+        /*userRepository.save(user);*/
     }
 
     @Override

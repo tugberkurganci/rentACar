@@ -24,11 +24,9 @@ public class UpdateCarRequest {
     @DecimalMin(value = "0", message = "Daily price must be a non-negative value")
     private BigDecimal dailyPrice;
 
-    @Min(value = 1, message = "ModelId must be a positive value")
-    private int modelId;
+    private int modelName;
 
-    @Min(value = 1, message = "ColorId must be a positive value")
-    private int colorId;
+    private int colorName;
 
     public void setPlate(String plate) {
         this.plate = plate.replaceAll("\\s", "");

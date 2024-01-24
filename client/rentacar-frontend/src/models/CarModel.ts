@@ -1,8 +1,8 @@
 export interface CarModel  {
-    colorName: string;
+    colorName: string |number;
     dailyPrice: number;
     kilometer: number;
-    modelName: string;
+    modelName: string|number;
     plate: string;
     year: number;
     id:number;

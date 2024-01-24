@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.Model;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
@@ -22,4 +23,5 @@ public interface ModelService {
     GetModelResponse getById(Integer id);
 
 
+    Model getOriginalModelById(int modelId);
 }
