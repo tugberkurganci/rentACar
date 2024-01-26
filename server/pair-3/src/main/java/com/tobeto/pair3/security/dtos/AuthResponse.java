@@ -14,6 +14,7 @@ public class AuthResponse {
 
 
     private UserResponse user;
+
     private Token token;
 
 }

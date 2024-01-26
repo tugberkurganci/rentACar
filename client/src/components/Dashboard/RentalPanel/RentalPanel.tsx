@@ -71,7 +71,7 @@ const RentalPanel = (props: Props) => {
       }
     }
   };
-  const handleDeleteCar = async (car: RentalModel) => {
+  const handleDeleteRental = async (car: RentalModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/rentals/${car.id}`);
       toast.success("Rental deleted successfully");
@@ -152,7 +152,7 @@ const RentalPanel = (props: Props) => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDeleteCar(rental)}
+                    onClick={() => handleDeleteRental(rental)}
                     className=" btn btn-danger"
                   >
                     Delete

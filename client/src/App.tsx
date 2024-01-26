@@ -13,6 +13,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Admin/Admin";
+import AdminRoute from "./routes/AdminRoute";
 
 function App() {
   return (
@@ -28,7 +29,14 @@ function App() {
           <Route path="/car-detail/:id" element={<CarDetail />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Admin />} />
+          <Route
+            path="/dashboard"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
+            }
+          />
 
           <Route
             path="/profile"

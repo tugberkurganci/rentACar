@@ -14,7 +14,7 @@ type Props = {};
 
 const DatePicker = (props: Props) => {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [initialValues, setInitialValues] = useState<CarSearchValues>({
     startDate: "",
     endDate: "",
@@ -23,13 +23,16 @@ const DatePicker = (props: Props) => {
     startDate: Yup.string().required(),
     endDate: Yup.string().required(),
   });
-  const handleOnSubmit = async (values: CarSearchValues, { setErrors, setSubmitting }: FormikHelpers<CarSearchValues>) => {
+  const handleOnSubmit = async (
+    values: CarSearchValues,
+    { setErrors, setSubmitting }: FormikHelpers<CarSearchValues>
+  ) => {
     try {
       const response = await axiosInstance.post("/v1/cars/rentable-cars", {
         ...values,
       });
-      console.log(values)
-      dispatch(loadRental(values))
+      console.log(values);
+      dispatch(loadRental(values));
       //İf no response throw tastify error
       navigate(`/cars`, {
         state: { cars: response.data },
@@ -46,8 +49,7 @@ const DatePicker = (props: Props) => {
         setErrors(formikErrors);
       } else {
         console.error("Signup failed:", error);
-        toast.error(error.response.data.message)
-        
+        toast.error(error.response.data.message);
       }
     } finally {
       setSubmitting(false);
@@ -69,13 +71,12 @@ const DatePicker = (props: Props) => {
 
             <div className="text-center mt-4">
               <button type="submit" className="btn btn-warning">
-                Kiralama onayla
+                Tarihi onayla
               </button>
             </div>
           </Form>
         )}
       </Formik>
-      
     </div>
   );
 };

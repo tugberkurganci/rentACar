@@ -74,43 +74,41 @@ const SignIn = (props: Props) => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title text-center mb-4">Sign Up</h5>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleSignInSubmit}
-              >
-                {({ isSubmitting }) => (
-                  <Form>
-                    <FormikInput label="Email" name="email" type="email" />
-                    <FormikInput
-                      label="Password"
-                      name="password"
-                      type="password"
-                    />
-                    {responseAlert && (
-                      <Alert styleType={responseAlert}>
-                        {responseAlert === "success"
-                          ? "Signup successful!"
-                          : "Signup failed. Please check your information."}
-                      </Alert>
-                    )}
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Logging in..." : "Login"}
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-            </div>
+    <div className="container w-100 d-flex align-items-center justify-content-center mt-5">
+      <div className="row justify-content-center col-md-6">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title text-center mb-4">Sign Up</h5>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSignInSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form>
+                  <FormikInput label="Email" name="email" type="email" />
+                  <FormikInput
+                    label="Password"
+                    name="password"
+                    type="password"
+                  />
+                  {responseAlert && (
+                    <Alert styleType={responseAlert}>
+                      {responseAlert === "success"
+                        ? "Signup successful!"
+                        : "Signup failed. Please check your information."}
+                    </Alert>
+                  )}
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Logging in..." : "Login"}
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

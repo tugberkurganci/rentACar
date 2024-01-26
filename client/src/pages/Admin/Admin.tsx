@@ -10,8 +10,8 @@ const Admin = (props: Props) => {
   const [section, setSection] = useState<string>("user");
 
   return (
-    <div className="row w-100">
-      <div className="col-2 pe-5  d-flex flex-column  border border">
+    <div className="row container ">
+      <div className="col-2 pe-5  d-flex flex-column  ">
         <div
           className="btn btn-primary row  mb-2"
           onClick={() => setSection("user")}

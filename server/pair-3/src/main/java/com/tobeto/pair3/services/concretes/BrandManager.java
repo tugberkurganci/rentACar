@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.repositories.BrandRepository;
@@ -76,6 +77,11 @@ public class BrandManager implements BrandService {
 
 
         return response;
+    }
+
+    @Override
+    public Brand getByOriginalId(Integer id) {
+        return brandRepository.findById(id).orElseThrow(() -> new BusinessException(("Brand not found!")));
     }
 
     @Override

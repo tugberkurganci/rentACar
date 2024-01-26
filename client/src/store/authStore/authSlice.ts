@@ -14,6 +14,7 @@ export const authSlice =createSlice({
             state.id=action.payload.id;
             // state.firstName=action.payload.firstName;
             state.email=action.payload.email;
+            state.role = action.payload.role;
            setToken(action.payload.token)
         },
 
@@ -22,6 +23,7 @@ export const authSlice =createSlice({
             state.id=0;
             // delete state.firstName
             delete state.email
+            delete state.role
             setToken()
         },
 

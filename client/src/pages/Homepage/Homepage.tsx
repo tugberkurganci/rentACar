@@ -31,6 +31,7 @@ const Homepage = (props: Props) => {
           Choose from collections of brand new cars, low prices are part of our
           day offer
         </p>
+        <p>Please pick a date interval!</p>
         <DatePicker />
       </div>
     </div>

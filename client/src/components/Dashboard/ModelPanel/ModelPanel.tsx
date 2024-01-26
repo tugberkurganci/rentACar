@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from "react";
-import Pagination from "../../Pagination/Pagination";
-import { Form, Formik, FormikHelpers } from "formik";
-import FormikSelect from "../../FormikSelect/FormikSelect";
-import FormikInput from "../../FormikInput/FormikInput";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { RentalModel } from "../../../models/RentalModel";
 import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
-import { ModelType } from "../../../models/ModelType";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
+import FormikInput from "../../FormikInput/FormikInput";
+import { Form, Formik, FormikHelpers } from "formik";
+import Pagination from "../../Pagination/Pagination";
+import { ModelType } from "../../../models/ModelType";
+import FormikSelect from "../../FormikSelect/FormikSelect";
 
 type Props = {};
 
 const ModelPanel = (props: Props) => {
+  const [brandList, setBrandList] = useState<any[]>([]);
+  const [modelList, setModelList] = useState<ModelType[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
-  const [modelList, setModelList] = useState<ModelType[]>([]);
-  const [brandList, setBrandList] = useState<any[]>([]);
-
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
     setPageable({ ...pageable, page: newPage });
   };
-  const [initialValues, setInitialValues] = useState<ModelType>({
-    id: 1,
-    name: "",
-    brandId: 0,
-  });
-
+  const fetchModels = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `v1/models/via-page?page=${pageable?.page}&size=${pageable?.size}`
+      );
+      setTotalPages(response.data.totalPages);
+      setModelList(response.data.content);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    }
+  };
+  const fetchBrands = async () => {
+    try {
+      const response = await axiosInstance.get(`v1/brands`);
+      setBrandList(response.data);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    }
+  };
   const handleChangeUpdateBtn = (model: ModelType) => {
     setEditable(!editable);
     setInitialValues(model);
@@ -38,7 +51,10 @@ const ModelPanel = (props: Props) => {
     console.log(values);
 
     try {
-      const response = await axiosInstance.put(`/v1/models`, values);
+      const response = await axiosInstance.put(
+        `/v1/models/${values.id}`,
+        values
+      );
       toast.success("Model updated successfully");
       console.log(response);
       setEditable(!editable);
@@ -67,41 +83,25 @@ const ModelPanel = (props: Props) => {
     try {
       const response = await axiosInstance.delete(`/v1/models/${model.id}`);
       toast.success("Model deleted successfully");
-      console.log(response.data);
-
       fetchModels();
     } catch (error: any) {
       toast.error(error?.response.data.message);
     }
   };
-  const fetchModels = async () => {
-    try {
-      const response = await axiosInstance.get(
-        `v1/models/via-page?page=${pageable?.page}&size=${pageable?.size}`
-      );
-      setTotalPages(response.data.totalPages);
-      setModelList(response.data.content);
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-    }
-  };
-  const fetchBrands = async () => {
-    try {
-      const response = await axiosInstance.get(`v1/brands`);
-      setBrandList(response.data);
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-    }
-  };
+  const [initialValues, setInitialValues] = useState<ModelType>({
+    id: 1,
+    name: "",
+    brandId: 0,
+  });
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Car ID is required"),
+    brandId: Yup.string().required("End Date is required"),
+  });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
     handleChange(e);
     setInitialValues({ ...values, [e.target.name]: e.target.value });
   };
-
-  const validationSchema = Yup.object({
-    modelName: Yup.string().required("Model Name is required"),
-    brandName: Yup.string().required("Kilometer is required"),
-  });
   useEffect(() => {
     fetchModels();
     fetchBrands();
@@ -128,7 +128,6 @@ const ModelPanel = (props: Props) => {
                 <th scope="row">{model.id}</th>
                 <td>{model.name}</td>
                 <td>{model.brandId}</td>
-
                 <td>
                   <button
                     className="me-2 btn btn-primary"
@@ -168,9 +167,9 @@ const ModelPanel = (props: Props) => {
           >
             {({ isSubmitting, values, handleChange }) => (
               <Form className="  w-50">
-                <div className="col">
+                <div>
                   <FormikInput
-                    label="Model Name"
+                    label=" Model Name"
                     onChange={(e: any) => {
                       onChangeInput(handleChange, e, values);
                     }}
@@ -178,15 +177,15 @@ const ModelPanel = (props: Props) => {
                     name="name"
                   />
                 </div>
+
                 <div>
                   <FormikSelect
                     label="Brand Name"
                     list={brandList}
-                    name="brandName"
+                    name="brandId"
                     val={"id"}
                   />
                 </div>
-
                 <div className="col  d-flex justify-content-between">
                   <button
                     onClick={() => setEditable(!editable)}

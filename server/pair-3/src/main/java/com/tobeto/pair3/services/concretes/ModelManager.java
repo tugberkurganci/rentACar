@@ -2,6 +2,7 @@ package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
+import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.entities.Model;
 import com.tobeto.pair3.repositories.ModelRepository;
 import com.tobeto.pair3.services.abstracts.BrandService;
@@ -9,7 +10,6 @@ import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
-import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetModelResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -46,7 +46,10 @@ public class ModelManager implements ModelService {
     public void update(UpdateModelRequest updateModelRequest) {
 
         Model model=modelRepository.findById(updateModelRequest.getId()).orElseThrow();
-         mapperService.forRequest().map(updateModelRequest, Model.class);
+        Brand brand = brandService.getByOriginalId(updateModelRequest.getBrandId());
+          model.setId(updateModelRequest.getId());
+          model.setName(updateModelRequest.getName());
+          model.setBrand(brand);
         modelRepository.save(model);
     }
 

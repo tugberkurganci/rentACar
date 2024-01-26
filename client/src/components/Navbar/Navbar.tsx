@@ -51,19 +51,21 @@ const Navbar = (props: Props) => {
                   Home
                 </Link>
               </li>
-             
-              <li className="nav-item">
-                <Link
-                  className={`nav-link ${
-                    activeKey === "admin" &&
-                    "active bg-primary rounded-1 text-light"
-                  }`}
-                  to="/dashboard"
-                  onClick={() => handleNavClick("admin")}
-                >
-                  Admin
-                </Link>
-              </li>
+
+              {authState.role === "ADMIN" && (
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      activeKey === "admin" &&
+                      "active bg-primary rounded-1 text-light"
+                    }`}
+                    to="/dashboard"
+                    onClick={() => handleNavClick("admin")}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
             </ul>
 
             <div className="col text-end">

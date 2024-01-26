@@ -13,6 +13,7 @@ public class UserResponse {
     private int id;
     private String image;
     private String name;
+    private String role;
     private String email;
 
 
@@ -20,6 +21,7 @@ public class UserResponse {
         this.id=user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
+        this.role = String.valueOf(user.getRole());
 
     }
 }

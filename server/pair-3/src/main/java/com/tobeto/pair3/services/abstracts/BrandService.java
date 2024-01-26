@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.services.dtos.requests.CreateBrandRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateBrandRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllBrandResponse;
@@ -18,6 +19,7 @@ public interface BrandService {
     List<GetAllBrandResponse> getAll();
 
     GetBrandResponse getById(Integer id);
+    Brand getByOriginalId(Integer id);
 
     boolean existsById(Integer brandId);
 }
