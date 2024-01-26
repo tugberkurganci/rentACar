@@ -50,7 +50,7 @@ public class Rental {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "rental")
+    @OneToMany(mappedBy = "rental",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Invoice> invoices;
 
     public Rental (LocalDate startDate,LocalDate endDate){

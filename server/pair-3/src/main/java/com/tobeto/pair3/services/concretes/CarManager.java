@@ -129,11 +129,6 @@ public class CarManager implements CarService {
 
             if (rental.getEndDate().isBefore(request.getStartDate()) || rental.getStartDate().isAfter(request.getEndDate())) {
 
-                if (rental.getEndDate().isBefore(request.getStartDate()) && rental.getStartDate().isAfter(request.getEndDate())) {
-                    isReserable = false;
-                    break;
-                }
-
 
             } else {
                 isReserable = false;

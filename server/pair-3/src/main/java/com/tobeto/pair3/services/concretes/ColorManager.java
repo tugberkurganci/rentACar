@@ -27,7 +27,7 @@ public class ColorManager implements ColorService {
 
     public void add(CreateColorRequest createColorRequest) {
         if(colorRepository.existsByName(createColorRequest.getName())){
-            throw new RuntimeException("Color is already exists");
+            throw new BusinessException("Color is already exists");
         }
 
         Color color = mapperService.forRequest().map(createColorRequest, Color.class);

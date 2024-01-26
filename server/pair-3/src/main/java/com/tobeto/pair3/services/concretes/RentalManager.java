@@ -82,34 +82,32 @@ public class RentalManager implements RentalService {
 
     public void update(UpdateRentalRequest updateRentalRequest) {
         Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow(() -> new BusinessException("there is no rental"));
-        Rental rental=new Rental();
+
 
         if(updateRentalRequest.getReturnDate()!=null){
-            rental.setReturnDate(updateRentalRequest.getReturnDate());
+            rentalToUpdate.setReturnDate(updateRentalRequest.getReturnDate());
         }
         if(updateRentalRequest.getEndKilometer()!=0){
-            rental.setEndKilometer(updateRentalRequest.getEndKilometer());
+            rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
         }
         if(updateRentalRequest.getTotalPrice()!=null){
-            rental.setTotalPrice(updateRentalRequest.getTotalPrice());
+            rentalToUpdate.setTotalPrice(updateRentalRequest.getTotalPrice());
         }
         if(updateRentalRequest.getUserId()!=0){
-            rental.setUser(userService.getOriginalUserById(updateRentalRequest.getUserId()));
+            rentalToUpdate.setUser(userService.getOriginalUserById(updateRentalRequest.getUserId()));
         }
 
         if(updateRentalRequest.getCarId()!=0){
-            rental.setCar(carService.getOriginalCarById(updateRentalRequest.getCarId()));
+            rentalToUpdate.setCar(carService.getOriginalCarById(updateRentalRequest.getCarId()));
         }
-        rental.setStartKilometer(rentalToUpdate.getStartKilometer());
-        rental.setStartDate(rentalToUpdate.getStartDate());
-        rental.setEndDate(rentalToUpdate.getEndDate());
+
 
 
         checkIsCarExist(rentalToUpdate.getCar().getId());
         checkIsUserExists(rentalToUpdate.getUser().getId());
 
 
-        rentalRepository.save(rental);
+        rentalRepository.save(rentalToUpdate);
     }
 
     public void delete(int id) {

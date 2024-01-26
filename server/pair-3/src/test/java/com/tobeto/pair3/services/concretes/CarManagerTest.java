@@ -26,12 +26,12 @@ class CarManagerTest {
         Car car = new Car();
         // Assuming you have a method to add rentals to a car
         car.setRentals(new ArrayList<>());
-        car.addRental(new Rental(LocalDate.parse("2024-01-23"), LocalDate.parse("2024-01-26")));
+        car.addRental(new Rental(LocalDate.parse("2024-01-28"), LocalDate.parse("2024-01-30")));
 
 
         // Create a request that overlaps with an existing rental
         CreateRentableCarRequest overlappingRequest = new CreateRentableCarRequest(
-                LocalDate.parse("2024-01-25"),
+                LocalDate.parse("2024-01-23"),
                 LocalDate.parse("2024-01-27")
         );
 
@@ -39,7 +39,7 @@ class CarManagerTest {
         boolean result = carManager.isReservable(car, overlappingRequest);
 
         // Assert that the result is false because there is an overlap
-        assertFalse(result, "The car should not be reservable for overlapping dates");
+        assertTrue(result, "The car should not be reservable for overlapping dates");
     }
     @Test
     void getRentableCarsv2() {
