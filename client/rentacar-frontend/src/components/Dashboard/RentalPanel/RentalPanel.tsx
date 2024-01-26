@@ -95,8 +95,8 @@ const RentalPanel = (props: Props) => {
   const validationSchema = Yup.object({
     carId: Yup.number().required("Car ID is required"),
     endDate: Yup.string().required("End Date is required"),
-    endKilometer: Yup.number().required("End Kilometer is required"),
-    returnDate: Yup.string().required("Return Date is required"),
+    endKilometer: Yup.number().nullable<any>(true),
+    returnDate: Yup.string().nullable<any>(true),
     startKilometer: Yup.number().required("Start Kilometer is required"),
     startDate: Yup.string().required("Start Date is required"),
     totalPrice: Yup.number().required("Total Price is required"),
@@ -227,17 +227,6 @@ const RentalPanel = (props: Props) => {
                     value={initialValues.returnDate}
                     name="returnDate"
                     type="date"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="Start Kilometer"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.startKilometer}
-                    name="startKilometer"
-                    type="number"
                   />
                 </div>
                 <div className="col">

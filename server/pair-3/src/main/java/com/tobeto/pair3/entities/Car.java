@@ -44,7 +44,7 @@ public class Car {
     @JoinColumn(name = "color_id")
     private Color color;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Rental> rentals;
 
 

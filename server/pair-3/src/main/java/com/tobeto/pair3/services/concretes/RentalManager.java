@@ -10,10 +10,7 @@ import com.tobeto.pair3.services.abstracts.InvoiceService;
 import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.abstracts.UserService;
 import com.tobeto.pair3.services.businessrules.RentalRules;
-import com.tobeto.pair3.services.dtos.requests.CreateInvoiceRequest;
-import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
-import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
+import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 
@@ -88,7 +85,25 @@ public class RentalManager implements RentalService {
             rentalToUpdate.setReturnDate(updateRentalRequest.getReturnDate());
         }
         if(updateRentalRequest.getEndKilometer()!=0){
-            rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
+            Car car = carService.getOriginalCarById(updateRentalRequest.getCarId());
+            if (car.getKilometer()< updateRentalRequest.getEndKilometer()){
+                UpdateCarRequest updateCarRequest = UpdateCarRequest
+                        .builder()
+                        .year(car.getYear())
+                        .colorName(car.getColor().getId())
+                        .dailyPrice(car.getDailyPrice())
+                        .id(car.getId())
+                        .kilometer(updateRentalRequest.getEndKilometer())
+                        .modelName(car.getModel().getId())
+                        .plate(car.getPlate())
+                        .build();
+                carService.update(updateCarRequest);
+                rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
+            }else {
+                throw new BusinessException("End kilometer must be higher than start kilometer! ("+car.getKilometer()+")");
+            }
+
+
         }
         if(updateRentalRequest.getTotalPrice()!=null){
             rentalToUpdate.setTotalPrice(updateRentalRequest.getTotalPrice());

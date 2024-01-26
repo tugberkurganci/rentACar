@@ -6,6 +6,9 @@ import * as Yup from "yup";
 import FormikInput from "../../FormikInput/FormikInput";
 import { Form, Formik, FormikHelpers } from "formik";
 import Pagination from "../../Pagination/Pagination";
+import FormikSelect from "../../FormikSelect/FormikSelect";
+import { ModelType } from "../../../models/ModelType";
+import { ColorModel } from "../../../models/ColorModel";
 type Props = {};
 
 const CarPanel = (props: Props) => {
@@ -13,6 +16,9 @@ const CarPanel = (props: Props) => {
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [modelList, setModelList] = useState<ModelType[]>([]);
+  const [colorList, setColorList] = useState<ColorModel[]>([]);
+
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
     setPageable({ ...pageable, page: newPage });
@@ -28,6 +34,24 @@ const CarPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
+
+  const fetchModels = async () => {
+    try {
+      const response = await axiosInstance.get("v1/models");
+      setModelList(response.data);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    }
+  };
+  const fetchColors = async () => {
+    try {
+      const response = await axiosInstance.get("v1/colors");
+      setColorList(response.data);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    }
+  };
+
   const handleChangeUpdateBtn = (user: CarModel) => {
     setEditable(!editable);
     setInitialValues(user);
@@ -105,6 +129,8 @@ const CarPanel = (props: Props) => {
   };
   useEffect(() => {
     fetchCars();
+    fetchModels();
+    fetchColors();
   }, [pageable]);
 
   return (
@@ -176,14 +202,11 @@ const CarPanel = (props: Props) => {
             {({ isSubmitting, values, handleChange }) => (
               <Form className="  w-50">
                 <div>
-                  <FormikInput
+                  <FormikSelect
                     label="Model Name"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.modelName}
+                    list={modelList}
                     name="modelName"
-                    type="number"
+                    val={"id"}
                   />
                 </div>
 
@@ -197,15 +220,12 @@ const CarPanel = (props: Props) => {
                     name="kilometer"
                   />
                 </div>
-                <div className="col">
-                  <FormikInput
+                <div>
+                  <FormikSelect
                     label="Color"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.colorName}
+                    list={colorList}
                     name="colorName"
-                    type="number"
+                    val={"id"}
                   />
                 </div>
 

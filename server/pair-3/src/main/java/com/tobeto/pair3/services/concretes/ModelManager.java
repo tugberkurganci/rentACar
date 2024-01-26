@@ -9,8 +9,11 @@ import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
+import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetModelResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,6 +69,11 @@ public class ModelManager implements ModelService {
     @Override
     public Model getOriginalModelById(int modelId) {
         return modelRepository.findById(modelId).orElseThrow(() -> new BusinessException(("Model not found!")));
+    }
+
+    @Override
+    public Page<GetAllModelResponse> getAllViaPage(Pageable pageable) {
+        return modelRepository.findAll(pageable).map(model -> mapperService.forResponse().map(model, GetAllModelResponse.class));
     }
 
     @Override

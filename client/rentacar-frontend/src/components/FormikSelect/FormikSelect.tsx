@@ -1,23 +1,30 @@
-import { Field } from 'formik';
-import React from 'react';
+import { Field } from "formik";
+import React from "react";
 
 type FormikSelectProps = {
+  label: string;
   list: any[];
   name: string;
+  val: string;
 };
 
-function FormikSelect({ list, name }: FormikSelectProps) {
+function FormikSelect({ list, val, name, label }: FormikSelectProps) {
   return (
-    <Field as="select" className="form-select" name={name}>
-        <option value={""}>{`${name} seçin` } </option>
-      {list && list.map((item, index) => (
-        <option key={index} value={item[name]}>
-          {item[name]}
-        </option>
-      ))}
-    </Field>
+    <div>
+      <label htmlFor={name} className="form-label">
+        {label}
+      </label>
+      <Field as="select" className="form-select" name={name}>
+        <option value={""}>{`Seçiniz..`} </option>
+        {list &&
+          list.map((item, index) => (
+            <option key={index} value={item[val]}>
+              {item.name}
+            </option>
+          ))}
+      </Field>
+    </div>
   );
 }
 
 export default FormikSelect;
-
