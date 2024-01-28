@@ -1,4 +1,4 @@
-package com.tobeto.pair3.security.token;
+package com.tobeto.pair3.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tobeto.pair3.entities.User;

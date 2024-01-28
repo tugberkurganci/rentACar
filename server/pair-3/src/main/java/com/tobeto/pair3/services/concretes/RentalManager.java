@@ -1,6 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
+import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.entities.Rental;
@@ -15,6 +16,7 @@ import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -56,7 +58,7 @@ public class RentalManager implements RentalService {
         Car car =carService.getOriginalCarById(createRentalRequest.getCarId());
 
         if(!carService.isReservable(car,new CreateRentableCarRequest(createRentalRequest.getStartDate(),createRentalRequest.getEndDate()))){
-            throw  new BusinessException("not suitable to reserve");
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.reservable.notsuitable", LocaleContextHolder.getLocale())));
         };
 
 
@@ -78,7 +80,9 @@ public class RentalManager implements RentalService {
 
 
     public void update(UpdateRentalRequest updateRentalRequest) {
-        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow(() -> new BusinessException("there is no rental"));
+        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow(() ->
+    new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.notfound", LocaleContextHolder.getLocale()))));
+
 
 
         if(updateRentalRequest.getReturnDate()!=null){
@@ -100,7 +104,7 @@ public class RentalManager implements RentalService {
                 carService.update(updateCarRequest);
                 rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
             }else {
-                throw new BusinessException("End kilometer must be higher than start kilometer! ("+car.getKilometer()+")");
+                throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.endkilometer.low", LocaleContextHolder.getLocale())));
             }
 
 
@@ -168,13 +172,13 @@ public class RentalManager implements RentalService {
 
     private void checkIsUserExists(int userId) {
         if(!userService.existsById(userId)) {
-            throw new RuntimeException("there is no user with this id");
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.user.notfound", LocaleContextHolder.getLocale())));
         }
     }
 
     private void checkIsCarExist(int carId) {
         if (!carService.existsById(carId)) {
-            throw new RuntimeException("there is no car with this id");
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.car.notfound", LocaleContextHolder.getLocale())));
         }
     }
 

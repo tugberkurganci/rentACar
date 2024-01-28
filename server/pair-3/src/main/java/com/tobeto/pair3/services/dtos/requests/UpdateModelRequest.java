@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class UpdateModelRequest {
     private Integer id;
     private String name;
-    @Min(value = 1, message = "BrandId must be a positive value")
+    @Min(value = 1, message = "{rentACar.constraint.modelId.min}")
     private Integer brandId;
 }

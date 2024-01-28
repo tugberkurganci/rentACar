@@ -1,13 +1,15 @@
-package com.tobeto.pair3.security.token;
+package com.tobeto.pair3.services.concretes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tobeto.pair3.entities.Token;
 import com.tobeto.pair3.entities.User;
-import com.tobeto.pair3.security.RefreshTokenRequest;
+import com.tobeto.pair3.repositories.TokenRepository;
+import com.tobeto.pair3.services.dtos.requests.RefreshTokenRequest;
 import com.tobeto.pair3.services.abstracts.UserService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -15,22 +17,30 @@ import java.util.Date;
 
 
 @Service
-@RequiredArgsConstructor
+
 public class JwtTokenService {
 
-    SecretKey key= Keys.hmacShaKeyFor("secret-must-be-at-least-32-chars".getBytes());
-    SecretKey key1 = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    private ObjectMapper objectMapper=new ObjectMapper();
 
-    private final UserService userService;
-    private final TokenRepository tokenRepository;
+    private String jwtKey;
+    SecretKey key;
+    private ObjectMapper objectMapper;
+
+    private  UserService userService;
+    private TokenRepository tokenRepository;
+
+    public JwtTokenService(@Value("${jwt.key}") String jwtKey, UserService userService, TokenRepository tokenRepository) {
+
+        this.jwtKey = jwtKey;
+        this.key = Keys.hmacShaKeyFor(jwtKey.getBytes());
+        this.objectMapper = new ObjectMapper();
+        this.userService = userService;
+        this.tokenRepository = tokenRepository;
+    }
 
 
-
-
-    public Token CreateToken(User user,boolean isRefresh) {
+    public Token CreateToken(User user, boolean isRefresh) {
         TokenSubject tokenSubject=new TokenSubject(user.getId());
-        long expirationMillisForBaseToken = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 saat
+        long expirationMillisForBaseToken = System.currentTimeMillis() + (24 * 60 * 60 * 1000);
 
 
         long expirationMillisForRefreshToken = System.currentTimeMillis() + ( 60 * 1000);

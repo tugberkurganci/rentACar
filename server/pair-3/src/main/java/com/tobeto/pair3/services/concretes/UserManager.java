@@ -1,6 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
+import com.tobeto.pair3.core.exception.NotUniqueEmailException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Role;
 import com.tobeto.pair3.entities.User;
@@ -30,7 +31,7 @@ public class UserManager implements UserService {
     @Override
     public void add(CreateUserRequest createUserRequest) {
         if (userRepository.existsByEmail(createUserRequest.getEmail())) {
-            throw new RuntimeException("Email mevcut");
+            throw new NotUniqueEmailException();
         }
         User user = mapperService.forRequest().map(createUserRequest, User.class);
         user.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
@@ -46,7 +47,7 @@ public class UserManager implements UserService {
         if (userRepository.existsByEmail(updateUserRequest.getEmail())&& updateUserRequest.getEmail() != null) {
                 User updatedUser=userRepository.findByEmail(updateUserRequest.getEmail());
                 if(user.getId()!=updatedUser.getId()){
-                throw new RuntimeException("Email mevcut");}
+                    throw new NotUniqueEmailException();}
         }
         if(updateUserRequest.getPassword()!=null){
             User user1 = User

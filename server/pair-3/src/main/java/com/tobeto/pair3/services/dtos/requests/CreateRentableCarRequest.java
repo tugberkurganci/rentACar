@@ -16,12 +16,12 @@ import java.time.LocalDate;
 public class CreateRentableCarRequest {
 
 
-    @NotNull(message = "Start date cannot be null")
+    @NotNull(message = "{rentACar.constraint.start.date.notnull}")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
-    @NotNull(message = "End date cannot be null")
+    @NotNull(message = "{rentACar.constraint.end.date.notnull}")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Future(message = "End date must be a future date")
+    @Future(message = "{rentACar.constraint.end.date.future}")
     private LocalDate endDate;
 }

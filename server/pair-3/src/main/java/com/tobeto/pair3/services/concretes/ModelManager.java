@@ -1,6 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
+import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.entities.Model;
@@ -12,6 +13,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
 import com.tobeto.pair3.services.dtos.responses.GetModelResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,10 +33,11 @@ public class ModelManager implements ModelService {
     public void add(CreateModelRequest createModelRequest) {
 
         if(modelRepository.existsByName(createModelRequest.getName())) {
-            throw new RuntimeException("model is already exists");
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.exists", LocaleContextHolder.getLocale())));
         } else if (
                 !brandService.existsById(createModelRequest.getBrandId())
-        ) { throw new RuntimeException("there is no brand you cant add ");
+        ) {  throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.brand.notfound", LocaleContextHolder.getLocale())));
+
         }
 
 
@@ -45,7 +48,7 @@ public class ModelManager implements ModelService {
     @Override
     public void update(UpdateModelRequest updateModelRequest) {
 
-        Model model=modelRepository.findById(updateModelRequest.getId()).orElseThrow();
+        Model model=modelRepository.findById(updateModelRequest.getId()).orElseThrow(() -> new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
         Brand brand = brandService.getByOriginalId(updateModelRequest.getBrandId());
           model.setId(updateModelRequest.getId());
           model.setName(updateModelRequest.getName());
@@ -71,7 +74,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public Model getOriginalModelById(int modelId) {
-        return modelRepository.findById(modelId).orElseThrow(() -> new BusinessException(("Model not found!")));
+        return modelRepository.findById(modelId).orElseThrow(() ->  new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
     }
 
     @Override
@@ -81,7 +84,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public GetModelResponse getById(Integer id) {
-        Model model = modelRepository.findById(id).orElseThrow( () -> new RuntimeException("model yok"));
+        Model model = modelRepository.findById(id).orElseThrow( () ->  new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
         GetModelResponse response = mapperService.forResponse().map(model,GetModelResponse.class);
 
         return response;

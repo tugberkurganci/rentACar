@@ -1,12 +1,12 @@
-package com.tobeto.pair3.security;
+package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.AuthenticationException;
 import com.tobeto.pair3.entities.User;
-import com.tobeto.pair3.security.dtos.AuthResponse;
-import com.tobeto.pair3.security.dtos.Credentials;
-import com.tobeto.pair3.security.dtos.UserResponse;
-import com.tobeto.pair3.security.token.JwtTokenService;
-import com.tobeto.pair3.security.token.Token;
+import com.tobeto.pair3.services.dtos.responses.AuthResponse;
+import com.tobeto.pair3.services.dtos.requests.Credentials;
+import com.tobeto.pair3.services.dtos.requests.UserResponse;
+import com.tobeto.pair3.services.concretes.JwtTokenService;
+import com.tobeto.pair3.entities.Token;
 import com.tobeto.pair3.services.abstracts.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

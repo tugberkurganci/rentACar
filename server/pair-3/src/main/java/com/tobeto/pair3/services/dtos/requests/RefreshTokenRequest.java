@@ -1,4 +1,4 @@
-package com.tobeto.pair3.security;
+package com.tobeto.pair3.services.dtos.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

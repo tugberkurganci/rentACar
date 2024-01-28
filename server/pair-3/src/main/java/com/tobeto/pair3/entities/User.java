@@ -1,6 +1,5 @@
 package com.tobeto.pair3.entities;
 
-import com.tobeto.pair3.security.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

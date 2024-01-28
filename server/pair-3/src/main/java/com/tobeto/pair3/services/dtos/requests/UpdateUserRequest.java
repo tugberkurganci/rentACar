@@ -10,23 +10,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateUserRequest {
+
     @NotNull
     private Integer id;
 
-    @NotBlank(message = "Name cannot be blank")
+    @NotBlank(message = "{rentACar.constraint.name.notblank}")
     private String name;
 
-    @NotBlank(message = "Surname cannot be blank")
+    @NotBlank(message = "{rentACar.constraint.surname.notblank}")
     private String surname;
 
-    @NotBlank(message = "Email cannot be blank")
-    @Email(message = "Invalid email format")
+    @NotBlank(message = "{rentACar.constraint.email.notblank}")
+    @Email(message = "{rentACar.constraint.email.invalidformat}")
     private String email;
 
 
     private String password;
 
-    @NotNull(message = "Birth date cannot be null")
-    @Past(message = "Birth date must be in the past")
+    @NotNull(message = "{rentACar.constraint.birthdate.notnull}")
+    @Past(message = "{rentACar.constraint.birthdate.past}")
     private LocalDate birthDate;
 }

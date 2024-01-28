@@ -1,7 +1,6 @@
 package com.tobeto.pair3.core.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -42,6 +41,11 @@ public class GlobalHandlerException {
             // Business exception handling
 
             apiError.setStatus(400);
+
+        }else if (ex instanceof NotUniqueEmailException) {
+            apiError.setMessage(ex.getMessage());
+            apiError.setValidationErrors(((NotUniqueEmailException) ex).getValidationErros());
+
 
         }
 

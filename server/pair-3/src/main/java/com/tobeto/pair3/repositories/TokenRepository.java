@@ -1,6 +1,6 @@
-package com.tobeto.pair3.security.token;
+package com.tobeto.pair3.repositories;
 
-import com.tobeto.pair3.entities.User;
+import com.tobeto.pair3.entities.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

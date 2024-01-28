@@ -1,10 +1,12 @@
-package com.tobeto.pair3.security;
+package com.tobeto.pair3.controllers;
 
 
-import com.tobeto.pair3.security.dtos.AuthResponse;
-import com.tobeto.pair3.security.dtos.Credentials;
-import com.tobeto.pair3.security.dtos.GenericMessage;
-import com.tobeto.pair3.security.token.JwtTokenService;
+import com.tobeto.pair3.services.concretes.AuthService;
+import com.tobeto.pair3.services.dtos.requests.RefreshTokenRequest;
+import com.tobeto.pair3.services.dtos.responses.AuthResponse;
+import com.tobeto.pair3.services.dtos.requests.Credentials;
+import com.tobeto.pair3.services.dtos.requests.GenericMessage;
+import com.tobeto.pair3.services.concretes.JwtTokenService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;

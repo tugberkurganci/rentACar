@@ -1,8 +1,8 @@
-package com.tobeto.pair3.security;
+package com.tobeto.pair3.core.config;
 
 
 import com.tobeto.pair3.entities.User;
-import com.tobeto.pair3.security.token.JwtTokenService;
+import com.tobeto.pair3.services.concretes.JwtTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

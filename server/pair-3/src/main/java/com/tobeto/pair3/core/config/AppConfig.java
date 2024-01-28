@@ -1,4 +1,4 @@
-package com.tobeto.pair3.security.config;
+package com.tobeto.pair3.core.config;
 
 import com.tobeto.pair3.services.abstracts.UserService;
 import lombok.RequiredArgsConstructor;

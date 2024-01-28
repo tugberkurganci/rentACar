@@ -6,6 +6,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateColorRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllColorResponse;
 import com.tobeto.pair3.services.dtos.responses.GetBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetColorResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class ColorController {
    private final ColorService colorService;
 
    @PostMapping
-   public void add (@RequestBody CreateColorRequest createColorRequest ){
+   public void add (@RequestBody @Valid CreateColorRequest createColorRequest ){
       colorService.add(createColorRequest);
    }
    @PutMapping("{id}")

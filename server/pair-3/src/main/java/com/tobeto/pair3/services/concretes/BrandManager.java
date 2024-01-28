@@ -1,6 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
 import com.tobeto.pair3.core.exception.BusinessException;
+import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Brand;
 import com.tobeto.pair3.repositories.BrandRepository;
@@ -10,6 +11,7 @@ import com.tobeto.pair3.services.dtos.requests.UpdateBrandRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllBrandResponse;
 import com.tobeto.pair3.services.dtos.responses.GetBrandResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class BrandManager implements BrandService {
         /*Brand brand = new Brand();
         brand.setName(createBrandRequest.getName());*/
         if(brandRepository.existsByName(createBrandRequest.getName())){
-            throw new RuntimeException("brand is already exists");
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.exists", LocaleContextHolder.getLocale()));
         }
         Brand brand = mapperService.forRequest().map(createBrandRequest, Brand.class);
         brandRepository.save(brand);
@@ -55,18 +57,6 @@ public class BrandManager implements BrandService {
                 brand -> mapperService.forResponse().map(brand,GetAllBrandResponse.class)
         ).toList();
 
-
-
-       /* List<Brand> brandList1 = brandRepository.findAll();
-        List<GetAllBrandResponse> responseList = new ArrayList<>();
-        for (Brand brand:brandList1) {
-            GetAllBrandResponse response = new GetAllBrandResponse();
-            response.setId(brand.getId());
-            response.setName(brand.getName());
-            responseList.add(response);
-
-        }*/
-
         return responseList;
     }
 
@@ -81,7 +71,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public Brand getByOriginalId(Integer id) {
-        return brandRepository.findById(id).orElseThrow(() -> new BusinessException(("Brand not found!")));
+        return brandRepository.findById(id).orElseThrow(() ->  new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale())));
     }
 
     @Override

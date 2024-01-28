@@ -1,5 +1,7 @@
 package com.tobeto.pair3.services.concretes;
 
+import com.tobeto.pair3.core.exception.BusinessException;
+import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.entities.Color;
@@ -17,6 +19,7 @@ import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -37,10 +40,10 @@ public class CarManager implements CarService {
 
     public void add(CreateCarRequest createCarRequest) {
         if (carRepository.existsByPlate(createCarRequest.getPlate())) {
-            throw new RuntimeException("aynı plaka mevcut");
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.same.plate.exists", LocaleContextHolder.getLocale()));
         }
         if (!colorService.existsColorById(createCarRequest.getColorId())) {
-            throw new RuntimeException("Böyle bir renk yok");
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.color.notfound", LocaleContextHolder.getLocale()));
         }
         modelService.getById(createCarRequest.getModelId());
         Car car = mapperService.forRequest().map(createCarRequest, Car.class);
