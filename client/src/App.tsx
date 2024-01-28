@@ -14,11 +14,14 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./routes/AdminRoute";
+import LanguageSelector from "./components/LanguageSelector/LanguageSelector";
 
 function App() {
   return (
     <div>
+      
       <Navbar />
+      <LanguageSelector />
       <div className="  app d-flex justify-content-center  my-5  ">
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -48,6 +51,7 @@ function App() {
           />
         </Routes>
       </div>
+      
       <div style={{ bottom: "0" }} className="position-fixed w-100 ">
         <Footer />
       </div>

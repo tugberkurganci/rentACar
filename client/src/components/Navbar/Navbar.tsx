@@ -7,12 +7,15 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
 import "./navbar.css";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 const Navbar = (props: Props) => {
   const [activeKey, setActiveKey] = useState<string>("home");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const authState = useSelector((store: any) => store.auth);
   const handleLogout = () => {
     dispatch(logoutSuccess());
@@ -48,7 +51,7 @@ const Navbar = (props: Props) => {
                   to="/"
                   onClick={() => handleNavClick("home")}
                 >
-                  Home
+                  {t("home")}
                 </Link>
               </li>
 
@@ -62,7 +65,7 @@ const Navbar = (props: Props) => {
                     to="/dashboard"
                     onClick={() => handleNavClick("admin")}
                   >
-                    Dashboard
+                    {t("admin")}
                   </Link>
                 </li>
               )}
@@ -77,7 +80,7 @@ const Navbar = (props: Props) => {
                       className="text-light d-flex  align-items-center gap-1"
                     >
                       <CiLogin size={25} />
-                      <span>Giriş yap</span>
+                      <span>{t("login")}</span>
                     </Link>
                   </div>
 
@@ -87,7 +90,7 @@ const Navbar = (props: Props) => {
                       className="text-light  d-flex  align-items-center gap-1"
                     >
                       <CgProfile size={25} />
-                      <span>Üye ol</span>
+                      <span>{t("signUp")}</span>
                     </Link>
                   </div>
                 </div>
@@ -99,7 +102,7 @@ const Navbar = (props: Props) => {
                       className="text-light d-flex  align-items-center gap-1"
                     >
                       <CgProfile size={25} />
-                      <span>Profile</span>
+                      <span>{t("profile")}</span>
                     </Link>
                   </div>
 
@@ -109,7 +112,7 @@ const Navbar = (props: Props) => {
                       className="text-light d-flex  align-items-center gap-1"
                     >
                       <IoIosLogOut size={25} />
-                      <span>Çıkış yap</span>
+                      <span>{t("exit")}</span>
                     </Link>
                   </div>
                 </div>

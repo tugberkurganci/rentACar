@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import "./homepage.css";
 import video from "/src/assets/ArabaTanıtım.mp4";
 import DatePicker from "../../components/DatePicker/DatePicker";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 const Homepage = (props: Props) => {
   // const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const {t}=useTranslation();
   return (
     <div className="home row d-flex  justify-content-center justify-content-md-start  align-items-center  col-12">
       <div className="col-12 col-md-6  text-center">
@@ -24,14 +26,12 @@ const Homepage = (props: Props) => {
       </div>
       <div className="col-12 col-md-4 text-center text-md-start  ">
         <h1>
-          <span className="text-warning">Rent a car</span> and find great deal
-          with us
+          <span className="text-warning">{t("rentacar")}</span> {t("deal")}
         </h1>
         <p>
-          Choose from collections of brand new cars, low prices are part of our
-          day offer
+          {t("homeinfo")}
         </p>
-        <p>Please pick a date interval!</p>
+        <p>{t("homeinfo2")}</p>
         <DatePicker />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { Form, Formik, FormikHelpers } from "formik";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import FormikInput from "../FormikInput/FormikInput";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
@@ -9,12 +9,14 @@ import { useDispatch } from "react-redux";
 import { loadAuthState } from "../../store/storage";
 import { loadRental } from "../../store/rentalStore/rentalSlice";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const DatePicker = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {t}=useTranslation();
   const [initialValues, setInitialValues] = useState<CarSearchValues>({
     startDate: "",
     endDate: "",
@@ -62,17 +64,17 @@ const DatePicker = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={handleOnSubmit}
       >
-        {() => (
+        {({isSubmitting}) => (
           <Form className="container mt-4">
             <div className="row">
-              <FormikInput label="Start Date" name="startDate" type="date" />
-              <FormikInput label="End Date" name="endDate" type="date" />
+              <FormikInput label={t("startdate")} name="startDate" type="date" />
+              <FormikInput label={t("enddate")} name="endDate" type="date" />
             </div>
 
             <div className="text-center mt-4">
-              <button type="submit" className="btn btn-warning">
-                Tarihi onayla
-              </button>
+              <button type="submit" className="btn btn-warning" disabled={isSubmitting}>
+               {isSubmitting?`${t("loading")}`: `${t("datepicker")}`}
+              </ button>
             </div>
           </Form>
         )}

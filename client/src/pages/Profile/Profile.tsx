@@ -6,18 +6,19 @@ import "./profile.css";
 import { DiVim } from "react-icons/di";
 import { useSelector } from "react-redux";
 
-
-
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
+import { useTranslation } from "react-i18next";
+import { UserModel } from "../../models/UserModel";
 
 type Props = {};
 
 const Profile = (props: Props) => {
   const authState = useSelector((store: any) => store.auth);
-  const [isClicked, setIsClicked] = useState<number>(2);
+  const {t}=useTranslation();
+  const [isClicked, setIsClicked] = useState<number>(1);
   const [rentals, setRentals] = useState<RentalModel[]>();
   const [invoice, setInvoice] = useState<InvoiceModel[]>([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<UserModel>();
   const [openInvoiceId, setOpenInvoiceId] = useState<number>(0);
 
   const fetchUser = async () => {
@@ -55,12 +56,13 @@ const Profile = (props: Props) => {
   };
   const handleAsideClick = (id: number) => {
     setIsClicked(id);
-    if (id === 1) {
-      fetchRentals();
-    } else if (id === 2) {
-      fetchUser();
-    }
+   
   };
+  useEffect(() => {
+    fetchRentals();
+    fetchUser();
+  }, [])
+  
   const handleDetailbutton = (id: number) => {
     fetchInvoice(id);
     // setIsDropped(!isDropped);
@@ -80,13 +82,13 @@ const Profile = (props: Props) => {
             className="btn btn-primary row "
             onClick={() => handleAsideClick(1)}
           >
-            Siparişlerim
+             {t("rentals")}
           </div>
           <div
             className="btn btn-primary row "
             onClick={() => handleAsideClick(2)}
           >
-            Hesabım
+             {t("account")}
           </div>
         </div>
         {/* Aside-End */}
@@ -102,39 +104,39 @@ const Profile = (props: Props) => {
                 >
                   <div className="col-12 col-md-6 border-bottom  w-100  border-start  rounded border-3 p-md-5   border-warning">
                     <div className="text-center fs-1 text-capitalize fw-bolder">
-                      <span>Rental Id : </span>
+                      <span className="fw-bold">{t("rentalIdLabel")}</span>
                       {rental?.id}
                     </div>
                     <div>
-                      <span className="fw-bold">Araç Id : </span>
+                      <span className="fw-bold">{t("carIdLabel")}</span>
                       {rental?.carId}
                     </div>
                     <div>
-                      <span className="fw-bold">
-                        Kiralama başlangıç tarihi :
-                      </span>
+                      <span className="fw-bold">{t("startDateLabel")}</span>
                       {rental?.startDate}
                     </div>
                     <div>
-                      <span className="fw-bold">Kiralama bitiş tarihi : </span>
+                      <span className="fw-bold">{t("endDateLabel")}</span>
                       {rental?.endDate}
                     </div>
                     <div>
-                      <span className="fw-bold">Toplam fiyat : </span>
+                      <span className="fw-bold">{t("totalPriceLabel")}</span>
                       {rental?.totalPrice}
                     </div>
                     <div>
-                      <span className="fw-bold"> Araç teslim tarihi: </span>
+                      <span className="fw-bold">{t("returnDateLabel")}</span>
                       {rental?.returnDate}
                     </div>
                     <div>
-                      <span className="fw-bold">Başlangıç kilometresi : </span>
+                      <span className="fw-bold">
+                        {t("startKilometerLabel")}
+                      </span>
                       {rental?.startKilometer}
                     </div>
                     <div
                       className={`${rental.endKilometer ? "d-flex" : "d-none"}`}
                     >
-                      <span className="fw-bold"> Bitiş kilometresi: </span>
+                      <span className="fw-bold">  {t('endKilometerLabel')} : </span>
                       {rental?.endKilometer}
                     </div>
                     {/* Show/Hide invoice Button start */}
@@ -145,8 +147,7 @@ const Profile = (props: Props) => {
                       >
                         <div className="col-10">
                           {openInvoiceId === rental.id
-                            ? "Faturayı gizle "
-                            : "Faturayı görüntüle"}
+                            ? t('hideInvoice') : t('showInvoice')}
                         </div>
                         <div
                           className={` col-2   rotate ${
@@ -170,12 +171,12 @@ const Profile = (props: Props) => {
                             className={`card mt-3 expanded start-height mb-3  `}
                           >
                             <div className="card-body">
-                              <h5 className="card-title">Invoice Details</h5>
+                              <h5 className="card-title">{t('invoiceDetails') }</h5>
                               <p className="card-text">
-                                Rental Id: {ivoice?.rentalId}
+                              {t('rentalId') }: {ivoice?.rentalId}
                               </p>
                               <p className="card-text">
-                                Created Date: {ivoice?.createDate}
+                              {t('createdDate') }: {ivoice?.createDate}
                               </p>
                             </div>
                           </div>
@@ -184,7 +185,7 @@ const Profile = (props: Props) => {
                     })}
                     {}
                     {invoice.length < 1 && !invoice && (
-                      <div className="text-danger">Fatura Bulunamadı</div>
+                      <div className="text-danger">{t('noInvoiceFound') }</div>
                     )}
                     {/* Invoce End */}
                   </div>
@@ -197,10 +198,15 @@ const Profile = (props: Props) => {
           <div
             className={`${isClicked === 2 ? "d-flex" : "d-none"} flex-column`}
           >
-            <div>Halil</div>
-            <div>Koçoğlu</div>
-            <div>aaa@test.com</div>
-            <div>15.25.1990</div>
+            <div className="card" style={{ width: '18rem' }}>
+      <div className="card-body">
+        <h5 className="card-title">{user?.name} {user?.surname}</h5>
+        <p className="card-text"><strong> {t('email') } {t('createdDate') }</strong> {user?.email}</p>
+        <p className="card-text"><strong>{t('date') } </strong> {user?.birthDate}</p>
+        <button className="btn btn-primary">{t('edit') } </button>
+        <button className="btn btn-danger ms-2">{t('sil') }</button>
+      </div>
+    </div>
           </div>
           {/* HesapDetayları-End */}
         </div>

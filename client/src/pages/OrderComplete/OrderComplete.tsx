@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 const OrderComplete = (props: Props) => {
   const location = useLocation();
+  const {t}=useTranslation();
   const { rental } = location.state || {};
   useEffect(() => {
     console.log(rental);
@@ -15,21 +17,21 @@ const OrderComplete = (props: Props) => {
       <div className="row w-75">
         <div className="card align-items-center  d-flex flex-row">
           <div className="card-body ">
-            <h3 className="card-title fw-bolder">Sipariş Tamamlandı</h3>
+            <h3 className="card-title fw-bolder">{t("ok")}</h3>
             <p className="card-text">
-              <span className="fs-5 text-success"> Fatura No :</span>
+              <span className="fs-5 text-success"> {t("invoice")} No :</span>
               <span className="fs-5"> {rental.id}</span>
             </p>
             <p className="card-text">
-              <span className="fs-5 text-success"> Kiralama Tarihi : </span>
+              <span className="fs-5 text-success"> {t("rentdate")} : </span>
               <span className="fs-5"> {rental.startDate}</span>
             </p>
             <p className="card-text">
-              <span className="fs-5 text-success"> Teslim Tarihi : </span>
+              <span className="fs-5 text-success"> {t("dropdate")}: </span>
               <span className="fs-5"> {rental.endDate}</span>
             </p>
             <p className="card-text">
-              <span className="fs-5 text-success"> Toplam Fiyat : </span>
+              <span className="fs-5 text-success"> {t("total")} {t("price")} : </span>
               <span className="fs-5"> {rental.totalPrice}</span>
             </p>
           </div>
@@ -44,7 +46,7 @@ const OrderComplete = (props: Props) => {
         </div>
         <div className="btn btn-success mt-3 ">
           <Link to={"/"} className="text-light text-decoration-none">
-            Göz atmaya devam et
+          {t("look")} 
           </Link>
         </div>
       </div>

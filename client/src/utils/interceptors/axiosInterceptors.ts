@@ -6,6 +6,7 @@ import {
   storeToken,
 } from "../../store/storage";
 import { logoutSuccess } from "../../store/authStore/authSlice";
+import { i18nInstance } from "../../locales";
 
 let store: any;
 
@@ -18,6 +19,7 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
+  config.headers["Accept-Language"] =i18nInstance.language
   if (authToken) {
     config.headers["Authorization"] = `Bearer ${authToken}`;
   }

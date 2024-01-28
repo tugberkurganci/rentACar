@@ -6,6 +6,7 @@ import FormikInput from "../../components/FormikInput/FormikInput";
 import Alert from "../../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type SignupFormValues = {
   email: string;
@@ -21,6 +22,7 @@ type Props = {};
 const SignUp = (props: Props) => {
   const [responseAlert, setResponseAlert] = useState<string | null>(null);
   const navigate = useNavigate();
+  const {t}=useTranslation();
   const initialValues: SignupFormValues = {
     email: "",
     name: "",
@@ -80,7 +82,7 @@ const SignUp = (props: Props) => {
       <div className="row  col-md-6">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title text-center mb-4">Sign Up</h5>
+            <h5 className="card-title text-center mb-4">{t("signUp")}</h5>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -88,34 +90,28 @@ const SignUp = (props: Props) => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <FormikInput label="Email" name="email" type="email" />
-                  <FormikInput label="Name" name="name" />
-                  <FormikInput label="Surname" name="surname" />
-                  <FormikInput type="date" label="BirthDate" name="birthDate" />
+                  <FormikInput label={t("email")} name="email" type="email" />
+                  <FormikInput label={t("name")}  name="name" />
+                  <FormikInput label={t("surname")}  name="surname" />
+                  <FormikInput type="date" label={t("date")}  name="birthDate" />
                   <FormikInput
-                    label="Password"
+                    label={t("password")}
                     name="password"
                     type="password"
                   />
                   <FormikInput
-                    label="Confirm Password"
+                    label={t("confirmpass")} 
                     name="confirmPassword"
                     type="password"
                   />
 
-                  {responseAlert && (
-                    <Alert styleType={responseAlert}>
-                      {responseAlert === "success"
-                        ? "Signup successful!"
-                        : "Signup failed. Please check your information."}
-                    </Alert>
-                  )}
+                
                   <button
                     type="submit"
                     className="btn btn-primary btn-block"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Signing Up..." : "Sign Up"}
+                  {isSubmitting ? `${t("loading")}` :`${t("signUp")}`}
                   </button>
                 </Form>
               )}

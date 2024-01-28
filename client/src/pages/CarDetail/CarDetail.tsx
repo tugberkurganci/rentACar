@@ -3,12 +3,14 @@ import { CarModel } from "../../models/CarModel";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const CarDetail = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { id } = useParams();
+  const {t}=useTranslation();
   const [car, setCar] = useState<CarModel>();
   const fetchCar = async () => {
     try {
@@ -43,23 +45,23 @@ const CarDetail = (props: Props) => {
               {car?.modelName}
             </div>
             <div>
-              <span className="fw-bold">Plaka : </span>
+              <span className="fw-bold">{t("plate")}: </span>
               {car?.plate}
             </div>
             <div>
-              <span className="fw-bold">Renk : </span>
+              <span className="fw-bold">{t("color")}: </span>
               {car?.colorName}
             </div>
             <div>
-              <span className="fw-bold">Kilometre : </span>
+              <span className="fw-bold">{t("kilometer")}: </span>
               {car?.kilometer}
             </div>
             <div>
-              <span className="fw-bold">Fiyat : </span>
+              <span className="fw-bold">  {t("price")}: </span>
               {car?.dailyPrice}
             </div>
             <div>
-              <span className="fw-bold">Model Yılı : </span>
+              <span className="fw-bold">{t("modelyear")} : </span>
               {car?.year}
             </div>
             <div className="d-flex flex-row justify-content-center mt-3 ">
@@ -67,7 +69,7 @@ const CarDetail = (props: Props) => {
                 to={`/checkout/${car?.id}`}
                 className="btn btn-primary mx-2 w-100"
               >
-                Kirala
+                {t("rent")}
               </Link>
             </div>
           </div>
