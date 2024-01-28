@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class CreateRentalRequest {
 
 
-    @NotNull(message = "Start date cannot be null")
+    @NotNull(message = "{rentACar.constraint.start.date.notnull}")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
    
