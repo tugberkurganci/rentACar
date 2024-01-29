@@ -8,9 +8,11 @@ import { Form, Formik, FormikHelpers } from "formik";
 import ReactPaginate from "react-paginate";
 import "./userPanel.css";
 import Pagination from "../../Pagination/Pagination";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 const UserPanel = (props: Props) => {
+  const {t}=useTranslation();
   const [userList, setUserList] = useState<UserModel[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
@@ -110,11 +112,11 @@ const UserPanel = (props: Props) => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">User ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Surname</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Birthday</th>
+              <th scope="col">{t("user")} ID</th>
+              <th scope="col">{t("name")}</th>
+              <th scope="col">{t("surname")}</th>
+              <th scope="col">{t("email")}</th>
+              <th scope="col">{t("date")}</th>
             </tr>
           </thead>
 
@@ -133,13 +135,13 @@ const UserPanel = (props: Props) => {
                     className="me-2 btn btn-primary"
                     onClick={() => handleChangeUpdateBtn(user)}
                   >
-                    Edit
+                    {t("edit")}
                   </button>
                   <button
                     onClick={() => handleDeleteUser(user)}
                     className=" btn btn-danger"
                   >
-                    Delete
+                    {t("delete")}
                   </button>
                 </td>
               </tr>
@@ -228,7 +230,7 @@ const UserPanel = (props: Props) => {
                     onClick={() => setEditable(!editable)}
                     className="btn btn-danger "
                   >
-                    Vazgeç
+                    {t("giveup")}
                   </button>
                   <button
                     type="submit"

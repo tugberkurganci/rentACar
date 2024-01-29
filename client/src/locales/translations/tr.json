@@ -27,7 +27,7 @@
   "confirmpass":"Şifreyi Onayla",
   "modelyear":"Model Yılı",
   "price":"Fiyat",
-  "perday":"günlük",
+  "perday":"Günlük",
   "rent":"kirala",
   "info":"Detayları Gör",
   "plate":"Plaka",
@@ -56,7 +56,16 @@
   "noInvoiceFound": "Fatura Bulunamadı",
   "delete":"Sil",
   "rentals":"Kiralamalarım",
-  "account":"Hesabım"
+  "account":"Hesabım",
+  "giveup":"Vazgeç",
+  "user":"Kullanıcı",
+  "brand":"Marka",
+  "rentalss":"KİRALAMALARIM",
+  "models":"MODELLER",
+  "cars":"ARABALAR",
+  "users":"KULLANICILAR",
+  "add":"Araba Ekle",
+  "addmodel":"Model Ekle"
 
   
   

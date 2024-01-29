@@ -9,15 +9,18 @@ import Pagination from "../../Pagination/Pagination";
 import FormikSelect from "../../FormikSelect/FormikSelect";
 import { ModelType } from "../../../models/ModelType";
 import { ColorModel } from "../../../models/ColorModel";
+import { useTranslation } from "react-i18next";
+import CarAddUpdate from "./CarAddUpdate";
 type Props = {};
 
 const CarPanel = (props: Props) => {
+  const { t } = useTranslation();
   const [carList, setCarList] = useState<CarModel[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
+  const [addable, setAddable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
-  const [modelList, setModelList] = useState<ModelType[]>([]);
-  const [colorList, setColorList] = useState<ColorModel[]>([]);
+  const [car, setCar] = useState<CarModel>();
 
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -35,63 +38,6 @@ const CarPanel = (props: Props) => {
     }
   };
 
-  const fetchModels = async () => {
-    try {
-      const response = await axiosInstance.get("v1/models");
-      setModelList(response.data);
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-    }
-  };
-  const fetchColors = async () => {
-    try {
-      const response = await axiosInstance.get("v1/colors");
-      setColorList(response.data);
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-    }
-  };
-
-  const handleChangeUpdateBtn = (user: CarModel) => {
-    setEditable(!editable);
-    setInitialValues(user);
-  };
-  const handleUpdateCar = async (
-    values: CarModel,
-    { setErrors }: FormikHelpers<CarModel>
-  ) => {
-    console.log(values);
-
-    try {
-      const response = await axiosInstance.put(`/v1/cars`, values);
-      toast.success("Car updated successfully");
-      console.log(response);
-      setEditable(!editable);
-      fetchCars();
-      setInitialValues({
-        id: 1,
-        modelName: 0,
-        colorName: 0,
-        dailyPrice: 0,
-        kilometer: 0,
-        plate: "",
-        year: 0,
-      });
-    } catch (error: any) {
-      if (error.response.data.validationErrors) {
-        const validationErrors: Record<string, string> =
-          error.response.data.validationErrors;
-        const formikErrors: Record<string, string> = {};
-        Object.entries(validationErrors).forEach(([field, message]) => {
-          formikErrors[field] = message;
-        });
-        setErrors(formikErrors);
-        console.log(error);
-      } else {
-        toast.error(error.response.data.message);
-      }
-    }
-  };
   const handleDeleteCar = async (car: CarModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/cars/${car.id}`);
@@ -101,54 +47,37 @@ const CarPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  const [initialValues, setInitialValues] = useState<CarModel>({
-    id: 1,
-    modelName: 0,
-    colorName: 0,
-    dailyPrice: 0,
-    kilometer: 0,
-    plate: "",
-    year: 0,
-  });
 
-  const validationSchema = Yup.object({
-    modelName: Yup.string().required("Model Name is required"),
-    colorName: Yup.string().required("Color Name is required"),
-    dailyPrice: Yup.number()
-      .moreThan(0, "Daily Price must be greater than 0")
-      .required("Daily Price is required"),
-    kilometer: Yup.number().required("Kilometer is required"),
-    plate: Yup.string().required("Plate is required"),
-    year: Yup.number()
-      .moreThan(0, "Year must be greater than 0")
-      .required("Year is required"),
-  });
-  const onChangeInput = (handleChange: any, e: any, values: any) => {
-    handleChange(e);
-    setInitialValues({ ...values, [e.target.name]: e.target.value });
-  };
   useEffect(() => {
     fetchCars();
-    fetchModels();
-    fetchColors();
-  }, [pageable]);
+  }, [pageable, addable, editable]);
 
   return (
     <div
       style={{ minHeight: "80vh" }}
       className="d-flex flex-column  justify-content-between align-items center"
     >
-      {!editable && (
+      {!editable && !addable && (
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">User ID</th>
-              <th scope="col">Model Name</th>
-              <th scope="col">Kilometer</th>
-              <th scope="col">Color</th>
-              <th scope="col">Daily Price</th>
-              <th scope="col">Plate</th>
-              <th scope="col">Model Year</th>
+              <th scope="col">{t("user")} ID</th>
+              <th scope="col">Model {t("name")}</th>
+              <th scope="col">{t("kilometer")}</th>
+              <th scope="col">{t("color")}</th>
+              <th scope="col">
+                {t("perday")} {t("price")}
+              </th>
+              <th scope="col">{t("plate")}</th>
+              <th scope="col">{t("modelyear")}</th>
+              <th>
+                <button
+                  onClick={() => setAddable(!addable)}
+                  className="btn btn btn-primary"
+                >
+                  {t("add")}
+                </button>
+              </th>
             </tr>
           </thead>
 
@@ -165,15 +94,18 @@ const CarPanel = (props: Props) => {
                 <td>
                   <button
                     className="me-2 btn btn-primary"
-                    onClick={() => handleChangeUpdateBtn(car)}
+                    onClick={() => {
+                      setEditable(!editable);
+                      setCar(car);
+                    }}
                   >
-                    Edit
+                    {t("edit")}
                   </button>
                   <button
                     onClick={() => handleDeleteCar(car)}
                     className=" btn btn-danger"
                   >
-                    Delete
+                    {t("delete")}
                   </button>
                 </td>
               </tr>
@@ -181,7 +113,7 @@ const CarPanel = (props: Props) => {
           </tbody>
         </table>
       )}
-      {!editable && (
+      {!editable && !addable && (
         <div>
           <Pagination
             totalPages={totalPages}
@@ -190,96 +122,9 @@ const CarPanel = (props: Props) => {
         </div>
       )}
       {editable && (
-        <div
-          style={{ minHeight: "80vh" }}
-          className="d-flex flex-row justify-content-center align-items-center   "
-        >
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleUpdateCar}
-          >
-            {({ isSubmitting, values, handleChange }) => (
-              <Form className="  w-50">
-                <div>
-                  <FormikSelect
-                    label="Model Name"
-                    list={modelList}
-                    name="modelName"
-                    val={"id"}
-                  />
-                </div>
-
-                <div className="col">
-                  <FormikInput
-                    label="Kilometer"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.kilometer}
-                    name="kilometer"
-                  />
-                </div>
-                <div>
-                  <FormikSelect
-                    label="Color"
-                    list={colorList}
-                    name="colorName"
-                    val={"id"}
-                  />
-                </div>
-
-                <div className="col">
-                  <FormikInput
-                    label="Daily Price"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.dailyPrice}
-                    name="dailyPrice"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="Plate Number"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.plate}
-                    name="plate"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="Model Year"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.year}
-                    name="year"
-                  />
-                </div>
-
-                <div className="col  d-flex justify-content-between">
-                  <button
-                    onClick={() => setEditable(!editable)}
-                    className="btn btn-danger "
-                  >
-                    Vazgeç
-                  </button>
-                  <button
-                    type="submit"
-                    className="btn btn-primary "
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Updating..." : "Update"}
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+        <CarAddUpdate car={car} setEditable={setEditable} urlType="put" />
       )}
+      {addable && <CarAddUpdate setEditable={setAddable} urlType="add" />}
     </div>
   );
 };

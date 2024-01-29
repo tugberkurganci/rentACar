@@ -8,14 +8,20 @@ import { Form, Formik, FormikHelpers } from "formik";
 import Pagination from "../../Pagination/Pagination";
 import { ModelType } from "../../../models/ModelType";
 import FormikSelect from "../../FormikSelect/FormikSelect";
+import { useTranslation } from "react-i18next";
+import ModelAddUpdate from "./ModelAddUpdate";
 
 type Props = {};
 
 const ModelPanel = (props: Props) => {
-  const [brandList, setBrandList] = useState<any[]>([]);
+  
+
   const [modelList, setModelList] = useState<ModelType[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
+  const [addable, setAddable] = useState<boolean>(false)
+  const {t}=useTranslation();
+  const [model, setModel] = useState<ModelType>()
   const [totalPages, setTotalPages] = useState(1);
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -32,53 +38,9 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  const fetchBrands = async () => {
-    try {
-      const response = await axiosInstance.get(`v1/brands`);
-      setBrandList(response.data);
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-    }
-  };
-  const handleChangeUpdateBtn = (model: ModelType) => {
-    setEditable(!editable);
-    setInitialValues(model);
-  };
-  const handleUpdateModel = async (
-    values: ModelType,
-    { setErrors }: FormikHelpers<ModelType>
-  ) => {
-    console.log(values);
+  
+ 
 
-    try {
-      const response = await axiosInstance.put(
-        `/v1/models/${values.id}`,
-        values
-      );
-      toast.success("Model updated successfully");
-      console.log(response);
-      setEditable(!editable);
-      fetchModels();
-      setInitialValues({
-        id: 1,
-        name: "",
-        brandId: 0,
-      });
-    } catch (error: any) {
-      if (error.response.data.validationErrors) {
-        const validationErrors: Record<string, string> =
-          error.response.data.validationErrors;
-        const formikErrors: Record<string, string> = {};
-        Object.entries(validationErrors).forEach(([field, message]) => {
-          formikErrors[field] = message;
-        });
-        setErrors(formikErrors);
-        console.log(error);
-      } else {
-        toast.error(error.response.data.message);
-      }
-    }
-  };
   const handleDeleteModel = async (model: ModelType) => {
     try {
       const response = await axiosInstance.delete(`/v1/models/${model.id}`);
@@ -88,37 +50,30 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  const [initialValues, setInitialValues] = useState<ModelType>({
-    id: 1,
-    name: "",
-    brandId: 0,
-  });
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Car ID is required"),
-    brandId: Yup.string().required("End Date is required"),
-  });
-  const onChangeInput = (handleChange: any, e: any, values: any) => {
-    handleChange(e);
-    setInitialValues({ ...values, [e.target.name]: e.target.value });
-  };
+  
   useEffect(() => {
     fetchModels();
-    fetchBrands();
-  }, [pageable]);
+    
+  }, [pageable,addable,editable]);
 
   return (
     <div
       style={{ minHeight: "80vh" }}
       className="d-flex flex-column  justify-content-between align-items center"
     >
-      {!editable && (
+      {!editable && !addable &&(
         <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">Model ID</th>
-              <th scope="col">Model Name</th>
-              <th scope="col">Brand ID</th>
+              <th scope="col">Model {t("name")}</th>
+              <th scope="col">{t("brand")} ID</th>
+              <th><button
+                    onClick={() =>setAddable(!addable)}
+                    className="btn btn- btn-primary "
+                    >
+                    {t("addmodel")}
+                  </button></th> 
             </tr>
           </thead>
 
@@ -131,15 +86,15 @@ const ModelPanel = (props: Props) => {
                 <td>
                   <button
                     className="me-2 btn btn-primary"
-                    onClick={() => handleChangeUpdateBtn(model)}
+                    onClick={() => {setModel(model) ;setEditable(true)}}
                   >
-                    Edit
+                    {t("edit")}
                   </button>
                   <button
                     onClick={() => handleDeleteModel(model)}
                     className=" btn btn-danger"
                   >
-                    Delete
+                    {t("delete")}
                   </button>
                 </td>
               </tr>
@@ -147,7 +102,7 @@ const ModelPanel = (props: Props) => {
           </tbody>
         </table>
       )}
-      {!editable && (
+      {!editable && !addable && (
         <div>
           <Pagination
             totalPages={totalPages}
@@ -156,55 +111,10 @@ const ModelPanel = (props: Props) => {
         </div>
       )}
       {editable && (
-        <div
-          style={{ minHeight: "80vh" }}
-          className="d-flex flex-row justify-content-center align-items-center   "
-        >
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleUpdateModel}
-          >
-            {({ isSubmitting, values, handleChange }) => (
-              <Form className="  w-50">
-                <div>
-                  <FormikInput
-                    label=" Model Name"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.name}
-                    name="name"
-                  />
-                </div>
-
-                <div>
-                  <FormikSelect
-                    label="Brand Name"
-                    list={brandList}
-                    name="brandId"
-                    val={"id"}
-                  />
-                </div>
-                <div className="col  d-flex justify-content-between">
-                  <button
-                    onClick={() => setEditable(!editable)}
-                    className="btn btn-danger "
-                  >
-                    Vazgeç
-                  </button>
-                  <button
-                    type="submit"
-                    className="btn btn-primary "
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Updating..." : "Update"}
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+       <ModelAddUpdate model={model} setEditable={setEditable} urlType="put"/>
+      )}
+       {addable && (
+       <ModelAddUpdate setEditable={setAddable} urlType="post"/>
       )}
     </div>
   );

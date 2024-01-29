@@ -4,23 +4,32 @@ import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import { InvoiceModel } from "../../models/InvoiceModel";
 import "./profile.css";
 import { DiVim } from "react-icons/di";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { useTranslation } from "react-i18next";
 import { UserModel } from "../../models/UserModel";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { logoutSuccess } from "../../store/authStore/authSlice";
+import * as Yup from "yup";
+import ProfileUpdate from "./ProfileUpdate";
 
 type Props = {};
 
 const Profile = (props: Props) => {
   const authState = useSelector((store: any) => store.auth);
-  const {t}=useTranslation();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState<number>(1);
   const [rentals, setRentals] = useState<RentalModel[]>();
   const [invoice, setInvoice] = useState<InvoiceModel[]>([]);
   const [user, setUser] = useState<UserModel>();
   const [openInvoiceId, setOpenInvoiceId] = useState<number>(0);
+  const [editable, setEditable] = useState<boolean>(false);
 
+  
   const fetchUser = async () => {
     try {
       const response = await axiosInstance.get(`/v1/users/${authState.id}`);
@@ -56,13 +65,12 @@ const Profile = (props: Props) => {
   };
   const handleAsideClick = (id: number) => {
     setIsClicked(id);
-   
   };
   useEffect(() => {
     fetchRentals();
     fetchUser();
-  }, [])
-  
+  }, [editable]);
+
   const handleDetailbutton = (id: number) => {
     fetchInvoice(id);
     // setIsDropped(!isDropped);
@@ -73,6 +81,21 @@ const Profile = (props: Props) => {
     }
   };
 
+  const userDeleteBtn= async ()=>{
+  confirm()
+  try {
+    const response = await axiosInstance.delete(`/v1/users/${user?.id}`);
+    toast.success( "deleted successfully");
+    dispatch(logoutSuccess());
+    navigate("/")
+    
+  } catch (error: any) {
+    toast.error(error?.response.data.message);
+  }
+  
+  }
+
+
   return (
     <div className="container ">
       <div className="row">
@@ -82,13 +105,13 @@ const Profile = (props: Props) => {
             className="btn btn-primary row "
             onClick={() => handleAsideClick(1)}
           >
-             {t("rentals")}
+            {t("rentals")}
           </div>
           <div
             className="btn btn-primary row "
             onClick={() => handleAsideClick(2)}
           >
-             {t("account")}
+            {t("account")}
           </div>
         </div>
         {/* Aside-End */}
@@ -136,7 +159,10 @@ const Profile = (props: Props) => {
                     <div
                       className={`${rental.endKilometer ? "d-flex" : "d-none"}`}
                     >
-                      <span className="fw-bold">  {t('endKilometerLabel')} : </span>
+                      <span className="fw-bold">
+                        {" "}
+                        {t("endKilometerLabel")} :{" "}
+                      </span>
                       {rental?.endKilometer}
                     </div>
                     {/* Show/Hide invoice Button start */}
@@ -147,7 +173,8 @@ const Profile = (props: Props) => {
                       >
                         <div className="col-10">
                           {openInvoiceId === rental.id
-                            ? t('hideInvoice') : t('showInvoice')}
+                            ? t("hideInvoice")
+                            : t("showInvoice")}
                         </div>
                         <div
                           className={` col-2   rotate ${
@@ -171,12 +198,14 @@ const Profile = (props: Props) => {
                             className={`card mt-3 expanded start-height mb-3  `}
                           >
                             <div className="card-body">
-                              <h5 className="card-title">{t('invoiceDetails') }</h5>
+                              <h5 className="card-title">
+                                {t("invoiceDetails")}
+                              </h5>
                               <p className="card-text">
-                              {t('rentalId') }: {ivoice?.rentalId}
+                                {t("rentalId")}: {ivoice?.rentalId}
                               </p>
                               <p className="card-text">
-                              {t('createdDate') }: {ivoice?.createDate}
+                                {t("createdDate")}: {ivoice?.createDate}
                               </p>
                             </div>
                           </div>
@@ -185,7 +214,7 @@ const Profile = (props: Props) => {
                     })}
                     {}
                     {invoice.length < 1 && !invoice && (
-                      <div className="text-danger">{t('noInvoiceFound') }</div>
+                      <div className="text-danger">{t("noInvoiceFound")}</div>
                     )}
                     {/* Invoce End */}
                   </div>
@@ -195,19 +224,30 @@ const Profile = (props: Props) => {
           </div>
           {/* Siparişler-End */}
           {/* HesapDetayları-Start */}
-          <div
+          {editable? (<ProfileUpdate user={user} setEditab={setEditable}/>):(<div
             className={`${isClicked === 2 ? "d-flex" : "d-none"} flex-column`}
           >
-            <div className="card" style={{ width: '18rem' }}>
-      <div className="card-body">
-        <h5 className="card-title">{user?.name} {user?.surname}</h5>
-        <p className="card-text"><strong> {t('email') } {t('createdDate') }</strong> {user?.email}</p>
-        <p className="card-text"><strong>{t('date') } </strong> {user?.birthDate}</p>
-        <button className="btn btn-primary">{t('edit') } </button>
-        <button className="btn btn-danger ms-2">{t('sil') }</button>
-      </div>
-    </div>
-          </div>
+            <div className="card" style={{ width: "24rem" }}>
+            <img src="https://www.shutterstock.com/image-vector/male-avatar-profile-picture-vector-600nw-149083895.jpg" className="card-img-top" alt="Profil Resmi" />
+              <div className="card-body">
+                <h5 className="card-title">
+                  {user?.name} {user?.surname}
+                </h5>
+                <p className="card-text">
+                  <strong>
+                    {" "}
+                    {t("email")} {t("createdDate")}
+                  </strong>{" "}
+                  {user?.email}
+                </p>
+                <p className="card-text">
+                  <strong>{t("date")} </strong> {user?.birthDate}
+                </p>
+                <button className="btn btn-primary" onClick={()=>{setEditable(!editable)}}>{t("edit")} </button>
+                <button className="btn btn-danger ms-2" onClick={()=> userDeleteBtn()}>{t("delete")}</button>
+              </div>
+            </div>
+          </div>) }
           {/* HesapDetayları-End */}
         </div>
         {/* Main-End */}

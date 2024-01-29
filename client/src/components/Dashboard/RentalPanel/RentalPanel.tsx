@@ -6,11 +6,13 @@ import * as Yup from "yup";
 import FormikInput from "../../FormikInput/FormikInput";
 import { Form, Formik, FormikHelpers } from "formik";
 import Pagination from "../../Pagination/Pagination";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const RentalPanel = (props: Props) => {
   const [rentalList, setRentalList] = useState<RentalModel[]>([]);
+  const {t}=useTranslation();
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
@@ -95,8 +97,8 @@ const RentalPanel = (props: Props) => {
   const validationSchema = Yup.object({
     carId: Yup.number().required("Car ID is required"),
     endDate: Yup.string().required("End Date is required"),
-    endKilometer: Yup.number().nullable<any>(true),
-    returnDate: Yup.string().nullable<any>(true),
+    endKilometer: Yup.number().nullable(),
+    returnDate: Yup.string().nullable(),
     startKilometer: Yup.number().required("Start Kilometer is required"),
     startDate: Yup.string().required("Start Date is required"),
     totalPrice: Yup.number().required("Total Price is required"),
@@ -119,15 +121,15 @@ const RentalPanel = (props: Props) => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Rental ID</th>
-              <th scope="col">Car ID</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">End Date</th>
-              <th scope="col">Return Date</th>
-              <th scope="col">Start Kilometer</th>
-              <th scope="col">End Kilometer</th>
-              <th scope="col">Total Price</th>
-              <th scope="col">User ID</th>
+              <th scope="col">{t("rentalIdLabel")} </th>
+              <th scope="col">{t("carIdLabel")}</th>
+              <th scope="col">{t("startDateLabel")}</th>
+              <th scope="col">{t("endDateLabel")}</th>
+              <th scope="col">{t("returnDateLabel")}</th>
+              <th scope="col">{t("startKilometerLabel")}</th>
+              <th scope="col">{t("endKilometerLabel")}</th>
+              <th scope="col">{t("totalPriceLabel")}</th>
+              <th scope="col">{t("user")} ID</th>
             </tr>
           </thead>
 
@@ -149,13 +151,13 @@ const RentalPanel = (props: Props) => {
                     className="me-2 btn btn-primary"
                     onClick={() => handleChangeUpdateBtn(rental)}
                   >
-                    Edit
+                    {t("edit")}
                   </button>
                   <button
                     onClick={() => handleDeleteRental(rental)}
                     className=" btn btn-danger"
                   >
-                    Delete
+                    {t("delete")}
                   </button>
                 </td>
               </tr>
@@ -268,7 +270,7 @@ const RentalPanel = (props: Props) => {
                     onClick={() => setEditable(!editable)}
                     className="btn btn-danger "
                   >
-                    Vazgeç
+                    {t("giveup")}
                   </button>
                   <button
                     type="submit"

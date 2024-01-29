@@ -27,7 +27,7 @@
   "confirmpass":"Confirm Password",
   "modelyear":"Model Year",
   "price":"Price",
-  "perday":"per day",
+  "perday":"Per day",
   "rent":"Rent",
   "info":"See Details",
   "plate":"Plate",
@@ -57,5 +57,15 @@
   "noInvoiceFound": "No Invoice Found",
   "delete":"Delete",
   "rentals":"My Rentals" ,
-  "account":"My Account"
+  "account":"My Account",
+  "giveup":"Give Up",
+  "user":"User",
+  "brand":"Brand"
+  ,
+  "rentalss":"RENTALS",
+  "models":"MODELS",
+  "cars":"CARS",
+  "users":"USERS",
+  "add":"Add Car",
+  "addmodel":"Add Model"
 }

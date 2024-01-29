@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/ModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/ModelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateModelRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateModelRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/resources/ValidationMessages_tr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/resources/ValidationMessages_tr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/resources/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/resources/messages_tr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/resources/messages_tr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/locales/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/locales/translations/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/locales/translations/tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/locales/translations/tr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/About/About.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
