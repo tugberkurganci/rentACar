@@ -43,16 +43,19 @@ public class JwtTokenService {
         long expirationMillisForBaseToken = System.currentTimeMillis() + (24 * 60 * 60 * 1000);
 
 
-        long expirationMillisForRefreshToken = System.currentTimeMillis() + ( 60 * 1000);
+        long expirationMillisForRefreshToken = System.currentTimeMillis() + ( 5*60 * 1000);
         Date expirationDateForRefresh = new Date(expirationMillisForRefreshToken);
         Date expirationDateForBase = new Date(expirationMillisForBaseToken);
         try {
             String subject=objectMapper.writeValueAsString(tokenSubject);
-            String token1= Jwts.builder().setSubject(subject).setExpiration(expirationDateForRefresh).signWith(key).compact();
-            String token2= Jwts.builder().setSubject(subject).setExpiration(expirationDateForBase).signWith(key).compact();
-            Token token=new Token(token1,token2,"Bearer",user);
+            String refreshToken= Jwts.builder().setSubject(subject).setExpiration(expirationDateForRefresh).signWith(key).compact();
+            String baseToken= Jwts.builder().setSubject(subject).setExpiration(expirationDateForBase).signWith(key).compact();
+            Token token=new Token(refreshToken,baseToken,"Bearer",user);
             if(isRefresh)tokenRepository.save(token);
 
+            //if we want to renew base token when refresh token renew
+            //tokenRepository.deleteByUserId(user.getId());
+           // tokenRepository.save(token);
             return token ;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

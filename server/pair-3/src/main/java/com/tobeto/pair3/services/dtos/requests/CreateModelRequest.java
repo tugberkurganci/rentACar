@@ -8,6 +8,6 @@ public class CreateModelRequest {
 
     @Size(min = 2,message = "{rentACar.constraint.name.size}")
     private String name;
-    @Min(value = 1, message = "{rentACar.constraint.modelId.min}")
+    @Min(value = 1, message = "{rentACar.constraint.brandId.min}")
     private Integer brandId;
 }

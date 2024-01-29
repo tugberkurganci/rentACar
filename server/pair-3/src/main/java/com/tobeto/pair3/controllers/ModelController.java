@@ -23,7 +23,7 @@ public class ModelController {
         modelService.add(createModelRequest);
     }
 
-    @PutMapping("{id}")
+    @PutMapping
     public void update (@RequestBody @Valid UpdateModelRequest updateModelRequest ){
         modelService.update(updateModelRequest);
     }

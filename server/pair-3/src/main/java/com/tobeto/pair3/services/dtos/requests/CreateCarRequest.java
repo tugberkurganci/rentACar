@@ -22,11 +22,9 @@ public class CreateCarRequest {
     @DecimalMin(value = "0", message = "{rentACar.constraint.dailyPrice.min}")
     private BigDecimal dailyPrice;
 
-    @Min(value = 1, message = "{rentACar.constraint.modelId.min}")
-    private int modelId;
+    private int modelName;
 
-    @Min(value = 1, message = "{rentACar.constraint.colorId.min}")
-    private int colorId;
+    private int colorName;
 
     public void setPlate(String plate) {
         this.plate = plate.replaceAll("\\s", "");

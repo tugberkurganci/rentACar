@@ -42,11 +42,19 @@ public class CarManager implements CarService {
         if (carRepository.existsByPlate(createCarRequest.getPlate())) {
             throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.same.plate.exists", LocaleContextHolder.getLocale()));
         }
-        if (!colorService.existsColorById(createCarRequest.getColorId())) {
-            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.color.notfound", LocaleContextHolder.getLocale()));
-        }
-        modelService.getById(createCarRequest.getModelId());
-        Car car = mapperService.forRequest().map(createCarRequest, Car.class);
+
+        Model model=modelService.getOriginalModelById(createCarRequest.getModelName());
+        Color color= colorService.getOriginalColorById(createCarRequest.getColorName());
+        Car car = Car
+                .builder()
+                .color(color)
+                .model(model)
+                .year(createCarRequest.getYear())
+                .dailyPrice(createCarRequest.getDailyPrice())
+                .plate(createCarRequest.getPlate())
+                .kilometer(createCarRequest.getKilometer())
+                .build();
+
         carRepository.save(car);
     }
 
