@@ -36,6 +36,7 @@ public class CarManager implements CarService {
     private final ModelMapperService mapperService;
 
     private final RentalRules rentalRules;
+    private final FileService fileService;
 
 
     public void add(CreateCarRequest createCarRequest) {
@@ -55,6 +56,9 @@ public class CarManager implements CarService {
                 .kilometer(createCarRequest.getKilometer())
                 .build();
 
+
+        if(createCarRequest.getImage()!=null){String fileName=fileService.saveBase64StringAsFile(createCarRequest.getImage()); car.setImage(fileName);}
+
         carRepository.save(car);
     }
 
@@ -73,7 +77,12 @@ public class CarManager implements CarService {
                 .plate(updateCarRequest.getPlate())
                 .kilometer(updateCarRequest.getKilometer())
                 .rentals(carToUpdate.getRentals())
+                .image(carToUpdate.getImage())
                 .build();
+
+       if(updateCarRequest.getImage()!=null){  String fileName=fileService.saveBase64StringAsFile(updateCarRequest.getImage());
+           fileService.deleteCarImage(carToUpdate.getImage());
+           car.setImage(fileName);}
 
         carRepository.save(car);
     }

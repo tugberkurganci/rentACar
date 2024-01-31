@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.dtos.requests;
 
+import com.tobeto.pair3.services.dtos.validaton.FileType;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,9 @@ public class UpdateCarRequest {
     private int modelName;
 
     private int colorName;
+
+    @FileType
+    private String image;
 
     public void setPlate(String plate) {
         this.plate = plate.replaceAll("\\s", "");

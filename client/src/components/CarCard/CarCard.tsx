@@ -3,6 +3,7 @@ import { CarModel } from "../../models/CarModel";
 import { Link } from "react-router-dom";
 import "./carCard.css";
 import { useTranslation } from "react-i18next";
+import CarImage from "../CarImage/CarImage";
 type Props = { car: CarModel };
 
 const CarCard = ({ car }: Props) => {
@@ -11,11 +12,7 @@ const CarCard = ({ car }: Props) => {
   return (
     <div className=" d-flex justify-content-center  align-items-center  mb-3">
       <div className="card  ">
-        <img
-          src="https://picsum.photos/id/237/500/200"
-          className="card-img-top img-fluid"
-          alt="..."
-        />
+        <CarImage source={car.image}/>
         <div className="card-body">
           <div className="d-flex mb-4 flex-column">
             <div className="d-flex flex-row justify-content-between">

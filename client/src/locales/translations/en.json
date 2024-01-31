@@ -58,7 +58,7 @@
   "delete":"Delete",
   "rentals":"My Rentals" ,
   "account":"My Account",
-  "giveup":"Give Up",
+  "giveup":"Cancel",
   "user":"User",
   "brand":"Brand"
   ,
@@ -67,5 +67,6 @@
   "cars":"CARS",
   "users":"USERS",
   "add":"Add Car",
-  "addmodel":"Add Model"
+  "addmodel":"Add Model",
+  "picture":"Picture"
 }

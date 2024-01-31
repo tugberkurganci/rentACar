@@ -11,6 +11,7 @@ import { ModelType } from "../../../models/ModelType";
 import { ColorModel } from "../../../models/ColorModel";
 import { useTranslation } from "react-i18next";
 import CarAddUpdate from "./CarAddUpdate";
+import CarImage from "../../CarImage/CarImage";
 type Props = {};
 
 const CarPanel = (props: Props) => {
@@ -52,6 +53,12 @@ const CarPanel = (props: Props) => {
     fetchCars();
   }, [pageable, addable, editable]);
 
+  useEffect(() => {
+    console.log(carList)
+    
+  }, [carList])
+  
+
   return (
     <div
       style={{ minHeight: "80vh" }}
@@ -61,6 +68,7 @@ const CarPanel = (props: Props) => {
         <table className="table table-striped">
           <thead>
             <tr>
+              <th scope="col">{t("picture")}</th>
               <th scope="col">{t("user")} ID</th>
               <th scope="col">Model {t("name")}</th>
               <th scope="col">{t("kilometer")}</th>
@@ -84,6 +92,10 @@ const CarPanel = (props: Props) => {
           <tbody>
             {carList.map((car) => (
               <tr className="w-100 " key={car.id}>
+                <td>
+                <CarImage  source={car.image}/>
+                  {/* Araba fotoğrafı gösteriliyor */}
+                </td>
                 <th scope="row">{car.id}</th>
                 <td>{car.modelName}</td>
                 <td>{car.kilometer}</td>

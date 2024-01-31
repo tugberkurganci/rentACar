@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/cars")
 @AllArgsConstructor
+
 public class CarController {
 
     private final CarService carService;
@@ -46,6 +47,7 @@ public class CarController {
 
     @PutMapping
     public void update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
+
         carService.update(updateCarRequest);
     }
 

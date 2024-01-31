@@ -14,9 +14,13 @@ export const injectStore = (_store: any) => {
   store = _store;
 };
 
+export const axiosAssets = axios.create({
+  baseURL: `/assets`,
+});
 const axiosInstance = axios.create({
   baseURL: `/api`,
 });
+
 
 axiosInstance.interceptors.request.use((config) => {
   config.headers["Accept-Language"] =i18nInstance.language

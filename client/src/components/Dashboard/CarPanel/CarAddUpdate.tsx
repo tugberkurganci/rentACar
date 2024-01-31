@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { CarModel } from "../../../models/CarModel";
 import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
+import { init } from "i18next";
 
 
 
@@ -20,6 +21,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
     const {t}=useTranslation();
     const [modelList, setModelList] = useState<ModelType[]>([]);
   const [colorList, setColorList] = useState<ColorModel[]>([]);
+  const [image, setImage] = useState<any>()
 
   const handleUpdateCar = async (
     values: CarModel,
@@ -31,8 +33,8 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
       
       let response;
       if(urlType==="put"){
-        response = await axiosInstance.put(`/v1/cars`, values);}
-      else{response =await axiosInstance.post(`/v1/cars`, values);}
+        response = await axiosInstance.put(`/v1/cars`, {...values,image:image});}
+      else{response =await axiosInstance.post(`/v1/cars`, {...values,image:image});}
       
       toast.success("Car updated successfully");
       console.log(response);
@@ -45,6 +47,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
         kilometer: 0,
         plate: "",
         year: 0,
+        image:""
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -86,6 +89,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
     kilometer: 0,
     plate: "",
     year: 0,
+    image:""
   });
 
   const validationSchema = Yup.object({
@@ -100,14 +104,40 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
       .moreThan(0, "Year must be greater than 0")
       .required("Year is required"),
   });
-  const onChangeInput = (handleChange: any, e: any, values: any) => {
-    handleChange(e);
-    setInitialValues({ ...values, [e.target.name]: e.target.value });
+  const onChangeInput =  (handleChange: any, e: any, values: any) => {
+  
+    if(e.target.files == null){handleChange(e);
+      setInitialValues({ ...values, [e.target.name]: e.target.value });}
+    else
+    {
+      const file= e.target.files[0]
+      const fileReader=new FileReader();
+      
+      fileReader.onloadend=()=>{
+        
+
+        const data=fileReader.result
+
+        setImage(data)
+      }
+       fileReader.readAsDataURL(file)
+      
+     
+
+      
+    }
+
   };
   useEffect(() => {
     fetchModels();
     fetchColors();
   }, []);
+
+  useEffect(() => {
+    console.log(initialValues.image)
+    
+  }, [])
+  
  
  
     return (
@@ -178,6 +208,17 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
               }}
               value={initialValues.year}
               name="year"
+            />
+          </div>
+          <div className="col">
+            <FormikInput
+              label="İmage"
+              onChange={(e: any) => {
+                onChangeInput(handleChange, e, values);
+              }}
+              
+              name="image"
+              type="file"
             />
           </div>
 

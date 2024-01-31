@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarAddUpdate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarAddUpdate.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/locales/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/locales/translations/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/locales/translations/tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/locales/translations/tr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/About/About.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/models/CarModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/models/CarModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,13 +221,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
-          <line>41</line>
+          <line>42</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java</url>
           <line>34</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -234,6 +241,7 @@
         <watch expression="car" />
         <watch expression="car" />
         <watch expression="car" />
+        <watch expression="fileName" />
       </configuration>
     </watches-manager>
   </component>

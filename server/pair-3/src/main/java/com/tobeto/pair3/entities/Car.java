@@ -35,9 +35,14 @@ public class Car {
     @Column(name = "daily_price")
     private BigDecimal dailyPrice;
 
+
+    @Column(name = "image")
+    String image;
+
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
+
 
 
     @ManyToOne

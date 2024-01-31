@@ -32,5 +32,7 @@ public class GetCarResponse {
 
     private String colorName;
 
+    private String image;
+
 
 }

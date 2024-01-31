@@ -7,16 +7,18 @@ import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { CarSearchValues } from "../../models/CarSearchModel";
 import { useTranslation } from "react-i18next";
+import CarImage from "../../components/CarImage/CarImage";
 
 type Props = {};
 
 const Checkout = (props: Props) => {
   const authState = useSelector((store: any) => store.auth);
   const rentalState = useSelector((store: any) => store.rental);
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const { id } = useParams();
   const [car, setCar] = useState<CarModel>();
   const navigate = useNavigate();
+  const [isLoadingImg, setIsLoadingImg] = useState<boolean>(true);
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const fetchCar = async () => {
@@ -24,10 +26,16 @@ const Checkout = (props: Props) => {
       const response = await axiosInstance(`/v1/cars/${id}`);
 
       setCar(response.data);
+      console.log("yes");
+      setIsLoadingImg(false);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    console.log(car);
+  }, [car]);
 
   useEffect(() => {
     fetchCar();
@@ -65,11 +73,13 @@ const Checkout = (props: Props) => {
   return (
     <div className="  row d-flex justify-content-center align-items-center">
       <div className="col-12 d-flex justify-content-center align-items-center ">
-        <img
-          className="img-fluid rounded"
-          src="https://picsum.photos/500/300"
-          alt="araba"
-        />
+        {isLoadingImg ? (
+          "loading"
+        ) : car ? (
+          <CarImage source={car?.image} />
+        ) : (
+          "Car data is loading..."
+        )}
       </div>
       <div className="col-12 col-md-6 border  rounded border-3 p-md-5 w-75  border-warning ">
         <div className="text-start  d-flex flex-column text-capitalize gap-3 fw-bold">
@@ -83,7 +93,9 @@ const Checkout = (props: Props) => {
             <span className="col">{car?.year}</span>
           </div>
           <div className="row border-bottom border-3 border-secondary-subtle">
-            <span className="col">{t("perday")} {t("price")} : </span>
+            <span className="col">
+              {t("perday")} {t("price")} :{" "}
+            </span>
             <span className="col"> {car?.dailyPrice}</span>
           </div>
           <div className="row border-bottom border-3 border-secondary-subtle">
