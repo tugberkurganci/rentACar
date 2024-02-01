@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/components/CarImage/CarImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/CarImage/CarImage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarAddUpdate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarAddUpdate.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/models/CarModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/models/CarModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/FormikSelect/FormikSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/FormikSelect/FormikSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Checkout/Checkout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Checkout/Checkout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/vite.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/CarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetRentalResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetRentalResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -53,10 +53,7 @@ const CarPanel = (props: Props) => {
     fetchCars();
   }, [pageable, addable, editable]);
 
-  useEffect(() => {
-    console.log(carList)
-    
-  }, [carList])
+
   
 
   return (

@@ -8,6 +8,7 @@ import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { CarSearchValues } from "../../models/CarSearchModel";
 import { useTranslation } from "react-i18next";
 import CarImage from "../../components/CarImage/CarImage";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -18,7 +19,8 @@ const Checkout = (props: Props) => {
   const { id } = useParams();
   const [car, setCar] = useState<CarModel>();
   const navigate = useNavigate();
-  const [isLoadingImg, setIsLoadingImg] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const fetchCar = async () => {
@@ -27,15 +29,11 @@ const Checkout = (props: Props) => {
 
       setCar(response.data);
       console.log("yes");
-      setIsLoadingImg(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    console.log(car);
-  }, [car]);
 
   useEffect(() => {
     fetchCar();
@@ -43,7 +41,9 @@ const Checkout = (props: Props) => {
   }, []);
 
   const handleOnSubmit = async (values: CarSearchValues) => {
+    setIsLoading(true)
     try {
+      
       const response = await axiosInstance.post("/v1/rentals", {
         carId: id,
         ...values,
@@ -53,9 +53,10 @@ const Checkout = (props: Props) => {
       navigate(`/order-complete`, {
         state: { rental: response.data },
       });
-    } catch (error) {
+    } catch (error:any) {
+      toast.error(error?.response.data.message)
       console.log(error);
-    }
+    }finally{setIsLoading(false)}
   };
 
   const fetchRentalTotalPrice = async () => {
@@ -73,13 +74,9 @@ const Checkout = (props: Props) => {
   return (
     <div className="  row d-flex justify-content-center align-items-center">
       <div className="col-12 d-flex justify-content-center align-items-center ">
-        {isLoadingImg ? (
-          "loading"
-        ) : car ? (
+     
           <CarImage source={car?.image} />
-        ) : (
-          "Car data is loading..."
-        )}
+       
       </div>
       <div className="col-12 col-md-6 border  rounded border-3 p-md-5 w-75  border-warning ">
         <div className="text-start  d-flex flex-column text-capitalize gap-3 fw-bold">
@@ -122,6 +119,7 @@ const Checkout = (props: Props) => {
               type="submit"
               className="btn btn-warning"
               onClick={() => handleOnSubmit(rentalState)}
+              disabled={isLoading}
             >
               {t("rent")}
             </button>

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class GetRentalResponse {
     private int id;
 
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

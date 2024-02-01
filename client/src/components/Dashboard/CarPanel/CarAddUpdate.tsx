@@ -133,11 +133,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
     fetchColors();
   }, []);
 
-  useEffect(() => {
-    console.log(initialValues.image)
-    
-  }, [])
-  
+ 
  
  
     return (
@@ -177,6 +173,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
               list={colorList}
               name="colorName"
               val={"id"}
+              initialValue={car?.colorName}
             />
           </div>
 

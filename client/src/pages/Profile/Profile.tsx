@@ -95,6 +95,10 @@ const Profile = (props: Props) => {
   
   }
 
+  useEffect(() => {
+    console.log(rentals)
+  }, [rentals])
+  
 
   return (
     <div className="container ">
@@ -201,6 +205,9 @@ const Profile = (props: Props) => {
                               <h5 className="card-title">
                                 {t("invoiceDetails")}
                               </h5>
+                              <p className="card-text">
+                                {t("invoice")} ID: {ivoice?.id}
+                              </p>
                               <p className="card-text">
                                 {t("rentalId")}: {ivoice?.rentalId}
                               </p>
