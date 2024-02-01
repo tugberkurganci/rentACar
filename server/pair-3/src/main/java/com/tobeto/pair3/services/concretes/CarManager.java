@@ -40,9 +40,9 @@ public class CarManager implements CarService {
 
 
     public void add(CreateCarRequest createCarRequest) {
-        if (carRepository.existsByPlate(createCarRequest.getPlate())) {
-            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.same.plate.exists", LocaleContextHolder.getLocale()));
-        }
+
+
+        checkExistByPlate(createCarRequest.getPlate());
 
         Model model=modelService.getOriginalModelById(createCarRequest.getModelName());
         Color color= colorService.getOriginalColorById(createCarRequest.getColorName());
@@ -62,9 +62,11 @@ public class CarManager implements CarService {
         carRepository.save(car);
     }
 
+
+
     public void update(UpdateCarRequest updateCarRequest) {
 
-        Car carToUpdate = carRepository.findById(updateCarRequest.getId()).orElseThrow();
+        Car carToUpdate = this.getOriginalCarById(updateCarRequest.getId());
         Color color = colorService.getOriginalColorById(updateCarRequest.getColorName());
         Model model = modelService.getOriginalModelById(updateCarRequest.getModelName());
         Car car = Car
@@ -88,7 +90,7 @@ public class CarManager implements CarService {
     }
 
     public void delete(Integer id) {
-        Car car = carRepository.findById(id).orElseThrow();
+        Car car = this.getOriginalCarById(id);
         carRepository.delete(car);
     }
 
@@ -101,7 +103,7 @@ public class CarManager implements CarService {
     }
 
     public GetCarResponse getById(Integer id) {
-        Car car = carRepository.findById(id).orElseThrow();
+        Car car = this.getOriginalCarById(id);
         GetCarResponse response = mapperService.forResponse().map(car, GetCarResponse.class);
         return response;
     }
@@ -113,7 +115,8 @@ public class CarManager implements CarService {
 
     @Override
     public Car getOriginalCarById(int carId) {
-        return carRepository.findById(carId).orElseThrow();
+        return carRepository.findById(carId).orElseThrow(() ->
+                new BusinessException(Messages.getMessageForLocale("rentACar.exception.rental.car.notfound", LocaleContextHolder.getLocale())));
     }
 
     @Override
@@ -122,33 +125,22 @@ public class CarManager implements CarService {
         rentalRules.checkIsDateBeforeNow(request.getStartDate());
         rentalRules.checkEndDateIsBeforeStartDate(request.getEndDate(),request.getEndDate());
         rentalRules.checkIsRentalDateLongerThan25Days(request.getStartDate(),request.getEndDate());
-
-
         List<Car> carList = carRepository.findAll();
         List<Car> rentableCarList = new ArrayList<>();
-
-        carList.forEach(car -> {
-            if (isReservable(car, request)) {
-                rentableCarList.add(car);
-            }
-
-        });
-
+        convertToRentableCarList(carList,rentableCarList,request);
         return rentableCarList.stream().map(car -> mapperService.forResponse().map(car,GetCarResponse.class)).toList();
     }
+
+
 
     public boolean isReservable(Car car, CreateRentableCarRequest request) {
 
         boolean isReserable = true;
 
-
         List<Rental> rentals = car.getRentals();
-
         for (Rental rental : rentals) {
 
-
             if (rental.getEndDate().isBefore(request.getStartDate()) || rental.getStartDate().isAfter(request.getEndDate())) {
-
 
             } else {
                 isReserable = false;
@@ -162,6 +154,21 @@ public class CarManager implements CarService {
     @Override
     public Page<GetCarResponse> getAllViaPage(Pageable pageable) {
         return carRepository.findAll(pageable).map(car -> mapperService.forResponse().map(car, GetCarResponse.class));
+    }
+
+    private void checkExistByPlate(String plate) {
+
+        if (carRepository.existsByPlate(plate)) {
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.same.plate.exists", LocaleContextHolder.getLocale()));
+        }
+    }
+    private void convertToRentableCarList(List<Car> carList, List<Car> rentableCarList,CreateRentableCarRequest request) {
+
+        carList.forEach(car -> {
+            if (isReservable(car, request)) {
+                rentableCarList.add(car);
+            }
+        });
     }
 
 }

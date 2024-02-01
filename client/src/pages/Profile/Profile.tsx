@@ -95,9 +95,7 @@ const Profile = (props: Props) => {
   
   }
 
-  useEffect(() => {
-    console.log(rentals)
-  }, [rentals])
+
   
 
   return (

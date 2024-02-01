@@ -28,35 +28,38 @@ public class ColorManager implements ColorService {
     @Override
 
     public void add(CreateColorRequest createColorRequest) {
-        if(colorRepository.existsByName(createColorRequest.getName())){
-            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.color.exists", LocaleContextHolder.getLocale()));
-        }
 
+        checkColorNameExist(createColorRequest.getName());
         Color color = mapperService.forRequest().map(createColorRequest, Color.class);
         colorRepository.save(color);
     }
 
+
+
     @Override
     public void update(UpdateColorRequest updateColorRequest) {
-        Color color=colorRepository.findById(updateColorRequest.getId()).orElseThrow();
+        Color color=this.getOriginalColorById(updateColorRequest.getId());
         mapperService.forRequest().map(updateColorRequest, color);
         colorRepository.save(color);
     }
 
     @Override
     public void delete(int id) {
-        Color color = colorRepository.findById(id).orElseThrow();
+        Color color = this.getOriginalColorById(id);
         colorRepository.delete(color);
     }
 
 
     public List<GetAllColorResponse> getAll() {
         List<Color> colorList = colorRepository.findAll();
-
-        List<GetAllColorResponse> responseList = colorList.stream().map(
+        return colorList.stream().map(
                 color -> mapperService.forResponse().map(color, GetAllColorResponse.class)
         ).toList();
-        return responseList;
+    }
+    @Override
+    public GetColorResponse getById(int id) {
+        Color color  = this.getOriginalColorById(id);
+        return mapperService.forResponse().map(color,GetColorResponse.class);
     }
 
     @Override
@@ -66,15 +69,10 @@ public class ColorManager implements ColorService {
  );
     }
 
-    @Override
-    public GetColorResponse getById(int id) {
-        Color color  = colorRepository.findById(id).orElseThrow();
-        GetColorResponse response = mapperService.forResponse().map(color,GetColorResponse.class);
-        return response;
-    }
 
-    @Override
-    public boolean existsColorById(Integer id) {
-        return colorRepository.existsById(id);
+    private void checkColorNameExist(String name) {
+        if(colorRepository.existsByName(name)){
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.color.exists", LocaleContextHolder.getLocale()));
+        }
     }
 }

@@ -29,18 +29,12 @@ public class ModelManager implements ModelService {
     private final ModelMapperService mapperService;
 
     private final BrandService brandService;
+
     @Override
     public void add(CreateModelRequest createModelRequest) {
 
-        if(modelRepository.existsByName(createModelRequest.getName())) {
-            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.exists", LocaleContextHolder.getLocale())));
-        } else if (
-                !brandService.existsById(createModelRequest.getBrandId())
-        ) {  throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.brand.notfound", LocaleContextHolder.getLocale())));
-
-        }
-
-
+        checkIsModelName(createModelRequest.getName());
+        brandService.checkExistsById(createModelRequest.getBrandId());
         Model model = mapperService.forRequest().map(createModelRequest, Model.class);
         modelRepository.save(model);
     }
@@ -48,17 +42,17 @@ public class ModelManager implements ModelService {
     @Override
     public void update(UpdateModelRequest updateModelRequest) {
 
-        Model model=modelRepository.findById(updateModelRequest.getId()).orElseThrow(() -> new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
+        Model model = this.getOriginalModelById(updateModelRequest.getId());
         Brand brand = brandService.getByOriginalId(updateModelRequest.getBrandId());
-          model.setId(updateModelRequest.getId());
-          model.setName(updateModelRequest.getName());
-          model.setBrand(brand);
+        model.setId(updateModelRequest.getId());
+        model.setName(updateModelRequest.getName());
+        model.setBrand(brand);
         modelRepository.save(model);
     }
 
     @Override
     public void delete(Integer id) {
-        Model model = modelRepository.findById(id).orElseThrow();
+        Model model = this.getOriginalModelById(id);
         modelRepository.delete(model);
 
     }
@@ -66,15 +60,14 @@ public class ModelManager implements ModelService {
     @Override
     public List<GetAllModelResponse> getAll() {
         List<Model> modelList = modelRepository.findAll();
-        List<GetAllModelResponse> responseList = modelList.stream().map(
-                model -> mapperService.forResponse().map(model,GetAllModelResponse.class)
+        return modelList.stream().map(
+                model -> mapperService.forResponse().map(model, GetAllModelResponse.class)
         ).toList();
-        return responseList;
     }
 
     @Override
     public Model getOriginalModelById(int modelId) {
-        return modelRepository.findById(modelId).orElseThrow(() ->  new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
+        return modelRepository.findById(modelId).orElseThrow(() -> new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
     }
 
     @Override
@@ -84,10 +77,14 @@ public class ModelManager implements ModelService {
 
     @Override
     public GetModelResponse getById(Integer id) {
-        Model model = modelRepository.findById(id).orElseThrow( () ->  new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.notfound", LocaleContextHolder.getLocale()))));
-        GetModelResponse response = mapperService.forResponse().map(model,GetModelResponse.class);
+        Model model = this.getOriginalModelById(id);
+        return mapperService.forResponse().map(model, GetModelResponse.class);
+    }
 
-        return response;
+    private void checkIsModelName(String modelName) {
+        if (modelRepository.existsByName(modelName)) {
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.model.exists", LocaleContextHolder.getLocale())));
+        }
     }
 
 }

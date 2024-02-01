@@ -21,5 +21,6 @@ public interface BrandService {
     GetBrandResponse getById(Integer id);
     Brand getByOriginalId(Integer id);
 
-    boolean existsById(Integer brandId);
+    public void checkExistsById(Integer brandId) ;
+    public void checkExistByName(String name) ;
 }

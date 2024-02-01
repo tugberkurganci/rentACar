@@ -22,27 +22,26 @@ public class BrandManager implements BrandService {
     private final ModelMapperService mapperService;
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
-        /*Brand brand = new Brand();
-        brand.setName(createBrandRequest.getName());*/
-        if(brandRepository.existsByName(createBrandRequest.getName())){
-            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.exists", LocaleContextHolder.getLocale()));
-        }
+
+        checkExistByName(createBrandRequest.getName());
         Brand brand = mapperService.forRequest().map(createBrandRequest, Brand.class);
         brandRepository.save(brand);
     }
 
+
+
     @Override
     public void update(UpdateBrandRequest updateBrandRequest) {
-       /* Brand brand = brandRepository.findById(updateBrandRequest.getId()).orElseThrow();
-        brand.setName(updateBrandRequest.getName());*/
-        Brand brand=brandRepository.findById(updateBrandRequest.getId()).orElseThrow();
+
+        Brand brand=this.getByOriginalId(updateBrandRequest.getId());
+        checkExistByName(updateBrandRequest.getName());
         mapperService.forRequest().map(updateBrandRequest,brand);
         brandRepository.save(brand);
     }
 
     @Override
     public void delete(Integer id) {
-        Brand brand = brandRepository.findById(id).orElseThrow();
+        Brand brand = this.getByOriginalId(id);
         brandRepository.delete(brand);
 
     }
@@ -50,32 +49,37 @@ public class BrandManager implements BrandService {
     @Override
     public List<GetAllBrandResponse> getAll() {
         List<Brand> brandList = brandRepository.findAll();
-               /* .stream()
-                .map(GetAllBrandResponse::new)
-                .toList();*/
         List<GetAllBrandResponse> responseList = brandList.stream().map(
                 brand -> mapperService.forResponse().map(brand,GetAllBrandResponse.class)
         ).toList();
-
         return responseList;
     }
 
     @Override
     public GetBrandResponse getById(Integer id) {
-        Brand brand = brandRepository.findById(id).orElseThrow();
+        Brand brand = getByOriginalId(id);
         GetBrandResponse response = mapperService.forResponse().map(brand,GetBrandResponse.class);
-
-
         return response;
     }
 
     @Override
     public Brand getByOriginalId(Integer id) {
-        return brandRepository.findById(id).orElseThrow(() ->  new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale())));
+        return brandRepository.findById(id).orElseThrow(() ->
+                new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale())));
     }
 
-    @Override
-    public boolean existsById(Integer brandId) {
-        return brandRepository.existsById(brandId);
+    public void checkExistByName(String name) {
+        if(brandRepository.existsByName(name)){
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.exists", LocaleContextHolder.getLocale()));
+        }
+
+    }
+
+    public void checkExistsById(Integer brandId) {
+        if(!brandRepository.existsById(brandId)){
+            throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale()));
+        }
     }
 }
+
+

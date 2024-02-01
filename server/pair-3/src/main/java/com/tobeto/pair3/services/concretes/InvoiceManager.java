@@ -29,52 +29,52 @@ public class InvoiceManager implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final ModelMapperService mapperService;
 
-
-
-    @Override
-    public void update(UpdateInvoiceRequest updateInvoiceRequest) {
-        Invoice invoice=invoiceRepository.findById(updateInvoiceRequest.getId()).orElseThrow(() -> new BusinessException
-                (Messages.getMessageForLocale("rentACar.exception.invoice.notfound", LocaleContextHolder.getLocale())));
-     mapperService.forRequest().map(updateInvoiceRequest, invoice);
-        invoiceRepository.save(invoice);
-    }
-
     @Override
     public void add(CreateInvoiceRequest createInvoiceRequest) {
         Invoice invoice = mapperService.forRequest().map(createInvoiceRequest, Invoice.class);
         invoice.setCreateDate(LocalDate.now());
         invoiceRepository.save(invoice);
-
     }
+
+    @Override
+    public void update(UpdateInvoiceRequest updateInvoiceRequest) {
+        Invoice invoice = this.getOriginalInvoice(updateInvoiceRequest.getId());
+        mapperService.forRequest().map(updateInvoiceRequest, invoice);
+        invoiceRepository.save(invoice);
+    }
+
+
+
 
     @Override
     public List<GetInvoiceResponse> getAll() {
         List<Invoice> invoiceList = invoiceRepository.findAll();
-
         List<GetInvoiceResponse> responseList = invoiceList.stream().map(
-                invoice-> mapperService.forResponse().map(invoice,GetInvoiceResponse.class)
+                invoice -> mapperService.forResponse().map(invoice, GetInvoiceResponse.class)
         ).toList();
         return responseList;
     }
 
     @Override
     public GetInvoiceResponse getById(int id) {
-        Invoice invoice = invoiceRepository.findById(id).orElseThrow(() ->
-                new BusinessException
-                        (Messages.getMessageForLocale("rentACar.exception.invoice.notfound", LocaleContextHolder.getLocale())));
-        GetInvoiceResponse response = mapperService.forResponse().map(invoice,GetInvoiceResponse.class);
-        return response;
+        Invoice invoice = this.getOriginalInvoice(id);
+        return mapperService.forResponse().map(invoice, GetInvoiceResponse.class);
     }
 
     @Override
     public void delete(int id) {
-        Invoice invoice = invoiceRepository.findById(id).orElseThrow();
+        Invoice invoice = this.getOriginalInvoice(id);
         invoiceRepository.delete(invoice);
     }
 
     @Override
     public List<GetInvoiceResponse> getInvoicesByRentalId(int id) {
         return invoiceRepository.findByRentalId(id).stream().map(invoice -> mapperService.forResponse().map(invoice
-        , GetInvoiceResponse.class)).toList();
+                , GetInvoiceResponse.class)).toList();
     }
+    private Invoice getOriginalInvoice(int id) {
+        return invoiceRepository.findById(id).orElseThrow(() -> new BusinessException
+                (Messages.getMessageForLocale("rentACar.exception.invoice.notfound", LocaleContextHolder.getLocale())));
+    }
+
 }

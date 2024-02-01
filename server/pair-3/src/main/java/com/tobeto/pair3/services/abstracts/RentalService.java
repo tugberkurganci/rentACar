@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
@@ -25,4 +26,5 @@ public interface RentalService {
     List<GetRentalResponse> getRentalsByUserId(int id);
 
     Page<GetRentalResponse> getAllViaPage(Pageable pageable);
+    public Rental getOriginalRentalById(int id) ;
 }

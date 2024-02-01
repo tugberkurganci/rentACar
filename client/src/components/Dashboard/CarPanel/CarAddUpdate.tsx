@@ -106,7 +106,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
   });
   const onChangeInput =  (handleChange: any, e: any, values: any) => {
   
-    if(e.target.files == null){handleChange(e);
+    if(e.target.files === null){handleChange(e);
       setInitialValues({ ...values, [e.target.name]: e.target.value });}
     else
     {
@@ -173,7 +173,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
               list={colorList}
               name="colorName"
               val={"id"}
-              initialValue={car?.colorName}
+              
             />
           </div>
 

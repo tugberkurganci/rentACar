@@ -43,54 +43,110 @@ public class RentalManager implements RentalService {
     private final InvoiceService invoiceService;
 
 
-
-
-
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public GetRentalResponse add(CreateRentalRequest createRentalRequest) {
 
         rentalRules.checkIsDateBeforeNow(createRentalRequest.getStartDate());
-
-        rentalRules.checkEndDateIsBeforeStartDate(createRentalRequest.getEndDate(),createRentalRequest.getStartDate());
-
-        checkIsCarExist(createRentalRequest.getCarId());
-
-        Car car =carService.getOriginalCarById(createRentalRequest.getCarId());
-
-        if(!carService.isReservable(car,new CreateRentableCarRequest(createRentalRequest.getStartDate(),createRentalRequest.getEndDate()))){
-            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.reservable.notsuitable", LocaleContextHolder.getLocale())));
-        };
-
-
+        rentalRules.checkEndDateIsBeforeStartDate(createRentalRequest.getEndDate(), createRentalRequest.getStartDate());
+        Car car = carService.getOriginalCarById(createRentalRequest.getCarId());
+        isSuitableToRent(car, createRentalRequest);
         checkIsUserExists(createRentalRequest.getUserId());
-
-        rentalRules.checkIsRentalDateLongerThan25Days(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
-
+        rentalRules.checkIsRentalDateLongerThan25Days(createRentalRequest.getStartDate(), createRentalRequest.getEndDate());
         Rental rental = mapperService.forRequest().map(createRentalRequest, Rental.class);
-
-        setActualKilometerToRentalInfo(rental,createRentalRequest);
-
-        setTotalPriceToRentalInfo(rental,createRentalRequest);
-
-        Rental rental2 =   rentalRepository.save(rental);
-        invoiceService.add(new CreateInvoiceRequest(rental2.getId()));
-        GetRentalResponse  response = mapperService.forResponse().map(rental2, GetRentalResponse.class);
-        return response;
+        setActualKilometerToRentalInfo(rental, createRentalRequest);
+        setTotalPriceToRentalInfo(rental, createRentalRequest);
+        Rental createdRental = rentalRepository.save(rental);
+        invoiceService.add(new CreateInvoiceRequest(createdRental.getId()));
+        return mapperService.forResponse().map(createdRental, GetRentalResponse.class);
     }
 
 
+    @Transactional
     public void update(UpdateRentalRequest updateRentalRequest) {
-        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId()).orElseThrow(() ->
-    new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.notfound", LocaleContextHolder.getLocale()))));
+        Rental rentalToUpdate = this.getOriginalRentalById(updateRentalRequest.getId());
+        ifRequestReturnDateNotNullShouldUpdateReturnDate(updateRentalRequest, rentalToUpdate);
+        ifRequestEndKilometerNotNullShouldUpdateRental(rentalToUpdate, updateRentalRequest);
+        ifRequestTotalPriceNotNullShouldUpdateTotalPrice(rentalToUpdate, updateRentalRequest);
+        ifRequestUserIdNotNullShouldUpdateUserId(rentalToUpdate, updateRentalRequest);
+        ifRequestCarIdNotNullShouldUpdateCar(rentalToUpdate, updateRentalRequest);
+        checkIsCarExist(rentalToUpdate.getCar().getId());
+        checkIsUserExists(rentalToUpdate.getUser().getId());
+        rentalRepository.save(rentalToUpdate);
+    }
 
 
+    public Rental getOriginalRentalById(int id) {
+        return rentalRepository.findById(id).orElseThrow(() ->
+                new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.notfound", LocaleContextHolder.getLocale()))));
 
-        if(updateRentalRequest.getReturnDate()!=null){
-            rentalToUpdate.setReturnDate(updateRentalRequest.getReturnDate());
+    }
+
+    public void delete(int id) {
+        Rental rental = this.getOriginalRentalById(id);
+        rentalRepository.delete(rental);
+    }
+
+    @Override
+    public BigDecimal getPrice(CreateRentalRequest createRentalRequest) {
+        return setTotalPriceToRentalInfo(null, createRentalRequest);
+    }
+
+    @Override
+    public Page<GetRentalResponse> getAllViaPage(Pageable pageable) {
+        return rentalRepository.findAll(pageable).map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class));
+    }
+
+    @Override
+    public List<GetRentalResponse> getRentalsByUserId(int id) {
+        return rentalRepository.findByUserId(id).
+                stream().
+                map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class)).toList();
+    }
+
+    public List<GetRentalResponse> getAll() {
+        List<Rental> rentalList = rentalRepository.findAll();
+        List<GetRentalResponse> responseList = rentalList.stream()
+                .map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class))
+                .toList();
+        return responseList;
+    }
+
+    public GetRentalResponse getById(int id) {
+        Rental rental = this.getOriginalRentalById(id);
+        return mapperService.forResponse().map(rental, GetRentalResponse.class);
+    }
+
+    private void isSuitableToRent(Car car, CreateRentalRequest createRentalRequest) {
+        if (!carService.isReservable(car, new CreateRentableCarRequest(createRentalRequest.getStartDate(), createRentalRequest.getEndDate()))) {
+            throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.reservable.notsuitable", LocaleContextHolder.getLocale())));
         }
-        if(updateRentalRequest.getEndKilometer()!=0){
+        ;
+    }
+
+    private void ifRequestCarIdNotNullShouldUpdateCar(Rental rentalToUpdate, UpdateRentalRequest updateRentalRequest) {
+        if (updateRentalRequest.getCarId() != 0) {
+            rentalToUpdate.setCar(carService.getOriginalCarById(updateRentalRequest.getCarId()));
+        }
+
+    }
+
+    private void ifRequestUserIdNotNullShouldUpdateUserId(Rental rentalToUpdate, UpdateRentalRequest updateRentalRequest) {
+
+        if (updateRentalRequest.getUserId() != 0) {
+            rentalToUpdate.setUser(userService.getOriginalUserById(updateRentalRequest.getUserId()));
+        }
+    }
+
+    private void ifRequestTotalPriceNotNullShouldUpdateTotalPrice(Rental rentalToUpdate, UpdateRentalRequest updateRentalRequest) {
+        if (updateRentalRequest.getTotalPrice() != null) {
+            rentalToUpdate.setTotalPrice(updateRentalRequest.getTotalPrice());
+        }
+    }
+
+    private void ifRequestEndKilometerNotNullShouldUpdateRental(Rental rentalToUpdate, UpdateRentalRequest updateRentalRequest) {
+        if (updateRentalRequest.getEndKilometer() != 0) {
             Car car = carService.getOriginalCarById(updateRentalRequest.getCarId());
-            if (car.getKilometer()< updateRentalRequest.getEndKilometer()){
+            if (car.getKilometer() < updateRentalRequest.getEndKilometer()) {
                 UpdateCarRequest updateCarRequest = UpdateCarRequest
                         .builder()
                         .year(car.getYear())
@@ -103,75 +159,22 @@ public class RentalManager implements RentalService {
                         .build();
                 carService.update(updateCarRequest);
                 rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
-            }else {
+            } else {
                 throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.endkilometer.low", LocaleContextHolder.getLocale())));
             }
-
-
         }
-        if(updateRentalRequest.getTotalPrice()!=null){
-            rentalToUpdate.setTotalPrice(updateRentalRequest.getTotalPrice());
+    }
+
+
+    private void ifRequestReturnDateNotNullShouldUpdateReturnDate(UpdateRentalRequest updateRentalRequest, Rental rentalToUpdate) {
+        if (updateRentalRequest.getReturnDate() != null) {
+            rentalToUpdate.setReturnDate(updateRentalRequest.getReturnDate());
         }
-        if(updateRentalRequest.getUserId()!=0){
-            rentalToUpdate.setUser(userService.getOriginalUserById(updateRentalRequest.getUserId()));
-        }
-
-        if(updateRentalRequest.getCarId()!=0){
-            rentalToUpdate.setCar(carService.getOriginalCarById(updateRentalRequest.getCarId()));
-        }
-
-
-
-        checkIsCarExist(rentalToUpdate.getCar().getId());
-        checkIsUserExists(rentalToUpdate.getUser().getId());
-
-
-        rentalRepository.save(rentalToUpdate);
     }
 
-    public void delete(int id) {
-        Rental rental = rentalRepository.findById(id).orElseThrow();
-        rentalRepository.delete(rental);
-    }
-
-    @Override
-    public BigDecimal getPrice(CreateRentalRequest createRentalRequest) {
-
-        return setTotalPriceToRentalInfo(null,createRentalRequest);
-    }
-
-    @Override
-    public Page<GetRentalResponse> getAllViaPage(Pageable pageable) {
-        return rentalRepository.findAll(pageable).map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class));
-    }
-
-    @Override
-    public List<GetRentalResponse> getRentalsByUserId(int id) {
-        return  rentalRepository.findByUserId(id).
-                stream().
-                map(rental-> mapperService.forResponse().map(rental,GetRentalResponse.class)).toList();
-    }
-
-    public List<GetRentalResponse> getAll() {
-        List<Rental> rentalList = rentalRepository.findAll();
-        List<GetRentalResponse> responseList = rentalList.stream()
-                .map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class))
-                .toList();
-        return responseList;
-    }
-
-    public GetRentalResponse getById(int id) {
-        Rental rental = rentalRepository.findById(id).orElseThrow();
-        GetRentalResponse response = mapperService.forResponse().map(rental, GetRentalResponse.class);
-        return response;
-    }
-
-
-    //////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////// Business Methods//////////////////////////////////////
 
     private void checkIsUserExists(int userId) {
-        if(!userService.existsById(userId)) {
+        if (!userService.existsById(userId)) {
             throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.user.notfound", LocaleContextHolder.getLocale())));
         }
     }
@@ -183,13 +186,13 @@ public class RentalManager implements RentalService {
     }
 
     private BigDecimal setTotalPriceToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
-        GetCarResponse response2= carService.getById(createRentalRequest.getCarId());
-        BigDecimal dailyPrice=response2.getDailyPrice();
-        long rentalTime= ChronoUnit.DAYS.between(createRentalRequest.getStartDate(),createRentalRequest.getEndDate());
+        GetCarResponse response2 = carService.getById(createRentalRequest.getCarId());
+        BigDecimal dailyPrice = response2.getDailyPrice();
+        long rentalTime = ChronoUnit.DAYS.between(createRentalRequest.getStartDate(), createRentalRequest.getEndDate());
         rentalTime++;
         BigDecimal totalPrice = dailyPrice.multiply(new BigDecimal(rentalTime));
 
-        if(rental !=null) {
+        if (rental != null) {
             rental.setTotalPrice(totalPrice);
         }
 
@@ -197,8 +200,8 @@ public class RentalManager implements RentalService {
     }
 
     private void setActualKilometerToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
-        GetCarResponse response= carService.getById(createRentalRequest.getCarId());
-        Integer actualKilometers=response.getKilometer();
+        GetCarResponse response = carService.getById(createRentalRequest.getCarId());
+        Integer actualKilometers = response.getKilometer();
         rental.setStartKilometer(actualKilometers);
     }
 

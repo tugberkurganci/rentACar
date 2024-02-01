@@ -31,25 +31,26 @@ public class AuthService {
     public AuthResponse authenticate(Credentials credentials) {
 
         User user = userService.findByEmail(credentials.email());
-
-        if (user == null) {
-
-            throw new AuthenticationException();
-        }
-
-        if (!passwordEncoder.matches(credentials.password(), user.getPassword())) {
-            throw new AuthenticationException();
-        }
-
+        checkUserExist(user);
+        checkPasswordMatch(credentials.password(),user.getPassword());
         jwtService.deleteToken(user.getId());
         Token token=jwtService.CreateToken(user,true);
-
-
         return new AuthResponse(new UserResponse(user),token);
 
 
     }
 
+    private void checkUserExist(User user) {
+        if (user == null) {
+            throw new AuthenticationException();
+        }
+    }
+
+    private void checkPasswordMatch(String password, String password2) {
+        if (!passwordEncoder.matches(password, password2)) {
+            throw new AuthenticationException();
+        }
+    }
 
 
 }
