@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/StaticResourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/config/StaticResourceConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/messages/RentACarProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/core/messages/RentACarProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/BrandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/BrandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateBrandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateBrandRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateModelRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateModelRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateUserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateBrandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateBrandRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateModelRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateModelRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateUserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllModelResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllModelResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllUsersResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllUsersResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetBrandResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetBrandResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetUserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/car/f41805d9-1eb5-4d12-a238-907981bc0611" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,11 +194,6 @@
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java</url>
           <line>80</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java</url>

@@ -49,12 +49,15 @@ public class UserManager implements UserService {
     public void update(UpdateUserRequest updateUserRequest) {
         User user = this.getOriginalUserById(updateUserRequest.getId());
         ifRequestUserEmailNotNullAndUniqueUpdateEmail(updateUserRequest, user);
-        if (updateUserRequest.getImage() != null) {
+        updateUserOnPasswordStatus(updateUserRequest, user);
+
+        if (updateUserRequest.getImage() != null ) {
             String fileName = fileService.saveBase64StringAsFile(updateUserRequest.getImage(), "user");
             fileService.deleteCarImage(user.getImage(), "user");
-            updateUserRequest.setImage(fileName);
+            user.setImage(fileName);
         }
-        updateOnUserPasswordStatus(updateUserRequest, user);
+        userRepository.save(user);
+
     }
 
     @Override
@@ -108,36 +111,14 @@ public class UserManager implements UserService {
     }
 
 
-    private void updateOnUserPasswordStatus(UpdateUserRequest updateUserRequest, User user) {
+    private void updateUserOnPasswordStatus(UpdateUserRequest updateUserRequest, User user) {
+        user.setName(updateUserRequest.getName());
+        user.setSurname(updateUserRequest.getSurname());
+        user.setBirthDate(updateUserRequest.getBirthDate());
+        user.setEmail(updateUserRequest.getEmail());
 
         if (updateUserRequest.getPassword() != null) {
-            User updatedUser = User
-                    .builder()
-                    .id(updateUserRequest.getId())
-                    .name(updateUserRequest.getName())
-                    .surname(updateUserRequest.getSurname())
-                    .birthDate(updateUserRequest.getBirthDate())
-                    .email(updateUserRequest.getEmail())
-                    .role(user.getRole())
-                    .rentals(user.getRentals())
-                    .password(passwordEncoder.encode(updateUserRequest.getPassword()))
-                    .image(updateUserRequest.getImage())
-                    .build();
-            userRepository.save(updatedUser);
-        } else {
-            User updatedUser = User
-                    .builder()
-                    .id(updateUserRequest.getId())
-                    .name(updateUserRequest.getName())
-                    .surname(updateUserRequest.getSurname())
-                    .birthDate(updateUserRequest.getBirthDate())
-                    .email(updateUserRequest.getEmail())
-                    .role(user.getRole())
-                    .rentals(user.getRentals())
-                    .password(user.getPassword())
-                    .image(updateUserRequest.getImage())
-                    .build();
-            userRepository.save(updatedUser);
+            user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
         }
     }
 

@@ -10,6 +10,7 @@ import "./userPanel.css";
 import Pagination from "../../Pagination/Pagination";
 import { useTranslation } from "react-i18next";
 import Image from "../../CarImage/CarImage";
+import UserUpdate from "./UserUpdate";
 type Props = {};
 
 const UserPanel = (props: Props) => {
@@ -18,7 +19,7 @@ const UserPanel = (props: Props) => {
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
-  const [image, setImage] = useState<any>();
+  const [user, setUser] = useState<UserModel>()
 
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -38,45 +39,9 @@ const UserPanel = (props: Props) => {
   };
   const handleChangeUpdateBtn = (user: UserModel) => {
     setEditable(!editable);
-    setInitialValues(user);
+    setUser(user)
   };
-  const handleUpdateUser = async (
-    values: UserModel,
-    { setErrors }: FormikHelpers<UserModel>
-  ) => {
-    try {
-      const response = await axiosInstance.put(`/v1/users`, {
-        ...values,
-        image: image,
-      });
-      toast.success("User updated");
-      console.log(response);
-      fetchUsers();
-      setEditable(!editable);
-      setInitialValues({
-        id: 1,
-        name: "",
-        surname: "",
-        email: "",
-        birthDate: "",
-        password: "",
-        image: "",
-      });
-    } catch (error: any) {
-      if (error.response.data.validationErrors) {
-        const validationErrors: Record<string, string> =
-          error.response.data.validationErrors;
-        const formikErrors: Record<string, string> = {};
-        Object.entries(validationErrors).forEach(([field, message]) => {
-          formikErrors[field] = message;
-        });
-        setErrors(formikErrors);
-        console.log(error);
-      } else {
-        toast.error(error.response.data.message);
-      }
-    }
-  };
+ 
   const handleDeleteUser = async (user: UserModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/users/${user.id}`);
@@ -86,44 +51,10 @@ const UserPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  const [initialValues, setInitialValues] = useState<UserModel>({
-    id: 1,
-    name: "",
-    surname: "",
-    email: "",
-    birthDate: "",
-    password: "",
-    image: "",
-  });
-
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    name: Yup.string().required("Name is required"),
-    surname: Yup.string().required("Surname is required"),
-    birthDate: Yup.date().required("BirthDate is required"),
-  });
-
-  const onChangeInput = (handleChange: any, e: any, values: any) => {
-    if (e.target.files === null) {
-      handleChange(e);
-      setInitialValues({ ...values, [e.target.name]: e.target.value });
-    } else {
-      const file = e.target.files[0];
-      const fileReader = new FileReader();
-
-      fileReader.onloadend = () => {
-        const data = fileReader.result;
-
-        setImage(data);
-      };
-      fileReader.readAsDataURL(file);
-    }
-  };
+ 
   useEffect(() => {
     fetchUsers();
-  }, [pageable]);
+  }, [pageable,editable]);
 
   return (
     <div
@@ -184,104 +115,7 @@ const UserPanel = (props: Props) => {
           />
         </div>
       )}
-      {editable && (
-        <div
-          style={{ minHeight: "80vh" }}
-          className="d-flex flex-row justify-content-center align-items-center   "
-        >
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleUpdateUser}
-          >
-            {({ isSubmitting, values, handleChange }) => (
-              <Form className="  w-50">
-                <div>
-                  <FormikInput
-                    label="name"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.name}
-                    name="name"
-                  />
-                </div>
-
-                <div className="col">
-                  <FormikInput
-                    label="surname"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.surname}
-                    name="surname"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="email"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.email}
-                    name="email"
-                    type="email"
-                  />
-                </div>
-
-                <div className="col">
-                  <FormikInput
-                    label="birthDate"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.birthDate}
-                    name="birthDate"
-                    type="date"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="Password"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    value={initialValues.password}
-                    name="password"
-                    type="password"
-                  />
-                </div>
-                <div className="col">
-                  <FormikInput
-                    label="İmage"
-                    onChange={(e: any) => {
-                      onChangeInput(handleChange, e, values);
-                    }}
-                    name="image"
-                    type="file"
-                  />
-                </div>
-
-                <div className="col  d-flex justify-content-between">
-                  <button
-                    onClick={() => setEditable(!editable)}
-                    className="btn btn-danger "
-                  >
-                    {t("giveup")}
-                  </button>
-                  <button
-                    type="submit"
-                    className="btn btn-primary "
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Updating..." : "Update"}
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
-      )}
+      {editable && <div><UserUpdate user={user} editable={setEditable}/></div>}
     </div>
   );
 };

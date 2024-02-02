@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { RentalModel } from "../../models/RentalModel";
-import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import {  GoTriangleDown } from "react-icons/go";
 import { InvoiceModel } from "../../models/InvoiceModel";
 import "./profile.css";
-import { DiVim } from "react-icons/di";
 import { useDispatch, useSelector } from "react-redux";
-
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { useTranslation } from "react-i18next";
 import { UserModel } from "../../models/UserModel";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { logoutSuccess } from "../../store/authStore/authSlice";
-import * as Yup from "yup";
-import ProfileUpdate from "./ProfileUpdate";
 import Image from "../../components/CarImage/CarImage";
+import UserUpdate from "../../components/Dashboard/UserPanel/UserUpdate";
 
 type Props = {};
 
@@ -229,8 +226,8 @@ const Profile = (props: Props) => {
             })}
           </div>
           {/* Siparişler-End */}
-          {/* HesapDetayları-Start */}
-          {editable? (<ProfileUpdate user={user} setEditab={setEditable}/>):(<div
+         
+          {editable? (<UserUpdate user={user} editable={setEditable}/>):(<div
             className={`${isClicked === 2 ? "d-flex" : "d-none"} flex-column`}
           >
             <div className="card" style={{ width: "24rem" }}>
