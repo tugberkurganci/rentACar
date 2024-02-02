@@ -23,7 +23,7 @@ public class BrandController {
 
     }
     @PutMapping("{id}")
-    public void update (@RequestBody UpdateBrandRequest updateBrandRequest ){
+    public void update (@RequestBody @Valid UpdateBrandRequest updateBrandRequest ){
         brandService.update(updateBrandRequest);
     }
     @DeleteMapping("{id}")

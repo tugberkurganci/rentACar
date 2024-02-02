@@ -18,6 +18,10 @@ public class Model {
     @Column(name = "name")
     private String name;
 
+
+    @Column(name = "image")
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand  brand;

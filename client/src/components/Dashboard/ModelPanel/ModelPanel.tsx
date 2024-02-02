@@ -10,6 +10,7 @@ import { ModelType } from "../../../models/ModelType";
 import FormikSelect from "../../FormikSelect/FormikSelect";
 import { useTranslation } from "react-i18next";
 import ModelAddUpdate from "./ModelAddUpdate";
+import Image from "../../CarImage/CarImage";
 
 type Props = {};
 
@@ -66,6 +67,7 @@ const ModelPanel = (props: Props) => {
           <thead>
             <tr>
               <th scope="col">Model ID</th>
+              <th scope="col">{t("picture")}</th>
               <th scope="col">Model {t("name")}</th>
               <th scope="col">{t("brand")} ID</th>
               <th><button
@@ -81,6 +83,9 @@ const ModelPanel = (props: Props) => {
             {modelList.map((model) => (
               <tr className="w-100 " key={model.id}>
                 <th scope="row">{model.id}</th>
+                <td>
+                <Image  source={model.image} model={"model"}/>
+                </td>
                 <td>{model.name}</td>
                 <td>{model.brandId}</td>
                 <td>

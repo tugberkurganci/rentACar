@@ -41,6 +41,10 @@ public class User implements UserDetails {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+
+    @Column(name = "image")
+    private String image;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

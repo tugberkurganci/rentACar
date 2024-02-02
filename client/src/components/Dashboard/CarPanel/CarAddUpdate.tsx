@@ -12,16 +12,13 @@ import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
 import { init } from "i18next";
 
+type Props = { car?: CarModel; setEditable: any; urlType: string };
 
-
-type Props = {car?:CarModel ,setEditable:any,urlType:string}
-
-const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
-    
-    const {t}=useTranslation();
-    const [modelList, setModelList] = useState<ModelType[]>([]);
+const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
+  const { t } = useTranslation();
+  const [modelList, setModelList] = useState<ModelType[]>([]);
   const [colorList, setColorList] = useState<ColorModel[]>([]);
-  const [image, setImage] = useState<any>()
+  const [image, setImage] = useState<any>();
 
   const handleUpdateCar = async (
     values: CarModel,
@@ -30,15 +27,22 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
     console.log(values);
 
     try {
-      
       let response;
-      if(urlType==="put"){
-        response = await axiosInstance.put(`/v1/cars`, {...values,image:image});}
-      else{response =await axiosInstance.post(`/v1/cars`, {...values,image:image});}
-      
+      if (urlType === "put") {
+        response = await axiosInstance.put(`/v1/cars`, {
+          ...values,
+          image: image,
+        });
+      } else {
+        response = await axiosInstance.post(`/v1/cars`, {
+          ...values,
+          image: image,
+        });
+      }
+
       toast.success("Car updated successfully");
       console.log(response);
-      setEditable(false)
+      setEditable(false);
       setInitialValues({
         id: 1,
         modelName: 0,
@@ -47,7 +51,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
         kilometer: 0,
         plate: "",
         year: 0,
-        image:""
+        image: "",
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -64,7 +68,7 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
       }
     }
   };
-  
+
   const fetchModels = async () => {
     try {
       const response = await axiosInstance.get("v1/models");
@@ -81,16 +85,18 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  const [initialValues, setInitialValues] = useState<CarModel>(car || {
-    id: 1,
-    modelName: 0,
-    colorName: 0,
-    dailyPrice: 0,
-    kilometer: 0,
-    plate: "",
-    year: 0,
-    image:""
-  });
+  const [initialValues, setInitialValues] = useState<CarModel>(
+    car || {
+      id: 1,
+      modelName: 0,
+      colorName: 0,
+      dailyPrice: 0,
+      kilometer: 0,
+      plate: "",
+      year: 0,
+      image: "",
+    }
+  );
 
   const validationSchema = Yup.object({
     modelName: Yup.string().required("Model Name is required"),
@@ -104,142 +110,133 @@ const CarAddUpdate = ({car,setEditable,urlType}: Props) => {
       .moreThan(0, "Year must be greater than 0")
       .required("Year is required"),
   });
-  const onChangeInput =  (handleChange: any, e: any, values: any) => {
-  
-    if(e.target.files === null){handleChange(e);
-      setInitialValues({ ...values, [e.target.name]: e.target.value });}
-    else
-    {
-      const file= e.target.files[0]
-      const fileReader=new FileReader();
-      
-      fileReader.onloadend=()=>{
-        
+  const onChangeInput = (handleChange: any, e: any, values: any) => {
+    if (e.target.files === null) {
+      handleChange(e);
+      setInitialValues({ ...values, [e.target.name]: e.target.value });
+    } else {
+      const file = e.target.files[0];
+      const fileReader = new FileReader();
 
-        const data=fileReader.result
+      fileReader.onloadend = () => {
+        const data = fileReader.result;
 
-        setImage(data)
-      }
-       fileReader.readAsDataURL(file)
-      
-     
-
-      
+        setImage(data);
+      };
+      fileReader.readAsDataURL(file);
     }
-
   };
   useEffect(() => {
     fetchModels();
     fetchColors();
   }, []);
 
- 
- 
- 
-    return (
-    <div><div
-    style={{ minHeight: "80vh" }}
-    className="d-flex flex-row justify-content-center align-items-center   "
-  >
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleUpdateCar}
-    >
-      {({ isSubmitting, values, handleChange }) => (
-        <Form className="  w-50">
-          <div>
-            <FormikSelect
-              label="Model Name"
-              list={modelList}
-              name="modelName"
-              val={"id"}
-            />
-          </div>
+  return (
+    <div>
+      <div
+        style={{ minHeight: "80vh" }}
+        className="d-flex flex-row justify-content-center align-items-center   "
+      >
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleUpdateCar}
+        >
+          {({ isSubmitting, values, handleChange }) => (
+            <Form className="  w-50">
+              <div>
+                <FormikSelect
+                  label="Model Name"
+                  list={modelList}
+                  name="modelName"
+                  val={"id"}
+                />
+              </div>
 
-          <div className="col">
-            <FormikInput
-              label="Kilometer"
-              onChange={(e: any) => {
-                onChangeInput(handleChange, e, values);
-              }}
-              value={initialValues.kilometer}
-              name="kilometer"
-            />
-          </div>
-          <div>
-            <FormikSelect
-              label="Color"
-              list={colorList}
-              name="colorName"
-              val={"id"}
-              
-            />
-          </div>
+              <div className="col">
+                <FormikInput
+                  label="Kilometer"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  value={initialValues.kilometer}
+                  name="kilometer"
+                />
+              </div>
+              <div>
+                <FormikSelect
+                  label="Color"
+                  list={colorList}
+                  name="colorName"
+                  val={"id"}
+                />
+              </div>
 
-          <div className="col">
-            <FormikInput
-              label="Daily Price"
-              onChange={(e: any) => {
-                onChangeInput(handleChange, e, values);
-              }}
-              value={initialValues.dailyPrice}
-              name="dailyPrice"
-            />
-          </div>
-          <div className="col">
-            <FormikInput
-              label="Plate Number"
-              onChange={(e: any) => {
-                onChangeInput(handleChange, e, values);
-              }}
-              value={initialValues.plate}
-              name="plate"
-            />
-          </div>
-          <div className="col">
-            <FormikInput
-              label="Model Year"
-              onChange={(e: any) => {
-                onChangeInput(handleChange, e, values);
-              }}
-              value={initialValues.year}
-              name="year"
-            />
-          </div>
-          <div className="col">
-            <FormikInput
-              label="İmage"
-              onChange={(e: any) => {
-                onChangeInput(handleChange, e, values);
-              }}
-              
-              name="image"
-              type="file"
-            />
-          </div>
+              <div className="col">
+                <FormikInput
+                  label="Daily Price"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  value={initialValues.dailyPrice}
+                  name="dailyPrice"
+                />
+              </div>
+              <div className="col">
+                <FormikInput
+                  label="Plate Number"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  value={initialValues.plate}
+                  name="plate"
+                />
+              </div>
+              <div className="col">
+                <FormikInput
+                  label="Model Year"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  value={initialValues.year}
+                  name="year"
+                />
+              </div>
+              <div className="col">
+                <FormikInput
+                  label="İmage"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  name="image"
+                  type="file"
+                />
+              </div>
 
-          <div className="col  d-flex justify-content-between">
-            <button
-            type="button"
-              onClick={() =>{setEditable(false);console.log("calıstı")} }
-              className="btn btn-danger "
-            >
-              {t("giveup")}
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary "
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Updating..." : "Update"}
-            </button>
-          </div>
-        </Form>
-      )}
-    </Formik>
-  </div></div>
-  )
-}
+              <div className="col  d-flex justify-content-between">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEditable(false);
+                  }}
+                  className="btn btn-danger "
+                >
+                  {t("giveup")}
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary "
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Updating..." : "Update"}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
+  );
+};
 
-export default CarAddUpdate
+export default CarAddUpdate;

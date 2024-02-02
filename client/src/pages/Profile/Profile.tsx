@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutSuccess } from "../../store/authStore/authSlice";
 import * as Yup from "yup";
 import ProfileUpdate from "./ProfileUpdate";
+import Image from "../../components/CarImage/CarImage";
 
 type Props = {};
 
@@ -233,8 +234,7 @@ const Profile = (props: Props) => {
             className={`${isClicked === 2 ? "d-flex" : "d-none"} flex-column`}
           >
             <div className="card" style={{ width: "24rem" }}>
-            <img src="https://www.shutterstock.com/image-vector/male-avatar-profile-picture-vector-600nw-149083895.jpg" className="card-img-top" alt="Profil Resmi" />
-              <div className="card-body">
+            <Image source={user?.image} model={"user"} />              <div className="card-body">
                 <h5 className="card-title">
                   {user?.name} {user?.surname}
                 </h5>

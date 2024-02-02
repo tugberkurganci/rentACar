@@ -36,6 +36,8 @@ public class StaticResourceConfiguration implements WebMvcConfigurer {
         return args -> {
             createFolder(Paths.get(rentACarProperties.getStorage().getRoot()));
             createFolder(Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getCar()));
+            createFolder(Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getUser()));
+            createFolder(Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getModel()));
         };
     }
 

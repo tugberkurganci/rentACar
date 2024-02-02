@@ -9,6 +9,7 @@ import { CarSearchValues } from "../../models/CarSearchModel";
 import { useTranslation } from "react-i18next";
 import CarImage from "../../components/CarImage/CarImage";
 import { toast } from "react-toastify";
+import Image from "../../components/CarImage/CarImage";
 
 type Props = {};
 
@@ -75,7 +76,7 @@ const Checkout = (props: Props) => {
     <div className="  row d-flex justify-content-center align-items-center">
       <div className="col-12 d-flex justify-content-center align-items-center ">
      
-          <CarImage source={car?.image} />
+          <Image source={car?.image} model={"car"} />
        
       </div>
       <div className="col-12 col-md-6 border  rounded border-3 p-md-5 w-75  border-warning ">

@@ -16,6 +16,7 @@ type Props = { model?: ModelType; setEditable: any; urlType: string };
 const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
   const [brandList, setBrandList] = useState<any[]>([]);
   const { t } = useTranslation();
+  const [image, setImage] = useState<any>();
   const fetchBrands = async () => {
     try {
       const response = await axiosInstance.get(`v1/brands`);
@@ -34,8 +35,16 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
 
     try {
       if (urlType === "put") {
-        response = await axiosInstance.put(`/v1/models`, values);
-      }else{ response = await axiosInstance.post(`/v1/models`, values);}
+        response = await axiosInstance.put(`/v1/models`, {
+          ...values,
+          image: image,
+        });
+      } else {
+        response = await axiosInstance.post(`/v1/models`,  {
+          ...values,
+          image: image,
+        });
+      }
 
       toast.success("Model updated successfully");
       console.log(response);
@@ -45,10 +54,10 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
         id: 1,
         name: "",
         brandId: 0,
+        image:"",
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
-        
         const validationErrors: Record<string, string> =
           error.response.data.validationErrors;
         const formikErrors: Record<string, string> = {};
@@ -67,6 +76,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
       id: 1,
       name: "",
       brandId: 0,
+      image: "",
     }
   );
 
@@ -75,14 +85,25 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
     brandId: Yup.string().required(" is required"),
   });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
-    handleChange(e);
-    setInitialValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.files === null) {
+      handleChange(e);
+      setInitialValues({ ...values, [e.target.name]: e.target.value });
+    } else {
+      const file = e.target.files[0];
+      const fileReader = new FileReader();
+
+      fileReader.onloadend = () => {
+        const data = fileReader.result;
+        setImage(data);
+      };
+      fileReader.readAsDataURL(file);
+    }
   };
 
   useEffect(() => {
     fetchBrands();
-  }, [])
-  
+  }, []);
+
   return (
     <div>
       {" "}
@@ -116,9 +137,20 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
                   val={"id"}
                 />
               </div>
+
+              <div>
+                <FormikInput
+                  label="İmage"
+                  onChange={(e: any) => {
+                    onChangeInput(handleChange, e, values);
+                  }}
+                  name="image"
+                  type="file"
+                />
+              </div>
               <div className="col  d-flex justify-content-between">
                 <button
-                type="button"
+                  type="button"
                   onClick={() => setEditable(false)}
                   className="btn btn-danger "
                 >

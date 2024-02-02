@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.dtos.requests;
 
+import com.tobeto.pair3.services.dtos.validaton.FileType;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,4 +31,7 @@ public class UpdateUserRequest {
     @NotNull(message = "{rentACar.constraint.birthdate.notnull}")
     @Past(message = "{rentACar.constraint.birthdate.past}")
     private LocalDate birthDate;
+
+    @FileType
+    private String image;
 }

@@ -27,7 +27,7 @@ public class CreateCarRequest {
 
     private int colorName;
 
-    @FileType()
+    @FileType
     private String image;
 
     public void setPlate(String plate) {

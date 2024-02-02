@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetBrandResponse {
 
-    public GetBrandResponse(Brand brand) {
-        this.id= brand.getId();
-        this.name= brand.getName();
-    }
+
     private Integer id;
     private String name;
+
 }

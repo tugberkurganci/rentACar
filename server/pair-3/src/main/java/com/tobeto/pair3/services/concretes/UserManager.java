@@ -26,8 +26,8 @@ import java.util.List;
 public class UserManager implements UserService {
     private final UserRepository userRepository;
     private final ModelMapperService mapperService;
-    private PasswordEncoder passwordEncoder ;
-
+    private PasswordEncoder passwordEncoder;
+    private FileService fileService;
 
 
     @Override
@@ -37,6 +37,11 @@ public class UserManager implements UserService {
         User user = mapperService.forRequest().map(createUserRequest, User.class);
         user.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
         user.setRole(Role.USER);
+        if (createUserRequest.getImage() != null) {
+            String fileName = fileService.saveBase64StringAsFile(createUserRequest.getImage(), "user");
+            user.setImage(fileName);
+        }
+
         userRepository.save(user);
     }
 
@@ -44,6 +49,11 @@ public class UserManager implements UserService {
     public void update(UpdateUserRequest updateUserRequest) {
         User user = this.getOriginalUserById(updateUserRequest.getId());
         ifRequestUserEmailNotNullAndUniqueUpdateEmail(updateUserRequest, user);
+        if (updateUserRequest.getImage() != null) {
+            String fileName = fileService.saveBase64StringAsFile(updateUserRequest.getImage(), "user");
+            fileService.deleteCarImage(user.getImage(), "user");
+            updateUserRequest.setImage(fileName);
+        }
         updateOnUserPasswordStatus(updateUserRequest, user);
     }
 
@@ -62,10 +72,12 @@ public class UserManager implements UserService {
                 .map(user -> mapperService.forResponse().map(user, GetAllUsersResponse.class))
                 .toList();
     }
+
     @Override
     public Page<GetAllUsersResponse> getAllViaPage(Pageable pageable) {
         return userRepository.findAll(pageable).map(user -> mapperService.forResponse().map(user, GetAllUsersResponse.class));
     }
+
     @Override
     public GetUserResponse getById(int id) {
         User user = this.getOriginalUserById(id);
@@ -98,7 +110,7 @@ public class UserManager implements UserService {
 
     private void updateOnUserPasswordStatus(UpdateUserRequest updateUserRequest, User user) {
 
-        if(updateUserRequest.getPassword()!=null){
+        if (updateUserRequest.getPassword() != null) {
             User updatedUser = User
                     .builder()
                     .id(updateUserRequest.getId())
@@ -109,9 +121,10 @@ public class UserManager implements UserService {
                     .role(user.getRole())
                     .rentals(user.getRentals())
                     .password(passwordEncoder.encode(updateUserRequest.getPassword()))
+                    .image(updateUserRequest.getImage())
                     .build();
             userRepository.save(updatedUser);
-        }else {
+        } else {
             User updatedUser = User
                     .builder()
                     .id(updateUserRequest.getId())
@@ -122,17 +135,19 @@ public class UserManager implements UserService {
                     .role(user.getRole())
                     .rentals(user.getRentals())
                     .password(user.getPassword())
+                    .image(updateUserRequest.getImage())
                     .build();
             userRepository.save(updatedUser);
         }
     }
 
-    private void ifRequestUserEmailNotNullAndUniqueUpdateEmail(UpdateUserRequest updateUserRequest,User user) {
+    private void ifRequestUserEmailNotNullAndUniqueUpdateEmail(UpdateUserRequest updateUserRequest, User user) {
 
-        if (userRepository.existsByEmail(updateUserRequest.getEmail())&& updateUserRequest.getEmail() != null) {
-            User updatedUser=userRepository.findByEmail(updateUserRequest.getEmail());
-            if(user.getId()!=updatedUser.getId()){
-                throw new NotUniqueEmailException();}
+        if (userRepository.existsByEmail(updateUserRequest.getEmail()) && updateUserRequest.getEmail() != null) {
+            User updatedUser = userRepository.findByEmail(updateUserRequest.getEmail());
+            if (user.getId() != updatedUser.getId()) {
+                throw new NotUniqueEmailException();
+            }
         }
     }
 

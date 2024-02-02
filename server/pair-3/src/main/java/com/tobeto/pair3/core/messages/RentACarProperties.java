@@ -16,5 +16,7 @@ public class RentACarProperties {
 
         String root="uploads";
         String car="car";
+        String model="model";
+        String user="user";
     }
 }

@@ -9,14 +9,17 @@ import ReactPaginate from "react-paginate";
 import "./userPanel.css";
 import Pagination from "../../Pagination/Pagination";
 import { useTranslation } from "react-i18next";
+import Image from "../../CarImage/CarImage";
 type Props = {};
 
 const UserPanel = (props: Props) => {
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const [userList, setUserList] = useState<UserModel[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [image, setImage] = useState<any>();
+
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
     setPageable({ ...pageable, page: newPage });
@@ -26,6 +29,7 @@ const UserPanel = (props: Props) => {
       const response = await axiosInstance.get(
         `/v1/users/via-page?page=${pageable?.page}&size=${pageable?.size}`
       );
+      console.log(response)
       setTotalPages(response.data.totalPages);
       setUserList(response.data.content);
     } catch (error: any) {
@@ -41,9 +45,13 @@ const UserPanel = (props: Props) => {
     { setErrors }: FormikHelpers<UserModel>
   ) => {
     try {
-      const response = await axiosInstance.put(`/v1/users`, values);
+      const response = await axiosInstance.put(`/v1/users`, {
+        ...values,
+        image: image,
+      });
       toast.success("User updated");
       console.log(response);
+      fetchUsers();
       setEditable(!editable);
       setInitialValues({
         id: 1,
@@ -52,6 +60,7 @@ const UserPanel = (props: Props) => {
         email: "",
         birthDate: "",
         password: "",
+        image: "",
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -84,6 +93,7 @@ const UserPanel = (props: Props) => {
     email: "",
     birthDate: "",
     password: "",
+    image: "",
   });
 
   const validationSchema = Yup.object({
@@ -96,8 +106,20 @@ const UserPanel = (props: Props) => {
   });
 
   const onChangeInput = (handleChange: any, e: any, values: any) => {
-    handleChange(e);
-    setInitialValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.files === null) {
+      handleChange(e);
+      setInitialValues({ ...values, [e.target.name]: e.target.value });
+    } else {
+      const file = e.target.files[0];
+      const fileReader = new FileReader();
+
+      fileReader.onloadend = () => {
+        const data = fileReader.result;
+
+        setImage(data);
+      };
+      fileReader.readAsDataURL(file);
+    }
   };
   useEffect(() => {
     fetchUsers();
@@ -113,6 +135,7 @@ const UserPanel = (props: Props) => {
           <thead>
             <tr>
               <th scope="col">{t("user")} ID</th>
+              <th scope="col">{t("picture")}</th>
               <th scope="col">{t("name")}</th>
               <th scope="col">{t("surname")}</th>
               <th scope="col">{t("email")}</th>
@@ -124,6 +147,10 @@ const UserPanel = (props: Props) => {
             {userList.map((user) => (
               <tr className="w-100 " key={user.id}>
                 <th scope="row">{user.id}</th>
+                <td>
+                  <Image source={user.image} model={"user"} />
+                 
+                </td>
                 <td>{user.name}</td>
                 <td>{user.surname}</td>
                 <td>{user.email}</td>
@@ -222,6 +249,16 @@ const UserPanel = (props: Props) => {
                     value={initialValues.password}
                     name="password"
                     type="password"
+                  />
+                </div>
+                <div className="col">
+                  <FormikInput
+                    label="İmage"
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
+                    name="image"
+                    type="file"
                   />
                 </div>
 

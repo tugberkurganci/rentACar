@@ -20,6 +20,9 @@ public class Brand {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "image")
+    private String image;
+
     @OneToMany(mappedBy = "brand")
     private List<Model> models;
 

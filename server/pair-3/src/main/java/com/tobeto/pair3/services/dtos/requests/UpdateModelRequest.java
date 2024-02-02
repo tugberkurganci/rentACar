@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.dtos.requests;
 
+import com.tobeto.pair3.services.dtos.validaton.FileType;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,4 +16,6 @@ public class UpdateModelRequest {
     private String name;
     @Min(value = 1, message = "{rentACar.constraint.modelId.min}")
     private Integer brandId;
+    @FileType
+    private String image;
 }

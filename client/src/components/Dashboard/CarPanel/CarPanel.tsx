@@ -12,6 +12,7 @@ import { ColorModel } from "../../../models/ColorModel";
 import { useTranslation } from "react-i18next";
 import CarAddUpdate from "./CarAddUpdate";
 import CarImage from "../../CarImage/CarImage";
+import Image from "../../CarImage/CarImage";
 type Props = {};
 
 const CarPanel = (props: Props) => {
@@ -90,7 +91,7 @@ const CarPanel = (props: Props) => {
             {carList.map((car) => (
               <tr className="w-100 " key={car.id}>
                 <td>
-                <CarImage  source={car.image}/>
+                <Image  source={car.image} model={"car"}/>
                   {/* Araba fotoğrafı gösteriliyor */}
                 </td>
                 <th scope="row">{car.id}</th>

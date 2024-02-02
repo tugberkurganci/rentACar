@@ -3,16 +3,16 @@ import axiosInstance, { axiosAssets } from '../../utils/interceptors/axiosInterc
 import axios from 'axios'
 
 
-type Props = {source?:string}
+type Props = {source?:string ,model:string}
 
-const CarImage = ({source}: Props) => {
+const Image = ({source,model}: Props) => {
 
     
     
   return (
 
-    <> <img className='img-fluid rounded' src={source?`/assets/car/${source}`:""}></img></>
+    <> <img className='img-fluid rounded' src={source?`/assets/${model}/${source}`:""}></img></>
   )
 }
 
-export default CarImage
+export default Image

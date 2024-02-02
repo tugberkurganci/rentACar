@@ -3,4 +3,5 @@ export interface ModelType {
     modelName?: any;
     brandId: number;
     name?: string;
+    image?:string;
   }

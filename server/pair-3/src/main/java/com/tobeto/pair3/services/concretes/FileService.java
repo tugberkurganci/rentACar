@@ -21,10 +21,11 @@ public class FileService {
     private final RentACarProperties rentACarProperties;
     Tika tika = new Tika();
 
-    public String saveBase64StringAsFile(String image) {
+    public String saveBase64StringAsFile(String image, String targetEntity) {
         String filename = UUID.randomUUID().toString();
+        Path path = getPath(targetEntity, filename);
 
-        Path path = getCarImagePath(filename);
+
         try {
             OutputStream outputStream = new FileOutputStream(path.toFile());
             outputStream.write(decodedImage(image));
@@ -35,6 +36,20 @@ public class FileService {
         }
         return null;
     }
+
+
+
+    private Path getUserImagePath(String filename) {
+        return Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getUser(), filename);
+
+    }
+
+
+    private Path getModelImagePath(String filename) {
+        return Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getModel(), filename);
+
+    }
+
     public String detectType(String value) {
         return tika.detect(decodedImage(value));
     }
@@ -47,15 +62,27 @@ public class FileService {
         return Paths.get(rentACarProperties.getStorage().getRoot(), rentACarProperties.getStorage().getCar(), filename);
     }
 
-    public void deleteCarImage(String image) {
+    public void deleteCarImage(String image,String targetEntity ) {
 
         if (image == null) return;
-        Path path = getCarImagePath(image);
+        Path path = getPath(targetEntity, image);
         try {
             Files.deleteIfExists(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private Path getPath(String targetEntity, String filename) {
+        Path path = null;
+
+        if (targetEntity.equals("car")) {
+            path = getCarImagePath(filename);
+        } else if (targetEntity.equals("model")) {
+            path = getModelImagePath(filename);
+        }else if (targetEntity.equals("user")){
+            path= getUserImagePath(filename);
+        }
+        return path;
     }
 }
 

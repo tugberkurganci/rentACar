@@ -57,7 +57,7 @@ public class CarManager implements CarService {
                 .build();
 
 
-        if(createCarRequest.getImage()!=null){String fileName=fileService.saveBase64StringAsFile(createCarRequest.getImage()); car.setImage(fileName);}
+        if(createCarRequest.getImage()!=null){String fileName=fileService.saveBase64StringAsFile(createCarRequest.getImage(),"car"); car.setImage(fileName);}
 
         carRepository.save(car);
     }
@@ -82,8 +82,8 @@ public class CarManager implements CarService {
                 .image(carToUpdate.getImage())
                 .build();
 
-       if(updateCarRequest.getImage()!=null){  String fileName=fileService.saveBase64StringAsFile(updateCarRequest.getImage());
-           fileService.deleteCarImage(carToUpdate.getImage());
+       if(updateCarRequest.getImage()!=null){  String fileName=fileService.saveBase64StringAsFile(updateCarRequest.getImage(),"car");
+           fileService.deleteCarImage(carToUpdate.getImage(),"car");
            car.setImage(fileName);}
 
         carRepository.save(car);
