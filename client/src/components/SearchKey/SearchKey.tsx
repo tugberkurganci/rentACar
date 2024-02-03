@@ -57,13 +57,14 @@ const SearchKey = ({setSearchedList,setSearchedListPage,pageable,setPageable,set
         label={t("search")}
         error={error}
         onChange={handleChange}
+        defaultValue={searchKey}
       />
       <button type="submit" disabled={loading}>
         {loading ? "Searching..." : " Search"}
       </button>
     </div>
   </form>
-  <button  type="submit" disabled={loading} onClick={()=>{setSearchable(false),setPageable({ ...pageable,page:0})}}>
+  <button  type="submit" disabled={loading} onClick={()=>{setSearchable(false),setPageable({ ...pageable,page:0}), setSearchKey("")} }>
     {loading ? "Sıfırlanıyor..." : " Sıfırla"}
   </button>
 </div>

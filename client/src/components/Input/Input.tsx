@@ -16,7 +16,7 @@ const Input = ({ id, label, error, onChange , type,defaultValue}: Props) => {
       className={error ? "form-control is-invalid " : "form-control"}
       onChange={onChange}
       type={type}
-      defaultValue={defaultValue}
+      value={defaultValue}
     />
     <div className="invalid-feedback">{error && <p>{error}</p>}</div>
   </div>

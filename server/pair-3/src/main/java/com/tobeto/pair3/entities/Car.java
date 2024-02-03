@@ -52,6 +52,18 @@ public class Car {
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Rental> rentals;
 
+    public Car(int id, Model model, Color color, int year, BigDecimal dailyPrice, String plate, int kilometer, String image) {
+        this.id = id;
+        this.model = model;
+        this.color = color;
+        this.year = year;
+        this.dailyPrice = dailyPrice;
+        this.plate = plate;
+        this.kilometer = kilometer;
+        this.image = image;
+    }
+
+
 
     public void addRental(Rental rental) {
         this.getRentals().add(rental);

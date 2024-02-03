@@ -44,10 +44,7 @@ const CarsPage = (props: Props) => {
   );
   
 
-  useEffect(() => {
-  console.log(carList)
-  }, [carList])
-  
+    
   const validationSchema = Yup.object({
     modelName: Yup.string().required("Model Name is required"),
     colorName: Yup.string().required("Color Name is required"),

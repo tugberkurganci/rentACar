@@ -40,5 +40,14 @@ public class GetCarResponse {
 
     private String brandName;
 
-
+    public GetCarResponse(int id, int kilometer, String plate, int year, BigDecimal dailyPrice, String modelName, String colorName, String image) {
+        this.id = id;
+        this.kilometer = kilometer;
+        this.plate = plate;
+        this.year = year;
+        this.dailyPrice = dailyPrice;
+        this.modelName = modelName;
+        this.colorName = colorName;
+        this.image = image;
+    }
 }

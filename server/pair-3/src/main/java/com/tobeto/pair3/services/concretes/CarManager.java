@@ -135,6 +135,7 @@ public class CarManager implements CarService {
 
     public boolean isReservable(Car car, CreateRentableCarRequest request) {
 
+        if(car.getRentals()==null)return true;
         boolean isReserable = true;
 
         List<Rental> rentals = car.getRentals();
