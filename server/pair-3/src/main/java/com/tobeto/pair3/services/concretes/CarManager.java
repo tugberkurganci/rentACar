@@ -162,7 +162,13 @@ public class CarManager implements CarService {
             throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.same.plate.exists", LocaleContextHolder.getLocale()));
         }
     }
-    private void convertToRentableCarList(List<Car> carList, List<Car> rentableCarList,CreateRentableCarRequest request) {
+
+    @Override
+    public Page<GetCarResponse> searchKeyAndGetUser(String searchKey, Pageable pageable) {
+        return carRepository.searchKeyAndGetUser(searchKey,pageable);
+    }
+
+    private void convertToRentableCarList(List<Car> carList, List<Car> rentableCarList, CreateRentableCarRequest request) {
 
         carList.forEach(car -> {
             if (isReservable(car, request)) {

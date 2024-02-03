@@ -29,4 +29,6 @@ public interface UserService {
     User findByEmail(String username);
 
     Page<GetAllUsersResponse> getAllViaPage(Pageable pageable);
+
+    Page<GetAllUsersResponse> searchKeyAndGetUser(String searchKey, Pageable pageable);
 }

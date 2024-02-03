@@ -68,5 +68,6 @@
   "users":"USERS",
   "add":"Add Car",
   "addmodel":"Add Model",
-  "picture":"Picture"
+  "picture":"Picture",
+  "search":"Search"
 }

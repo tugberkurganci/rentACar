@@ -82,6 +82,11 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public Page<GetAllUsersResponse> searchKeyAndGetUser(String searchKey, Pageable pageable) {
+        return userRepository.searchKeyAndGetUser(searchKey,pageable);
+    }
+
+    @Override
     public GetUserResponse getById(int id) {
         User user = this.getOriginalUserById(id);
         return mapperService.forResponse().map(user, GetUserResponse.class);

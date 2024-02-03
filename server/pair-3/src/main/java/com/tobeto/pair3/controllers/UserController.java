@@ -48,6 +48,11 @@ public class UserController {
     public Page<GetAllUsersResponse> getAllViaPage(Pageable pageable){
         return userService.getAllViaPage(pageable);
     }
+
+    @GetMapping("/search-user")
+    public Page<GetAllUsersResponse> searchKeyAndGetUser(@RequestParam("searchKey") String searchKey,Pageable pageable){
+        return userService.searchKeyAndGetUser(searchKey,pageable);
+    }
 }
 
 

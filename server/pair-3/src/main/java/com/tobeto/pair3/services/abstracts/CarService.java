@@ -33,4 +33,6 @@ public interface CarService {
     public boolean isReservable(Car car, CreateRentableCarRequest request) ;
 
     Page<GetCarResponse> getAllViaPage(Pageable pageable);
+
+    Page<GetCarResponse> searchKeyAndGetUser(String searchKey, Pageable pageable);
 }

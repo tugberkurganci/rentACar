@@ -11,7 +11,7 @@ import java.util.List;
 public interface ColorService {
 
 
-    public  void add(CreateColorRequest createColorRequest);
+    void add(CreateColorRequest createColorRequest);
 
   void update(UpdateColorRequest updateColorRequest);
 

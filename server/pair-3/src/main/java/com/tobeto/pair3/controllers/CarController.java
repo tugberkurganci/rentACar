@@ -60,4 +60,9 @@ public class CarController {
         return carService.getAllViaPage(pageable);
     }
 
+    @GetMapping("/search-car")
+    public Page<GetCarResponse> searchKeyAndGetCar(@RequestParam("searchKey") String searchKey,Pageable pageable){
+        return carService.searchKeyAndGetUser(searchKey,pageable);
+    }
+
 }
