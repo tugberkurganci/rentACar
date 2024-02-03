@@ -9,6 +9,8 @@ import com.tobeto.pair3.repositories.ModelRepository;
 import com.tobeto.pair3.services.abstracts.BrandService;
 import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameResponse;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
 import com.tobeto.pair3.services.dtos.responses.GetModelResponse;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -99,4 +102,18 @@ public class ModelManager implements ModelService {
         }
     }
 
+    @Override
+    public List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) {
+        List<Model> models=new ArrayList<>();
+
+        modelNames.forEach((modelName)->{
+           models.add(modelRepository.findByName(modelName.getModelName())) ;
+
+        });
+        List<GetBrandNameResponse> responses=new ArrayList<>();
+        models.forEach(model ->responses.add(new GetBrandNameResponse(model.getBrand().getName(),model.getBrand().getId())));
+
+        return responses;
+
+    }
 }

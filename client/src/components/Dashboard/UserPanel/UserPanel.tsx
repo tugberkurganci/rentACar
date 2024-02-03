@@ -7,7 +7,7 @@ import Pagination from "../../Pagination/Pagination";
 import { useTranslation } from "react-i18next";
 import Image from "../../CarImage/CarImage";
 import UserUpdate from "./UserUpdate";
-import Search from "../../SearchKey/SearchKey";
+import SearchKey from "../../SearchKey/SearchKey";
 
 type Props = {};
 
@@ -60,10 +60,7 @@ const UserPanel = (props: Props) => {
     fetchUsers();
   }, [ editable,pageable]);
 
-  useEffect(() => {
 
-    console.log(searchable)
-  }, [searchable])
   
  
 
@@ -74,12 +71,13 @@ const UserPanel = (props: Props) => {
     >
       {!editable && (
       <div>
-  <Search
-    setSearchedUserList={setSearchedUserList}
-    setSearchedUserListPage={setSearchedUserListPage}
+  <SearchKey
+    setSearchedList={setSearchedUserList}
+    setSearchedListPage={setSearchedUserListPage}
     pageable={pageable}
     setPageable={setPageable}
     setSearchable={setSearchable}
+    type={"user"}
   />
   <table className="table table-striped">
     <thead>

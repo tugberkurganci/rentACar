@@ -9,7 +9,6 @@ public class GetAllModelResponse {
     private Integer id;
     private String name;
     private Integer brandId;
-
     private String image;
 
 

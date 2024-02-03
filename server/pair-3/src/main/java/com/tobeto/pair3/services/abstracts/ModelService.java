@@ -2,6 +2,8 @@ package com.tobeto.pair3.services.abstracts;
 
 import com.tobeto.pair3.entities.Model;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameResponse;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
@@ -29,4 +31,6 @@ public interface ModelService {
     Model getOriginalModelById(int modelId);
 
     Page<GetAllModelResponse> getAllViaPage(Pageable pageable);
+
+    List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) ;
 }

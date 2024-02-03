@@ -20,7 +20,7 @@ function FormikSelect({ list, val, name, label,initialValue }: FormikSelectProps
         {list &&
           list.map((item, index) => (
             <option key={index} value={item[val]}>
-              {item.name}
+              {item.name?item.name:item[name]}
             </option>
           ))}
       </Field>

@@ -1,6 +1,8 @@
 package com.tobeto.pair3.controllers;
 import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameRequest;
+import com.tobeto.pair3.services.dtos.requests.GetBrandNameResponse;
 import com.tobeto.pair3.services.dtos.requests.UpdateModelRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllModelResponse;
 import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
@@ -45,6 +47,11 @@ public class ModelController {
     @GetMapping("/via-page")
     public Page<GetAllModelResponse> getAllViaPage(Pageable pageable){
         return modelService.getAllViaPage(pageable);
+    }
+
+    @PostMapping("/getbrandnames")
+    public List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) {
+        return modelService.getBrandNames(modelNames);
     }
 }
 
