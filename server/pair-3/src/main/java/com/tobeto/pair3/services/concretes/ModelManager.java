@@ -102,18 +102,5 @@ public class ModelManager implements ModelService {
         }
     }
 
-    @Override
-    public List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) {
-        List<Model> models=new ArrayList<>();
 
-        modelNames.forEach((modelName)->{
-           models.add(modelRepository.findByName(modelName.getModelName())) ;
-
-        });
-        List<GetBrandNameResponse> responses=new ArrayList<>();
-        models.forEach(model ->responses.add(new GetBrandNameResponse(model.getBrand().getName(),model.getBrand().getId())));
-
-        return responses;
-
-    }
 }

@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/ModelRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/ModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/abstracts/ModelService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllModelResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetAllModelResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,11 +242,6 @@
           <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java</url>
           <line>73</line>
           <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/ModelController.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

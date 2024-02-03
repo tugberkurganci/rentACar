@@ -7,4 +7,5 @@ export interface CarModel  {
     year: number;
     id:number;
     image?:string;
+    brandName?:string;
   }

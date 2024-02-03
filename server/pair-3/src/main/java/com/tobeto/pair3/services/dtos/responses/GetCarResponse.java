@@ -38,5 +38,7 @@ public class GetCarResponse {
 
     private String image;
 
+    private String brandName;
+
 
 }

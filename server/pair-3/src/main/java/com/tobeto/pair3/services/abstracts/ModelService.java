@@ -32,5 +32,5 @@ public interface ModelService {
 
     Page<GetAllModelResponse> getAllViaPage(Pageable pageable);
 
-    List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) ;
+
 }

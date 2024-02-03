@@ -49,10 +49,7 @@ public class ModelController {
         return modelService.getAllViaPage(pageable);
     }
 
-    @PostMapping("/getbrandnames")
-    public List<GetBrandNameResponse> getBrandNames(List<GetBrandNameRequest> modelNames) {
-        return modelService.getBrandNames(modelNames);
-    }
+
 }
 
 

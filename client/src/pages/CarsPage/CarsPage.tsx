@@ -42,30 +42,12 @@ const CarsPage = (props: Props) => {
   secondModelYear:0,
    }
   );
-  const [modelNameList, setModelNameList] = useState<GetBrandNameRequest[]>([])
-
-  const fetchBrandList= async()=>{
-
-    
-    carList.forEach((car)=> { setModelNameList([...modelNameList,{modelName:car.modelName}])})
-
-
-    try {
-      const response=await axiosInstance.post("/v1/models/getbrandnames",modelNameList)
-
-      console.log(response)
-      setBrands(response.data)
-
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    fetchBrandList()
-  }, [])
   
 
+  useEffect(() => {
+  console.log(carList)
+  }, [carList])
+  
   const validationSchema = Yup.object({
     modelName: Yup.string().required("Model Name is required"),
     colorName: Yup.string().required("Color Name is required"),
@@ -168,7 +150,7 @@ const CarsPage = (props: Props) => {
               <div>
                 <FormikSelect
                   label="Brands"
-                  list={brands}
+                  list={carList}
                   name="brandName"
                   val={"id"}
                 />
