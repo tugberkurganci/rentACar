@@ -12,9 +12,7 @@ import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.abstracts.ColorService;
 import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.businessrules.RentalRules;
-import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
-import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
+import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,8 +20,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -123,7 +124,7 @@ public class CarManager implements CarService {
     public List<GetCarResponse> getRentableCars(CreateRentableCarRequest request) {
 
         rentalRules.checkIsDateBeforeNow(request.getStartDate());
-        rentalRules.checkEndDateIsBeforeStartDate(request.getEndDate(),request.getEndDate());
+        rentalRules.checkEndDateIsBeforeStartDate(request.getEndDate(),request.getStartDate());
         rentalRules.checkIsRentalDateLongerThan25Days(request.getStartDate(),request.getEndDate());
         List<Car> carList = carRepository.findAll();
         List<Car> rentableCarList = new ArrayList<>();
@@ -178,4 +179,66 @@ public class CarManager implements CarService {
         });
     }
 
+    @Override
+    public List<GetCarResponse> filterCars(FilterCarRequest filterCarRequest) {
+        List<GetCarResponse> filteredCars = new ArrayList<>();
+
+        for (CarModel car : filterCarRequest.getCarList()) {
+
+
+            if (!filterCarRequest.getModelName().equals("") && !car.getModelName().equalsIgnoreCase(filterCarRequest.getModelName())) {
+                continue;
+            }
+
+            if (!filterCarRequest.getBrandName().equals("") && !car.getBrandName().equalsIgnoreCase(filterCarRequest.getBrandName())) {
+                continue;
+            }
+            if (filterCarRequest.getFirstPrice() != 0 && car.getDailyPrice().compareTo(new BigDecimal(filterCarRequest.getFirstPrice())) < 0 ){
+                continue;
+            }
+            if (filterCarRequest.getSecondPrice() != 0 && car.getDailyPrice().compareTo(new BigDecimal(filterCarRequest.getSecondPrice())) > 0 ){
+                continue;
+            }
+            if (filterCarRequest.getFirstModelYear() != 0 && car.getYear()<filterCarRequest.getFirstModelYear()  ){
+                continue;
+            }
+            if (filterCarRequest.getSecondModelYear() != 0 && car.getYear()>filterCarRequest.getSecondModelYear()  ){
+                continue;
+            }
+            CarModel carModel=new CarModel();
+
+            filteredCars.add(carModel.getResponse(car));
+        }
+
+        return  filteredCars;
+
+    }
+
+    @Override
+    public List<GetCarResponse> sortCars(SortCarsRequest sortCarsRequest) {
+        Comparator<GetCarResponse> comparator;
+
+        switch (sortCarsRequest.getSortType()) {
+            case "price-asc":
+                comparator = Comparator.comparing(GetCarResponse::getDailyPrice);
+                break;
+            case "price-desc":
+                comparator = Comparator.comparing(GetCarResponse::getDailyPrice).reversed();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid sort option");
+        }
+        List<GetCarResponse> beforeSortedList=new ArrayList<>();
+        for (CarModel c:sortCarsRequest.getCarList()
+        ) {
+            CarModel carModel=new CarModel();
+            GetCarResponse carModelResponse=carModel.getResponse(c);
+            beforeSortedList.add(carModelResponse);
+        }
+
+        return beforeSortedList.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
+    }
 }

@@ -35,4 +35,8 @@ public interface CarService {
     Page<GetCarResponse> getAllViaPage(Pageable pageable);
 
     Page<GetCarResponse> searchKeyAndGetUser(String searchKey, Pageable pageable);
+
+    List<GetCarResponse> filterCars(FilterCarRequest filterCarRequest);
+
+    List<GetCarResponse> sortCars(SortCarsRequest sortCarsRequest);
 }

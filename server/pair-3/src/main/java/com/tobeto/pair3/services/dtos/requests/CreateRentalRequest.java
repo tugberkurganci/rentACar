@@ -24,9 +24,6 @@ public class CreateRentalRequest {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-
-
-
     private int carId;
 
 

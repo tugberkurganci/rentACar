@@ -1,9 +1,7 @@
 package com.tobeto.pair3.controllers;
 
 import com.tobeto.pair3.services.abstracts.CarService;
-import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
-import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
-import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
+import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -63,4 +61,12 @@ public class CarController {
         return carService.searchKeyAndGetUser(searchKey,pageable);
     }
 
+    @PostMapping("/filter")
+    public List<GetCarResponse> filterCars(@RequestBody @Valid FilterCarRequest filterCarRequest) {
+        return carService.filterCars(filterCarRequest);
+    }
+    @PostMapping("/sort")
+    public List<GetCarResponse> sortCars(@RequestBody @Valid SortCarsRequest sortCarsRequest) {
+        return carService.sortCars(sortCarsRequest);
+    }
 }

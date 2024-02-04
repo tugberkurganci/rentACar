@@ -52,6 +52,8 @@ const DatePicker = (props: Props) => {
       } else {
         console.error("Signup failed:", error);
         toast.error(error.response.data.message);
+        if(!error.response.data.message)
+        toast.error(error.response.statusText);
       }
     } finally {
       setSubmitting(false);
