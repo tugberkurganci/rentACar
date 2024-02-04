@@ -23,4 +23,6 @@ public interface BrandService {
 
     public void checkExistsById(Integer brandId) ;
     public void checkExistByName(String name) ;
+
+    Brand findByName(String brandName);
 }

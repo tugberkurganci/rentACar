@@ -23,9 +23,9 @@ public class CreateCarRequest {
     @DecimalMin(value = "0", message = "{rentACar.constraint.dailyPrice.min}")
     private BigDecimal dailyPrice;
 
-    private int modelName;
+    private String modelName;
 
-    private int colorName;
+    private String colorName;
 
     @FileType
     private String image;

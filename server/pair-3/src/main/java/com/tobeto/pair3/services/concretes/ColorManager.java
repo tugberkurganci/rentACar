@@ -75,4 +75,9 @@ public class ColorManager implements ColorService {
             throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.color.exists", LocaleContextHolder.getLocale()));
         }
     }
+
+    @Override
+    public Color findByColorName(String colorName) {
+        return colorRepository.findByName(colorName);
+    }
 }

@@ -26,7 +26,7 @@ const CarPanel = (props: Props) => {
   const [car, setCar] = useState<CarModel>();
   const [searchedCarList, setSearchedCarList] = useState<CarModel[]>([]);
   const [searchedCarListPage, setSearchedCarListPage] = useState<number>(1);
-  const [searchable, setSearchable] = useState<boolean>(false)
+  const [searchable, setSearchable] = useState<boolean>(false);
 
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -58,9 +58,6 @@ const CarPanel = (props: Props) => {
     fetchCars();
   }, [pageable, addable, editable]);
 
-
-  
-
   return (
     <div
       style={{ minHeight: "80vh" }}
@@ -68,121 +65,125 @@ const CarPanel = (props: Props) => {
     >
       {!editable && !addable && (
         <div>
-            <SearchKey
-    setSearchedList={setSearchedCarList}
-    setSearchedListPage={setSearchedCarListPage}
-    pageable={pageable}
-    setPageable={setPageable}
-    setSearchable={setSearchable}
-    type={"car"}
-  />
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">{t("picture")}</th>
-              <th scope="col">{t("user")} ID</th>
-              <th scope="col">Model {t("name")}</th>
-              <th scope="col">{t("kilometer")}</th>
-              <th scope="col">{t("color")}</th>
-              <th scope="col">
-                {t("perday")} {t("price")}
-              </th>
-              <th scope="col">{t("plate")}</th>
-              <th scope="col">{t("modelyear")}</th>
-              <th>
-                <button
-                  onClick={() => setAddable(!addable)}
-                  className="btn btn btn-primary"
-                >
-                  {t("add")}
-                </button>
-              </th>
-            </tr>
-          </thead>
+          <SearchKey
+            setSearchedList={setSearchedCarList}
+            setSearchedListPage={setSearchedCarListPage}
+            pageable={pageable}
+            setPageable={setPageable}
+            setSearchable={setSearchable}
+            type={"car"}
+          />
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">{t("picture")}</th>
+                <th scope="col">{t("user")} ID</th>
+                <th scope="col">Model {t("name")}</th>
+                <th scope="col">{t("kilometer")}</th>
+                <th scope="col">{t("color")}</th>
+                <th scope="col">
+                  {t("perday")} {t("price")}
+                </th>
+                <th scope="col">{t("plate")}</th>
+                <th scope="col">{t("modelyear")}</th>
+                <th>
+                  <button
+                    onClick={() => setAddable(!addable)}
+                    className="btn btn btn-primary"
+                  >
+                    {t("add")}
+                  </button>
+                </th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {searchable? searchedCarList.map((car) => (
-              <tr className="w-100 " key={car.id}>
-                <td>
-                <Image  source={car.image} model={"car"}/>
-                  {/* Araba fotoğrafı gösteriliyor */}
-                </td>
-                <th scope="row">{car.id}</th>
-                <td>{car.modelName}</td>
-                <td>{car.kilometer}</td>
-                <td>{car.colorName}</td>
-                <td>{car.dailyPrice}</td>
-                <td>{car.plate}</td>
-                <td>{car.year}</td>
-                <td>
-                  <button
-                    className="me-2 btn btn-primary"
-                    onClick={() => {
-                      setEditable(!editable);
-                      setCar(car);
-                    }}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    onClick={() => handleDeleteCar(car)}
-                    className=" btn btn-danger"
-                  >
-                    {t("delete")}
-                  </button>
-                </td>
-              </tr>
-            )) :carList.map((car) => (
-              <tr className="w-100 " key={car.id}>
-                <td>
-                <Image  source={car.image} model={"car"}/>
-                  {/* Araba fotoğrafı gösteriliyor */}
-                </td>
-                <th scope="row">{car.id}</th>
-                <td>{car.modelName}</td>
-                <td>{car.kilometer}</td>
-                <td>{car.colorName}</td>
-                <td>{car.dailyPrice}</td>
-                <td>{car.plate}</td>
-                <td>{car.year}</td>
-                <td>
-                  <button
-                    className="me-2 btn btn-primary"
-                    onClick={() => {
-                      setEditable(!editable);
-                      setCar(car);
-                    }}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    onClick={() => handleDeleteCar(car)}
-                    className=" btn btn-danger"
-                  >
-                    {t("delete")}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <tbody>
+              {searchable
+                ? searchedCarList.map((car) => (
+                    <tr className="w-100 " key={car.id}>
+                      <td>
+                        <Image source={car.image} model={"car"} />
+                        {/* Araba fotoğrafı gösteriliyor */}
+                      </td>
+                      <th scope="row">{car.id}</th>
+                      <td>{car.modelName}</td>
+                      <td>{car.kilometer}</td>
+                      <td>{car.colorName}</td>
+                      <td>{car.dailyPrice}</td>
+                      <td>{car.plate}</td>
+                      <td>{car.year}</td>
+                      <td>
+                        <button
+                          className="me-2 btn btn-primary"
+                          onClick={() => {
+                            setEditable(!editable);
+                            setCar(car);
+                          }}
+                        >
+                          {t("edit")}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCar(car)}
+                          className=" btn btn-danger"
+                        >
+                          {t("delete")}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                : carList.map((car) => (
+                    <tr className="w-100 " key={car.id}>
+                      <td>
+                        <Image source={car.image} model={"car"} />
+                        {/* Araba fotoğrafı gösteriliyor */}
+                      </td>
+                      <th scope="row">{car.id}</th>
+                      <td>{car.modelName}</td>
+                      <td>{car.kilometer}</td>
+                      <td>{car.colorName}</td>
+                      <td>{car.dailyPrice}</td>
+                      <td>{car.plate}</td>
+                      <td>{car.year}</td>
+                      <td>
+                        <button
+                          className="me-2 btn btn-primary"
+                          onClick={() => {
+                            setEditable(!editable);
+                            setCar(car);
+                          }}
+                        >
+                          {t("edit")}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCar(car)}
+                          className=" btn btn-danger"
+                        >
+                          {t("delete")}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
         </div>
       )}
-      {!editable && !addable && (searchable?(
-        <div>
-          <Pagination
-            totalPages={searchedCarListPage}
-            handlePageChange={handlePageChange}
-          />
-        </div>
-      ):(
-        <div>
-          <Pagination
-            totalPages={totalPages}
-            handlePageChange={handlePageChange}
-          />
-        </div>
-      ))}
+      {!editable &&
+        !addable &&
+        (searchable ? (
+          <div>
+            <Pagination
+              totalPages={searchedCarListPage}
+              handlePageChange={handlePageChange}
+            />
+          </div>
+        ) : (
+          <div>
+            <Pagination
+              totalPages={totalPages}
+              handlePageChange={handlePageChange}
+            />
+          </div>
+        ))}
       {editable && (
         <CarAddUpdate car={car} setEditable={setEditable} urlType="put" />
       )}

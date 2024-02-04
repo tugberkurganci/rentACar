@@ -15,10 +15,8 @@ import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
 import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateCarRequest;
-import com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,8 +42,8 @@ public class CarManager implements CarService {
 
         checkExistByPlate(createCarRequest.getPlate());
 
-        Model model=modelService.getOriginalModelById(createCarRequest.getModelName());
-        Color color= colorService.getOriginalColorById(createCarRequest.getColorName());
+        Model model=modelService.findByModelName(createCarRequest.getModelName());
+        Color color= colorService.findByColorName(createCarRequest.getColorName());
         Car car = Car
                 .builder()
                 .color(color)
@@ -67,8 +65,8 @@ public class CarManager implements CarService {
     public void update(UpdateCarRequest updateCarRequest) {
 
         Car carToUpdate = this.getOriginalCarById(updateCarRequest.getId());
-        Color color = colorService.getOriginalColorById(updateCarRequest.getColorName());
-        Model model = modelService.getOriginalModelById(updateCarRequest.getModelName());
+        Color color = colorService.findByColorName(updateCarRequest.getColorName());
+        Model model = modelService.findByModelName(updateCarRequest.getModelName());
         Car car = Car
                 .builder()
                 .id(updateCarRequest.getId())
@@ -82,7 +80,9 @@ public class CarManager implements CarService {
                 .image(carToUpdate.getImage())
                 .build();
 
-       if(updateCarRequest.getImage()!=null){  String fileName=fileService.saveBase64StringAsFile(updateCarRequest.getImage(),"car");
+       if(updateCarRequest.getImage()!=null ){
+
+           String fileName=fileService.saveBase64StringAsFile(updateCarRequest.getImage(),"car");
            fileService.deleteCarImage(carToUpdate.getImage(),"car");
            car.setImage(fileName);}
 

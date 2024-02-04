@@ -20,6 +20,8 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   const [colorList, setColorList] = useState<ColorModel[]>([]);
   const [image, setImage] = useState<any>();
 
+
+  
   const handleUpdateCar = async (
     values: CarModel,
     { setErrors }: FormikHelpers<CarModel>
@@ -149,7 +151,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   label="Model Name"
                   list={modelList}
                   name="modelName"
-                  val={"id"}
                 />
               </div>
 
@@ -168,7 +169,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   label="Color"
                   list={colorList}
                   name="colorName"
-                  val={"id"}
                 />
               </div>
 

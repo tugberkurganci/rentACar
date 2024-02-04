@@ -12,7 +12,7 @@ type Props = {};
 
 const RentalPanel = (props: Props) => {
   const [rentalList, setRentalList] = useState<RentalModel[]>([]);
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);

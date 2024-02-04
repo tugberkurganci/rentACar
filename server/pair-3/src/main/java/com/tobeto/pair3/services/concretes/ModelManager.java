@@ -39,8 +39,10 @@ public class ModelManager implements ModelService {
     public void add(CreateModelRequest createModelRequest) {
 
         checkIsModelName(createModelRequest.getName());
-        brandService.checkExistsById(createModelRequest.getBrandId());
-        Model model = mapperService.forRequest().map(createModelRequest, Model.class);
+        Brand brand=brandService.findByName(createModelRequest.getBrandName());
+        Model model=new Model();
+        model.setName(createModelRequest.getName());
+        model.setBrand(brand);
         if (createModelRequest.getImage() != null) {
             String fileName = fileService.saveBase64StringAsFile(createModelRequest.getImage(), "model");
             model.setImage(fileName);
@@ -52,7 +54,7 @@ public class ModelManager implements ModelService {
     public void update(UpdateModelRequest updateModelRequest) {
 
         Model model = this.getOriginalModelById(updateModelRequest.getId());
-        Brand brand = brandService.getByOriginalId(updateModelRequest.getBrandId());
+        Brand brand = brandService.findByName(updateModelRequest.getBrandName());
         model.setId(updateModelRequest.getId());
         model.setName(updateModelRequest.getName());
         model.setBrand(brand);
@@ -102,5 +104,8 @@ public class ModelManager implements ModelService {
         }
     }
 
-
+    @Override
+    public Model findByModelName(String modelName) {
+        return modelRepository.findByName(modelName);
+    }
 }

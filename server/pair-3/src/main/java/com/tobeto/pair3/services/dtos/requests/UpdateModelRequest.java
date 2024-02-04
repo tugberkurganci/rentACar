@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class UpdateModelRequest {
     private Integer id;
     private String name;
-    @Min(value = 1, message = "{rentACar.constraint.modelId.min}")
-    private Integer brandId;
+
+    private String brandName;
     @FileType
     private String image;
 }

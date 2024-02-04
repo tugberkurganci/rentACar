@@ -150,11 +150,11 @@ public class RentalManager implements RentalService {
                 UpdateCarRequest updateCarRequest = UpdateCarRequest
                         .builder()
                         .year(car.getYear())
-                        .colorName(car.getColor().getId())
+                        .colorName(car.getColor().getName())
                         .dailyPrice(car.getDailyPrice())
                         .id(car.getId())
                         .kilometer(updateRentalRequest.getEndKilometer())
-                        .modelName(car.getModel().getId())
+                        .modelName(car.getModel().getName())
                         .plate(car.getPlate())
                         .build();
                 carService.update(updateCarRequest);

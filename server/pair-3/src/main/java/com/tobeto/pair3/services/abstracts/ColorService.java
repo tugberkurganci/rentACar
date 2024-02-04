@@ -21,6 +21,8 @@ public interface ColorService {
     GetColorResponse getById(int id);
 
     Color getOriginalColorById(int colorId);
+
+    Color findByColorName(String colorName);
 }
 
 

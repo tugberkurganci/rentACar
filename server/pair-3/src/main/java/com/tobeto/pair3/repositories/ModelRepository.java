@@ -9,4 +9,5 @@ public interface ModelRepository extends JpaRepository<Model,Integer> {
     boolean existsByName(String name);
 
 
+    Model findByName(String modelName);
 }

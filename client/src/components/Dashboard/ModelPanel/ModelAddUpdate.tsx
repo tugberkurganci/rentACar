@@ -53,7 +53,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
       setInitialValues({
         id: 1,
         name: "",
-        brandId: 0,
+        brandName: "",
         image:"",
       });
     } catch (error: any) {
@@ -75,14 +75,14 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
     model || {
       id: 1,
       name: "",
-      brandId: 0,
+      brandName:"",
       image: "",
     }
   );
 
   const validationSchema = Yup.object({
     name: Yup.string().required(" is required"),
-    brandId: Yup.string().required(" is required"),
+    brandName: Yup.string().required(" is required"),
   });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
     if (e.target.files === null) {
@@ -133,8 +133,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
                 <FormikSelect
                   label="Brand Name"
                   list={brandList}
-                  name="brandId"
-                  val={"id"}
+                  name="brandName"
                 />
               </div>
 

@@ -14,7 +14,6 @@ import FormikSelect from "../../components/FormikSelect/FormikSelect";
 import { useTranslation } from "react-i18next";
 import { ModelType } from "../../models/ModelType";
 import { BrandType } from "../../models/BrandType";
-import { GetBrandNameRequest } from "../../models/GetBrandNameRequest";
 
 
 type CarFilterKeys={
@@ -141,7 +140,6 @@ const CarsPage = (props: Props) => {
                   label="Color"
                   list={carList}
                   name="modelName"
-                  val={"id"}
                 />
               </div>
               <div>
@@ -149,7 +147,6 @@ const CarsPage = (props: Props) => {
                   label="Brands"
                   list={carList}
                   name="brandName"
-                  val={"id"}
                 />
               </div>
 

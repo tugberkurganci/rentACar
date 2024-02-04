@@ -33,4 +33,5 @@ public interface ModelService {
     Page<GetAllModelResponse> getAllViaPage(Pageable pageable);
 
 
+    Model findByModelName(String modelName);
 }

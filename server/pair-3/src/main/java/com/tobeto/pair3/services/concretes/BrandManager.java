@@ -81,6 +81,16 @@ public class BrandManager implements BrandService {
             throw new BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale()));
         }
     }
+
+    @Override
+    public Brand findByName(String brandName) {
+        Brand byName = brandRepository.findByName(brandName);
+
+        if(byName==null)throw new
+                BusinessException(Messages.getMessageForLocale("rentACar.exception.brand.notfound", LocaleContextHolder.getLocale()));
+        return byName;
+
+    }
 }
 
 

@@ -10,6 +10,7 @@ public class GetAllModelResponse {
     private String name;
     private Integer brandId;
     private String image;
+    private String brandName;
 
 
 }

@@ -1,5 +1,5 @@
 export interface CarModel  {
-    colorName: string |number;
+    colorName: any;
     dailyPrice: number;
     kilometer: number;
     modelName: any;
