@@ -69,5 +69,6 @@
   "add":"Add Car",
   "addmodel":"Add Model",
   "picture":"Picture",
-  "search":"Search"
+  "search":"Search",
+  "location":"Location"
 }

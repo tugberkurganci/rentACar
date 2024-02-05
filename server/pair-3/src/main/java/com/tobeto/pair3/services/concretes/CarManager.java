@@ -3,13 +3,11 @@ package com.tobeto.pair3.services.concretes;
 import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
-import com.tobeto.pair3.entities.Car;
-import com.tobeto.pair3.entities.Color;
-import com.tobeto.pair3.entities.Model;
-import com.tobeto.pair3.entities.Rental;
+import com.tobeto.pair3.entities.*;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.abstracts.ColorService;
+import com.tobeto.pair3.services.abstracts.LocationService;
 import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.*;
@@ -36,6 +34,7 @@ public class CarManager implements CarService {
 
     private final RentalRules rentalRules;
     private final FileService fileService;
+    private  final LocationService locationService;
 
 
     public void add(CreateCarRequest createCarRequest) {
@@ -45,6 +44,7 @@ public class CarManager implements CarService {
 
         Model model = modelService.findByModelName(createCarRequest.getModelName());
         Color color = colorService.findByColorName(createCarRequest.getColorName());
+        Location location=locationService.findByName(createCarRequest.getLocation());
         Car car = Car
                 .builder()
                 .color(color)
@@ -53,6 +53,7 @@ public class CarManager implements CarService {
                 .dailyPrice(createCarRequest.getDailyPrice())
                 .plate(createCarRequest.getPlate())
                 .kilometer(createCarRequest.getKilometer())
+                .currentLocation(location)
                 .build();
 
 
@@ -70,6 +71,7 @@ public class CarManager implements CarService {
         Car carToUpdate = this.getOriginalCarById(updateCarRequest.getId());
         Color color = colorService.findByColorName(updateCarRequest.getColorName());
         Model model = modelService.findByModelName(updateCarRequest.getModelName());
+        Location location=locationService.findByName(updateCarRequest.getLocation());
         Car car = Car
                 .builder()
                 .id(updateCarRequest.getId())
@@ -81,6 +83,7 @@ public class CarManager implements CarService {
                 .kilometer(updateCarRequest.getKilometer())
                 .rentals(carToUpdate.getRentals())
                 .image(carToUpdate.getImage())
+                .currentLocation(location)
                 .build();
 
         if (updateCarRequest.getImage() != null) {
@@ -101,7 +104,11 @@ public class CarManager implements CarService {
     public List<GetCarResponse> getAll() {
         List<Car> carList = carRepository.findAll();
         List<GetCarResponse> responseList = carList.stream()
-                .map(car -> mapperService.forResponse().map(car, GetCarResponse.class))
+                .map(car ->  {
+                    GetCarResponse response=mapperService.forResponse().map(car, GetCarResponse.class);
+                    response.setLocation(car.getCurrentLocation().getName());
+                    return response;
+                })
                 .toList();
         return responseList;
     }
@@ -224,7 +231,12 @@ public class CarManager implements CarService {
 
     @Override
     public Page<GetCarResponse> getAllViaPage(Pageable pageable) {
-        return carRepository.findAll(pageable).map(car -> mapperService.forResponse().map(car, GetCarResponse.class));
+        return carRepository.findAll(pageable).map(car -> {
+            GetCarResponse response=mapperService.forResponse().map(car, GetCarResponse.class);
+            response.setLocation(car.getCurrentLocation().getName());
+            return response;
+        });
+
     }
 
     private void checkExistByPlate(String plate) {

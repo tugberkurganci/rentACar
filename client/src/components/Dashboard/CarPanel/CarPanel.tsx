@@ -86,6 +86,7 @@ const CarPanel = (props: Props) => {
                 </th>
                 <th scope="col">{t("plate")}</th>
                 <th scope="col">{t("modelyear")}</th>
+                <th scope="col">{t("location")}</th>
                 <th>
                   <button
                     onClick={() => setAddable(!addable)}
@@ -112,6 +113,7 @@ const CarPanel = (props: Props) => {
                       <td>{car.dailyPrice}</td>
                       <td>{car.plate}</td>
                       <td>{car.year}</td>
+                      <td>{car.location}</td>
                       <td>
                         <button
                           className="me-2 btn btn-primary"
@@ -144,6 +146,7 @@ const CarPanel = (props: Props) => {
                       <td>{car.dailyPrice}</td>
                       <td>{car.plate}</td>
                       <td>{car.year}</td>
+                      <td>{car.location}</td>
                       <td>
                         <button
                           className="me-2 btn btn-primary"

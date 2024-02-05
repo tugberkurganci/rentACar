@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { CarModel } from "../../../models/CarModel";
 import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
-import { init } from "i18next";
+import { LocationModel } from "../../../models/LocationModel";
 
 type Props = { car?: CarModel; setEditable: any; urlType: string };
 
@@ -19,6 +19,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   const [modelList, setModelList] = useState<ModelType[]>([]);
   const [colorList, setColorList] = useState<ColorModel[]>([]);
   const [image, setImage] = useState<any>();
+  const [locations, setLocations] = useState<LocationModel[]>([])
 
 
   
@@ -54,6 +55,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
         plate: "",
         year: 0,
         image: "",
+        location:""
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -79,6 +81,15 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       toast.error(error?.response.data.message);
     }
   };
+  
+  const fetchLocations = async () => {
+    try {
+      const response = await axiosInstance.get("v1/locations");
+      setLocations(response.data);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    }
+  };
   const fetchColors = async () => {
     try {
       const response = await axiosInstance.get("v1/colors");
@@ -97,6 +108,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       plate: "",
       year: 0,
       image: "",
+      location:""
     }
   );
 
@@ -131,6 +143,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   useEffect(() => {
     fetchModels();
     fetchColors();
+    fetchLocations();
   }, []);
 
   return (
@@ -164,11 +177,21 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   name="kilometer"
                 />
               </div>
+              
+              
               <div>
                 <FormikSelect
                   label="Color"
                   list={colorList}
                   name="colorName"
+                />
+              </div>
+              <div>
+                <FormikSelect
+                  label="Location"
+                  list={locations}
+                  name="name"
+                  targetName="location"
                 />
               </div>
 
