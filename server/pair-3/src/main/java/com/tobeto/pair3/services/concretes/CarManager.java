@@ -171,8 +171,9 @@ public class CarManager implements CarService {
         rentals.sort(Comparator.comparing(Rental::getStartDate));
 
         if (rentals.size() == 1) {
-            if (rentals.get(0).getDropOffLocation().getName().equals(request.getPickUpLocation())
-                    || rentals.get(0).getPickUpLocation().getName().equals(request.getDropOffLocation())) return true;
+            if ((rentals.get(0).getEndDate().isBefore(request.getStartDate()) && rentals.get(0).getDropOffLocation().getName().equals(request.getPickUpLocation()))
+                    || (rentals.get(0).getStartDate().isAfter(request.getEndDate()) && rentals.get(0).getPickUpLocation().getName().equals(request.getDropOffLocation())))
+                return true;
         }
 
 

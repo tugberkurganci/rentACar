@@ -145,19 +145,32 @@ const CarsPage = (props: Props) => {
               {({ isSubmitting, values, handleChange }) => (
                 <Form className="  w-50">
                   <div className="col">
-                    <FormikInput label="firstPrice" name="firstPrice" />
-                  </div>
-
-                  <div className="col">
-                    <FormikInput label="secondPrice" name="secondPrice" />
-                  </div>
-
-                  <div className="col">
-                    <FormikInput label="firstModelYear" name="firstModelYear" />
+                    <FormikInput
+                      value={initialValues.firstPrice}
+                      label="firstPrice"
+                      name="firstPrice"
+                    />
                   </div>
 
                   <div className="col">
                     <FormikInput
+                      value={initialValues.secondPrice}
+                      label="secondPrice"
+                      name="secondPrice"
+                    />
+                  </div>
+
+                  <div className="col">
+                    <FormikInput
+                      value={initialValues.firstModelYear}
+                      label="firstModelYear"
+                      name="firstModelYear"
+                    />
+                  </div>
+
+                  <div className="col">
+                    <FormikInput
+                      value={initialValues.secondModelYear}
                       label="secondModelYear"
                       name="secondModelYear"
                     />

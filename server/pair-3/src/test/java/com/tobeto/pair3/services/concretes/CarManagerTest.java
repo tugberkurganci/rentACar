@@ -541,10 +541,10 @@ class CarManagerTest {
         // Test verileri
         Car car = new Car();
         CreateRentableCarRequest request = new CreateRentableCarRequest();
-        request.setPickUpLocation("Location A");
-        request.setDropOffLocation("Location B");
-        request.setStartDate(LocalDate.of(2024, 1, 17));
-        request.setEndDate(LocalDate.of(2024, 1, 19));
+        request.setPickUpLocation("Location B");
+        request.setDropOffLocation("Location C");
+        request.setStartDate(LocalDate.of(2024, 3, 6));
+        request.setEndDate(LocalDate.of(2024, 4, 8));
 
         // Kiralama listesi oluştur
         List<Rental> rentals = new ArrayList<>();
@@ -560,8 +560,8 @@ class CarManagerTest {
         rentals.add(rental2);
 
         Rental rental3 = new Rental(LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 4));
-        rental3.setPickUpLocation(new Location("Location B"));
-        rental3.setDropOffLocation(new Location("Location A"));
+        rental3.setPickUpLocation(new Location("Location A"));
+        rental3.setDropOffLocation(new Location("Location B"));
         rentals.add(rental3);
 
         // Arabaya kiralama listesini ata
