@@ -33,4 +33,8 @@ public class GetRentalResponse {
 
 
     private int userId;
+
+    private String pickUpLocation;
+
+    private String dropOffLocation;
 }

@@ -14,6 +14,8 @@ export const rentalSlice =createSlice({
 
             state.startDate=action.payload.startDate;
             state.endDate=action.payload.endDate;
+            state.pickUpLocation=action.payload.pickUpLocation;
+            state.dropOffLocation=action.payload.dropOffLocation;
         },
 
         deleteRental:(state)=>{

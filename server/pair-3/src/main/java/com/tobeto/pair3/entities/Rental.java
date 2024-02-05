@@ -46,12 +46,22 @@ public class Rental {
     private Car car;
 
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "rental",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Invoice> invoices;
+
+    @ManyToOne
+    @JoinColumn(name = "pick_up_location")
+    private Location pickUpLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "drop_off_location")
+    private Location dropOffLocation;
+
 
     public Rental (LocalDate startDate,LocalDate endDate){
         this.startDate=startDate;

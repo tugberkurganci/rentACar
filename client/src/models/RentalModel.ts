@@ -8,5 +8,7 @@ export interface RentalModel {
     startKilometer: number;
     totalPrice: number;
     userId: number;
+    pickUpLocation?:string;
+    dropOffLocation?:string;
   }
   

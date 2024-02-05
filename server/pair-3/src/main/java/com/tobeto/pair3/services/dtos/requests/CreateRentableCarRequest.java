@@ -24,4 +24,15 @@ public class CreateRentableCarRequest {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Future(message = "{rentACar.constraint.end.date.future}")
     private LocalDate endDate;
+
+    private String pickUpLocation;
+
+    private String dropOffLocation;
+
+    public CreateRentableCarRequest(CreateRentalRequest createRentalRequest) {
+        this.startDate = createRentalRequest.getStartDate();
+        this.endDate = createRentalRequest.getEndDate();
+        this.pickUpLocation = pickUpLocation;
+        this.dropOffLocation = dropOffLocation;
+    }
 }

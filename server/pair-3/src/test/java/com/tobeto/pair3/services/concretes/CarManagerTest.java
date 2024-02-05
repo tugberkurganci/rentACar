@@ -5,8 +5,7 @@ import static org.mockito.Mockito.*;
 import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperManager;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
-import com.tobeto.pair3.entities.Color;
-import com.tobeto.pair3.entities.Model;
+import com.tobeto.pair3.entities.*;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.ColorService;
 import com.tobeto.pair3.services.abstracts.ModelService;
@@ -19,8 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.tobeto.pair3.entities.Car;
-import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.services.dtos.requests.CreateRentableCarRequest;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -73,8 +70,8 @@ class CarManagerTest {
     void add_NewCar_Success() {
         // Arrange
         CreateCarRequest createCarRequest = new CreateCarRequest();
-        createCarRequest.setModelName(1);
-        createCarRequest.setColorName(1);
+        createCarRequest.setModelName("bmw");
+        createCarRequest.setColorName("red");
         createCarRequest.setYear(2023);
         createCarRequest.setDailyPrice(BigDecimal.valueOf(100));
         createCarRequest.setPlate("ABC123");
@@ -118,8 +115,8 @@ class CarManagerTest {
         // Arrange
         UpdateCarRequest updateCarRequest = new UpdateCarRequest();
         updateCarRequest.setId(1);
-        updateCarRequest.setModelName(1);
-        updateCarRequest.setColorName(1);
+        updateCarRequest.setModelName("bmw");
+        updateCarRequest.setColorName("red");
         updateCarRequest.setYear(2023);
         updateCarRequest.setDailyPrice(BigDecimal.valueOf(100));
         updateCarRequest.setPlate("ABC123");
@@ -303,7 +300,10 @@ class CarManagerTest {
         // Create a request that overlaps with an existing rental
         CreateRentableCarRequest overlappingRequest = new CreateRentableCarRequest(
                 LocalDate.parse("2024-01-23"),
-                LocalDate.parse("2024-01-27")
+                LocalDate.parse("2024-01-27"),
+               "kadiköy",
+                "kadiköy"
+
         );
 
         // Test the isReservable method
@@ -324,7 +324,9 @@ class CarManagerTest {
         // Create a request that overlaps with an existing rental
         CreateRentableCarRequest overlappingRequest = new CreateRentableCarRequest(
                 LocalDate.parse("2024-01-27"),
-                LocalDate.parse("2024-01-28")
+                LocalDate.parse("2024-01-28"),
+                "kadiköy",
+                "kadiköy"
         );
 
         // Test the isReservable method
@@ -414,7 +416,9 @@ class CarManagerTest {
 
         CreateRentableCarRequest overlappingRequest = new CreateRentableCarRequest(
                 LocalDate.parse("2023-01-01"),
-                LocalDate.parse("2024-03-15")
+                LocalDate.parse("2024-03-15"),
+                "kadiköy",
+                "kadiköy"
         );
 
         boolean result = carManager.isReservable(car, overlappingRequest);
@@ -431,7 +435,9 @@ class CarManagerTest {
 
         CreateRentableCarRequest nonOverlappingRequest = new CreateRentableCarRequest(
                 LocalDate.parse("2024-03-01"),
-                LocalDate.parse("2024-03-10")
+                LocalDate.parse("2024-03-10"),
+                "kadiköy",
+                "kadiköy"
         );
 
         boolean result = carManager.isReservable(car, nonOverlappingRequest);
@@ -446,11 +452,126 @@ class CarManagerTest {
 
         CreateRentableCarRequest request = new CreateRentableCarRequest(
                 LocalDate.parse("2024-01-01"),
-                LocalDate.parse("2024-01-10")
+                LocalDate.parse("2024-01-10"),
+                "kadiköy",
+                "kadiköy"
         );
 
         boolean result = carManager.isReservable(car, request);
 
         assertTrue(result, "The car should be reservable when there are no existing rentals");
     }
+
+    @Test
+    public void testIsAvailable_NoRentals_ReturnsTrue() {
+        // Test verileri
+        Car car = new Car();
+        car.setCurrentLocation(new Location("Location A"));
+        CreateRentableCarRequest request = new CreateRentableCarRequest();
+        request.setPickUpLocation("Location A");
+
+        // Kiralamalar listesi oluştur
+        List<Rental> rentals = new ArrayList<>();
+
+        // Arabaya kiralama listesini ata
+        car.setRentals(rentals);
+
+        // Metodu çağır ve sonucu doğrula
+        boolean result = carManager.isAvailableLocation(car, request);
+
+        // Beklenen sonuç: true
+        assertTrue(result);
+    }
+    @Test
+    public void testIsAvailable_NoAvailableRentals_ReturnsFalse() {
+        // Test verileri
+        Car car = new Car();
+        CreateRentableCarRequest request = new CreateRentableCarRequest();
+        request.setPickUpLocation("Location A");
+        request.setStartDate(LocalDate.of(2024, 2, 5));
+        request.setEndDate(LocalDate.of(2024, 2, 10));
+
+        // Kiralama listesi oluştur
+        List<Rental> rentals = new ArrayList<>();
+        // Kiralama listesine uygun olmayan bir kiralama ekle
+        Rental rental1 = new Rental(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 1, 5));
+        rental1.setPickUpLocation(new Location("Location B"));
+        rental1.setDropOffLocation(new Location("Location C"));
+        rentals.add(rental1);
+
+        // Arabaya kiralama listesini ata
+        car.setRentals(rentals);
+
+        // Metodu çağır ve sonucu doğrula
+        boolean result = carManager.isAvailableLocation(car, request);
+
+        // Beklenen sonuç: false
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsAvailable_AvailableInSpecifiedPeriod_ReturnsTrue() {
+        // Test verileri
+        Car car = new Car();
+        CreateRentableCarRequest request = new CreateRentableCarRequest();
+        request.setPickUpLocation("Location A");
+        request.setStartDate(LocalDate.of(2024, 2, 5));
+        request.setEndDate(LocalDate.of(2024, 2, 10));
+
+        // Kiralama listesi oluştur
+        List<Rental> rentals = new ArrayList<>();
+        // Kiralama listesine belirli bir tarih aralığında olan bir kiralama ekle
+        Rental rental2 = new Rental(LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 4));
+        rental2.setPickUpLocation(new Location("Location B"));
+        rental2.setDropOffLocation(new Location("Location A"));
+        rentals.add(rental2);
+
+        // Arabaya kiralama listesini ata
+        car.setRentals(rentals);
+
+        // Metodu çağır ve sonucu doğrula
+        boolean result = carManager.isAvailableLocation(car, request);
+
+        // Beklenen sonuç: true
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIsAvailable_ThreeRentals_ReturnsTrue() {
+        // Test verileri
+        Car car = new Car();
+        CreateRentableCarRequest request = new CreateRentableCarRequest();
+        request.setPickUpLocation("Location A");
+        request.setDropOffLocation("Location B");
+        request.setStartDate(LocalDate.of(2024, 1, 17));
+        request.setEndDate(LocalDate.of(2024, 1, 19));
+
+        // Kiralama listesi oluştur
+        List<Rental> rentals = new ArrayList<>();
+        // Kiralama listesine üç farklı kiralama ekle
+        Rental rental1 = new Rental(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 1, 5));
+        rental1.setPickUpLocation(new Location("Location B"));
+        rental1.setDropOffLocation(new Location("Location C"));
+        rentals.add(rental1);
+
+        Rental rental2 = new Rental(LocalDate.of(2024, 1, 10), LocalDate.of(2024, 1, 15));
+        rental2.setPickUpLocation(new Location("Location C"));
+        rental2.setDropOffLocation(new Location("Location A"));
+        rentals.add(rental2);
+
+        Rental rental3 = new Rental(LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 4));
+        rental3.setPickUpLocation(new Location("Location B"));
+        rental3.setDropOffLocation(new Location("Location A"));
+        rentals.add(rental3);
+
+        // Arabaya kiralama listesini ata
+        car.setRentals(rentals);
+
+        // Metodu çağır ve sonucu doğrula
+        boolean result = carManager.isAvailableLocation(car, request);
+
+        // Beklenen sonuç: true
+        assertTrue(result);
+    }
+
 }

@@ -24,6 +24,10 @@ public class CreateRentalRequest {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+    private String pickUpLocation;
+
+    private String dropOffLocation;
+
     private int carId;
 
 

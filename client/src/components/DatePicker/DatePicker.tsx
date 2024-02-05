@@ -1,5 +1,5 @@
 import { Form, Formik, FormikHelpers } from "formik";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import FormikInput from "../FormikInput/FormikInput";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
@@ -10,18 +10,26 @@ import { loadAuthState } from "../../store/storage";
 import { loadRental } from "../../store/rentalStore/rentalSlice";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { LocationModel } from "../../models/LocationModel";
+import FormikSelect from "../FormikSelect/FormikSelect";
 
 type Props = {};
 
 const DatePicker = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
+  const [locations, setLocations] = useState<LocationModel[]>([])
   const [initialValues, setInitialValues] = useState<CarSearchValues>({
     startDate: "",
     endDate: "",
+    pickUpLocation: "",
+    dropOffLocation: "",
   });
+
+
   const validationSchema = Yup.object({
+    pickUpLocation: Yup.string().required(),
     startDate: Yup.string().required(),
     endDate: Yup.string().required(),
   });
@@ -39,7 +47,12 @@ const DatePicker = (props: Props) => {
       navigate(`/cars`, {
         state: { cars: response.data },
       });
-      setInitialValues({ startDate: "", endDate: "" });
+      setInitialValues({
+        startDate: "",
+        endDate: "",
+        pickUpLocation: "",
+        dropOffLocation: "",
+      });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
@@ -52,13 +65,31 @@ const DatePicker = (props: Props) => {
       } else {
         console.error("Signup failed:", error);
         toast.error(error.response.data.message);
-        if(!error.response.data.message)
-        toast.error(error.response.statusText);
+        if (!error.response.data.message)
+          toast.error(error.response.statusText);
       }
     } finally {
       setSubmitting(false);
     }
   };
+
+  const fetchLocations=async()=>{
+
+    try {
+      const response=await axiosInstance.get("v1/locations")
+        setLocations(response.data)
+      
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+
+    fetchLocations()
+  
+  }, [])
+  
   return (
     <div>
       <Formik
@@ -66,17 +97,41 @@ const DatePicker = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={handleOnSubmit}
       >
-        {({isSubmitting}) => (
+        {({ isSubmitting }) => (
           <Form className="container mt-4">
             <div className="row">
-              <FormikInput label={t("startdate")} name="startDate" type="date" />
+
+            
+            <FormikSelect
+                      label="pickUpLocation"
+                      list={locations}
+                      name="name"
+                      targetName="pickUpLocation"
+                    />
+                  
+                  <FormikSelect
+                      label="dropOffLocation"
+                      list={locations}
+                      name="name"
+                      targetName="dropOffLocation"
+                    />
+              <FormikInput
+                label={t("startdate")}
+                name="startDate"
+                type="date"
+              />
               <FormikInput label={t("enddate")} name="endDate" type="date" />
+            
             </div>
 
             <div className="text-center mt-4">
-              <button type="submit" className="btn btn-warning" disabled={isSubmitting}>
-               {isSubmitting?`${t("loading")}`: `${t("datepicker")}`}
-              </ button>
+              <button
+                type="submit"
+                className="btn btn-warning"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? `${t("loading")}` : `${t("datepicker")}`}
+              </button>
             </div>
           </Form>
         )}

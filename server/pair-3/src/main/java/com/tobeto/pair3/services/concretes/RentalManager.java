@@ -4,12 +4,10 @@ import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Car;
+import com.tobeto.pair3.entities.Location;
 import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.RentalRepository;
-import com.tobeto.pair3.services.abstracts.CarService;
-import com.tobeto.pair3.services.abstracts.InvoiceService;
-import com.tobeto.pair3.services.abstracts.RentalService;
-import com.tobeto.pair3.services.abstracts.UserService;
+import com.tobeto.pair3.services.abstracts.*;
 import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
@@ -42,6 +40,8 @@ public class RentalManager implements RentalService {
     private final RentalRules rentalRules;
     private final InvoiceService invoiceService;
 
+    private final LocationService locationService;
+
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public GetRentalResponse add(CreateRentalRequest createRentalRequest) {
@@ -54,10 +54,24 @@ public class RentalManager implements RentalService {
         rentalRules.checkIsRentalDateLongerThan25Days(createRentalRequest.getStartDate(), createRentalRequest.getEndDate());
         Rental rental = mapperService.forRequest().map(createRentalRequest, Rental.class);
         setActualKilometerToRentalInfo(rental, createRentalRequest);
+        setLocationToRentalInfo(rental, createRentalRequest);
         setTotalPriceToRentalInfo(rental, createRentalRequest);
         Rental createdRental = rentalRepository.save(rental);
         invoiceService.add(new CreateInvoiceRequest(createdRental.getId()));
         return mapperService.forResponse().map(createdRental, GetRentalResponse.class);
+    }
+
+    private void setLocationToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
+
+        Location pickUpLocation=locationService.findByName(createRentalRequest.getPickUpLocation());
+        Location dropOffLocation=locationService.findByName(createRentalRequest.getPickUpLocation());
+
+        rental.setPickUpLocation(pickUpLocation);
+        if(dropOffLocation==null){rental.setDropOffLocation(pickUpLocation);}else {
+            rental.setDropOffLocation(dropOffLocation);
+        }
+
+
     }
 
 
@@ -93,7 +107,13 @@ public class RentalManager implements RentalService {
 
     @Override
     public Page<GetRentalResponse> getAllViaPage(Pageable pageable) {
-        return rentalRepository.findAll(pageable).map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class));
+        return rentalRepository.findAll(pageable).map(rental -> { GetRentalResponse getRentalResponse= mapperService.forResponse().map(rental, GetRentalResponse.class);
+
+            getRentalResponse.setPickUpLocation(rental.getPickUpLocation().getName());
+            getRentalResponse.setDropOffLocation(rental.getDropOffLocation().getName());
+            return  getRentalResponse;
+
+        });
     }
 
     @Override
@@ -106,7 +126,13 @@ public class RentalManager implements RentalService {
     public List<GetRentalResponse> getAll() {
         List<Rental> rentalList = rentalRepository.findAll();
         List<GetRentalResponse> responseList = rentalList.stream()
-                .map(rental -> mapperService.forResponse().map(rental, GetRentalResponse.class))
+                .map(rental ->{ GetRentalResponse getRentalResponse= mapperService.forResponse().map(rental, GetRentalResponse.class);
+
+                    getRentalResponse.setPickUpLocation(rental.getPickUpLocation().getName());
+                    getRentalResponse.setDropOffLocation(rental.getDropOffLocation().getName());
+                    return  getRentalResponse;
+
+                })
                 .toList();
         return responseList;
     }
@@ -117,7 +143,7 @@ public class RentalManager implements RentalService {
     }
 
     private void isSuitableToRent(Car car, CreateRentalRequest createRentalRequest) {
-        if (!carService.isReservable(car, new CreateRentableCarRequest(createRentalRequest.getStartDate(), createRentalRequest.getEndDate()))) {
+        if (!carService.isReservable(car, new CreateRentableCarRequest(createRentalRequest))) {
             throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.reservable.notsuitable", LocaleContextHolder.getLocale())));
         }
         ;

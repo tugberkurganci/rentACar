@@ -129,6 +129,8 @@ const RentalPanel = (props: Props) => {
               <th scope="col">{t("startKilometerLabel")}</th>
               <th scope="col">{t("endKilometerLabel")}</th>
               <th scope="col">{t("totalPriceLabel")}</th>
+              <th scope="col">{t("dropofflocation")}</th>
+              <th scope="col">{t("pickuplocation")}</th>
               <th scope="col">{t("user")} ID</th>
             </tr>
           </thead>
@@ -144,6 +146,8 @@ const RentalPanel = (props: Props) => {
                 <td>{rental.startKilometer}</td>
                 <td>{rental.endKilometer ? rental.endKilometer : "-"}</td>
                 <td>{rental.totalPrice}</td>
+                <td>{rental.dropOffLocation}</td>
+                <td>{rental.pickUpLocation}</td>
                 <td>{rental.userId}</td>
 
                 <td>
