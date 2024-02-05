@@ -1,0 +1,16 @@
+#search:focus {
+    outline: none;
+}
+
+#search-input:focus-within {
+    outline: 1px solid #f1c40f;
+    /* veya istediğiniz renk */
+}
+
+#clear-search-input:hover {
+    opacity: 0.5;
+    border-radius: 50%;
+    background-color: #6c757d;
+    color: white;
+    cursor: pointer;
+}

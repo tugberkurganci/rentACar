@@ -54,7 +54,7 @@ const Navbar = (props: Props) => {
   return (
     <div>
       {/* mobile-navbar start */}
-      <div className="col-12 d-md-none d-flex align-items-center justify-content-between ">
+      <div className="col-12 d-md-none d-flex align-items-center justify-content-between bg-body-tertiary">
         <div className=" d-flex align-items-center gap-2  ms-2">
           <Link
             className="navbar-brand"
@@ -63,7 +63,7 @@ const Navbar = (props: Props) => {
           >
             <img id="minivan" src={minivanIcon} alt="mini van icon" />
           </Link>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 col flex-row gap-2 ">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 col flex-row gap-1 ">
             <li className="nav-item">
               <Link
                 className={`nav-link px-2 ${
@@ -91,8 +91,12 @@ const Navbar = (props: Props) => {
                 </Link>
               </li>
             )}
+            <li className="nav-item d-flex align-items-center ">
+              <LanguageSelector />
+            </li>
           </ul>
         </div>
+
         <div
           className="text-end me-2"
           ref={menuRef}

@@ -9,32 +9,32 @@ type Props = {};
 
 const Admin = (props: Props) => {
   const [section, setSection] = useState<string>("user");
-  const {t}=useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <div className="row container ">
-      <div className="col-2 pe-5  d-flex flex-column  ">
+    <div className="d-flex flex-column flex-md-row w-100 mx-md-5 ">
+      <div className="col-2 pe-5  d-flex flex-row flex-md-column gap-2 ">
         <div
-          className="btn btn-primary row  mb-2"
+          className="btn btn-primary d-flex flex-md-row   mb-2"
           onClick={() => setSection("user")}
         >
           {t("users")}
         </div>
         <div
-          className="btn  btn-primary row mb-2"
+          className="btn  btn-primary d-flex flex-md-row mb-2"
           onClick={() => setSection("car")}
         >
           {t("cars")}
         </div>
         <div
-          className="btn  btn-primary row mb-2"
+          className="btn  btn-primary d-flex flex-md-row mb-2"
           onClick={() => setSection("models")}
         >
           {t("models")}
         </div>
 
         <div
-          className="btn btn-primary row mb-2"
+          className="btn btn-primary d-flex flex-md-row mb-2"
           onClick={() => setSection("rental")}
         >
           {t("rentalss")}
