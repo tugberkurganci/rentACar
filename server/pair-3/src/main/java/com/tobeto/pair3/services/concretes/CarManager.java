@@ -49,6 +49,7 @@ public class CarManager implements CarService {
                 .builder()
                 .color(color)
                 .model(model)
+                .status(CarStatus.AVAILABLE)
                 .year(createCarRequest.getYear())
                 .dailyPrice(createCarRequest.getDailyPrice())
                 .plate(createCarRequest.getPlate())
@@ -78,6 +79,7 @@ public class CarManager implements CarService {
                 .color(color)
                 .model(model)
                 .year(updateCarRequest.getYear())
+                .status(CarStatus.valueOf(updateCarRequest.getStatus()))
                 .dailyPrice(updateCarRequest.getDailyPrice())
                 .plate(updateCarRequest.getPlate())
                 .kilometer(updateCarRequest.getKilometer())
@@ -136,7 +138,7 @@ public class CarManager implements CarService {
         rentalRules.checkIsDateBeforeNow(request.getStartDate());
         rentalRules.checkEndDateIsBeforeStartDate(request.getEndDate(), request.getStartDate());
         rentalRules.checkIsRentalDateLongerThan25Days(request.getStartDate(), request.getEndDate());
-        List<Car> carList = carRepository.findAll();
+        List<Car> carList = carRepository.findByStatus(CarStatus.AVAILABLE);
         List<Car> rentableCarList = new ArrayList<>();
         convertToRentableCarList(carList, rentableCarList, request);
         List<Car> availableCars = checkIsSuitableLocations(rentableCarList, request);
@@ -235,6 +237,7 @@ public class CarManager implements CarService {
         return carRepository.findAll(pageable).map(car -> {
             GetCarResponse response=mapperService.forResponse().map(car, GetCarResponse.class);
             response.setLocation(car.getCurrentLocation().getName());
+            response.setStatus(car.getStatus().name());
             return response;
         });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import Input from "../Input/Input";
 import { useTranslation } from "react-i18next";
@@ -34,6 +34,12 @@ const SearchKey = ({
 
   async function handleSubmit(e: any) {
     e.preventDefault();
+    fetchData()
+  
+
+
+   }
+   const fetchData =async()=>{
 
     setLoading(true);
     setError(null);
@@ -65,6 +71,12 @@ const SearchKey = ({
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    
+    fetchData()
+
+  }, [pageable])
 
   return (
     <div className="d-flex ms-5 ">

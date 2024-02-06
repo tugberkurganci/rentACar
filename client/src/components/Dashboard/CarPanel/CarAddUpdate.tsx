@@ -20,6 +20,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   const [colorList, setColorList] = useState<ColorModel[]>([]);
   const [image, setImage] = useState<any>();
   const [locations, setLocations] = useState<LocationModel[]>([])
+  const [status, setStatus] = useState([{status:"MAİNTENANCE"},{status:"AVAILABLE"}])
 
 
   
@@ -55,7 +56,8 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
         plate: "",
         year: 0,
         image: "",
-        location:""
+        location:"",
+        status:""
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -108,7 +110,8 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       plate: "",
       year: 0,
       image: "",
-      location:""
+      location:"",
+      status:""
     }
   );
 
@@ -194,6 +197,14 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   targetName="location"
                 />
               </div>
+              <div>
+                <FormikSelect
+                  label="Status"
+                  list={status}
+                  name="status"
+                  
+                />
+              </div>
 
               <div className="col">
                 <FormikInput
@@ -235,6 +246,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   type="file"
                 />
               </div>
+
 
               <div className="col  d-flex justify-content-between">
                 <button

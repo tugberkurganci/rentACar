@@ -52,6 +52,10 @@ public class Car {
     @JoinColumn(name = "color_id")
     private Color color;
 
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "car_status")
+    private CarStatus status;
+
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Rental> rentals;
 

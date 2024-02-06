@@ -8,5 +8,6 @@ export interface CarModel  {
     id:number;
     image?:string;
     brandName?:string;
-    location?:string
+    location?:string;
+    status?:string;
   }

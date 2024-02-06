@@ -36,6 +36,7 @@ public class UpdateCarRequest {
     private String colorName;
 
     private String location;
+    private String status;
 
     @FileType
     private String image;

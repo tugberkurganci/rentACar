@@ -29,6 +29,7 @@ const CarPanel = (props: Props) => {
   const [searchable, setSearchable] = useState<boolean>(false);
 
   const handlePageChange = (selectedPage: any) => {
+   
     const newPage = selectedPage.selected;
     setPageable({ ...pageable, page: newPage });
   };
@@ -87,6 +88,7 @@ const CarPanel = (props: Props) => {
                 <th scope="col">{t("plate")}</th>
                 <th scope="col">{t("modelyear")}</th>
                 <th scope="col">{t("location")}</th>
+                <th scope="col">{t("statu")}</th>
                 <th>
                   <button
                     onClick={() => setAddable(!addable)}
@@ -114,6 +116,7 @@ const CarPanel = (props: Props) => {
                       <td>{car.plate}</td>
                       <td>{car.year}</td>
                       <td>{car.location}</td>
+                      <td>{car.status}</td>
                       <td>
                         <button
                           className="me-2 btn btn-primary"
@@ -147,6 +150,8 @@ const CarPanel = (props: Props) => {
                       <td>{car.plate}</td>
                       <td>{car.year}</td>
                       <td>{car.location}</td>
+                      <td>{car.status}</td>
+
                       <td>
                         <button
                           className="me-2 btn btn-primary"
