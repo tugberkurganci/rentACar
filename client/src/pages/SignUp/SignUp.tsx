@@ -22,7 +22,7 @@ type Props = {};
 const SignUp = (props: Props) => {
   const [responseAlert, setResponseAlert] = useState<string | null>(null);
   const navigate = useNavigate();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const initialValues: SignupFormValues = {
     email: "",
     name: "",
@@ -78,45 +78,42 @@ const SignUp = (props: Props) => {
     }
   };
   return (
-    <div className="container w-100 d-flex align-items-center justify-content-center ">
-      <div className="row  col-md-6">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title text-center mb-4">{t("signUp")}</h5>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSignupSubmit}
-            >
-              {({ isSubmitting }) => (
-                <Form>
-                  <FormikInput label={t("email")} name="email" type="email" />
-                  <FormikInput label={t("name")}  name="name" />
-                  <FormikInput label={t("surname")}  name="surname" />
-                  <FormikInput type="date" label={t("date")}  name="birthDate" />
-                  <FormikInput
-                    label={t("password")}
-                    name="password"
-                    type="password"
-                  />
-                  <FormikInput
-                    label={t("confirmpass")} 
-                    name="confirmPassword"
-                    type="password"
-                  />
+    <div className=" row d-flex col-12 col-md-8 col-xl-4 align-items-start justify-content-center">
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title text-center mb-4">{t("signUp")}</h5>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSignupSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <FormikInput label={t("email")} name="email" type="email" />
+                <FormikInput label={t("name")} name="name" />
+                <FormikInput label={t("surname")} name="surname" />
+                <FormikInput type="date" label={t("date")} name="birthDate" />
+                <FormikInput
+                  label={t("password")}
+                  name="password"
+                  type="password"
+                />
+                <FormikInput
+                  label={t("confirmpass")}
+                  name="confirmPassword"
+                  type="password"
+                />
 
-                
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
-                    disabled={isSubmitting}
-                  >
-                  {isSubmitting ? `${t("loading")}` :`${t("signUp")}`}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-          </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? `${t("loading")}` : `${t("signUp")}`}
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>

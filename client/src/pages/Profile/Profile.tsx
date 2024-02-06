@@ -229,12 +229,16 @@ const Profile = (props: Props) => {
             <UserUpdate user={user} editable={setEditable} />
           ) : (
             <div
-              className={`${
-                isClicked === 2 ? "d-flex" : "d-none"
-              }  flex-column `}
+              className={`
+              ${isClicked === 2 ? "d-flex" : "d-none"}  flex-column `}
             >
-              <div className="card w-100 ">
-                <Image source={user?.image} model={"user"} />
+              <div className="card">
+                <div className="profile-img">
+                  <img
+                    className=" rounded-top"
+                    src={user?.image ? `/assets/${"user"}/${user?.image}` : ""}
+                  />
+                </div>
                 <div className="card-body">
                   <h5 className="card-title">
                     {user?.name} {user?.surname}

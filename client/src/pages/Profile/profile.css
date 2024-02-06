@@ -46,3 +46,15 @@
 
     transition: max-height 1s ease-in-out;
 }
+
+.profile-img img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

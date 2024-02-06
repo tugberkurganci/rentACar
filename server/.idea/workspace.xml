@@ -4,197 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="" />
-=======
-    <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
+    <list default="true" id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/SignIn/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/SignIn/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/SignUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/SignUp/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rentACar.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/CarStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/entities/CarStatus.java" afterDir="false" />
     </list>
->>>>>>> f0df314ab262f5cbd185c379d8a986c9adede38e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2ZO3FkIT6UaIIvQyDJpY1StuvEC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2c03BofjeNX7wd1nIPl77XM3Zll" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Pair3Application.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/tugberk/Desktop/xs/rentACar/server",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Pair3Application.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CarManagerTest.getRentableCars.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tugberk/Desktop/bedirhan/RentACar-main&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
->>>>>>> f0df314ab262f5cbd185c379d8a986c9adede38e
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.tobeto.pair3.services.dtos.requests" />
-      <recent name="com.tobeto.pair3.services.dtos.responses" />
-      <recent name="com.tobeto.pair3.controllers" />
-    </key>
-  </component>
-<<<<<<< HEAD
-  <component name="RunManager">
-=======
-  <component name="RunManager" selected="Application.Pair3Application">
->>>>>>> f0df314ab262f5cbd185c379d8a986c9adede38e
-    <configuration name="Pair3Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.Pair3Application" />
-      <module name="pair-3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tobeto.pair3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Pair3Application" />
-<<<<<<< HEAD
-=======
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_AvailableInSpecifiedPeriod_ReturnsTrue" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_NoAvailableRentals_ReturnsFalse" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_NoRentals_ReturnsTrue" />
->>>>>>> f0df314ab262f5cbd185c379d8a986c9adede38e
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="" />
-      <created>1702279206733</created>
+      <changelist id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="" />
+      <created>1707234536293</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1702279206733</updated>
+      <updated>1707234536293</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-<<<<<<< HEAD
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="3" />
-=======
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/FileService.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
-          <line>269</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="50" />
->>>>>>> f0df314ab262f5cbd185c379d8a986c9adede38e
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import FormikInput from "../../components/FormikInput/FormikInput";
-import Alert from "../../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../store/authStore/authSlice";
 import axiosInstance, {
   setToken,
@@ -22,7 +21,7 @@ type Props = {};
 const SignIn = (props: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
 
   const initialValues: SignInFormValues = {
     email: "",
@@ -76,36 +75,34 @@ const SignIn = (props: Props) => {
   };
 
   return (
-    <div className="container w-100 d-flex align-items-center justify-content-center mt-5">
-      <div className="row justify-content-center col-md-6">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title text-center mb-4">{t("login")}</h5>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSignInSubmit}
-            >
-              {({ isSubmitting }) => (
-                <Form>
-                  <FormikInput label={t("email")} name="email" type="email" />
-                  <FormikInput
-                    label={t("password")}
-                    name="password"
-                    type="password"
-                  />
-               
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? `${t("loading")}` :`${t("login")}`}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-          </div>
+    <div className=" row d-flex col-12 col-md-8 col-xl-4 align-items-start justify-content-center ">
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title text-center mb-4">{t("login")}</h5>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSignInSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <FormikInput label={t("email")} name="email" type="email" />
+                <FormikInput
+                  label={t("password")}
+                  name="password"
+                  type="password"
+                />
+
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? `${t("loading")}` : `${t("login")}`}
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>
