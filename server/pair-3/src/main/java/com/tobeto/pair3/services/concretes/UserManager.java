@@ -42,7 +42,7 @@ public class UserManager implements UserService {
             user.setImage(fileName);
         }
 
-        userRepository.save(user);
+        User user2 =  userRepository.save(user);
     }
 
     @Override

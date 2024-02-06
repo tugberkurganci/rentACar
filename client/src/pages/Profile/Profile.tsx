@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RentalModel } from "../../models/RentalModel";
-import {  GoTriangleDown } from "react-icons/go";
+import { GoTriangleDown } from "react-icons/go";
 import { InvoiceModel } from "../../models/InvoiceModel";
 import "./profile.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,6 @@ const Profile = (props: Props) => {
   const [openInvoiceId, setOpenInvoiceId] = useState<number>(0);
   const [editable, setEditable] = useState<boolean>(false);
 
-  
   const fetchUser = async () => {
     try {
       const response = await axiosInstance.get(`/v1/users/${authState.id}`);
@@ -79,36 +78,36 @@ const Profile = (props: Props) => {
     }
   };
 
-  const userDeleteBtn= async ()=>{
-  confirm()
-  try {
-    const response = await axiosInstance.delete(`/v1/users/${user?.id}`);
-    toast.success( "deleted successfully");
-    dispatch(logoutSuccess());
-    navigate("/")
-    
-  } catch (error: any) {
-    toast.error(error?.response.data.message);
-  }
-  
-  }
+  const userDeleteBtn = async () => {
+    const confirmation = confirm("Are you sure you want to delete?");
 
+    if (confirmation) {
+      try {
+        const response = await axiosInstance.delete(`/v1/users/${user?.id}`);
+        toast.success("deleted successfully");
 
-  
+        dispatch(logoutSuccess());
+
+        navigate("/");
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      }
+    }
+  };
 
   return (
-    <div className="container ">
-      <div className="row">
+    <div className="container">
+      <div className="d-flex flex-column flex-md-row gap-3">
         {/* Aside-Start */}
-        <div className="col-2  d-flex flex-column row-gap-2 me-3 ">
+        <div className=" col-md-2  d-flex flex-row flex-md-column gap-1 ">
           <div
-            className="btn btn-primary row "
+            className="btn btn-primary  "
             onClick={() => handleAsideClick(1)}
           >
             {t("rentals")}
           </div>
           <div
-            className="btn btn-primary row "
+            className="btn btn-primary  "
             onClick={() => handleAsideClick(2)}
           >
             {t("account")}
@@ -116,8 +115,8 @@ const Profile = (props: Props) => {
         </div>
         {/* Aside-End */}
         {/* Main-Start */}
-        <div className="  col-9 ">
-          {/* Siparişler-Start */}
+        <div className="col-12 col-md-9">
+          {/* Rentals-Start */}
           <div className={`${isClicked === 1 ? "d-flex" : "d-none"} row `}>
             {rentals?.map((rental) => {
               return (
@@ -160,8 +159,7 @@ const Profile = (props: Props) => {
                       className={`${rental.endKilometer ? "d-flex" : "d-none"}`}
                     >
                       <span className="fw-bold">
-                        {" "}
-                        {t("endKilometerLabel")} :{" "}
+                        {t("endKilometerLabel")} :
                       </span>
                       {rental?.endKilometer}
                     </div>
@@ -195,7 +193,7 @@ const Profile = (props: Props) => {
                         ivoice?.rentalId === rental.id && (
                           <div
                             key={rental.id}
-                            className={`card mt-3 expanded start-height mb-3  `}
+                            className={`card mt-3 expanded w-100 start-height mb-3  `}
                           >
                             <div className="card-body">
                               <h5 className="card-title">
@@ -225,32 +223,50 @@ const Profile = (props: Props) => {
               );
             })}
           </div>
-          {/* Siparişler-End */}
-         
-          {editable? (<UserUpdate user={user} editable={setEditable}/>):(<div
-            className={`${isClicked === 2 ? "d-flex" : "d-none"} flex-column`}
-          >
-            <div className="card" style={{ width: "24rem" }}>
-            <Image source={user?.image} model={"user"} />              <div className="card-body">
-                <h5 className="card-title">
-                  {user?.name} {user?.surname}
-                </h5>
-                <p className="card-text">
-                  <strong>
-                    {" "}
-                    {t("email")} {t("createdDate")}
-                  </strong>{" "}
-                  {user?.email}
-                </p>
-                <p className="card-text">
-                  <strong>{t("date")} </strong> {user?.birthDate}
-                </p>
-                <button className="btn btn-primary" onClick={()=>{setEditable(!editable)}}>{t("edit")} </button>
-                <button className="btn btn-danger ms-2" onClick={()=> userDeleteBtn()}>{t("delete")}</button>
+          {/* Rentals-End */}
+          {/* Account-Start */}
+          {editable ? (
+            <UserUpdate user={user} editable={setEditable} />
+          ) : (
+            <div
+              className={`${
+                isClicked === 2 ? "d-flex" : "d-none"
+              }  flex-column `}
+            >
+              <div className="card w-100 ">
+                <Image source={user?.image} model={"user"} />
+                <div className="card-body">
+                  <h5 className="card-title">
+                    {user?.name} {user?.surname}
+                  </h5>
+                  <p className="card-text">
+                    <strong>
+                      {t("email")} {t("createdDate")}
+                    </strong>
+                    {user?.email}
+                  </p>
+                  <p className="card-text">
+                    <strong>{t("date")} </strong> {user?.birthDate}
+                  </p>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setEditable(!editable);
+                    }}
+                  >
+                    {t("edit")}
+                  </button>
+                  <button
+                    className="btn btn-danger ms-2"
+                    onClick={() => userDeleteBtn()}
+                  >
+                    {t("delete")}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>) }
-          {/* HesapDetayları-End */}
+          )}
+          {/* Account-End */}
         </div>
         {/* Main-End */}
       </div>

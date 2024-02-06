@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java" afterDir="false" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/UpdateCarRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-      <change beforePath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/CarManagerTest.java" afterDir="false" />
->>>>>>> Stashed changes
-    </list>
+    <list default="true" id="80a5ad65-d5e6-44e9-b49e-1babe03aef10" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,21 +14,19 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
-        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2ZO3FkIT6UaIIvQyDJpY1StuvEC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -58,44 +37,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Pair3Application.executor": "Run",
-    "JUnit.CarManagerTest.getRentableCars.executor": "Run",
-    "JUnit.CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/tugberk/Desktop/bedirhan/RentACar-main",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+    "last_opened_file_path": "C:/Users/tugberk/Desktop/xs/rentACar/server",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.tobeto.pair3.repositories" />
       <recent name="com.tobeto.pair3.services.dtos.requests" />
-      <recent name="com.tobeto.pair3.controllers" />
       <recent name="com.tobeto.pair3.services.dtos.responses" />
-      <recent name="com.tobeto.pair3.services.abstracts" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\tugberk\Desktop\rc\rentACar\server\pair-3\src\main\resources" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.tobeto.pair3.services.concretes" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.tobeto.pair3.services.concretes" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.tobeto.pair3.core.messages" />
+      <recent name="com.tobeto.pair3.controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue">
+  <component name="RunManager">
     <configuration name="Pair3Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.Pair3Application" />
       <module name="pair-3" />
@@ -109,77 +66,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CarManagerTest.testIsAvailable_AvailableInSpecifiedPeriod_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pair-3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
-      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
-      <option name="METHOD_NAME" value="testIsAvailable_AvailableInSpecifiedPeriod_ReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CarManagerTest.testIsAvailable_NoAvailableRentals_ReturnsFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pair-3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
-      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
-      <option name="METHOD_NAME" value="testIsAvailable_NoAvailableRentals_ReturnsFalse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CarManagerTest.testIsAvailable_NoRentals_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pair-3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
-      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
-      <option name="METHOD_NAME" value="testIsAvailable_NoRentals_ReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pair-3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tobeto.pair3.services.concretes.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.tobeto.pair3.services.concretes" />
-      <option name="MAIN_CLASS_NAME" value="com.tobeto.pair3.services.concretes.CarManagerTest" />
-      <option name="METHOD_NAME" value="testIsAvailable_ThreeRentals_ReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_ThreeRentals_ReturnsTrue" />
         <item itemvalue="Application.Pair3Application" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_AvailableInSpecifiedPeriod_ReturnsTrue" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_NoAvailableRentals_ReturnsFalse" />
-        <item itemvalue="JUnit.CarManagerTest.testIsAvailable_NoRentals_ReturnsTrue" />
       </list>
     </recent_temporary>
   </component>
@@ -208,114 +97,17 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/controllers/InvoiceController.java</url>
-          <line>53</line>
-          <properties class="com.tobeto.pair3.controllers.InvoiceController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/pair-3/src/test/java/com/tobeto/pair3/services/concretes/ColorManagerTest.java</url>
-          <line>105</line>
-          <properties class="com.tobeto.pair3.services.concretes.ColorManagerTest" method="delete">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="28" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/JwtTokenService.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/ColorManager.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
+          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/UserManager.java</url>
           <line>44</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/FileService.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/CarManager.java</url>
-          <line>266</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/concretes/RentalManager.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="50" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="car" />
-        <watch expression="car" />
-        <watch expression="car" />
-        <watch expression="fileName" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/server$CarManagerTest.ic" NAME="CarManagerTest Coverage Results" MODIFIED="1706987074815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.tobeto.pair3.services.concretes.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/server$CarManagerTest_testReservableForOverlappingDates.ic" NAME="CarManagerTest.testReservableForOverlappingDates Coverage Results" MODIFIED="1706986408988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.tobeto.pair3.services.concretes.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/server$Pair3Application.ic" NAME="Pair3Application Coverage Results" MODIFIED="1706903661837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.tobeto.pair3.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/server$CarManagerTest_testReservableForEmptyRentals.ic" NAME="CarManagerTest.testReservableForEmptyRentals Coverage Results" MODIFIED="1706986801761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.tobeto.pair3.services.concretes.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/server$ColorManagerTest.ic" NAME="ColorManagerTest Coverage Results" MODIFIED="1706986978106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.tobeto.pair3.services.concretes.*</FILTER>
-    </SUITE>
   </component>
 </project>

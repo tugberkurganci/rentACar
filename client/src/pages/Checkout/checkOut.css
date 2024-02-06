@@ -1,0 +1,12 @@
+.car-image img {
+    max-width: 100%;
+}
+
+
+@media screen and (min-width: 768px) {
+    .car-image img {
+        max-width: 80%;
+    }
+
+
+}

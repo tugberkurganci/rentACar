@@ -6,3 +6,7 @@
 .navbar a {
     text-decoration: none;
 }
+
+.open-nav {
+    background-color: #181D27;
+}

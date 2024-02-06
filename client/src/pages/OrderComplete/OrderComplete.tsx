@@ -6,7 +6,7 @@ type Props = {};
 
 const OrderComplete = (props: Props) => {
   const location = useLocation();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const { rental } = location.state || {};
   useEffect(() => {
     console.log(rental);
@@ -15,9 +15,9 @@ const OrderComplete = (props: Props) => {
   return (
     <div className="container d-flex justify-content-center align-items-center">
       <div className="row w-75">
-        <div className="card align-items-center  d-flex flex-row">
+        <div className="card align-items-center py-3 d-flex flex-column flex-md-row">
           <div className="card-body ">
-            <h3 className="card-title fw-bolder">{t("ok")}</h3>
+            <h3 className="card-title text-center fw-bolder">{t("ok")}</h3>
             <p className="card-text">
               <span className="fs-5 text-success"> {t("invoice")} No :</span>
               <span className="fs-5"> {rental.id}</span>
@@ -31,7 +31,10 @@ const OrderComplete = (props: Props) => {
               <span className="fs-5"> {rental.endDate}</span>
             </p>
             <p className="card-text">
-              <span className="fs-5 text-success"> {t("total")} {t("price")} : </span>
+              <span className="fs-5 text-success">
+                {" "}
+                {t("total")} {t("price")} :{" "}
+              </span>
               <span className="fs-5"> {rental.totalPrice}</span>
             </p>
           </div>
@@ -46,7 +49,7 @@ const OrderComplete = (props: Props) => {
         </div>
         <div className="btn btn-success mt-3 ">
           <Link to={"/"} className="text-light text-decoration-none">
-          {t("look")} 
+            {t("look")}
           </Link>
         </div>
       </div>

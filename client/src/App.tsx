@@ -16,9 +16,9 @@ import AdminRoute from "./routes/AdminRoute";
 
 function App() {
   return (
-    <div className="d-flex flex-column">
+    <div className=" d-flex flex-column">
       <Navbar />
-      <div className="  app d-flex justify-content-center  my-5  ">
+      <div className="  app d-flex justify-content-center mt-2 mb-5  ">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/cars" element={<CarsPage />} />

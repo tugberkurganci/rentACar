@@ -110,7 +110,7 @@ const Navbar = (props: Props) => {
         </div>
       </div>
       {menuIsOpened && (
-        <div className="p-2 w-25 bg-primary text-light rounded  position-absolute  end-0">
+        <div className="p-2 w-25 open-nav text-light rounded  position-absolute end-0 z-3 ">
           {authState.id === 0 ? (
             <div className="d-flex flex-column align-items-start justify-content-end ">
               <div

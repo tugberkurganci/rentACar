@@ -1,4 +1,10 @@
-.card {
-    width: 400px;
-    height: 400px;
+.card-car-image img {
+    width: 500px;
+    height: 200px;
+}
+
+.card-car-image {
+    max-width: fit-content;
+    width: 500px;
+    height: 200px;
 }
