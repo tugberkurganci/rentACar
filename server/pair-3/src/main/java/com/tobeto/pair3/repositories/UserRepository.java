@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     User findByEmail(String email);
 
-    @Query("SELECT new com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse(u.id, u.name, u.surname, u.email, u.birthDate, u.image) FROM User u WHERE u.name LIKE %:searchKey% OR " +
+    @Query("SELECT DISTINCT new com.tobeto.pair3.services.dtos.responses.GetAllUsersResponse(u.id, u.name, u.surname, u.email, u.birthDate, u.image) FROM User u WHERE u.name LIKE %:searchKey% OR " +
             "u.surname LIKE %:searchKey% OR u.name LIKE %:searchKey% " +
             "OR u.email LIKE %:searchKey% " )
     Page<GetAllUsersResponse> searchKeyAndGetUser(@Param("searchKey") String searchKey, Pageable pageable);

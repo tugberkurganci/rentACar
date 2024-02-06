@@ -8,6 +8,7 @@ import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.*;
 import com.tobeto.pair3.repositories.CarRepository;
 import com.tobeto.pair3.services.abstracts.ColorService;
+import com.tobeto.pair3.services.abstracts.LocationService;
 import com.tobeto.pair3.services.abstracts.ModelService;
 import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.CreateCarRequest;
@@ -55,11 +56,13 @@ class CarManagerTest {
     @Mock
     private FileService fileService;
 
+    @Mock
+    private LocationService locationService;
     private CarManager carManager;
 
     @BeforeEach
     void setUp() {
-        carManager = new CarManager(carRepository, modelService, colorService, mapperService, rentalRules, fileService);
+        carManager = new CarManager(carRepository, modelService, colorService, mapperService, rentalRules, fileService,locationService);
     }
 
 
