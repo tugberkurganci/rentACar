@@ -4,6 +4,8 @@ import Input from "../Input/Input";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "./searchKey.css";
+import { IoClose } from "react-icons/io5";
+import { FaSearch } from "react-icons/fa";
 
 type Props = {
   setSearchedList: any;
@@ -34,13 +36,9 @@ const SearchKey = ({
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    fetchData()
-  
-
-
-   }
-   const fetchData =async()=>{
-
+    fetchData();
+  }
+  const fetchData = async () => {
     setLoading(true);
     setError(null);
     //setPageable({ ...pageable,page:0})
@@ -70,21 +68,19 @@ const SearchKey = ({
       }
     }
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
-    
-    fetchData()
-
-  }, [pageable])
+    fetchData();
+  }, [pageable]);
 
   return (
-    <div className="d-flex ms-5 ">
+    <div className="d-flex my-3  ">
       <div className="d-flex flex-row border  border-secondary rounded-pill">
         <div id="search-input" className="d-flex rounded-start-pill ">
           <input
             id="search"
-            className={"border-0 ps-3 rounded-start-pill"}
+            className={"border-0 ps-3 rounded-start-pill w-full"}
             onChange={handleChange}
             value={searchKey}
           />
@@ -98,18 +94,18 @@ const SearchKey = ({
                   setSearchKey("");
               }}
             >
-              X
+              <IoClose opacity={0.8} />
             </div>
           )}
         </div>
 
         <button
-          className="border-0 bg-primary text-light rounded-end-pill"
+          className="border-0  pb-1 px-3 search-btn rounded-end-pill"
           onClick={handleSubmit}
           type="submit"
           disabled={loading}
         >
-          {loading ? "Searching..." : " Search"}
+          <FaSearch />
         </button>
       </div>
     </div>

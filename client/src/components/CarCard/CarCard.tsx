@@ -3,7 +3,6 @@ import { CarModel } from "../../models/CarModel";
 import { Link } from "react-router-dom";
 import "./carCard.css";
 import { useTranslation } from "react-i18next";
-import CarImage from "../CarImage/CarImage";
 import Image from "../CarImage/CarImage";
 type Props = { car: CarModel };
 

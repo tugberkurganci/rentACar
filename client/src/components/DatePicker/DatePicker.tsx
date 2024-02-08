@@ -19,14 +19,13 @@ const DatePicker = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [locations, setLocations] = useState<LocationModel[]>([])
+  const [locations, setLocations] = useState<LocationModel[]>([]);
   const [initialValues, setInitialValues] = useState<CarSearchValues>({
     startDate: "",
     endDate: "",
     pickUpLocation: "",
     dropOffLocation: "",
   });
-
 
   const validationSchema = Yup.object({
     pickUpLocation: Yup.string().required(),
@@ -73,23 +72,18 @@ const DatePicker = (props: Props) => {
     }
   };
 
-  const fetchLocations=async()=>{
-
+  const fetchLocations = async () => {
     try {
-      const response=await axiosInstance.get("v1/locations")
-        setLocations(response.data)
-      
+      const response = await axiosInstance.get("v1/locations");
+      setLocations(response.data);
     } catch (error) {
-      
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   useEffect(() => {
+    fetchLocations();
+  }, []);
 
-    fetchLocations()
-  
-  }, [])
-  
   return (
     <div>
       <Formik
@@ -100,28 +94,25 @@ const DatePicker = (props: Props) => {
         {({ isSubmitting }) => (
           <Form className="container mt-4">
             <div className="row">
+              <FormikSelect
+                label="pickUpLocation"
+                list={locations}
+                name="name"
+                targetName="pickUpLocation"
+              />
 
-            
-            <FormikSelect
-                      label="pickUpLocation"
-                      list={locations}
-                      name="name"
-                      targetName="pickUpLocation"
-                    />
-                  
-                  <FormikSelect
-                      label="dropOffLocation"
-                      list={locations}
-                      name="name"
-                      targetName="dropOffLocation"
-                    />
+              <FormikSelect
+                label="dropOffLocation"
+                list={locations}
+                name="name"
+                targetName="dropOffLocation"
+              />
               <FormikInput
                 label={t("startdate")}
                 name="startDate"
                 type="date"
               />
               <FormikInput label={t("enddate")} name="endDate" type="date" />
-            
             </div>
 
             <div className="text-center mt-4">

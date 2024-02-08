@@ -1,4 +1,4 @@
-#user-img {
+.car-img {
     width: 100%;
     height: auto;
     display: block;
@@ -6,9 +6,4 @@
 
 .center-text {
     vertical-align: middle;
-}
-
-.b-bottom {
-    border-bottom: 2px black solid;
-    border-bottom-left-radius: 5px;
 }

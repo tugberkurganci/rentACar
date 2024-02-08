@@ -8,13 +8,14 @@ import { useTranslation } from "react-i18next";
 import Image from "../../CarImage/CarImage";
 import UserUpdate from "./UserUpdate";
 import SearchKey from "../../SearchKey/SearchKey";
+import "./userPanel.css";
 
 type Props = {};
 
 const UserPanel = (props: Props) => {
   const { t } = useTranslation();
   const [userList, setUserList] = useState<UserModel[]>([]);
-  const [pageable, setPageable] = useState<any>({ page: 0, size: 1 });
+  const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);
   const [user, setUser] = useState<UserModel>();
@@ -31,7 +32,6 @@ const UserPanel = (props: Props) => {
       const response = await axiosInstance.get(
         `/v1/users/via-page?page=${pageable?.page}&size=${pageable?.size}`
       );
-      console.log(response);
       setTotalPages(response.data.totalPages);
       setUserList(response.data.content);
     } catch (error: any) {
@@ -60,40 +60,168 @@ const UserPanel = (props: Props) => {
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex flex-column  justify-content-between align-items center"
+      className="d-flex  flex-column   justify-content-between align-items-center"
     >
       {!editable && (
-        <div>
-          <SearchKey
-            setSearchedList={setSearchedUserList}
-            setSearchedListPage={setSearchedUserListPage}
-            pageable={pageable}
-            setPageable={setPageable}
-            setSearchable={setSearchable}
-            type={"user"}
-          />
-          <table className="table table-striped">
+        <div className=" w-100  d-flex flex-column justify-content-center align-itemse-center">
+          <div className="center-text mb-2">
+            <SearchKey
+              setSearchedList={setSearchedUserList}
+              setSearchedListPage={setSearchedUserListPage}
+              pageable={pageable}
+              setPageable={setPageable}
+              setSearchable={setSearchable}
+              type={"user"}
+            />
+          </div>
+          {/* Data-section-Mobile-Start */}
+          <div className="d-md-none justify-content-between align-items-center d-flex  flex-column ">
+            {searchable
+              ? searchedUserList.map((user) => (
+                  <div className="card w-100 mb-3">
+                    {user.image && (
+                      <img
+                        src={`/assets/${"user"}/${user.image}`}
+                        className="card-img-top"
+                        alt={`${user.email}'s profile picture `}
+                      />
+                    )}
+                    <div className="card-body ">
+                      <div className="border rounded mb-3 p-3">
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">User ID: </span>
+                          <span>{user.id}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Name: </span>
+                          <span>{user.name}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Surname: </span>
+                          <span>{user.surname}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">E-mail: </span>
+                          <span>{user.email}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Birth Date: </span>
+                          <span>{user.birthDate}</span>
+                        </div>
+                      </div>
+                      <div className="d-flex justify-content-between px-3 t-3">
+                        <button
+                          className="me-2 btn btn-primary"
+                          onClick={() => handleChangeUpdateBtn(user)}
+                        >
+                          {t("edit")}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteUser(user)}
+                          className=" btn btn-danger"
+                        >
+                          {t("delete")}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : userList.map((user) => (
+                  <div className="card w-100 mb-3">
+                    {user.image && (
+                      <img
+                        src={`/assets/${"user"}/${user.image}`}
+                        className="card-img-top"
+                        alt={`${user.email}'s profile picture `}
+                      />
+                    )}
+                    <div className="card-body ">
+                      <div className="border rounded mb-3 p-3">
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">User ID: </span>
+                          <span>{user.id}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Name: </span>
+                          <span>{user.name}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Surname: </span>
+                          <span>{user.surname}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">E-mail: </span>
+                          <span>{user.email}</span>
+                        </div>
+                        <div className="fs-2 b-bottom">
+                          <span className=" fw-semibold">Birth Date: </span>
+                          <span>{user.birthDate}</span>
+                        </div>
+                      </div>
+                      <div className="d-flex justify-content-between px-3 t-3">
+                        <button
+                          className="me-2 btn btn-primary"
+                          onClick={() => handleChangeUpdateBtn(user)}
+                        >
+                          {t("edit")}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteUser(user)}
+                          className=" btn btn-danger"
+                        >
+                          {t("delete")}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+          </div>
+          {/* Data-section-Mobile-End */}
+
+          {/* Data-section-MD-Start */}
+          <table className="table table-striped-columns d-none d-md-table ">
             <thead>
               <tr>
-                <th scope="col">{t("user")} ID</th>
-                <th scope="col">{t("picture")}</th>
-                <th scope="col">{t("name")}</th>
-                <th scope="col">{t("surname")}</th>
-                <th scope="col">{t("email")}</th>
-                <th scope="col">{t("date")}</th>
+                <th className="center-text" scope="col">
+                  {t("user")} ID
+                </th>
+                <th className="center-text" scope="col">
+                  {t("picture")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("name")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("surname")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("email")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("date")}
+                </th>
               </tr>
             </thead>
             <tbody>
               {searchable
                 ? searchedUserList.map((user) => (
-                    <tr className="w-100 " key={user.id}>
-                      <th scope="row">{user.id}</th>
-                      <td><Image source={user.image} model={"user"} /></td>
-                      <td>{user.name}</td>
-                      <td>{user.surname}</td>
-                      <td>{user.email}</td>
-                      <td>{user.birthDate}</td>
-                      <td>
+                    <tr className="w-100 center-text" key={user.id}>
+                      <th className="center-text" scope="row">
+                        {user.id}
+                      </th>
+                      <td className="td-img m-0 p-0">
+                        <img
+                          id="user-img"
+                          src={
+                            user.image ? `/assets/${"user"}/${user.image}` : ""
+                          }
+                        ></img>
+                      </td>
+                      <td className="center-text">{user.name}</td>
+                      <td className="center-text">{user.surname}</td>
+                      <td className="center-text">{user.email}</td>
+                      <td className="center-text"> {user.birthDate}</td>
+                      <td className="center-text d-flex flex-wrap gap-1">
                         <button
                           className="me-2 btn btn-primary"
                           onClick={() => handleChangeUpdateBtn(user)}
@@ -110,14 +238,21 @@ const UserPanel = (props: Props) => {
                     </tr>
                   ))
                 : userList.map((user) => (
-                    <tr className="w-100 " key={user.id}>
+                    <tr className="w-100 center-text " key={user.id}>
                       <th scope="row">{user.id}</th>
-                      <td><Image source={user.image} model={"user"} /></td>
-                      <td>{user.name}</td>
-                      <td>{user.surname}</td>
-                      <td>{user.email}</td>
-                      <td>{user.birthDate}</td>
-                      <td>
+                      <td className="td-img m-0 p-0" width={150}>
+                        <img
+                          id="user-img"
+                          src={
+                            user.image ? `/assets/${"user"}/${user.image}` : ""
+                          }
+                        ></img>
+                      </td>
+                      <td className="center-text">{user.name}</td>
+                      <td className="center-text">{user.surname}</td>
+                      <td className="center-text">{user.email}</td>
+                      <td className="center-text">{user.birthDate}</td>
+                      <td className="center-text d-flex flex-wrap gap-1">
                         <button
                           className="me-2 btn btn-primary"
                           onClick={() => handleChangeUpdateBtn(user)}
@@ -135,6 +270,7 @@ const UserPanel = (props: Props) => {
                   ))}
             </tbody>
           </table>
+          {/* Data-section-MD-Start */}
         </div>
       )}
       {!editable &&
@@ -154,7 +290,7 @@ const UserPanel = (props: Props) => {
           </div>
         ))}
       {editable && (
-        <div>
+        <div className="d-flex w-100  justify-content-center align-items-center   ">
           <UserUpdate user={user} editable={setEditable} />
         </div>
       )}

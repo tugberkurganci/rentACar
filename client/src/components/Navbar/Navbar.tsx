@@ -33,7 +33,6 @@ const Navbar = (props: Props) => {
     setMenuIsOpened(!menuIsOpened);
   };
   const handleOutsideClick = (event: any) => {
-    // Eğer menü açıksa ve tıklanan alan menü dışında ise, menüyü kapat
     if (
       menuIsOpened &&
       menuRef.current &&
@@ -43,10 +42,8 @@ const Navbar = (props: Props) => {
     }
   };
   useEffect(() => {
-    // Sayfa üzerindeki tüm tıklama olaylarını dinle
     document.addEventListener("click", handleOutsideClick);
 
-    // Component kaldırıldığında, olay dinleyicisini temizle
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -55,7 +52,7 @@ const Navbar = (props: Props) => {
     <div>
       {/* mobile-navbar start */}
       <div className="col-12 d-md-none d-flex align-items-center justify-content-between bg-body-tertiary">
-        <div className=" d-flex align-items-center gap-2  ms-2">
+        <div className=" d-flex  align-items-center gap-2  ms-2">
           <Link
             className="navbar-brand"
             to="/"
@@ -63,7 +60,7 @@ const Navbar = (props: Props) => {
           >
             <img id="minivan" src={minivanIcon} alt="mini van icon" />
           </Link>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 col flex-row gap-1 ">
+          <ul className="navbar-nav me-auto align-items-center mb-2 mb-lg-0 col flex-row gap-1 ">
             <li className="nav-item">
               <Link
                 className={`nav-link px-2 ${

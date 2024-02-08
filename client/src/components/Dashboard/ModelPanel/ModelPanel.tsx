@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { RentalModel } from "../../../models/RentalModel";
 import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-import FormikInput from "../../FormikInput/FormikInput";
-import { Form, Formik, FormikHelpers } from "formik";
 import Pagination from "../../Pagination/Pagination";
 import { ModelType } from "../../../models/ModelType";
-import FormikSelect from "../../FormikSelect/FormikSelect";
 import { useTranslation } from "react-i18next";
 import ModelAddUpdate from "./ModelAddUpdate";
 import Image from "../../CarImage/CarImage";
@@ -15,14 +11,12 @@ import Image from "../../CarImage/CarImage";
 type Props = {};
 
 const ModelPanel = (props: Props) => {
-  
-
   const [modelList, setModelList] = useState<ModelType[]>([]);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
-  const [addable, setAddable] = useState<boolean>(false)
-  const {t}=useTranslation();
-  const [model, setModel] = useState<ModelType>()
+  const [addable, setAddable] = useState<boolean>(false);
+  const { t } = useTranslation();
+  const [model, setModel] = useState<ModelType>();
   const [totalPages, setTotalPages] = useState(1);
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -39,8 +33,6 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  
- 
 
   const handleDeleteModel = async (model: ModelType) => {
     try {
@@ -51,61 +43,152 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  
+
   useEffect(() => {
     fetchModels();
-    
-  }, [pageable,addable,editable]);
+  }, [pageable, addable, editable]);
 
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex flex-column  justify-content-between align-items center"
+      className="d-flex flex-column w-100  justify-content-between align-items center"
     >
-      {!editable && !addable &&(
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Model ID</th>
-              <th scope="col">{t("picture")}</th>
-              <th scope="col">Model {t("name")}</th>
-              <th scope="col">{t("brand")} ID</th>
-              <th><button
-                    onClick={() =>setAddable(!addable)}
-                    className="btn btn- btn-primary "
-                    >
-                    {t("addmodel")}
-                  </button></th> 
-            </tr>
-          </thead>
-
-          <tbody>
+      {!editable && !addable && (
+        <div className="col-12 d-flex ">
+          {/* Data-section-Mobile-Start */}
+          <div className="col-12 d-md-none ">
+            <div className="w-100 text-center py-3">
+              <button
+                onClick={() => setAddable(!addable)}
+                className="btn w-50 btn-primary"
+              >
+                {t("addmodel")}
+              </button>
+            </div>
             {modelList.map((model) => (
-              <tr className="w-100 " key={model.id}>
-                <th scope="row">{model.id}</th>
-                <td>
-                <Image  source={model.image} model={"model"}/>
-                </td>
-                <td>{model.name}</td>
-                <td>{model.brandId}</td>
-                <td>
-                  <button
-                    className="me-2 btn btn-primary"
-                    onClick={() => {setModel(model) ;setEditable(true)}}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    onClick={() => handleDeleteModel(model)}
-                    className=" btn btn-danger"
-                  >
-                    {t("delete")}
-                  </button>
-                </td>
-              </tr>
+              <div className="card w-100 mb-3">
+                {model.image && (
+                  <img
+                    src={`/assets/model/${model.image}`}
+                    className="card-img-top"
+                    alt={`${model.name} picture `}
+                  />
+                )}
+                <div className="card-body ">
+                  <div className="border rounded mb-3 p-3">
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Model ID: </span>
+                      <span>{model.id}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Model name: </span>
+                      <span>{model.name}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Brand ID: </span>
+                      <span>{model.brandId}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Brand name: </span>
+                      <span>{model.brandName}</span>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between px-3 t-3">
+                    <button
+                      className="me-2 btn btn-primary"
+                      onClick={() => {
+                        setModel(model);
+                        setEditable(true);
+                      }}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteModel(model)}
+                      className=" btn btn-danger"
+                    >
+                      {t("delete")}
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+          {/* Data-section-Mobile-End */}
+
+          {/* Data-section-MD-Start */}
+          <table className="table table-striped-columns d-none d-md-table">
+            <thead>
+              <tr>
+                <th className="center-text" scope="col">
+                  Model ID
+                </th>
+                <th className="center-text" scope="col">
+                  {t("picture")}
+                </th>
+                <th className="center-text" scope="col">
+                  Model {t("name")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("brand")} ID
+                </th>
+                <th className="center-text" scope="col">
+                  {t("brand")} {t("name")}
+                </th>
+
+                <th>
+                  <button
+                    onClick={() => setAddable(!addable)}
+                    className="btn btn- btn-primary "
+                  >
+                    {t("addmodel")}
+                  </button>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {modelList.map((model) => (
+                <tr className="w-100 " key={model.id}>
+                  <th className="center-text" scope="row">
+                    {model.id}
+                  </th>
+                  <td className="center-text" width={150}>
+                    {model.image && (
+                      <img
+                        src={`/assets/${"model"}/${model.image}`}
+                        className="card-img-top"
+                        alt={`${model.name} picture `}
+                      />
+                    )}
+                  </td>
+                  <td className="center-text">{model.name}</td>
+                  <td className="center-text">{model.brandId}</td>
+                  <td className="center-text">{model.brandName}</td>
+
+                  <td className="center-text d-flex flex-wrap gap-1">
+                    <button
+                      className="me-2 btn btn-primary"
+                      onClick={() => {
+                        setModel(model);
+                        setEditable(true);
+                      }}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteModel(model)}
+                      className=" btn btn-danger"
+                    >
+                      {t("delete")}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/* Data-section-MD-End */}
+        </div>
       )}
       {!editable && !addable && (
         <div>
@@ -116,11 +199,9 @@ const ModelPanel = (props: Props) => {
         </div>
       )}
       {editable && (
-       <ModelAddUpdate model={model} setEditable={setEditable} urlType="put"/>
+        <ModelAddUpdate model={model} setEditable={setEditable} urlType="put" />
       )}
-       {addable && (
-       <ModelAddUpdate setEditable={setAddable} urlType="post"/>
-      )}
+      {addable && <ModelAddUpdate setEditable={setAddable} urlType="post" />}
     </div>
   );
 };

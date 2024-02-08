@@ -115,59 +115,164 @@ const RentalPanel = (props: Props) => {
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex flex-column  justify-content-between align-items center"
+      className="d-flex flex-column overflow-x-scroll justify-content-between align-items center"
     >
       {!editable && (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">{t("rentalIdLabel")} </th>
-              <th scope="col">{t("carIdLabel")}</th>
-              <th scope="col">{t("startDateLabel")}</th>
-              <th scope="col">{t("endDateLabel")}</th>
-              <th scope="col">{t("returnDateLabel")}</th>
-              <th scope="col">{t("startKilometerLabel")}</th>
-              <th scope="col">{t("endKilometerLabel")}</th>
-              <th scope="col">{t("totalPriceLabel")}</th>
-              <th scope="col">{t("dropofflocation")}</th>
-              <th scope="col">{t("pickuplocation")}</th>
-              <th scope="col">{t("user")} ID</th>
-            </tr>
-          </thead>
-
-          <tbody>
+        <div className="col-12 d-flex">
+          {/* Data-section-Mobile-Start */}
+          <div className="d-md-none col-12">
             {rentalList.map((rental) => (
-              <tr className="w-100 " key={rental.id}>
-                <th scope="row">{rental.id}</th>
-                <td>{rental.carId}</td>
-                <td>{rental.startDate}</td>
-                <td>{rental.endDate}</td>
-                <td>{rental.returnDate ? rental.returnDate : "-"}</td>
-                <td>{rental.startKilometer}</td>
-                <td>{rental.endKilometer ? rental.endKilometer : "-"}</td>
-                <td>{rental.totalPrice}</td>
-                <td>{rental.dropOffLocation}</td>
-                <td>{rental.pickUpLocation}</td>
-                <td>{rental.userId}</td>
-
-                <td>
-                  <button
-                    className="me-2 btn btn-primary"
-                    onClick={() => handleChangeUpdateBtn(rental)}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    onClick={() => handleDeleteRental(rental)}
-                    className=" btn btn-danger"
-                  >
-                    {t("delete")}
-                  </button>
-                </td>
-              </tr>
+              <div className="card w-100 mb-3">
+                <div className="card-body ">
+                  <div className="border rounded mb-3 p-3">
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Rental ID: </span>
+                      <span>{rental.id}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Car ID: </span>
+                      <span>{rental.carId}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">User ID: </span>
+                      <span>{rental.userId}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Start Date: </span>
+                      <span>{rental.startDate}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">End Date: </span>
+                      <span>{rental.endDate}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Return Date: </span>
+                      <span>{rental.returnDate ? rental.returnDate : "-"}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Start Kilometer: </span>
+                      <span>{rental.startKilometer}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">End Kilometer: </span>
+                      <span>
+                        {rental.endKilometer ? rental.endKilometer : "-"}
+                      </span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Total price: </span>
+                      <span>{rental.totalPrice}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Drop Off Office: </span>
+                      <span>{rental.dropOffLocation}</span>
+                    </div>
+                    <div className="fs-2 b-bottom">
+                      <span className=" fw-semibold">Pick Up Office: </span>
+                      <span>{rental.pickUpLocation}</span>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between px-3 t-3">
+                    <button
+                      className="me-2 btn btn-primary"
+                      onClick={() => handleChangeUpdateBtn(rental)}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteRental(rental)}
+                      className=" btn btn-danger"
+                    >
+                      {t("delete")}
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+          {/* Data-section-Mobile-End */}
+          {/* Data-section-MD-Start */}
+
+          <table className="table table-striped-columns d-none d-md-table">
+            <thead>
+              <tr>
+                <th className="center-text" scope="col">
+                  {t("rentalIdLabel")}{" "}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("carIdLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("startDateLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("endDateLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("returnDateLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("startKilometerLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("endKilometerLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("totalPriceLabel")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("dropofflocation")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("pickuplocation")}
+                </th>
+                <th className="center-text" scope="col">
+                  {t("user")} ID
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {rentalList.map((rental) => (
+                <tr className="w-100 " key={rental.id}>
+                  <th className="center-text" scope="row">
+                    {rental.id}
+                  </th>
+                  <td className="center-text">{rental.carId}</td>
+                  <td className="center-text">{rental.startDate}</td>
+                  <td className="center-text">{rental.endDate}</td>
+                  <td className="center-text">
+                    {rental.returnDate ? rental.returnDate : "-"}
+                  </td>
+                  <td className="center-text">{rental.startKilometer}</td>
+                  <td className="center-text">
+                    {rental.endKilometer ? rental.endKilometer : "-"}
+                  </td>
+                  <td className="center-text">{rental.totalPrice}</td>
+                  <td className="center-text">{rental.dropOffLocation}</td>
+                  <td className="center-text">{rental.pickUpLocation}</td>
+                  <td className="center-text">{rental.userId}</td>
+
+                  <td className="center-text d-flex flex-wrap gap-1">
+                    <button
+                      className="me-2 btn btn-primary"
+                      onClick={() => handleChangeUpdateBtn(rental)}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteRental(rental)}
+                      className=" btn btn-danger"
+                    >
+                      {t("delete")}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/* Data-section-MD-Start */}
+        </div>
       )}
       {!editable && (
         <div>

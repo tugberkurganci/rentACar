@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserModel } from "../../../models/UserModel";
 import axiosInstance from "../../../utils/interceptors/axiosInterceptors";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import FormikInput from "../../FormikInput/FormikInput";
 import { Form, Formik, FormikHelpers } from "formik";
-import ReactPaginate from "react-paginate";
 import "./userPanel.css";
 import Pagination from "../../Pagination/Pagination";
 import { useTranslation } from "react-i18next";
-import Image from "../../CarImage/CarImage";
 
 type Props = { editable: any; user?: UserModel };
 
@@ -95,7 +93,7 @@ const UserUpdate = ({ editable, user }: Props) => {
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex flex-row justify-content-center align-items-center   "
+      className="d-flex w-100 justify-content-center align-items-center "
     >
       <Formik
         initialValues={initialValues}

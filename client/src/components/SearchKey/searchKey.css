@@ -14,3 +14,22 @@
     color: white;
     cursor: pointer;
 }
+
+.search-btn {
+    transition: all;
+    transition: 0.5s ease-in-out;
+    background-color: #0d6efd;
+    color: white;
+}
+
+.search-btn:hover {
+    background-color: #343a40;
+    opacity: 0.8;
+    color: white;
+    cursor: pointer;
+}
+
+.w-full {
+    max-width: 500px;
+
+}

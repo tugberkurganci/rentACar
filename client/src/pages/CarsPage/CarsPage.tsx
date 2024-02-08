@@ -123,6 +123,7 @@ const CarsPage = (props: Props) => {
     <div className="container-fluid  d-flex ">
       {/* Aside-MD-Start */}
       <div className="col-3 d-none d-md-flex  justify-content-center">
+        //TODO : Formik beklenen şekilde çalışmıyor
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -132,35 +133,19 @@ const CarsPage = (props: Props) => {
             <Form className="  w-75">
               <div>
                 <div className="col">
-                  <FormikInput
-                    value={initialValues.firstPrice}
-                    label="firstPrice"
-                    name="firstPrice"
-                  />
+                  <FormikInput label="firstPrice" name="firstPrice" />
                 </div>
 
                 <div className="col">
-                  <FormikInput
-                    value={initialValues.secondPrice}
-                    label="secondPrice"
-                    name="secondPrice"
-                  />
+                  <FormikInput label="secondPrice" name="secondPrice" />
                 </div>
 
                 <div className="col">
-                  <FormikInput
-                    value={initialValues.firstModelYear}
-                    label="firstModelYear"
-                    name="firstModelYear"
-                  />
+                  <FormikInput label="firstModelYear" name="firstModelYear" />
                 </div>
 
                 <div className="col">
-                  <FormikInput
-                    value={initialValues.secondModelYear}
-                    label="secondModelYear"
-                    name="secondModelYear"
-                  />
+                  <FormikInput label="secondModelYear" name="secondModelYear" />
                 </div>
                 <div>
                   <FormikSelect
@@ -335,17 +320,8 @@ const CarsPage = (props: Props) => {
             </div>
           </div>
           {/* Loading-start */}
-          //TODO: Edit placeholders
           {isLoading && (
-            <div className=" row   d-flex   ">
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
-              <CarPlaceholder />
+            <div className="  ">
               <CarPlaceholder />
             </div>
           )}
