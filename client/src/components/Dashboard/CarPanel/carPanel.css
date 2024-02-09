@@ -1,9 +1,16 @@
 .car-img {
     width: 100%;
+    max-height: 50px;
     height: auto;
     display: block;
 }
 
 .center-text {
     vertical-align: middle;
+}
+
+.scale-up {
+    border-radius: 1px;
+    transform: scaleX(8) scaleY(10) translateX(50px);
+    transition: transform 0.3s ease;
 }

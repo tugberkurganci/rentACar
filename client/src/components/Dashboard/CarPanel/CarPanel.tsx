@@ -12,6 +12,8 @@ type Props = {};
 const CarPanel = (props: Props) => {
   const { t } = useTranslation();
   const [carList, setCarList] = useState<CarModel[]>([]);
+  const [carId, setCarId] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [addable, setAddable] = useState<boolean>(false);
@@ -36,7 +38,7 @@ const CarPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-
+  //TODO: Confirm ekle
   const handleDeleteCar = async (car: CarModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/cars/${car.id}`);
@@ -46,7 +48,15 @@ const CarPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
+  const handleMouseOver = (id: number) => {
+    setCarId(id);
+    setIsHovered(true);
+  };
 
+  const handleMouseOut = () => {
+    setCarId(0);
+    setIsHovered(false);
+  };
   useEffect(() => {
     fetchCars();
   }, [pageable, addable, editable]);
@@ -271,8 +281,12 @@ const CarPanel = (props: Props) => {
                       <td className="center-text" width={200}>
                         <img
                           id="car-img"
-                          className="car-image"
+                          className={`car-img ${
+                            isHovered && car.id === carId && "scale-up"
+                          }`}
                           src={`/assets/${"car"}/${car.image}`}
+                          onMouseOver={() => handleMouseOver(car.id)}
+                          onMouseOut={handleMouseOut}
                         />
                       </td>
                       <td className="center-text">{car.modelName}</td>
@@ -307,8 +321,12 @@ const CarPanel = (props: Props) => {
                       <th scope="row">{car.id}</th>
                       <td className="d-flex " width={150}>
                         <img
-                          className="car-img"
+                          className={`car-img ${
+                            isHovered && car.id === carId && "scale-up"
+                          }`}
                           src={`/assets/${"car"}/${car.image}`}
+                          onMouseOver={() => handleMouseOver(car.id)}
+                          onMouseOut={handleMouseOut}
                         />
                       </td>
                       <td className="center-text">{car.modelName}</td>

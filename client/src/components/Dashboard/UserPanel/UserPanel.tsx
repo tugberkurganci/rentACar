@@ -22,6 +22,8 @@ const UserPanel = (props: Props) => {
   const [searchedUserList, setSearchedUserList] = useState<UserModel[]>([]);
   const [searchedUserListPage, setSearchedUserListPage] = useState<number>(1);
   const [searchable, setSearchable] = useState<boolean>(false);
+  const [userId, setUserId] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handlePageChange = (selectedPage: any) => {
     const newPage = selectedPage.selected;
@@ -42,7 +44,7 @@ const UserPanel = (props: Props) => {
     setEditable(!editable);
     setUser(user);
   };
-
+  //TODO: Confirm ekle
   const handleDeleteUser = async (user: UserModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/users/${user.id}`);
@@ -51,6 +53,15 @@ const UserPanel = (props: Props) => {
     } catch (error: any) {
       toast.error(error?.response.data.message);
     }
+  };
+  const handleMouseOver = (id: number) => {
+    setUserId(id);
+    setIsHovered(true);
+  };
+
+  const handleMouseOut = () => {
+    setUserId(0);
+    setIsHovered(false);
   };
 
   useEffect(() => {
@@ -82,7 +93,7 @@ const UserPanel = (props: Props) => {
                     {user.image && (
                       <img
                         src={`/assets/${"user"}/${user.image}`}
-                        className="card-img-top"
+                        className={`card-img-top`}
                         alt={`${user.email}'s profile picture `}
                       />
                     )}
@@ -131,7 +142,7 @@ const UserPanel = (props: Props) => {
                     {user.image && (
                       <img
                         src={`/assets/${"user"}/${user.image}`}
-                        className="card-img-top"
+                        className={`card-img-top `}
                         alt={`${user.email}'s profile picture `}
                       />
                     )}
@@ -215,6 +226,12 @@ const UserPanel = (props: Props) => {
                           src={
                             user.image ? `/assets/${"user"}/${user.image}` : ""
                           }
+                          className={`card-img-top ${
+                            isHovered && user.id === userId && "scale-up"
+                          }`}
+                          alt={`${user.email}'s profile picture `}
+                          onMouseOver={() => handleMouseOver(user.id)}
+                          onMouseOut={handleMouseOut}
                         ></img>
                       </td>
                       <td className="center-text">{user.name}</td>
@@ -246,6 +263,12 @@ const UserPanel = (props: Props) => {
                           src={
                             user.image ? `/assets/${"user"}/${user.image}` : ""
                           }
+                          className={`card-img-top ${
+                            isHovered && user.id === userId && "scale-up"
+                          }`}
+                          alt={`${user.email}'s profile picture `}
+                          onMouseOver={() => handleMouseOver(user.id)}
+                          onMouseOut={handleMouseOut}
                         ></img>
                       </td>
                       <td className="center-text">{user.name}</td>

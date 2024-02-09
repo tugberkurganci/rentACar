@@ -73,6 +73,7 @@ const RentalPanel = (props: Props) => {
       }
     }
   };
+  //TODO: Confirm ekle
   const handleDeleteRental = async (car: RentalModel) => {
     try {
       const response = await axiosInstance.delete(`/v1/rentals/${car.id}`);

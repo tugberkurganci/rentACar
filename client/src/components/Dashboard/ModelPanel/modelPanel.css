@@ -1,17 +1,14 @@
-#user-img {
+.model-img {
     width: 100%;
-    height: auto;
     max-height: 50px;
+    height: auto;
     display: block;
 }
 
-.center-text {
-    vertical-align: middle;
-}
-
-.b-bottom {
-    border-bottom: 2px black solid;
-    border-bottom-left-radius: 5px;
+.model-img-mobile {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .scale-up {

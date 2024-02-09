@@ -13,7 +13,7 @@ const OrderComplete = (props: Props) => {
   }, []);
 
   return (
-    <div className="container d-flex justify-content-center align-items-center">
+    <div className="container d-flex justify-content-center align-items-start">
       <div className="row w-75">
         <div className="card align-items-center py-3 d-flex flex-column flex-md-row">
           <div className="card-body ">

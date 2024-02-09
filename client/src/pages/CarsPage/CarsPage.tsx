@@ -37,6 +37,8 @@ const CarsPage = (props: Props) => {
     useState<CarModel[]>(filteredCarList);
   const [sortType, setSortType] = useState<string>("");
   const [menuIsOpened, setMenuIsOpened] = useState<boolean>(false);
+  const [modelList, setModelList] = useState<any>([]);
+  const [brandList, setBrandList] = useState<any>([]);
 
   const [initialValues, setInitialValues] = useState({
     firstPrice: 0,
@@ -71,6 +73,7 @@ const CarsPage = (props: Props) => {
 
       setFilteredCarList(response.data);
       console.log(response);
+      setMenuIsOpened(false);
       setInitialValues({
         firstPrice: 0,
         secondPrice: 0,
@@ -130,6 +133,33 @@ const CarsPage = (props: Props) => {
     handleChange(e);
     setInitialValues({ ...values, [e.target.name]: e.target.value });
   };
+  const getModelList = () => {
+    const uniqueModels = new Set();
+
+    carList.forEach((item) => {
+      uniqueModels.add(item.modelName);
+    });
+
+    const uniqueArray = [...uniqueModels].map((modelName) => ({ modelName }));
+
+    setModelList(uniqueArray);
+  };
+  const getBrandList = () => {
+    const uniqueBrands = new Set();
+
+    carList.forEach((item) => {
+      uniqueBrands.add(item.brandName);
+    });
+
+    const uniqueArray = [...uniqueBrands].map((brandName) => ({ brandName }));
+
+    setBrandList(uniqueArray);
+  };
+
+  useEffect(() => {
+    getModelList();
+    getBrandList();
+  }, [carList]);
 
   return (
     <div className="container-fluid  d-flex ">
@@ -189,7 +219,7 @@ const CarsPage = (props: Props) => {
                 <div>
                   <FormikSelect
                     label="Models"
-                    list={carList}
+                    list={modelList}
                     name="modelName"
                     value={initialValues.modelName}
                     onChange={(e: any) => {
@@ -200,7 +230,7 @@ const CarsPage = (props: Props) => {
                 <div>
                   <FormikSelect
                     label="Brands"
-                    list={carList}
+                    list={brandList}
                     name="brandName"
                     value={initialValues.brandName}
                     onChange={(e: any) => {
@@ -273,6 +303,9 @@ const CarsPage = (props: Props) => {
                             value={initialValues.firstPrice}
                             label="firstPrice"
                             name="firstPrice"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
 
@@ -281,6 +314,9 @@ const CarsPage = (props: Props) => {
                             value={initialValues.secondPrice}
                             label="secondPrice"
                             name="secondPrice"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
 
@@ -289,6 +325,9 @@ const CarsPage = (props: Props) => {
                             value={initialValues.firstModelYear}
                             label="firstModelYear"
                             name="firstModelYear"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
 
@@ -297,20 +336,29 @@ const CarsPage = (props: Props) => {
                             value={initialValues.secondModelYear}
                             label="secondModelYear"
                             name="secondModelYear"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
                         <div>
                           <FormikSelect
                             label="Models"
-                            list={carList}
+                            list={modelList}
                             name="modelName"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
                         <div>
                           <FormikSelect
                             label="Brands"
-                            list={carList}
+                            list={brandList}
                             name="brandName"
+                            onChange={(e: any) => {
+                              onChangeInput(handleChange, e, values);
+                            }}
                           />
                         </div>
                       </div>

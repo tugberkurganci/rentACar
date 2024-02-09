@@ -20,7 +20,7 @@ const Profile = (props: Props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isClicked, setIsClicked] = useState<number>(1);
+  const [isClicked, setIsClicked] = useState<number>(2);
   const [rentals, setRentals] = useState<RentalModel[]>();
   const [invoice, setInvoice] = useState<InvoiceModel[]>([]);
   const [user, setUser] = useState<UserModel>();
@@ -101,13 +101,17 @@ const Profile = (props: Props) => {
         {/* Aside-Start */}
         <div className=" col-md-2  d-flex flex-row flex-md-column gap-1 ">
           <div
-            className="btn btn-primary  "
+            className={`btn ${
+              isClicked === 1 ? "btn-warning" : "btn-primary"
+            }   `}
             onClick={() => handleAsideClick(1)}
           >
             {t("rentals")}
           </div>
           <div
-            className="btn btn-primary  "
+            className={`btn ${
+              isClicked === 2 ? "btn-warning" : "btn-primary"
+            }   `}
             onClick={() => handleAsideClick(2)}
           >
             {t("account")}
@@ -244,13 +248,12 @@ const Profile = (props: Props) => {
                     {user?.name} {user?.surname}
                   </h5>
                   <p className="card-text">
-                    <strong>
-                      {t("email")} {t("createdDate")}
-                    </strong>
+                    <strong>{t("email")}:</strong>
                     {user?.email}
                   </p>
+
                   <p className="card-text">
-                    <strong>{t("date")} </strong> {user?.birthDate}
+                    <strong>{t("date")}: </strong> {user?.birthDate}
                   </p>
                   <button
                     className="btn btn-primary"

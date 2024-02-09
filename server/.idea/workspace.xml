@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/carPanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/carPanel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/userPanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/userPanel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

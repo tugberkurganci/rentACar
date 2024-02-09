@@ -6,12 +6,13 @@ import Pagination from "../../Pagination/Pagination";
 import { ModelType } from "../../../models/ModelType";
 import { useTranslation } from "react-i18next";
 import ModelAddUpdate from "./ModelAddUpdate";
-import Image from "../../CarImage/CarImage";
-
+import "./modelPanel.css";
 type Props = {};
 
 const ModelPanel = (props: Props) => {
   const [modelList, setModelList] = useState<ModelType[]>([]);
+  const [modelId, setModelId] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [addable, setAddable] = useState<boolean>(false);
@@ -33,7 +34,7 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-
+  //TODO: Confirm ekle
   const handleDeleteModel = async (model: ModelType) => {
     try {
       const response = await axiosInstance.delete(`/v1/models/${model.id}`);
@@ -43,7 +44,15 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
+  const handleMouseOver = (id: number) => {
+    setModelId(id);
+    setIsHovered(true);
+  };
 
+  const handleMouseOut = () => {
+    setModelId(0);
+    setIsHovered(false);
+  };
   useEffect(() => {
     fetchModels();
   }, [pageable, addable, editable]);
@@ -70,7 +79,7 @@ const ModelPanel = (props: Props) => {
                 {model.image && (
                   <img
                     src={`/assets/model/${model.image}`}
-                    className="card-img-top"
+                    className={`card-img-top model-img-mobile`}
                     alt={`${model.name} picture `}
                   />
                 )}
@@ -157,8 +166,12 @@ const ModelPanel = (props: Props) => {
                     {model.image && (
                       <img
                         src={`/assets/${"model"}/${model.image}`}
-                        className="card-img-top"
+                        className={`model-img ${
+                          isHovered && model.id === modelId && "scale-up"
+                        }`}
                         alt={`${model.name} picture `}
+                        onMouseOver={() => handleMouseOver(model.id)}
+                        onMouseOut={handleMouseOut}
                       />
                     )}
                   </td>
