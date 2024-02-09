@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import CarsPage from "./pages/CarsPage/CarsPage";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderComplete from "./pages/OrderComplete/OrderComplete";
 import CarDetail from "./pages/CarDetail/CarDetail";
@@ -13,6 +12,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./routes/AdminRoute";
+import CarsPage from "./pages/CarsPage/CarsPage";
 
 function App() {
   return (

@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Data
 public class CreateCarRequest {
 
-    @Positive(message = "{rentACar.constraint.kilometer.positive}")
     private int kilometer;
 
     @Pattern(regexp = "^(0[1-9]|[1-7][0-9]|8[01])(([A-Z])(\\d{4,5})|([A-Z]{2})(\\d{3,4})|([A-Z]{3})(\\d{2,3}))$", message = "{rentACar.constraint.plate.pattern}")

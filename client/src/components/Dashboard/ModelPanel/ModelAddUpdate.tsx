@@ -40,7 +40,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
           image: image,
         });
       } else {
-        response = await axiosInstance.post(`/v1/models`,  {
+        response = await axiosInstance.post(`/v1/models`, {
           ...values,
           image: image,
         });
@@ -54,7 +54,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
         id: 1,
         name: "",
         brandName: "",
-        image:"",
+        image: "",
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -75,7 +75,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
     model || {
       id: 1,
       name: "",
-      brandName:"",
+      brandName: "",
       image: "",
     }
   );
@@ -99,7 +99,10 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
       fileReader.readAsDataURL(file);
     }
   };
-
+  const handleChangeInput = (handleChange: any, e: any, values: any) => {
+    handleChange(e);
+    setInitialValues({ ...values, [e.target.name]: e.target.value });
+  };
   useEffect(() => {
     fetchBrands();
   }, []);
@@ -134,6 +137,9 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
                   label="Brand Name"
                   list={brandList}
                   name="brandName"
+                  onChange={(e: any) => {
+                    handleChangeInput(handleChange, e, values);
+                  }}
                 />
               </div>
 

@@ -38,7 +38,7 @@ const CarsPage = (props: Props) => {
   const [sortType, setSortType] = useState<string>("");
   const [menuIsOpened, setMenuIsOpened] = useState<boolean>(false);
 
-  const [initialValues, setInitialValues] = useState<CarFilterKeys>({
+  const [initialValues, setInitialValues] = useState({
     firstPrice: 0,
     secondPrice: 0,
     firstModelYear: 0,
@@ -71,6 +71,14 @@ const CarsPage = (props: Props) => {
 
       setFilteredCarList(response.data);
       console.log(response);
+      setInitialValues({
+        firstPrice: 0,
+        secondPrice: 0,
+        firstModelYear: 0,
+        secondModelYear: 0,
+        modelName: "",
+        brandName: "",
+      });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
@@ -118,12 +126,15 @@ const CarsPage = (props: Props) => {
     // Seçenek değiştiğinde sıralama tipini güncelle
     setSortType(event.target.value);
   };
+  const onChangeInput = (handleChange: any, e: any, values: any) => {
+    handleChange(e);
+    setInitialValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="container-fluid  d-flex ">
       {/* Aside-MD-Start */}
       <div className="col-3 d-none d-md-flex  justify-content-center">
-        //TODO : Formik beklenen şekilde çalışmıyor
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -133,25 +144,57 @@ const CarsPage = (props: Props) => {
             <Form className="  w-75">
               <div>
                 <div className="col">
-                  <FormikInput label="firstPrice" name="firstPrice" />
+                  <FormikInput
+                    value={initialValues.firstPrice}
+                    label="firstPrice"
+                    name="firstPrice"
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
+                  />
                 </div>
 
                 <div className="col">
-                  <FormikInput label="secondPrice" name="secondPrice" />
+                  <FormikInput
+                    value={initialValues.secondPrice}
+                    label="secondPrice"
+                    name="secondPrice"
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
+                  />
                 </div>
 
                 <div className="col">
-                  <FormikInput label="firstModelYear" name="firstModelYear" />
+                  <FormikInput
+                    value={initialValues.firstModelYear}
+                    label="firstModelYear"
+                    name="firstModelYear"
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
+                  />
                 </div>
 
                 <div className="col">
-                  <FormikInput label="secondModelYear" name="secondModelYear" />
+                  <FormikInput
+                    value={initialValues.secondModelYear}
+                    label="secondModelYear"
+                    name="secondModelYear"
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
+                  />
                 </div>
                 <div>
                   <FormikSelect
                     label="Models"
                     list={carList}
                     name="modelName"
+                    value={initialValues.modelName}
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
                   />
                 </div>
                 <div>
@@ -159,6 +202,10 @@ const CarsPage = (props: Props) => {
                     label="Brands"
                     list={carList}
                     name="brandName"
+                    value={initialValues.brandName}
+                    onChange={(e: any) => {
+                      onChangeInput(handleChange, e, values);
+                    }}
                   />
                 </div>
               </div>

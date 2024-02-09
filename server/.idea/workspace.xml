@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/components/CarCard/CarCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/CarCard/CarCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/CarPlaceholder/CarPlaceholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/CarPlaceholder/CarPlaceholder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/CarPanel/CarPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/ModelPanel/ModelPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/RentalPanel/RentalPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/UserPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/userPanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/UserPanel/userPanel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/DatePicker/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/DatePicker/DatePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SearchKey/SearchKey.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SearchKey/SearchKey.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SearchKey/searchKey.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SearchKey/searchKey.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Admin/Admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/requests/CreateCarRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,14 +25,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Pair3Application.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Pair3Application.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

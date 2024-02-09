@@ -19,17 +19,17 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   const [modelList, setModelList] = useState<ModelType[]>([]);
   const [colorList, setColorList] = useState<ColorModel[]>([]);
   const [image, setImage] = useState<any>();
-  const [locations, setLocations] = useState<LocationModel[]>([])
-  const [status, setStatus] = useState([{status:"MAİNTENANCE"},{status:"AVAILABLE"}])
+  const [locations, setLocations] = useState<LocationModel[]>([]);
+  const [status, setStatus] = useState([
+    { status: "MAİNTENANCE" },
+    { status: "AVAILABLE" },
+  ]);
 
-
-  
   const handleUpdateCar = async (
     values: CarModel,
     { setErrors }: FormikHelpers<CarModel>
   ) => {
     console.log(values);
-
     try {
       let response;
       if (urlType === "put") {
@@ -56,8 +56,8 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
         plate: "",
         year: 0,
         image: "",
-        location:"",
-        status:""
+        location: "",
+        status: "",
       });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
@@ -83,7 +83,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  
+
   const fetchLocations = async () => {
     try {
       const response = await axiosInstance.get("v1/locations");
@@ -110,8 +110,8 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       plate: "",
       year: 0,
       image: "",
-      location:"",
-      status:""
+      location: "",
+      status: "",
     }
   );
 
@@ -143,6 +143,10 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       fileReader.readAsDataURL(file);
     }
   };
+  const handleChangeInput = (handleChange: any, e: any, values: any) => {
+    handleChange(e);
+    setInitialValues({ ...values, [e.target.name]: e.target.value });
+  };
   useEffect(() => {
     fetchModels();
     fetchColors();
@@ -167,6 +171,9 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   label="Model Name"
                   list={modelList}
                   name="modelName"
+                  onChange={(e: any) => {
+                    handleChangeInput(handleChange, e, values);
+                  }}
                 />
               </div>
 
@@ -180,10 +187,12 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   name="kilometer"
                 />
               </div>
-              
-              
+
               <div>
                 <FormikSelect
+                  onChange={(e: any) => {
+                    handleChangeInput(handleChange, e, values);
+                  }}
                   label="Color"
                   list={colorList}
                   name="colorName"
@@ -195,14 +204,19 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   list={locations}
                   name="name"
                   targetName="location"
+                  onChange={(e: any) => {
+                    handleChangeInput(handleChange, e, values);
+                  }}
                 />
               </div>
               <div>
                 <FormikSelect
+                  onChange={(e: any) => {
+                    handleChangeInput(handleChange, e, values);
+                  }}
                   label="Status"
                   list={status}
                   name="status"
-                  
                 />
               </div>
 
@@ -246,7 +260,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   type="file"
                 />
               </div>
-
 
               <div className="col  d-flex justify-content-between">
                 <button

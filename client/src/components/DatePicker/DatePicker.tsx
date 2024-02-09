@@ -80,6 +80,10 @@ const DatePicker = (props: Props) => {
       console.log(error);
     }
   };
+  const handleChangeInput = (handleChange: any, e: any, values: any) => {
+    handleChange(e);
+    setInitialValues({ ...values, [e.target.name]: e.target.value });
+  };
   useEffect(() => {
     fetchLocations();
   }, []);
@@ -91,7 +95,7 @@ const DatePicker = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={handleOnSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, handleChange, values }) => (
           <Form className="container mt-4">
             <div className="row">
               <FormikSelect
@@ -99,6 +103,9 @@ const DatePicker = (props: Props) => {
                 list={locations}
                 name="name"
                 targetName="pickUpLocation"
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
               />
 
               <FormikSelect
@@ -106,6 +113,9 @@ const DatePicker = (props: Props) => {
                 list={locations}
                 name="name"
                 targetName="dropOffLocation"
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
               />
               <FormikInput
                 label={t("startdate")}
