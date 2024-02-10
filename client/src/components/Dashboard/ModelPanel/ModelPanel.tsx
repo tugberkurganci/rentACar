@@ -11,8 +11,6 @@ type Props = {};
 
 const ModelPanel = (props: Props) => {
   const [modelList, setModelList] = useState<ModelType[]>([]);
-  const [modelId, setModelId] = useState<number>(0);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
   const [editable, setEditable] = useState<boolean>(false);
   const [addable, setAddable] = useState<boolean>(false);
@@ -34,25 +32,19 @@ const ModelPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  //TODO: Confirm ekle
   const handleDeleteModel = async (model: ModelType) => {
-    try {
-      const response = await axiosInstance.delete(`/v1/models/${model.id}`);
-      toast.success("Model deleted successfully");
-      fetchModels();
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
+    const confirmation = confirm("Are you sure you want to delete?");
+    if (confirmation) {
+      try {
+        const response = await axiosInstance.delete(`/v1/models/${model.id}`);
+        toast.success("Model deleted successfully");
+        fetchModels();
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      }
     }
   };
-  const handleMouseOver = (id: number) => {
-    setModelId(id);
-    setIsHovered(true);
-  };
 
-  const handleMouseOut = () => {
-    setModelId(0);
-    setIsHovered(false);
-  };
   useEffect(() => {
     fetchModels();
   }, [pageable, addable, editable]);
@@ -166,12 +158,8 @@ const ModelPanel = (props: Props) => {
                     {model.image && (
                       <img
                         src={`/assets/${"model"}/${model.image}`}
-                        className={`model-img ${
-                          isHovered && model.id === modelId && "scale-up"
-                        }`}
+                        className={`model-img`}
                         alt={`${model.name} picture `}
-                        onMouseOver={() => handleMouseOver(model.id)}
-                        onMouseOut={handleMouseOut}
                       />
                     )}
                   </td>

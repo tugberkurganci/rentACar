@@ -73,14 +73,16 @@ const RentalPanel = (props: Props) => {
       }
     }
   };
-  //TODO: Confirm ekle
   const handleDeleteRental = async (car: RentalModel) => {
-    try {
-      const response = await axiosInstance.delete(`/v1/rentals/${car.id}`);
-      toast.success("Rental deleted successfully");
-      fetchRentals();
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
+    const confirmation = confirm("Are you sure you want to delete?");
+    if (confirmation) {
+      try {
+        const response = await axiosInstance.delete(`/v1/rentals/${car.id}`);
+        toast.success("Rental deleted successfully");
+        fetchRentals();
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      }
     }
   };
   const [initialValues, setInitialValues] = useState<RentalModel>({

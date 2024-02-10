@@ -38,25 +38,19 @@ const CarPanel = (props: Props) => {
       toast.error(error?.response.data.message);
     }
   };
-  //TODO: Confirm ekle
   const handleDeleteCar = async (car: CarModel) => {
-    try {
-      const response = await axiosInstance.delete(`/v1/cars/${car.id}`);
-      toast.success("Car deleted successfully");
-      fetchCars();
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
+    const confirmation = confirm("Are you sure you want to delete?");
+    if (confirmation) {
+      try {
+        const response = await axiosInstance.delete(`/v1/cars/${car.id}`);
+        toast.success("Car deleted successfully");
+        fetchCars();
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      }
     }
   };
-  const handleMouseOver = (id: number) => {
-    setCarId(id);
-    setIsHovered(true);
-  };
 
-  const handleMouseOut = () => {
-    setCarId(0);
-    setIsHovered(false);
-  };
   useEffect(() => {
     fetchCars();
   }, [pageable, addable, editable]);
@@ -278,15 +272,10 @@ const CarPanel = (props: Props) => {
                 ? searchedCarList.map((car) => (
                     <tr className="w-100 " key={car.id}>
                       <th scope="row">{car.id}</th>
-                      <td className="center-text" width={200}>
+                      <td className="center-text " width={150}>
                         <img
-                          id="car-img"
-                          className={`car-img ${
-                            isHovered && car.id === carId && "scale-up"
-                          }`}
+                          className={`car-img`}
                           src={`/assets/${"car"}/${car.image}`}
-                          onMouseOver={() => handleMouseOver(car.id)}
-                          onMouseOut={handleMouseOut}
                         />
                       </td>
                       <td className="center-text">{car.modelName}</td>
@@ -319,14 +308,10 @@ const CarPanel = (props: Props) => {
                 : carList.map((car) => (
                     <tr className="w-100 " key={car.id}>
                       <th scope="row">{car.id}</th>
-                      <td className="d-flex " width={150}>
+                      <td className="center-text " width={150}>
                         <img
-                          className={`car-img ${
-                            isHovered && car.id === carId && "scale-up"
-                          }`}
+                          className={`car-img `}
                           src={`/assets/${"car"}/${car.image}`}
-                          onMouseOver={() => handleMouseOver(car.id)}
-                          onMouseOut={handleMouseOut}
                         />
                       </td>
                       <td className="center-text">{car.modelName}</td>

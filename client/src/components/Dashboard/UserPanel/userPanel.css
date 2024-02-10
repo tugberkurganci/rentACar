@@ -3,6 +3,12 @@
     height: auto;
     max-height: 50px;
     display: block;
+    transition: transform 0.7s ease;
+}
+
+#user-img:hover {
+    border: 1px solid #197BBD;
+    transform: scaleX(8) scaleY(10) translateX(50px) translateY(10px);
 }
 
 .center-text {
@@ -12,10 +18,4 @@
 .b-bottom {
     border-bottom: 2px black solid;
     border-bottom-left-radius: 5px;
-}
-
-.scale-up {
-    border-radius: 1px;
-    transform: scaleX(8) scaleY(10) translateX(50px);
-    transition: transform 0.3s ease;
 }

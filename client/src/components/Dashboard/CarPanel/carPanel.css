@@ -3,14 +3,14 @@
     max-height: 50px;
     height: auto;
     display: block;
+    transition: transform 0.7s ease;
+}
+
+.car-img:hover {
+    border: 1px solid #197BBD;
+    transform: scaleX(8) scaleY(10) translateX(50px) translateY(10px);
 }
 
 .center-text {
     vertical-align: middle;
-}
-
-.scale-up {
-    border-radius: 1px;
-    transform: scaleX(8) scaleY(10) translateX(50px);
-    transition: transform 0.3s ease;
 }
