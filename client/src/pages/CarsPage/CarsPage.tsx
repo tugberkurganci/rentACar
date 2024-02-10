@@ -386,7 +386,7 @@ const CarsPage = (props: Props) => {
                           className="btn btn-primary "
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? "filtrele..." : "filtrele"}
+                          {isSubmitting ? `${t("filtering")}` : `${t("filter")}`}
                         </button>
                       </div>
                     </Form>
@@ -397,7 +397,7 @@ const CarsPage = (props: Props) => {
             {/* Aside-Mobile-End */}
             <div className="d-flex flex-column  justify-content-end align-items-end ">
               <label htmlFor="sortType" className="form-label">
-                Sırala:
+              {t("sort")}
               </label>
               <select
                 id="sortType"
@@ -407,10 +407,10 @@ const CarsPage = (props: Props) => {
                 onChange={handleSortTypeChange}
               >
                 <option value="" className="text-muted">
-                  Seçiniz
+                {t("choose")}
                 </option>
-                <option value="price-asc">Artan Fiyat</option>
-                <option value="price-desc">Azalan Fiyat</option>
+                <option value="price-asc">{t("ascprice")}</option>
+                <option value="price-desc">{t("descprice")}</option>
               </select>
             </div>
           </div>

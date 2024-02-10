@@ -98,14 +98,14 @@ const RentalPanel = (props: Props) => {
   });
 
   const validationSchema = Yup.object({
-    carId: Yup.number().required("Car ID is required"),
-    endDate: Yup.string().required("End Date is required"),
+    carId: Yup.number().required(`${t("veri")}`),
+    endDate: Yup.string().required(`${t("veri")}`),
     endKilometer: Yup.number().nullable(),
     returnDate: Yup.string().nullable(),
-    startKilometer: Yup.number().required("Start Kilometer is required"),
-    startDate: Yup.string().required("Start Date is required"),
-    totalPrice: Yup.number().required("Total Price is required"),
-    userId: Yup.number().required("User ID is required"),
+    startKilometer: Yup.number().required(`${t("veri")}`),
+    startDate: Yup.string().required(`${t("veri")}`),
+    totalPrice: Yup.number().required(`${t("veri")}`),
+    userId: Yup.number().required(`${t("veri")}`),
   });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
     handleChange(e);
@@ -125,7 +125,7 @@ const RentalPanel = (props: Props) => {
           {/* Data-section-Mobile-Start */}
           <div className="d-md-none col-12">
             {rentalList.map((rental) => (
-              <div className="card w-100 mb-3">
+              <div className="card w-100 mb-3" key={rental.id}>
                 <div className="card-body ">
                   <div className="border rounded mb-3 p-3">
                     <div className="fs-2 b-bottom">

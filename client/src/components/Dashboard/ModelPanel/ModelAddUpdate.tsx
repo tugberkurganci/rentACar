@@ -81,8 +81,8 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
   );
 
   const validationSchema = Yup.object({
-    name: Yup.string().required(" is required"),
-    brandName: Yup.string().required(" is required"),
+    name: Yup.string().required(`${t("veri")}`),
+    brandName: Yup.string().required(`${t("veri")}`),
   });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
     if (e.target.files === null) {

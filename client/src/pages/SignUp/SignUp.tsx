@@ -34,12 +34,12 @@ const SignUp = (props: Props) => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    name: Yup.string().required("Name is required"),
-    surname: Yup.string().required("Name is required"),
-    birthDate: Yup.string().required("Birth date is required"),
-    password: Yup.string().required("Password is required"),
+      .email(`${t("mailformat")}`)
+      .required(`${t("veri")}`),
+    name: Yup.string().required(`${t("veri")}`),
+    surname: Yup.string().required(`${t("veri")}`),
+    birthDate: Yup.string().required(`${t("veri")}`),
+    password: Yup.string().required(`${t("veri")}`),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), undefined], "Passwords must match")
       .required("Confirm Password is required"),

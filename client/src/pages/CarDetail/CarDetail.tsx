@@ -34,11 +34,10 @@ const CarDetail = (props: Props) => {
       {!isLoading && (
         <div className="  row  justify-content-center align-items-center">
           <div className="col-12 col-md-6 ">
-            <img
-              className="img-fluid rounded"
-              src="https://www.taxi-times.com/wp-content/uploads/2020/08/2020-08-11-Togg-kommt-elektrisch-nach-Deutschland-Foto-TOGG-750x531.jpg"
-              alt=""
-            />
+          <img
+                          className={`car-img`}
+                          src={`/assets/${"car"}/${car?.image}`}
+                        />
           </div>
           <div className="col-12 col-md-6 border   rounded border-3 p-md-5   border-warning ">
             <div className="text-center fs-1 text-capitalize fw-bolder">

@@ -28,9 +28,9 @@ const DatePicker = (props: Props) => {
   });
 
   const validationSchema = Yup.object({
-    pickUpLocation: Yup.string().required(),
-    startDate: Yup.string().required(),
-    endDate: Yup.string().required(),
+    pickUpLocation: Yup.string().required(`${t("veri")}`),
+    startDate: Yup.string().required(`${t("veri")}`),
+    endDate: Yup.string().required(`${t("veri")}`),
   });
   const handleOnSubmit = async (
     values: CarSearchValues,
@@ -99,7 +99,7 @@ const DatePicker = (props: Props) => {
           <Form className="container mt-4">
             <div className="row">
               <FormikSelect
-                label="pickUpLocation"
+                label={t("pickuploc")}
                 list={locations}
                 name="name"
                 targetName="pickUpLocation"
@@ -109,7 +109,7 @@ const DatePicker = (props: Props) => {
               />
 
               <FormikSelect
-                label="dropOffLocation"
+                label={t("droppoffloc")}
                 list={locations}
                 name="name"
                 targetName="dropOffLocation"

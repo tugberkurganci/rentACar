@@ -84,7 +84,7 @@ const CarPanel = (props: Props) => {
             </div>
             {searchable
               ? searchedCarList.map((car) => (
-                  <div className="card w-100 mb-3">
+                  <div className="card w-100 mb-3" key={car.id}>
                     {car.image && (
                       <img
                         src={`/assets/${"car"}/${car.image}`}
@@ -152,7 +152,7 @@ const CarPanel = (props: Props) => {
                   </div>
                 ))
               : carList.map((car) => (
-                  <div className="card w-100 mb-3">
+                  <div className="card w-100 mb-3" key={car.id}>
                     {car.image && (
                       <img
                         src={`/assets/${"car"}/${car.image}`}

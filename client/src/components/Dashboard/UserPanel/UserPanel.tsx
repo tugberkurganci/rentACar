@@ -79,7 +79,7 @@ const UserPanel = (props: Props) => {
           <div className="d-md-none justify-content-between align-items-center d-flex  flex-column ">
             {searchable
               ? searchedUserList.map((user) => (
-                  <div className="card w-100 mb-3">
+                  <div className="card w-100 mb-3" key={user.id}>
                     {user.image && (
                       <img
                         src={`/assets/${"user"}/${user.image}`}
@@ -128,7 +128,7 @@ const UserPanel = (props: Props) => {
                   </div>
                 ))
               : userList.map((user) => (
-                  <div className="card w-100 mb-3">
+                  <div className="card w-100 mb-3" key={user.id}>
                     {user.image && (
                       <img
                         src={`/assets/${"user"}/${user.image}`}

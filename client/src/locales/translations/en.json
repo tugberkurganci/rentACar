@@ -81,5 +81,12 @@
   "filtering":"Filtering",
   "choose":"Select",
   "descprice":"Decreasing Price",
-  "ascprice":"Asc Price"
+  "ascprice":"Asc Price",
+  "pickuploc":"Pickup Location",
+  "droppoffloc":"Dropoff Location ",
+  "sort":"Sort",
+  "veri":"This Is Required",
+  "sıfır":"Must Greater Than 0",
+  "mailformat":"Invalid email format"
+
 }

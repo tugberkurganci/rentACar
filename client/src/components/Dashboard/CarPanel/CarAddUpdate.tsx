@@ -116,16 +116,16 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   );
 
   const validationSchema = Yup.object({
-    modelName: Yup.string().required("Model Name is required"),
-    colorName: Yup.string().required("Color Name is required"),
+    modelName: Yup.string().required(`${t("veri")}`),
+    colorName: Yup.string().required(`${t("veri")}`),
     dailyPrice: Yup.number()
-      .moreThan(0, "Daily Price must be greater than 0")
-      .required("Daily Price is required"),
-    kilometer: Yup.number().required("Kilometer is required"),
-    plate: Yup.string().required("Plate is required"),
+      .moreThan(0, `${t("sıfır")}`)
+      .required(`${t("veri")}`),
+    kilometer: Yup.number().required(`${t("veri")}`),
+    plate: Yup.string().required(`${t("veri")}`),
     year: Yup.number()
-      .moreThan(0, "Year must be greater than 0")
-      .required("Year is required"),
+      .moreThan(0, `${t("sıfır")}`)
+      .required(`${t("veri")}`),
   });
   const onChangeInput = (handleChange: any, e: any, values: any) => {
     if (e.target.files === null) {

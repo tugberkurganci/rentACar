@@ -67,7 +67,7 @@ const ModelPanel = (props: Props) => {
               </button>
             </div>
             {modelList.map((model) => (
-              <div className="card w-100 mb-3">
+              <div className="card w-100 mb-3" key={model.id}>
                 {model.image && (
                   <img
                     src={`/assets/model/${model.image}`}

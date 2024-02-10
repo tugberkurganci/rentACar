@@ -80,7 +80,13 @@
   "filtering":"Filtreleniyor",
   "choose":"Seçiniz",
   "descprice":"Azalan Fiyat",
-  "ascprice":"Artan Fiyat"
+  "ascprice":"Artan Fiyat",
+  "pickuploc":"Alış Adresi",
+  "droppoffloc":"Bırakış Adresi ",
+  "sort":"Sırala",
+  "veri":"Veri Girmeniz Gerekli",
+  "sıfır":"Sıfırdan Büyük Olmalı",
+  "mailformat":"Geçersiz email format"
 
 
   

@@ -32,7 +32,7 @@ const SignIn = (props: Props) => {
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string().required(`${t("veri")}`),
   });
 
   const [responseAlert, setResponseAlert] = useState<string | null>(null);

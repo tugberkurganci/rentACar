@@ -66,11 +66,11 @@ const UserUpdate = ({ editable, user }: Props) => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    name: Yup.string().required("Name is required"),
-    surname: Yup.string().required("Surname is required"),
-    birthDate: Yup.date().required("BirthDate is required"),
+      .email(`${t("mailformat")}`)
+      .required(`${t("veri")}`),
+    name: Yup.string().required(`${t("veri")}`),
+    surname: Yup.string().required(`${t("veri")}`),
+    birthDate: Yup.date().required(`${t("veri")}`),
   });
 
   const onChangeInput = (handleChange: any, e: any, values: any) => {

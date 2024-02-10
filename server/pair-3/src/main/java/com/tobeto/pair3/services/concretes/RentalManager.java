@@ -83,7 +83,7 @@ public class RentalManager implements RentalService {
         ifRequestTotalPriceNotNullShouldUpdateTotalPrice(rentalToUpdate, updateRentalRequest);
         ifRequestUserIdNotNullShouldUpdateUserId(rentalToUpdate, updateRentalRequest);
         ifRequestCarIdNotNullShouldUpdateCar(rentalToUpdate, updateRentalRequest);
-        checkIsCarExist(rentalToUpdate.getCar().getId());
+        checkIsCarExist(rentalToUpdate);
         checkIsUserExists(rentalToUpdate.getUser().getId());
         rentalRepository.save(rentalToUpdate);
     }
@@ -170,7 +170,7 @@ public class RentalManager implements RentalService {
     }
 
     private void ifRequestEndKilometerNotNullShouldUpdateRental(Rental rentalToUpdate, UpdateRentalRequest updateRentalRequest) {
-        if (updateRentalRequest.getEndKilometer() != 0) {
+        if (updateRentalRequest.getEndKilometer() != 0 && updateRentalRequest.getCarId()!=0) {
             Car car = carService.getOriginalCarById(updateRentalRequest.getCarId());
             if (car.getKilometer() < updateRentalRequest.getEndKilometer()) {
                 UpdateCarRequest updateCarRequest = UpdateCarRequest
@@ -182,6 +182,8 @@ public class RentalManager implements RentalService {
                         .kilometer(updateRentalRequest.getEndKilometer())
                         .modelName(car.getModel().getName())
                         .plate(car.getPlate())
+                        .location(car.getCurrentLocation().getName())
+                        .status(car.getStatus().name())
                         .build();
                 carService.update(updateCarRequest);
                 rentalToUpdate.setEndKilometer(updateRentalRequest.getEndKilometer());
@@ -205,8 +207,9 @@ public class RentalManager implements RentalService {
         }
     }
 
-    private void checkIsCarExist(int carId) {
-        if (!carService.existsById(carId)) {
+    private void checkIsCarExist(Rental  rental) {
+        if(rental.getCar()==null)return;
+        if (!carService.existsById(rental.getCar().getId()) ) {
             throw new BusinessException((Messages.getMessageForLocale("rentACar.exception.rental.car.notfound", LocaleContextHolder.getLocale())));
         }
     }
