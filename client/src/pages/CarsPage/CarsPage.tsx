@@ -49,10 +49,10 @@ const CarsPage = (props: Props) => {
     brandName: "",
   });
   const validationSchema = Yup.object({
-    firstPrice: Yup.number().min(-1, "Price must be greater than -1"),
-    secondPrice: Yup.number().min(-1, "Price must be greater than -1"),
-    firstModelYear: Yup.number().min(-1, "Year must be greater than -1"),
-    secondModelYear: Yup.number().min(-1, "Year must be greater than -1"),
+    firstPrice: Yup.number().min(-1, `${t("priceyup")}`),
+    secondPrice: Yup.number().min(-1, `${t("priceyup")}`),
+    firstModelYear: Yup.number().min(-1, `${t("yearyup")}`),
+    secondModelYear: Yup.number().min(-1, `${t("yearyup")}`),
     modelName: Yup.string().nullable(),
     brandName: Yup.string().nullable(),
   });
@@ -176,7 +176,7 @@ const CarsPage = (props: Props) => {
                 <div className="col">
                   <FormikInput
                     value={initialValues.firstPrice}
-                    label="firstPrice"
+                    label={t("firstPrice")}
                     name="firstPrice"
                     onChange={(e: any) => {
                       onChangeInput(handleChange, e, values);
@@ -187,7 +187,7 @@ const CarsPage = (props: Props) => {
                 <div className="col">
                   <FormikInput
                     value={initialValues.secondPrice}
-                    label="secondPrice"
+                    label={t("secondPrice")}
                     name="secondPrice"
                     onChange={(e: any) => {
                       onChangeInput(handleChange, e, values);
@@ -198,7 +198,7 @@ const CarsPage = (props: Props) => {
                 <div className="col">
                   <FormikInput
                     value={initialValues.firstModelYear}
-                    label="firstModelYear"
+                    label={t("firstModelYear")}
                     name="firstModelYear"
                     onChange={(e: any) => {
                       onChangeInput(handleChange, e, values);
@@ -209,7 +209,7 @@ const CarsPage = (props: Props) => {
                 <div className="col">
                   <FormikInput
                     value={initialValues.secondModelYear}
-                    label="secondModelYear"
+                    label={t("secondModelYear")}
                     name="secondModelYear"
                     onChange={(e: any) => {
                       onChangeInput(handleChange, e, values);
@@ -262,7 +262,7 @@ const CarsPage = (props: Props) => {
                   className="btn btn-primary "
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "filtrele..." : "filtrele"}
+                  {isSubmitting ? `${t("filtering")}` :`${t("filter")}` }
                 </button>
               </div>
             </Form>
@@ -301,7 +301,7 @@ const CarsPage = (props: Props) => {
                         <div className="col">
                           <FormikInput
                             value={initialValues.firstPrice}
-                            label="firstPrice"
+                            label={t("firstPrice")}
                             name="firstPrice"
                             onChange={(e: any) => {
                               onChangeInput(handleChange, e, values);
@@ -312,7 +312,7 @@ const CarsPage = (props: Props) => {
                         <div className="col">
                           <FormikInput
                             value={initialValues.secondPrice}
-                            label="secondPrice"
+                            label={t("secondPrice")}
                             name="secondPrice"
                             onChange={(e: any) => {
                               onChangeInput(handleChange, e, values);
@@ -323,7 +323,7 @@ const CarsPage = (props: Props) => {
                         <div className="col">
                           <FormikInput
                             value={initialValues.firstModelYear}
-                            label="firstModelYear"
+                            label={t("firstModelYear")}
                             name="firstModelYear"
                             onChange={(e: any) => {
                               onChangeInput(handleChange, e, values);
@@ -334,7 +334,7 @@ const CarsPage = (props: Props) => {
                         <div className="col">
                           <FormikInput
                             value={initialValues.secondModelYear}
-                            label="secondModelYear"
+                            label={t("secondModelYear")}
                             name="secondModelYear"
                             onChange={(e: any) => {
                               onChangeInput(handleChange, e, values);

@@ -69,7 +69,19 @@
   ,
   "picture":"Resim",
   "search":"Ara",
-  "location":"Lokasyon"
+  "location":"Lokasyon",
+  "priceyup":"Fiyat -1 den büyük olmalı",
+  "yearyup":"Model yılı -1 den büyük olmalı",
+  "firstPrice":"Minimum Fiyat",
+  "secondPrice":"Maximum Fiyat",
+  "firstModelYear":"Minimum Yıl",
+  "secondModelYear":"Maximum Yıl",
+  "filter":"Filtrele",
+  "filtering":"Filtreleniyor",
+  "choose":"Seçiniz",
+  "descprice":"Azalan Fiyat",
+  "ascprice":"Artan Fiyat"
+
 
   
   

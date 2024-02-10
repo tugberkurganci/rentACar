@@ -13,6 +13,7 @@ import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,16 +26,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
-public class CarManager implements CarService {
-    private final CarRepository carRepository;
-    private final ModelService modelService;
-    private final ColorService colorService;
-    private final ModelMapperService mapperService;
 
-    private final RentalRules rentalRules;
-    private final FileService fileService;
-    private  final LocationService locationService;
+public class CarManager implements CarService {
+    private  CarRepository carRepository;
+    private  ModelService modelService;
+    private  ColorService colorService;
+    private  ModelMapperService mapperService;
+
+    private  RentalRules rentalRules;
+    private  FileService fileService;
+    private   LocationService locationService;
+
+    public CarManager(CarRepository carRepository, @Lazy ModelService modelService, ColorService colorService, ModelMapperService mapperService, RentalRules rentalRules, FileService fileService, LocationService locationService) {
+        this.carRepository = carRepository;
+        this.modelService = modelService;
+        this.colorService = colorService;
+        this.mapperService = mapperService;
+        this.rentalRules = rentalRules;
+        this.fileService = fileService;
+        this.locationService = locationService;
+    }
 
 
     public void add(CreateCarRequest createCarRequest) {

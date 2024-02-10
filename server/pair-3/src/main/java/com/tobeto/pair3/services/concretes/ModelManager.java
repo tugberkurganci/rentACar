@@ -4,10 +4,14 @@ import com.tobeto.pair3.core.exception.BusinessException;
 import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.Brand;
+import com.tobeto.pair3.entities.Car;
 import com.tobeto.pair3.entities.Model;
+import com.tobeto.pair3.entities.Rental;
 import com.tobeto.pair3.repositories.ModelRepository;
 import com.tobeto.pair3.services.abstracts.BrandService;
+import com.tobeto.pair3.services.abstracts.CarService;
 import com.tobeto.pair3.services.abstracts.ModelService;
+import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.dtos.requests.CreateModelRequest;
 import com.tobeto.pair3.services.dtos.requests.GetBrandNameRequest;
 import com.tobeto.pair3.services.dtos.requests.GetBrandNameResponse;
@@ -34,6 +38,9 @@ public class ModelManager implements ModelService {
     private final BrandService brandService;
 
     private final FileService fileService;
+    private  final CarService carService;
+
+    private final RentalService rentalService;
 
     @Override
     public void add(CreateModelRequest createModelRequest) {
@@ -70,6 +77,15 @@ public class ModelManager implements ModelService {
     @Override
     public void delete(Integer id) {
         Model model = this.getOriginalModelById(id);
+        for (Car car:model.getCars()) {
+            List<Rental> rentals=carService.getOriginalCarById(car.getId()).getRentals();
+            for (Rental rental:rentals
+            ) {
+                rental.setCar(null);
+                rentalService.updateRental(rental);
+            }
+
+        }
         modelRepository.delete(model);
 
     }

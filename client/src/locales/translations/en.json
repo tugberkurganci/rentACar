@@ -70,5 +70,16 @@
   "addmodel":"Add Model",
   "picture":"Picture",
   "search":"Search",
-  "location":"Location"
+  "location":"Location",
+  "priceyup":"Price must be greater than -1",
+  "yearyup":"Year must be greater than -1",
+  "firstPrice":"Minimum Price",
+  "secondPrice":"Maximum Price",
+  "firstModelYear":"Minimum Year",
+  "secondModelYear":"Maximum Year",
+  "filter":"Filter",
+  "filtering":"Filtering",
+  "choose":"Select",
+  "descprice":"Decreasing Price",
+  "ascprice":"Asc Price"
 }

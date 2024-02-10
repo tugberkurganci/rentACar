@@ -27,4 +27,5 @@ public interface RentalService {
 
     Page<GetRentalResponse> getAllViaPage(Pageable pageable);
     public Rental getOriginalRentalById(int id) ;
+    void updateRental(Rental rental);
 }

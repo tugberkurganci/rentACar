@@ -230,6 +230,10 @@ public class RentalManager implements RentalService {
         Integer actualKilometers = response.getKilometer();
         rental.setStartKilometer(actualKilometers);
     }
+    @Override
+    public void updateRental(Rental rental) {
+        rentalRepository.save(rental);
+    }
 
 
 }

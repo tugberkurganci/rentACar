@@ -136,6 +136,7 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
                 <FormikSelect
                   label="Brand Name"
                   list={brandList}
+                  value={initialValues.brandName}
                   name="brandName"
                   onChange={(e: any) => {
                     handleChangeInput(handleChange, e, values);

@@ -56,7 +56,7 @@ public class Car {
     @JoinColumn(name = "car_status")
     private CarStatus status;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "car")
     private List<Rental> rentals;
 
     public Car(int id, Model model, Color color, int year, BigDecimal dailyPrice, String plate, int kilometer, String image) {

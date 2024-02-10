@@ -21,7 +21,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   const [image, setImage] = useState<any>();
   const [locations, setLocations] = useState<LocationModel[]>([]);
   const [status, setStatus] = useState([
-    { status: "MAİNTENANCE" },
+    { status: "MAINTENANCE" },
     { status: "AVAILABLE" },
   ]);
 
@@ -171,6 +171,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   label="Model Name"
                   list={modelList}
                   name="modelName"
+                  value={initialValues.modelName}
                   onChange={(e: any) => {
                     handleChangeInput(handleChange, e, values);
                   }}
@@ -195,6 +196,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   }}
                   label="Color"
                   list={colorList}
+                  value={initialValues.colorName}
                   name="colorName"
                 />
               </div>
@@ -202,6 +204,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                 <FormikSelect
                   label="Location"
                   list={locations}
+                  value={initialValues.location}
                   name="name"
                   targetName="location"
                   onChange={(e: any) => {
@@ -214,6 +217,7 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
                   onChange={(e: any) => {
                     handleChangeInput(handleChange, e, values);
                   }}
+                  value={initialValues.status}
                   label="Status"
                   list={status}
                   name="status"
