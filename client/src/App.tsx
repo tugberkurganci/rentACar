@@ -18,7 +18,7 @@ function App() {
   return (
     <div className=" d-flex flex-column">
       <Navbar />
-      <div className="  app d-flex justify-content-center mt-2 mb-5  ">
+      <div className="  app d-flex justify-content-center mt-2 mb-5  px-3 ">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/cars" element={<CarsPage />} />
@@ -47,7 +47,7 @@ function App() {
         </Routes>
       </div>
 
-      <div style={{ bottom: "0" }} className="position-fixed w-100 ">
+      <div style={{ bottom: "0" }} className="position-relative w-100 ">
         <Footer />
       </div>
     </div>

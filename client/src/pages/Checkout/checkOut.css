@@ -1,5 +1,13 @@
 .car-image img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    max-height: 400px;
+}
+
+
+.w-80 {
+    width: 80%;
 }
 
 
