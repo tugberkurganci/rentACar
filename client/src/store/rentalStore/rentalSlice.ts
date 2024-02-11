@@ -17,12 +17,19 @@ export const rentalSlice =createSlice({
             state.pickUpLocation=action.payload.pickUpLocation;
             state.dropOffLocation=action.payload.dropOffLocation;
         },
+        loadCar:(state,action)=>{
+
+            state.carId=action.payload;
+           
+        },
 
         deleteRental:(state)=>{
 
-            state.startDate="";
-            state.endDate="";
-          
+             state.startDate=""
+             state.endDate=""
+             state.pickUpLocation=""
+             state.dropOffLocation=""
+             state.carId=0
 
           
         },
@@ -38,4 +45,4 @@ export const rentalSlice =createSlice({
 
 
 
-export const{ loadRental,deleteRental}=rentalSlice.actions;
+export const{ loadRental,deleteRental,loadCar}=rentalSlice.actions;

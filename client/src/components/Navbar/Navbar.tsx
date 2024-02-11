@@ -10,6 +10,7 @@ import "./navbar.css";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../LanguageSelector/LanguageSelector";
 import { MdOutlineMenu } from "react-icons/md";
+import { deleteRental } from "../../store/rentalStore/rentalSlice";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -22,7 +23,8 @@ const Navbar = (props: Props) => {
 
   const authState = useSelector((store: any) => store.auth);
   const handleLogout = () => {
-    dispatch(logoutSuccess());
+    dispatch(logoutSuccess())
+    dispatch(deleteRental());
     navigate("/");
     setMenuIsOpened(false);
   };

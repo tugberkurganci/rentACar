@@ -45,7 +45,7 @@ export function storeRentalState(rental:any) {
 }
 
 export function loadRentalState() {
-  const defaultState = { startDate:"",endDate:""};
+  const defaultState = { startDate:"",endDate:"",dropOffLocation:"",pickUpLocation:""};
   const rentalStateInStorage = localStorage.getItem("rental");
   if (!rentalStateInStorage) return defaultState;
   try {

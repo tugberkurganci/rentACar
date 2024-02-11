@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CarModel } from "../../models/CarModel";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { CarSearchValues } from "../../models/CarSearchModel";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import CarImage from "../../components/CarImage/CarImage";
 import { toast } from "react-toastify";
 import Image from "../../components/CarImage/CarImage";
 import "./checkOut.css";
+import { deleteRental } from "../../store/rentalStore/rentalSlice";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ const Checkout = (props: Props) => {
   const [car, setCar] = useState<CarModel>();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch=useDispatch();
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const fetchCar = async () => {
@@ -40,6 +42,7 @@ const Checkout = (props: Props) => {
   }, []);
 
   const handleOnSubmit = async (values: CarSearchValues) => {
+    
     setIsLoading(true);
     try {
       const response = await axiosInstance.post("/v1/rentals", {
@@ -48,12 +51,14 @@ const Checkout = (props: Props) => {
         userId: authState.id,
       });
       //İf no response throw tastify error
+      dispatch(deleteRental())
       navigate(`/order-complete`, {
         state: { rental: response.data },
       });
     } catch (error: any) {
       toast.error(error?.response.data.message);
       console.log(error);
+      if(authState.id===0){navigate("/login")}
     } finally {
       setIsLoading(false);
     }

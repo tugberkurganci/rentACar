@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import axiosInstance from "../../utils/interceptors/axiosInterceptors";
 import { useTranslation } from "react-i18next";
+import "../../components/Dashboard/CarPanel/carPanel.css";
 
 type Props = {};
 
@@ -35,7 +36,7 @@ const CarDetail = (props: Props) => {
         <div className="  row  justify-content-center align-items-center">
           <div className="col-12 col-md-6 ">
           <img
-                          className={`car-img`}
+                          className={`img-fluid rounded`}
                           src={`/assets/${"car"}/${car?.image}`}
                         />
           </div>

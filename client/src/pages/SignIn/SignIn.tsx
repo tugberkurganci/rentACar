@@ -3,7 +3,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../../store/authStore/authSlice";
 import axiosInstance, {
   setToken,
@@ -22,6 +22,8 @@ const SignIn = (props: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const rentalState = useSelector((store: any) => store.rental);
+
 
   const initialValues: SignInFormValues = {
     email: "",
@@ -54,7 +56,9 @@ const SignIn = (props: Props) => {
       // Handle the response or redirect to another page if needed
       setResponseAlert("success"); // Set the alert type to success
 
-      navigate("/");
+      if(rentalState.carId>0){navigate(`/checkout/${rentalState.carId}`)}
+      else{navigate("/");}
+      
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =

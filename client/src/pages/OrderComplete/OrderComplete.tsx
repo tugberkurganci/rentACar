@@ -49,7 +49,7 @@ const OrderComplete = (props: Props) => {
         </div>
         <div className="btn btn-success mt-3 ">
           <Link to={"/"} className="text-light text-decoration-none">
-            {t("look")}
+           <div>{t("look")}</div> 
           </Link>
         </div>
       </div>
