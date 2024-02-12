@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import CarAddUpdate from "./CarAddUpdate";
 import SearchKey from "../../SearchKey/SearchKey";
 import "./carPanel.css";
+import { TbArrowBigRightLineFilled } from "react-icons/tb";
 type Props = {};
 
 const CarPanel = (props: Props) => {
@@ -58,11 +59,11 @@ const CarPanel = (props: Props) => {
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex flex-column overflow-x-scroll justify-content-between align-items center"
+      className="d-flex flex-column  overflow-x-scroll justify-content-between align-items center"
     >
       {!editable && !addable && (
         <div className=" w-100  d-flex flex-column justify-content-center align-itemse-center">
-          <div className="center-text mb-2">
+          <div className="d-flex d-md-block justify-content-center mb-2">
             <SearchKey
               setSearchedList={setSearchedCarList}
               setSearchedListPage={setSearchedCarListPage}
@@ -73,7 +74,7 @@ const CarPanel = (props: Props) => {
             />
           </div>
           {/* Data-section-Mobile-Start */}
-          <div className="d-md-none px-3 justify-content-between align-items-center d-flex  flex-column ">
+          <div className="d-md-none justify-content-between align-items-center d-flex  flex-column ">
             <div className="w-100 d-flex  justify-content-center my-2">
               <button
                 onClick={() => setAddable(!addable)}
@@ -93,42 +94,70 @@ const CarPanel = (props: Props) => {
                       />
                     )}
                     <div className="card-body ">
-                      <div className="border rounded mb-3 p-3">
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Car ID: </span>
-                          <span>{car.id}</span>
+                      <div className="d-flex flex-column gap-2 mb-2 fw-semibold">
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Car ID
+                          </span>
+
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.id}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Model name: </span>
-                          <span>{car.modelName}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Model name
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.modelName}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Kilometer: </span>
-                          <span>{car.kilometer}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Kilometer
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.kilometer}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Color: </span>
-                          <span>{car.colorName}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Color
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.colorName}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Daily price: </span>
-                          <span>{car.dailyPrice}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Daily price
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.dailyPrice}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Plate: </span>
-                          <span>{car.plate}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Plate
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.plate}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Model year: </span>
-                          <span>{car.year}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Model year
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.year}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Location: </span>
-                          <span>{car.location}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Location
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.location}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Status: </span>
-                          <span>{car.status}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Status
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.status}</span>
                         </div>
                       </div>
                       <div className="d-flex justify-content-between  px-3 t-3">
@@ -161,42 +190,69 @@ const CarPanel = (props: Props) => {
                       />
                     )}
                     <div className="card-body ">
-                      <div className="border rounded mb-3 p-3">
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Car ID: </span>
-                          <span>{car.id}</span>
+                      <div className="d-flex flex-column gap-2 mb-2 fw-semibold">
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Car ID
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.id}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Model name: </span>
-                          <span>{car.modelName}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Model name
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.modelName}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Kilometer: </span>
-                          <span>{car.kilometer}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Kilometer
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.kilometer}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Color: </span>
-                          <span>{car.colorName}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Color
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.colorName}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Daily price: </span>
-                          <span>{car.dailyPrice}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Daily price
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.dailyPrice}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Plate: </span>
-                          <span>{car.plate}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Plate
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.plate}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Model year: </span>
-                          <span>{car.year}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Model year
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.year}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Location: </span>
-                          <span>{car.location}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Location
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.location}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Status: </span>
-                          <span>{car.status}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                            Status
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-6">{car.status}</span>
                         </div>
                       </div>
                       <div className="d-flex justify-content-between px-3 t-3">

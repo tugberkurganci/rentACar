@@ -7,6 +7,7 @@ import { ModelType } from "../../../models/ModelType";
 import { useTranslation } from "react-i18next";
 import ModelAddUpdate from "./ModelAddUpdate";
 import "./modelPanel.css";
+import { TbArrowBigRightLineFilled } from "react-icons/tb";
 type Props = {};
 
 const ModelPanel = (props: Props) => {
@@ -76,22 +77,34 @@ const ModelPanel = (props: Props) => {
                   />
                 )}
                 <div className="card-body ">
-                  <div className="border rounded mb-3 p-3">
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Model ID: </span>
-                      <span>{model.id}</span>
+                  <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Model ID
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{model.id}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Model name: </span>
-                      <span>{model.name}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Model name
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{model.name}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Brand ID: </span>
-                      <span>{model.brandId}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Brand ID
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{model.brandId}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Brand name: </span>
-                      <span>{model.brandName}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Brand name
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{model.brandName}</span>
                     </div>
                   </div>
                   <div className="d-flex justify-content-between px-3 t-3">

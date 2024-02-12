@@ -14,3 +14,8 @@
 .center-text {
     vertical-align: middle;
 }
+
+.card img {
+    width: 100%;
+    height: 250px;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { RentalModel } from "../../models/RentalModel";
 import { GoTriangleDown } from "react-icons/go";
 import { InvoiceModel } from "../../models/InvoiceModel";
@@ -10,8 +10,8 @@ import { UserModel } from "../../models/UserModel";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { logoutSuccess } from "../../store/authStore/authSlice";
-import Image from "../../components/CarImage/CarImage";
 import UserUpdate from "../../components/Dashboard/UserPanel/UserUpdate";
+import { TbArrowBigRightLineFilled } from "react-icons/tb";
 
 type Props = {};
 
@@ -96,8 +96,8 @@ const Profile = (props: Props) => {
   };
 
   return (
-    <div className="container">
-      <div className="d-flex flex-column flex-md-row gap-3">
+    <div className="d-flex flex-column justify-content-start w-100  align-items-center">
+      <div className="d-flex justify-content-center w-100 flex-column flex-md-row gap-3">
         {/* Aside-Start */}
         <div className=" col-md-2  d-flex flex-row flex-md-column gap-1 ">
           <div
@@ -119,59 +119,82 @@ const Profile = (props: Props) => {
         </div>
         {/* Aside-End */}
         {/* Main-Start */}
-        <div className="col-12 col-md-9">
+        <div className="col-12 ps-4 d-flex col-md-9">
           {/* Rentals-Start */}
-          <div className={`${isClicked === 1 ? "d-flex" : "d-none"} row `}>
+          <div className={`${isClicked === 1 ? "d-flex" : "d-none"}  row `}>
             {rentals?.map((rental) => {
               return (
                 <div
                   key={rental.id}
-                  className="  row  justify-content-start align-items-center mb-3"
+                  className=" border d-flex border-3 row  bg-secondary-subtle rounded  justify-content-center align-items-center mb-3"
                 >
-                  <div className="col-12 col-md-6 border-bottom  w-100  border-start  rounded border-3 p-md-5   border-warning">
-                    <div className="text-center fs-1 text-capitalize fw-bolder">
-                      <span className="fw-bold">{t("rentalIdLabel")}</span>
-                      {rental?.id}
+                  <div className=" col-12 col-md-6   w-100  mb-3 d-flex flex-column gap-2 fw-semibold">
+                    <div className="text-center fs-1 text-capitalize d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span>{t("rentalIdLabel")}</span>
+                      <span>{rental?.id}</span>
                     </div>
-                    <div>
-                      <span className="fw-bold">{t("carIdLabel")}</span>
-                      {rental?.carId}
-                    </div>
-                    <div>
-                      <span className="fw-bold">{t("startDateLabel")}</span>
-                      {rental?.startDate}
-                    </div>
-                    <div>
-                      <span className="fw-bold">{t("endDateLabel")}</span>
-                      {rental?.endDate}
-                    </div>
-                    <div>
-                      <span className="fw-bold">{t("totalPriceLabel")}</span>
-                      {rental?.totalPrice}
-                    </div>
-                    <div>
-                      <span className="fw-bold">{t("returnDateLabel")}</span>
-                      {rental?.returnDate}
-                    </div>
-                    <div>
-                      <span className="fw-bold">
-                        {t("startKilometerLabel")}
+                    <div className="d-flex flex-row align-items-center gap-2  border-bottom border-dark rounded p-2">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("carIdLabel")}
                       </span>
-                      {rental?.startKilometer}
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.carId}</span>
+                    </div>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-dark rounded p-2">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("startDateLabel")}
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.startDate}</span>
+                    </div>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-dark rounded p-2">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("endDateLabel")}
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.endDate}</span>
+                    </div>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-dark rounded p-2">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("totalPriceLabel")}
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.totalPrice}</span>
                     </div>
                     <div
-                      className={`${rental.endKilometer ? "d-flex" : "d-none"}`}
+                      className={`${
+                        rental.returnDate ? "d-flex" : "d-none"
+                      } flex-row align-items-center gap-2 border-bottom border-dark rounded p-2`}
                     >
-                      <span className="fw-bold">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("returnDateLabel")}
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.returnDate}</span>
+                    </div>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-dark rounded p-2">
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
+                        {t("startKilometerLabel")}
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.startKilometer}</span>
+                    </div>
+                    <div
+                      className={`${
+                        rental.endKilometer ? "d-flex" : "d-none"
+                      } flex-row align-items-center gap-2 border-bottom border-dark rounded p-2`}
+                    >
+                      <span className="col-5 text-center text-light p-1 bg-success rounded">
                         {t("endKilometerLabel")} :
                       </span>
-                      {rental?.endKilometer}
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-5">{rental?.endKilometer}</span>
                     </div>
                     {/* Show/Hide invoice Button start */}
-                    <div className="d-flex flex-row   justify-content-start mt-3 ">
+                    <div className="d-flex flex-row justify-content-center  justify-content-md-start mt-3 ">
                       <button
                         onClick={() => handleDetailbutton(rental.id)}
-                        className={`btn btn-primary row d-flex flex-row  align-items-center `}
+                        className={`btn btn-primary row d-flex flex-row  align-items-center`}
                       >
                         <div className="col-10">
                           {openInvoiceId === rental.id
@@ -200,18 +223,36 @@ const Profile = (props: Props) => {
                             className={`card mt-3 expanded w-100 start-height mb-3  `}
                           >
                             <div className="card-body">
-                              <h5 className="card-title">
-                                {t("invoiceDetails")}
-                              </h5>
-                              <p className="card-text">
-                                {t("invoice")} ID: {ivoice?.id}
-                              </p>
-                              <p className="card-text">
-                                {t("rentalId")}: {ivoice?.rentalId}
-                              </p>
-                              <p className="card-text">
-                                {t("createdDate")}: {ivoice?.createDate}
-                              </p>
+                              <div>
+                                <h5 className="card-title text-center border border-2 bg-warning p-1 ">
+                                  {t("invoiceDetails")}
+                                </h5>
+                              </div>
+                              <div className="d-flex align-items-center border-bottom gap-2 p-2">
+                                <span className="col-5 text-center text-light p-1 bg-success rounded">
+                                  {t("invoice")} ID
+                                </span>
+                                <TbArrowBigRightLineFilled color="black" />
+                                <span className="col-5">{ivoice?.id}</span>
+                              </div>
+                              <div className="d-flex align-items-center border-bottom gap-2 p-2">
+                                <span className="col-5 text-center text-light p-1 bg-success rounded">
+                                  {t("rentalId")}
+                                </span>
+                                <TbArrowBigRightLineFilled color="black" />
+                                <span className="col-5">
+                                  {ivoice?.rentalId}
+                                </span>
+                              </div>
+                              <div className="d-flex align-items-center border-bottom gap-2 p-2">
+                                <span className="col-5 text-center text-light p-1 bg-success rounded">
+                                  {t("createdDate")}
+                                </span>
+                                <TbArrowBigRightLineFilled color="black" />
+                                <span className="col-5">
+                                  {ivoice?.createDate}
+                                </span>
+                              </div>
                             </div>
                           </div>
                         )
@@ -234,7 +275,7 @@ const Profile = (props: Props) => {
           ) : (
             <div
               className={`
-              ${isClicked === 2 ? "d-flex" : "d-none"}  flex-column `}
+              ${isClicked === 2 ? "d-flex" : "d-none"} w-100  flex-column `}
             >
               <div className="card">
                 <div className="profile-img">
@@ -243,32 +284,42 @@ const Profile = (props: Props) => {
                     src={user?.image ? `/assets/${"user"}/${user?.image}` : ""}
                   />
                 </div>
-                <div className="card-body">
-                  <h5 className="card-title">
-                    {user?.name} {user?.surname}
-                  </h5>
-                  <p className="card-text">
-                    <strong>{t("email")}:</strong>
-                    {user?.email}
-                  </p>
-
-                  <p className="card-text">
-                    <strong>{t("date")}: </strong> {user?.birthDate}
-                  </p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      setEditable(!editable);
-                    }}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    className="btn btn-danger ms-2"
-                    onClick={() => userDeleteBtn()}
-                  >
-                    {t("delete")}
-                  </button>
+                <div className="card-body d-flex  flex-column gap-3">
+                  <div className="text-capitalize justify-content-center d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                    <h5 className="card-title ">
+                      {user?.name} {user?.surname}
+                    </h5>
+                  </div>
+                  <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1 ">
+                    <div className="col-4 text-center text-light p-1 bg-success rounded">
+                      {t("email")}
+                    </div>
+                    <TbArrowBigRightLineFilled color="black" />
+                    <span className="col-7">{user?.email}</span>
+                  </div>
+                  <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                    <div className="col-4 text-center text-light p-1 bg-success rounded">
+                      {t("date")}
+                    </div>
+                    <TbArrowBigRightLineFilled color="black" />
+                    <span className="col-7">{user?.birthDate}</span>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <button
+                      className="btn col btn-primary"
+                      onClick={() => {
+                        setEditable(!editable);
+                      }}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      className="btn col btn-danger ms-2"
+                      onClick={() => userDeleteBtn()}
+                    >
+                      {t("delete")}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

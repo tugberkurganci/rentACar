@@ -7,6 +7,7 @@ import FormikInput from "../../FormikInput/FormikInput";
 import { Form, Formik, FormikHelpers } from "formik";
 import Pagination from "../../Pagination/Pagination";
 import { useTranslation } from "react-i18next";
+import { TbArrowBigRightLineFilled } from "react-icons/tb";
 
 type Props = {};
 
@@ -127,52 +128,87 @@ const RentalPanel = (props: Props) => {
             {rentalList.map((rental) => (
               <div className="card w-100 mb-3" key={rental.id}>
                 <div className="card-body ">
-                  <div className="border rounded mb-3 p-3">
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Rental ID: </span>
-                      <span>{rental.id}</span>
+                  <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Rental ID
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.id}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Car ID: </span>
-                      <span>{rental.carId}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Car ID
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.carId}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">User ID: </span>
-                      <span>{rental.userId}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        User ID
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.userId}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Start Date: </span>
-                      <span>{rental.startDate}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Start Date
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.startDate}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">End Date: </span>
-                      <span>{rental.endDate}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        End Date
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.endDate}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Return Date: </span>
-                      <span>{rental.returnDate ? rental.returnDate : "-"}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Return Date
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">
+                        {rental.returnDate ? rental.returnDate : "-"}
+                      </span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Start Kilometer: </span>
-                      <span>{rental.startKilometer}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Start Kilometer
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.startKilometer}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">End Kilometer: </span>
-                      <span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        End Kilometer
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">
                         {rental.endKilometer ? rental.endKilometer : "-"}
                       </span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Total price: </span>
-                      <span>{rental.totalPrice}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Total price
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.totalPrice}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Drop Off Office: </span>
-                      <span>{rental.dropOffLocation}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Drop Off Office
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.dropOffLocation}</span>
                     </div>
-                    <div className="fs-2 b-bottom">
-                      <span className=" fw-semibold">Pick Up Office: </span>
-                      <span>{rental.pickUpLocation}</span>
+                    <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                      <span className=" col-5 text-center text-light p-1 bg-success rounded">
+                        Pick Up Office
+                      </span>
+                      <TbArrowBigRightLineFilled color="black" />
+                      <span className="col-6">{rental.pickUpLocation}</span>
                     </div>
                   </div>
                   <div className="d-flex justify-content-between px-3 t-3">

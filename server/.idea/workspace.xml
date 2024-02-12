@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/CreditCardInfo/CreditCardInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/CreditCardInfo/CreditCardInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/CreditCardInfo/creditCardInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/CreditCardInfo/creditCardInfo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

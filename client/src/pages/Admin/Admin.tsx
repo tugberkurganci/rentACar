@@ -12,7 +12,7 @@ const Admin = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="d-flex flex-column flex-md-row w-100 mx-md-5 px-2 ">
+    <div className="d-flex flex-column flex-md-row w-100 mx-md-5">
       <div className=" col-12 col-md-3 col-xl-2 pe-md-5 d-flex flex-row flex-md-column gap-2 overflow-x-scroll ">
         <div
           className={`btn  ${
@@ -48,7 +48,7 @@ const Admin = (props: Props) => {
           {t("rentalss")}
         </div>
       </div>
-      <div className="col-12 col-md-9 col-xl-10  p-0 ">
+      <div className="col-12  col-md-9 col-xl-10  p-0 ">
         {section == "user" && <UserPanel />}
         {section == "car" && <CarPanel />}
         {section == "rental" && <RentalPanel />}

@@ -9,6 +9,7 @@ import Image from "../../CarImage/CarImage";
 import UserUpdate from "./UserUpdate";
 import SearchKey from "../../SearchKey/SearchKey";
 import "./userPanel.css";
+import { TbArrowBigRightLineFilled } from "react-icons/tb";
 
 type Props = {};
 
@@ -61,11 +62,11 @@ const UserPanel = (props: Props) => {
   return (
     <div
       style={{ minHeight: "80vh" }}
-      className="d-flex  flex-column   justify-content-between align-items-center"
+      className="d-flex  flex-column justify-content-between align-items-center"
     >
       {!editable && (
         <div className=" w-100  d-flex flex-column justify-content-center align-itemse-center">
-          <div className="center-text mb-2">
+          <div className=" d-flex d-md-block justify-content-center mb-2">
             <SearchKey
               setSearchedList={setSearchedUserList}
               setSearchedListPage={setSearchedUserListPage}
@@ -76,7 +77,7 @@ const UserPanel = (props: Props) => {
             />
           </div>
           {/* Data-section-Mobile-Start */}
-          <div className="d-md-none justify-content-between align-items-center d-flex  flex-column ">
+          <div className="d-md-none  justify-content-between align-items-center d-flex  flex-column ">
             {searchable
               ? searchedUserList.map((user) => (
                   <div className="card w-100 mb-3" key={user.id}>
@@ -88,26 +89,41 @@ const UserPanel = (props: Props) => {
                       />
                     )}
                     <div className="card-body ">
-                      <div className="border rounded mb-3 p-3">
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">User ID: </span>
-                          <span>{user.id}</span>
+                      <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-4 text-center text-light p-1 bg-success rounded">
+                            User ID
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.id}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Name: </span>
-                          <span>{user.name}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-4 text-center text-light p-1 bg-success rounded">
+                            Name
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.name}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Surname: </span>
-                          <span>{user.surname}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-4 text-center text-light p-1 bg-success rounded">
+                            Surname
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.surname}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">E-mail: </span>
-                          <span>{user.email}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-4 text-center text-light p-1 bg-success rounded">
+                            E-mail
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.email}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Birth Date: </span>
-                          <span>{user.birthDate}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className=" col-4 text-center text-light p-1 bg-success rounded">
+                            Birth Date
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.birthDate}</span>
                         </div>
                       </div>
                       <div className="d-flex justify-content-between px-3 t-3">
@@ -136,27 +152,42 @@ const UserPanel = (props: Props) => {
                         alt={`${user.email}'s profile picture `}
                       />
                     )}
-                    <div className="card-body ">
-                      <div className="border rounded mb-3 p-3">
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">User ID: </span>
-                          <span>{user.id}</span>
+                    <div className="card-body m-0 p-">
+                      <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className="col-4 text-center text-light p-1 bg-success rounded">
+                            User ID
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.id}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Name: </span>
-                          <span>{user.name}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className="col-4 text-center  text-light p-1 bg-success rounded">
+                            Name
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.name}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Surname: </span>
-                          <span>{user.surname}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className="col-4 text-center  text-light p-1 bg-success rounded">
+                            Surname
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.surname}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">E-mail: </span>
-                          <span>{user.email}</span>
+                        <div className="d-flex flex-row border-bottom border-2 rounded align-items-center gap-2 ">
+                          <span className=" col-4 text-center  text-light p-1 bg-success rounded">
+                            E-mail
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.email}</span>
                         </div>
-                        <div className="fs-2 b-bottom">
-                          <span className=" fw-semibold">Birth Date: </span>
-                          <span>{user.birthDate}</span>
+                        <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
+                          <span className="col-4 text-center  text-light p-1 bg-success rounded">
+                            Birth Date
+                          </span>
+                          <TbArrowBigRightLineFilled color="black" />
+                          <span className="col-7">{user.birthDate}</span>
                         </div>
                       </div>
                       <div className="d-flex justify-content-between px-3 t-3">
