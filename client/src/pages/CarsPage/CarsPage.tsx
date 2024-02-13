@@ -40,6 +40,7 @@ const CarsPage = (props: Props) => {
   const [modelList, setModelList] = useState<any>([]);
   const [brandList, setBrandList] = useState<any>([]);
 
+
   const [initialValues, setInitialValues] = useState({
     firstPrice: 0,
     secondPrice: 0,
@@ -57,8 +58,9 @@ const CarsPage = (props: Props) => {
     brandName: Yup.string().nullable(),
   });
 
-  const handleGiveUp = () => {
+  const handleGiveUp = (resetForm:any) => {
     setFilteredCarList(cars);
+    resetForm()
     setInitialValues({
       firstPrice: 0,
       secondPrice: 0,
@@ -67,7 +69,6 @@ const CarsPage = (props: Props) => {
       modelName: "",
       brandName: "",
     });
-    setSortedCarList(cars);
   };
   const handleFilterCarList = async (
     values: CarFilterKeys,
@@ -174,7 +175,7 @@ const CarsPage = (props: Props) => {
           validationSchema={validationSchema}
           onSubmit={handleFilterCarList}
         >
-          {({ isSubmitting, values, handleChange }) => (
+          {({ isSubmitting, values, handleChange,resetForm  }) => (
             <Form className="  w-75">
               <div>
                 <div className="col">
@@ -247,7 +248,7 @@ const CarsPage = (props: Props) => {
                 <button
                   type="button"
                   className="btn btn-danger "
-                  onClick={handleGiveUp}
+                  onClick={()=>{ handleGiveUp(resetForm )}}
                 >
                   {t("giveup")}
                 </button>
