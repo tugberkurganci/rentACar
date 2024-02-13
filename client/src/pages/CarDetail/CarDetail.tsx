@@ -11,7 +11,7 @@ type Props = {};
 const CarDetail = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { id } = useParams();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const [car, setCar] = useState<CarModel>();
   const fetchCar = async () => {
     try {
@@ -26,6 +26,7 @@ const CarDetail = (props: Props) => {
     fetchCar();
   }, []);
   return (
+    //TODO: UI FORMLAR
     <div className="  row  justify-content-center align-items-center">
       {isLoading && (
         <div className="display-1">
@@ -35,10 +36,10 @@ const CarDetail = (props: Props) => {
       {!isLoading && (
         <div className="  row  justify-content-center align-items-center">
           <div className="col-12 col-md-6 ">
-          <img
-                          className={`img-fluid rounded`}
-                          src={`/assets/${"car"}/${car?.image}`}
-                        />
+            <img
+              className={`img-fluid rounded`}
+              src={`/assets/${"car"}/${car?.image}`}
+            />
           </div>
           <div className="col-12 col-md-6 border   rounded border-3 p-md-5   border-warning ">
             <div className="text-center fs-1 text-capitalize fw-bolder">
@@ -57,7 +58,7 @@ const CarDetail = (props: Props) => {
               {car?.kilometer}
             </div>
             <div>
-              <span className="fw-bold">  {t("price")}: </span>
+              <span className="fw-bold"> {t("price")}: </span>
               {car?.dailyPrice}
             </div>
             <div>

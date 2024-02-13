@@ -57,12 +57,22 @@ const CarsPage = (props: Props) => {
     brandName: Yup.string().nullable(),
   });
 
+  const handleGiveUp = () => {
+    setFilteredCarList(cars);
+    setInitialValues({
+      firstPrice: 0,
+      secondPrice: 0,
+      firstModelYear: 0,
+      secondModelYear: 0,
+      modelName: "",
+      brandName: "",
+    });
+    setSortedCarList(cars);
+  };
   const handleFilterCarList = async (
     values: CarFilterKeys,
     { setErrors }: FormikHelpers<CarFilterKeys>
   ) => {
-    console.log(values);
-
     try {
       let response;
 
@@ -72,16 +82,8 @@ const CarsPage = (props: Props) => {
       });
 
       setFilteredCarList(response.data);
-      console.log(response);
+
       setMenuIsOpened(false);
-      setInitialValues({
-        firstPrice: 0,
-        secondPrice: 0,
-        firstModelYear: 0,
-        secondModelYear: 0,
-        modelName: "",
-        brandName: "",
-      });
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
@@ -91,7 +93,6 @@ const CarsPage = (props: Props) => {
           formikErrors[field] = message;
         });
         setErrors(formikErrors);
-        console.log(error);
       } else {
         toast.error(error.response.data.message);
       }
@@ -115,7 +116,6 @@ const CarsPage = (props: Props) => {
   }) => {
     try {
       const response = await axiosInstance.post("/v1/cars/sort", value);
-      console.log(response);
       setSortedCarList(response.data);
     } catch (error: any) {
       console.error("Sıralama hatası:", error.message);
@@ -160,6 +160,10 @@ const CarsPage = (props: Props) => {
     getModelList();
     getBrandList();
   }, [carList]);
+
+  useEffect(() => {
+    console.log(initialValues);
+  }, [initialValues]);
 
   return (
     <div className="container-fluid  d-flex ">
@@ -243,17 +247,7 @@ const CarsPage = (props: Props) => {
                 <button
                   type="button"
                   className="btn btn-danger "
-                  onClick={() => {
-                    setFilteredCarList(cars),
-                      setInitialValues({
-                        firstPrice: 0,
-                        secondPrice: 0,
-                        firstModelYear: 0,
-                        secondModelYear: 0,
-                        modelName: "",
-                        brandName: "",
-                      });
-                  }}
+                  onClick={handleGiveUp}
                 >
                   {t("giveup")}
                 </button>
@@ -262,7 +256,7 @@ const CarsPage = (props: Props) => {
                   className="btn btn-primary "
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? `${t("filtering")}` :`${t("filter")}` }
+                  {isSubmitting ? `${t("filtering")}` : `${t("filter")}`}
                 </button>
               </div>
             </Form>
@@ -386,7 +380,9 @@ const CarsPage = (props: Props) => {
                           className="btn btn-primary "
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? `${t("filtering")}` : `${t("filter")}`}
+                          {isSubmitting
+                            ? `${t("filtering")}`
+                            : `${t("filter")}`}
                         </button>
                       </div>
                     </Form>
@@ -397,7 +393,7 @@ const CarsPage = (props: Props) => {
             {/* Aside-Mobile-End */}
             <div className="d-flex flex-column  justify-content-end align-items-end ">
               <label htmlFor="sortType" className="form-label">
-              {t("sort")}
+                {t("sort")}
               </label>
               <select
                 id="sortType"
@@ -407,7 +403,7 @@ const CarsPage = (props: Props) => {
                 onChange={handleSortTypeChange}
               >
                 <option value="" className="text-muted">
-                {t("choose")}
+                  {t("choose")}
                 </option>
                 <option value="price-asc">{t("ascprice")}</option>
                 <option value="price-desc">{t("descprice")}</option>

@@ -15,7 +15,7 @@ const CarPanel = (props: Props) => {
   const [carList, setCarList] = useState<CarModel[]>([]);
   const [carId, setCarId] = useState<number>(0);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [pageable, setPageable] = useState<any>({ page: 0, size: 10 });
+  const [pageable, setPageable] = useState<any>({ page: 0, size: 3 });
   const [editable, setEditable] = useState<boolean>(false);
   const [addable, setAddable] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState(1);

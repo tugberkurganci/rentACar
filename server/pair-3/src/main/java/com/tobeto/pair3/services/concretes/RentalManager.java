@@ -58,18 +58,17 @@ public class RentalManager implements RentalService {
         setTotalPriceToRentalInfo(rental, createRentalRequest);
         Rental createdRental = rentalRepository.save(rental);
         invoiceService.add(new CreateInvoiceRequest(createdRental.getId()));
-        return mapperService.forResponse().map(createdRental, GetRentalResponse.class);
+        GetRentalResponse response = mapperService.forResponse().map(createdRental, GetRentalResponse.class);
+        return  response;
     }
 
     private void setLocationToRentalInfo(Rental rental, CreateRentalRequest createRentalRequest) {
 
         Location pickUpLocation=locationService.findByName(createRentalRequest.getPickUpLocation());
-        Location dropOffLocation=locationService.findByName(createRentalRequest.getPickUpLocation());
+        Location dropOffLocation=locationService.findByName(createRentalRequest.getDropOffLocation());
 
         rental.setPickUpLocation(pickUpLocation);
-        if(dropOffLocation==null){rental.setDropOffLocation(pickUpLocation);}else {
-            rental.setDropOffLocation(dropOffLocation);
-        }
+        rental.setDropOffLocation(dropOffLocation);
 
 
     }

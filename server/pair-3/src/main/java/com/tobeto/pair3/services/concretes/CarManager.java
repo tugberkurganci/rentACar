@@ -5,10 +5,7 @@ import com.tobeto.pair3.core.messages.Messages;
 import com.tobeto.pair3.core.utils.mapper.ModelMapperService;
 import com.tobeto.pair3.entities.*;
 import com.tobeto.pair3.repositories.CarRepository;
-import com.tobeto.pair3.services.abstracts.CarService;
-import com.tobeto.pair3.services.abstracts.ColorService;
-import com.tobeto.pair3.services.abstracts.LocationService;
-import com.tobeto.pair3.services.abstracts.ModelService;
+import com.tobeto.pair3.services.abstracts.*;
 import com.tobeto.pair3.services.businessrules.RentalRules;
 import com.tobeto.pair3.services.dtos.requests.*;
 import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
@@ -36,6 +33,7 @@ public class CarManager implements CarService {
     private  RentalRules rentalRules;
     private  FileService fileService;
     private   LocationService locationService;
+    private RentalService rentalService;
 
     public CarManager(CarRepository carRepository, @Lazy ModelService modelService, ColorService colorService, ModelMapperService mapperService, RentalRules rentalRules, FileService fileService, LocationService locationService) {
         this.carRepository = carRepository;
@@ -111,6 +109,12 @@ public class CarManager implements CarService {
 
     public void delete(Integer id) {
         Car car = this.getOriginalCarById(id);
+        List<Rental> rentals=car.getRentals();
+        for (Rental rental:rentals
+        ) {
+            rental.setCar(null);
+            rentalService.updateRental(rental);
+        }
         carRepository.delete(car);
     }
 

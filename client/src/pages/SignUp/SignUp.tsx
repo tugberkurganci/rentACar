@@ -58,6 +58,7 @@ const SignUp = (props: Props) => {
       // Handle the response or redirect to another page if needed
       setResponseAlert("success"); // Set the alert type to success
       navigate("/login");
+      toast.success("Kullanıcı başarıyla oluşturuldu");
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
