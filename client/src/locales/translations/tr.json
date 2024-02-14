@@ -27,6 +27,7 @@
   "confirmpass":"Şifreyi Onayla",
   "modelyear":"Model Yılı",
   "price":"Fiyat",
+  "modelname":"Model Adı",
   "perday":"Günlük",
   "rent":"kirala",
   "info":"Detayları Gör",
@@ -42,6 +43,7 @@
   "look":" Göz atmaya devam et",
   "rentalIdLabel": "Kiralama Id",
   "carIdLabel": "Araç Id",
+  "userIdLabel": "Kullanıcı Id",
   "startDateLabel": "Kiralama başlangıç tarihi",
   "endDateLabel": "Kiralama bitiş tarihi",
   "totalPriceLabel": "Toplam fiyat",
@@ -60,6 +62,8 @@
   "giveup":"Vazgeç",
   "user":"Kullanıcı",
   "brand":"Marka",
+  "brandname":"Marka Adı",
+  "dailyprice": "Günlük Fiyat",
   "rentalss":"KİRALAMALARIM",
   "models":"MODELLER",
   "cars":"ARABALAR",
@@ -86,8 +90,8 @@
   "sort":"Sırala",
   "veri":"Veri Girmeniz Gerekli",
   "sıfır":"Sıfırdan Büyük Olmalı",
-  "mailformat":"Geçersiz email format"
-
+  "mailformat":"Geçersiz email format",
+  "status":"Durum"
 
   
   

@@ -44,7 +44,7 @@ public class GetCarResponse {
 
     private String status;
 
-    public GetCarResponse(int id, int kilometer, String plate, int year, BigDecimal dailyPrice, String modelName, String colorName, String image) {
+    public GetCarResponse(int id, int kilometer, String plate, int year, BigDecimal dailyPrice, String modelName, String colorName, String image,String location) {
         this.id = id;
         this.kilometer = kilometer;
         this.plate = plate;
@@ -53,5 +53,6 @@ public class GetCarResponse {
         this.modelName = modelName;
         this.colorName = colorName;
         this.image = image;
+        this.location= location;
     }
 }

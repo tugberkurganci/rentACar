@@ -108,72 +108,69 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
   }, []);
 
   return (
-    <div>
-      {" "}
-      <div
-        style={{ minHeight: "80vh" }}
-        className="d-flex flex-row justify-content-center align-items-center   "
+    <div
+      style={{ minHeight: "80vh" }}
+      className="d-flex flex-row justify-content-center align-items-center   "
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleUpdateModel}
       >
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleUpdateModel}
-        >
-          {({ isSubmitting, values, handleChange }) => (
-            <Form className="  w-50">
-              <div>
-                <FormikInput
-                  label=" Model Name"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.name}
-                  name="name"
-                />
-              </div>
+        {({ isSubmitting, values, handleChange }) => (
+          <Form className="col-12 col-md-6">
+            <div>
+              <FormikInput
+                label=" Model Name"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.name}
+                name="name"
+              />
+            </div>
 
-              <div>
-                <FormikSelect
-                  label="Brand Name"
-                  list={brandList}
-                  value={initialValues.brandName}
-                  name="brandName"
-                  onChange={(e: any) => {
-                    handleChangeInput(handleChange, e, values);
-                  }}
-                />
-              </div>
+            <div>
+              <FormikSelect
+                label="Brand Name"
+                list={brandList}
+                value={initialValues.brandName}
+                name="brandName"
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
+              />
+            </div>
 
-              <div>
-                <FormikInput
-                  label="İmage"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  name="image"
-                  type="file"
-                />
-              </div>
-              <div className="col  d-flex justify-content-between">
-                <button
-                  type="button"
-                  onClick={() => setEditable(false)}
-                  className="btn btn-danger "
-                >
-                  {t("giveup")}
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary "
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Updating..." : "Update"}
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+            <div>
+              <FormikInput
+                label="İmage"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                name="image"
+                type="file"
+              />
+            </div>
+            <div className="col  d-flex justify-content-between">
+              <button
+                type="button"
+                onClick={() => setEditable(false)}
+                className="btn btn-danger "
+              >
+                {t("giveup")}
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary "
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Updating..." : "Update"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

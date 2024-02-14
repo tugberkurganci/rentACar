@@ -45,10 +45,11 @@
   "startDateLabel": "Start Date",
   "endDateLabel": "End Date",
   "totalPriceLabel": "Total Price",
+  "dailyprice": "Daily Price",
   "returnDateLabel": "Return Date",
   "startKilometerLabel": "Start Kilometer",
   "endKilometerLabel": "End Kilometer",
-
+"userIdLabel": "User Id",
   "hideInvoice": "Hide Invoice",
   "showInvoice": "Show Invoice",
   "invoiceDetails": "Invoice Details",
@@ -60,8 +61,9 @@
   "account":"My Account",
   "giveup":"Cancel",
   "user":"User",
-  "brand":"Brand"
-  ,
+  "brand":"Brand",
+  "modelname":"Model Name",
+  "brandname":"Brand Name",
   "rentalss":"RENTALS",
   "models":"MODELS",
   "cars":"CARS",
@@ -87,6 +89,7 @@
   "sort":"Sort",
   "veri":"This Is Required",
   "sıfır":"Must Greater Than 0",
-  "mailformat":"Invalid email format"
+  "mailformat":"Invalid email format",
+  "status":"Status"
 
 }

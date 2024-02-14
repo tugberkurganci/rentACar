@@ -131,42 +131,42 @@ const RentalPanel = (props: Props) => {
                   <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Rental ID
+                        {t("rentalIdLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.id}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Car ID
+                        {t("carIdLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.carId}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        User ID
+                        {t("userIdLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.userId}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Start Date
+                        {t("startdate")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.startDate}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        End Date
+                        {t("enddate")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.endDate}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Return Date
+                        {t("returnDateLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">
@@ -175,14 +175,14 @@ const RentalPanel = (props: Props) => {
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Start Kilometer
+                        {t("startKilometerLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.startKilometer}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        End Kilometer
+                        {t("endKilometerLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">
@@ -191,21 +191,21 @@ const RentalPanel = (props: Props) => {
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Total price
+                        {t("totalPriceLabel")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.totalPrice}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Drop Off Office
+                        {t("droppoffloc")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.dropOffLocation}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Pick Up Office
+                        {t("pickuploc")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{rental.pickUpLocation}</span>
@@ -213,14 +213,14 @@ const RentalPanel = (props: Props) => {
                   </div>
                   <div className="d-flex justify-content-between px-3 t-3">
                     <button
-                      className="me-2 btn btn-primary"
+                      className="me-2 btn btn-primary w-50"
                       onClick={() => handleChangeUpdateBtn(rental)}
                     >
                       {t("edit")}
                     </button>
                     <button
                       onClick={() => handleDeleteRental(rental)}
-                      className=" btn btn-danger"
+                      className=" btn btn-danger w-50"
                     >
                       {t("delete")}
                     </button>
@@ -260,10 +260,10 @@ const RentalPanel = (props: Props) => {
                   {t("totalPriceLabel")}
                 </th>
                 <th className="center-text" scope="col">
-                  {t("dropofflocation")}
+                  {t("droppoffloc")}
                 </th>
                 <th className="center-text" scope="col">
-                  {t("pickuplocation")}
+                  {t("pickuploc")}
                 </th>
                 <th className="center-text" scope="col">
                   {t("user")} ID
@@ -294,14 +294,14 @@ const RentalPanel = (props: Props) => {
 
                   <td className="center-text d-flex flex-wrap gap-1">
                     <button
-                      className="me-2 btn btn-primary"
+                      className=" btn btn-primary w-100"
                       onClick={() => handleChangeUpdateBtn(rental)}
                     >
                       {t("edit")}
                     </button>
                     <button
                       onClick={() => handleDeleteRental(rental)}
-                      className=" btn btn-danger"
+                      className=" btn btn-danger w-100"
                     >
                       {t("delete")}
                     </button>

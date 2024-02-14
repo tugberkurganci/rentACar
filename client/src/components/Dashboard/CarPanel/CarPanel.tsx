@@ -193,63 +193,63 @@ const CarPanel = (props: Props) => {
                       <div className="d-flex flex-column gap-2 mb-2 fw-semibold">
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Car ID
+                            {t("carIdLabel")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.id}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Model name
+                            {t("modelname")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.modelName}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Kilometer
+                            {t("kilometer")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.kilometer}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Color
+                            {t("color")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.colorName}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Daily price
+                            {t("dailyprice")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.dailyPrice}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Plate
+                            {t("plate")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.plate}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Model year
+                            {t("modelyear")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.year}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Location
+                            {t("location")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.location}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                            Status
+                            {t("status")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-6">{car.status}</span>
@@ -344,7 +344,7 @@ const CarPanel = (props: Props) => {
                       <td className="center-text">{car.status}</td>
                       <td className="center-text d-flex flex-wrap gap-1">
                         <button
-                          className="me-2 btn btn-primary"
+                          className="me-2 btn btn-primary col-12"
                           onClick={() => {
                             setEditable(!editable);
                             setCar(car);
@@ -354,7 +354,7 @@ const CarPanel = (props: Props) => {
                         </button>
                         <button
                           onClick={() => handleDeleteCar(car)}
-                          className=" btn btn-danger"
+                          className=" btn btn-danger col-12"
                         >
                           {t("delete")}
                         </button>
@@ -381,7 +381,7 @@ const CarPanel = (props: Props) => {
 
                       <td className="center-text d-flex flex-wrap gap-1">
                         <button
-                          className="me-2 btn btn-primary"
+                          className="me-2 btn btn-primary col-12 "
                           onClick={() => {
                             setEditable(!editable);
                             setCar(car);
@@ -391,7 +391,7 @@ const CarPanel = (props: Props) => {
                         </button>
                         <button
                           onClick={() => handleDeleteCar(car)}
-                          className=" btn btn-danger"
+                          className=" btn btn-danger col-12 "
                         >
                           {t("delete")}
                         </button>

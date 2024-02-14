@@ -87,21 +87,21 @@ const ModelPanel = (props: Props) => {
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Model name
+                        {t("modelname")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{model.name}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Brand ID
+                        {t("brand")} ID
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{model.brandId}</span>
                     </div>
                     <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                       <span className=" col-5 text-center text-light p-1 bg-success rounded">
-                        Brand name
+                        {t("brandname")}
                       </span>
                       <TbArrowBigRightLineFilled color="black" />
                       <span className="col-6">{model.brandName}</span>
@@ -109,7 +109,7 @@ const ModelPanel = (props: Props) => {
                   </div>
                   <div className="d-flex justify-content-between px-3 t-3">
                     <button
-                      className="me-2 btn btn-primary"
+                      className="me-2 btn btn-primary w-50"
                       onClick={() => {
                         setModel(model);
                         setEditable(true);
@@ -119,7 +119,7 @@ const ModelPanel = (props: Props) => {
                     </button>
                     <button
                       onClick={() => handleDeleteModel(model)}
-                      className=" btn btn-danger"
+                      className=" btn btn-danger w-50"
                     >
                       {t("delete")}
                     </button>
@@ -182,7 +182,7 @@ const ModelPanel = (props: Props) => {
 
                   <td className="center-text d-flex flex-wrap gap-1">
                     <button
-                      className="me-2 btn btn-primary"
+                      className="btn btn-primary col-12 col-lg-8 col-xl-6"
                       onClick={() => {
                         setModel(model);
                         setEditable(true);
@@ -192,7 +192,7 @@ const ModelPanel = (props: Props) => {
                     </button>
                     <button
                       onClick={() => handleDeleteModel(model)}
-                      className=" btn btn-danger"
+                      className=" btn btn-danger col-12 col-lg-8 col-xl-6"
                     >
                       {t("delete")}
                     </button>

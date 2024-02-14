@@ -92,35 +92,35 @@ const UserPanel = (props: Props) => {
                       <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-4 text-center text-light p-1 bg-success rounded">
-                            User ID
+                            {t("userIdLabel")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.id}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-4 text-center text-light p-1 bg-success rounded">
-                            Name
+                            {t("name")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.name}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-4 text-center text-light p-1 bg-success rounded">
-                            Surname
+                            {t("surname")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.surname}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-4 text-center text-light p-1 bg-success rounded">
-                            E-mail
+                            {t("email")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.email}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className=" col-4 text-center text-light p-1 bg-success rounded">
-                            Birth Date
+                            {t("date")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.birthDate}</span>
@@ -156,35 +156,35 @@ const UserPanel = (props: Props) => {
                       <div className="mb-3 d-flex flex-column gap-2 fw-semibold">
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className="col-4 text-center text-light p-1 bg-success rounded">
-                            User ID
+                            {t("userIdLabel")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.id}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className="col-4 text-center  text-light p-1 bg-success rounded">
-                            Name
+                            {t("name")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.name}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className="col-4 text-center  text-light p-1 bg-success rounded">
-                            Surname
+                            {t("surname")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.surname}</span>
                         </div>
                         <div className="d-flex flex-row border-bottom border-2 rounded align-items-center gap-2 ">
                           <span className=" col-4 text-center  text-light p-1 bg-success rounded">
-                            E-mail
+                            {t("email")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.email}</span>
                         </div>
                         <div className="d-flex flex-row align-items-center gap-2 border-bottom border-2 rounded p-1">
                           <span className="col-4 text-center  text-light p-1 bg-success rounded">
-                            Birth Date
+                            {t("date")}
                           </span>
                           <TbArrowBigRightLineFilled color="black" />
                           <span className="col-7">{user.birthDate}</span>
@@ -257,14 +257,14 @@ const UserPanel = (props: Props) => {
                       <td className="center-text"> {user.birthDate}</td>
                       <td className="center-text d-flex flex-wrap gap-1">
                         <button
-                          className="me-2 btn btn-primary"
+                          className="me-2 btn btn-primary col-12"
                           onClick={() => handleChangeUpdateBtn(user)}
                         >
                           {t("edit")}
                         </button>
                         <button
                           onClick={() => handleDeleteUser(user)}
-                          className=" btn btn-danger"
+                          className=" btn btn-danger col-12"
                         >
                           {t("delete")}
                         </button>
@@ -290,14 +290,14 @@ const UserPanel = (props: Props) => {
                       <td className="center-text">{user.birthDate}</td>
                       <td className="center-text d-flex flex-wrap gap-1">
                         <button
-                          className="me-2 btn btn-primary"
+                          className="me-2 btn btn-primary col-12"
                           onClick={() => handleChangeUpdateBtn(user)}
                         >
                           {t("edit")}
                         </button>
                         <button
                           onClick={() => handleDeleteUser(user)}
-                          className=" btn btn-danger"
+                          className=" btn btn-danger col-12"
                         >
                           {t("delete")}
                         </button>

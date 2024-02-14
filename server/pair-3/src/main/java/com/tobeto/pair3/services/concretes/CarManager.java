@@ -133,6 +133,7 @@ public class CarManager implements CarService {
     public GetCarResponse getById(Integer id) {
         Car car = this.getOriginalCarById(id);
         GetCarResponse response = mapperService.forResponse().map(car, GetCarResponse.class);
+        response.setLocation(car.getCurrentLocation().getName());
         return response;
     }
 

@@ -154,139 +154,137 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
   }, []);
 
   return (
-    <div>
-      <div
-        style={{ minHeight: "80vh" }}
-        className="d-flex flex-row justify-content-center align-items-center   "
+    <div
+      style={{ minHeight: "80vh" }}
+      className="d-flex flex-row justify-content-center align-items-center   "
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleUpdateCar}
       >
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleUpdateCar}
-        >
-          {({ isSubmitting, values, handleChange }) => (
-            <Form className="  w-50">
-              <div>
-                <FormikSelect
-                  label="Model Name"
-                  list={modelList}
-                  name="modelName"
-                  value={initialValues.modelName}
-                  onChange={(e: any) => {
-                    handleChangeInput(handleChange, e, values);
-                  }}
-                />
-              </div>
+        {({ isSubmitting, values, handleChange }) => (
+          <Form className="col-12 col-md-6">
+            <div className="">
+              <FormikSelect
+                label="Model Name"
+                list={modelList}
+                name="modelName"
+                value={initialValues.modelName}
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
+              />
+            </div>
 
-              <div className="col">
-                <FormikInput
-                  label="Kilometer"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.kilometer}
-                  name="kilometer"
-                />
-              </div>
+            <div className="col">
+              <FormikInput
+                label="Kilometer"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.kilometer}
+                name="kilometer"
+              />
+            </div>
 
-              <div>
-                <FormikSelect
-                  onChange={(e: any) => {
-                    handleChangeInput(handleChange, e, values);
-                  }}
-                  label="Color"
-                  list={colorList}
-                  value={initialValues.colorName}
-                  name="colorName"
-                />
-              </div>
-              <div>
-                <FormikSelect
-                  label="Location"
-                  list={locations}
-                  value={initialValues.location}
-                  name="name"
-                  targetName="location"
-                  onChange={(e: any) => {
-                    handleChangeInput(handleChange, e, values);
-                  }}
-                />
-              </div>
-              <div>
-                <FormikSelect
-                  onChange={(e: any) => {
-                    handleChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.status}
-                  label="Status"
-                  list={status}
-                  name="status"
-                />
-              </div>
+            <div>
+              <FormikSelect
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
+                label="Color"
+                list={colorList}
+                value={initialValues.colorName}
+                name="colorName"
+              />
+            </div>
+            <div>
+              <FormikSelect
+                label="Location"
+                list={locations}
+                value={initialValues.location}
+                name="name"
+                targetName="location"
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
+              />
+            </div>
+            <div>
+              <FormikSelect
+                onChange={(e: any) => {
+                  handleChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.status}
+                label="Status"
+                list={status}
+                name="status"
+              />
+            </div>
 
-              <div className="col">
-                <FormikInput
-                  label="Daily Price"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.dailyPrice}
-                  name="dailyPrice"
-                />
-              </div>
-              <div className="col">
-                <FormikInput
-                  label="Plate Number"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.plate}
-                  name="plate"
-                />
-              </div>
-              <div className="col">
-                <FormikInput
-                  label="Model Year"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  value={initialValues.year}
-                  name="year"
-                />
-              </div>
-              <div className="col">
-                <FormikInput
-                  label="İmage"
-                  onChange={(e: any) => {
-                    onChangeInput(handleChange, e, values);
-                  }}
-                  name="image"
-                  type="file"
-                />
-              </div>
+            <div className="col">
+              <FormikInput
+                label="Daily Price"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.dailyPrice}
+                name="dailyPrice"
+              />
+            </div>
+            <div className="col">
+              <FormikInput
+                label="Plate Number"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.plate}
+                name="plate"
+              />
+            </div>
+            <div className="col">
+              <FormikInput
+                label="Model Year"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                value={initialValues.year}
+                name="year"
+              />
+            </div>
+            <div className="col">
+              <FormikInput
+                label="İmage"
+                onChange={(e: any) => {
+                  onChangeInput(handleChange, e, values);
+                }}
+                name="image"
+                type="file"
+              />
+            </div>
 
-              <div className="col  d-flex justify-content-between">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEditable(false);
-                  }}
-                  className="btn btn-danger "
-                >
-                  {t("giveup")}
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary "
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Updating..." : "Update"}
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+            <div className="col  d-flex justify-content-between">
+              <button
+                type="button"
+                onClick={() => {
+                  setEditable(false);
+                }}
+                className="btn btn-danger "
+              >
+                {t("giveup")}
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary "
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Updating..." : "Update"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

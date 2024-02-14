@@ -101,7 +101,7 @@ const UserUpdate = ({ editable, user }: Props) => {
         onSubmit={handleUpdateUser}
       >
         {({ isSubmitting, values, handleChange }) => (
-          <Form className="  w-50">
+          <Form className="col-12 col-md-6">
             <div>
               <FormikInput
                 label="name"
