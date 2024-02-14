@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./routes/AdminRoute";
 import CarsPage from "./pages/CarsPage/CarsPage";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
 

@@ -91,9 +91,9 @@
   "veri":"Veri Girmeniz Gerekli",
   "sıfır":"Sıfırdan Büyük Olmalı",
   "mailformat":"Geçersiz email format",
-  "status":"Durum"
+  "status":"Durum",
+  "pagenotfound":"SAYFA BULUNAMADI",
+  "notfoundmessage":"Aradığınız sayfa kaldırılmış olabilir, adı değişmiş olabilir veya geçiçi olarak kullanım dışı kalmış olabilir",
+  "gotohome":"ANA SAYFAYA GİT"
 
-  
-  
-  
 }

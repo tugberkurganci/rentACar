@@ -90,6 +90,8 @@
   "veri":"This Is Required",
   "sıfır":"Must Greater Than 0",
   "mailformat":"Invalid email format",
-  "status":"Status"
-
+  "status":"Status",
+  "pagenotfound":"PAGE NOT FOUND",
+  "notfoundmessage":"The page you are looking for might have been removed, had its name changed or is temporarily unavailable",
+  "gotohome":"GO TO HOMEPAGE"
 }

@@ -23,7 +23,7 @@ const Navbar = (props: Props) => {
 
   const authState = useSelector((store: any) => store.auth);
   const handleLogout = () => {
-    dispatch(logoutSuccess())
+    dispatch(logoutSuccess());
     dispatch(deleteRental());
     navigate("/");
     setMenuIsOpened(false);
@@ -109,7 +109,7 @@ const Navbar = (props: Props) => {
         </div>
       </div>
       {menuIsOpened && (
-        <div className="p-2 w-25 open-nav text-light rounded  position-absolute end-0 z-3 ">
+        <div className="p-2 col-4 col-sm-3 open-nav text-light rounded  position-absolute end-0 z-3 ">
           {authState.id === 0 ? (
             <div className="d-flex flex-column align-items-start justify-content-end ">
               <div
