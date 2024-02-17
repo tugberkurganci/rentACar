@@ -47,7 +47,7 @@ To run the project locally and experience the skills developed in Tobeto's full-
 
 **Requirements**
 - Java Development Kit (JDK) 8 or higher
-- Node.js ve Node Package Manager (NPM)
+- Node.js and Node Package Manager (NPM)
 - Git
 
 ### Installation Steps
