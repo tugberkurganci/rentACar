@@ -31,8 +31,8 @@ const Profile = (props: Props) => {
     try {
       const response = await axiosInstance.get(`/v1/users/${authState.id}`);
       setUser(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -42,8 +42,8 @@ const Profile = (props: Props) => {
         `/v1/rentals/rentals-userid?user=${authState.id}`
       );
       setRentals(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
   const fetchInvoice = async (rentalId: number) => {
@@ -53,8 +53,6 @@ const Profile = (props: Props) => {
         `/v1/invoices/invoices-rentalid?rental=${rentalId}`
       );
       setInvoice(invoiceResponse.data);
-
-      //   console.log("Invoice:", invoiceResponse.data);
       // Handle the invoice data as needed
     } catch (error) {
       console.error("Error fetching invoice:", error);

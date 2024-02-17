@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f187200-fdd5-40b1-9595-3ab841e0d0ab" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/CarDetail/CarDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/CarDetail/CarDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/CarsPage/CarsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/SignIn/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/SignIn/SignIn.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/repositories/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pair-3/src/main/java/com/tobeto/pair3/services/dtos/responses/GetCarResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/user/435f0761-4f81-48d6-8d9a-8c32bb3edb0f" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

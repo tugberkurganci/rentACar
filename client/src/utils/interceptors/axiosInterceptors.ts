@@ -47,7 +47,6 @@ axiosInstance.interceptors.response.use(
         if (response.status === 200) {
           setToken(response.data);
           const retryResponse = await axios.request(error.config);
-          console.log("Yeniden çağrılan veri:", retryResponse.data);
           return retryResponse;
         }
       }

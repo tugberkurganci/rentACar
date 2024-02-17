@@ -52,8 +52,6 @@ const SearchKey = ({
             },
           }
         );
-        console.log(searchKey);
-        console.log("Başarıyla Oluşturuldu:", response.data);
 
         setSearchedList(response.data.content);
         setSearchedListPage(response.data.totalPages);

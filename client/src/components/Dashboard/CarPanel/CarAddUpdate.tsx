@@ -29,7 +29,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
     values: CarModel,
     { setErrors }: FormikHelpers<CarModel>
   ) => {
-    console.log(values);
     try {
       let response;
       if (urlType === "put") {
@@ -45,7 +44,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
       }
 
       toast.success("Car updated successfully");
-      console.log(response);
       setEditable(false);
       setInitialValues({
         id: 1,
@@ -68,7 +66,6 @@ const CarAddUpdate = ({ car, setEditable, urlType }: Props) => {
           formikErrors[field] = message;
         });
         setErrors(formikErrors);
-        console.log(error);
       } else {
         toast.error(error.response.data.message);
       }

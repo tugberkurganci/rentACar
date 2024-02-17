@@ -40,12 +40,9 @@ const RentalPanel = (props: Props) => {
     values: RentalModel,
     { setErrors }: FormikHelpers<RentalModel>
   ) => {
-    console.log(values);
-
     try {
       const response = await axiosInstance.put(`/v1/rentals`, values);
       toast.success("Rental updated successfully");
-      console.log(response);
       setEditable(!editable);
       fetchRentals();
       setInitialValues({
@@ -68,7 +65,6 @@ const RentalPanel = (props: Props) => {
           formikErrors[field] = message;
         });
         setErrors(formikErrors);
-        console.log(error);
       } else {
         toast.error(error.response.data.message);
       }

@@ -71,7 +71,6 @@ const SignUp = (props: Props) => {
       } else {
         // console.error("Signup failed:", error);
         setResponseAlert("danger");
-        console.log(error);
         toast.error(error.response.data.message);
       }
     } finally {

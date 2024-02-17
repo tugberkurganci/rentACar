@@ -40,7 +40,6 @@ const CarsPage = (props: Props) => {
   const [modelList, setModelList] = useState<any>([]);
   const [brandList, setBrandList] = useState<any>([]);
 
-
   const [initialValues, setInitialValues] = useState({
     firstPrice: 0,
     secondPrice: 0,
@@ -58,9 +57,9 @@ const CarsPage = (props: Props) => {
     brandName: Yup.string().nullable(),
   });
 
-  const handleGiveUp = (resetForm:any) => {
+  const handleGiveUp = (resetForm: any) => {
     setFilteredCarList(cars);
-    resetForm()
+    resetForm();
     setInitialValues({
       firstPrice: 0,
       secondPrice: 0,
@@ -162,10 +161,6 @@ const CarsPage = (props: Props) => {
     getBrandList();
   }, [carList]);
 
-  useEffect(() => {
-    console.log(initialValues);
-  }, [initialValues]);
-
   return (
     <div className="container-fluid  d-flex ">
       {/* Aside-MD-Start */}
@@ -175,7 +170,7 @@ const CarsPage = (props: Props) => {
           validationSchema={validationSchema}
           onSubmit={handleFilterCarList}
         >
-          {({ isSubmitting, values, handleChange,resetForm  }) => (
+          {({ isSubmitting, values, handleChange, resetForm }) => (
             <Form className="  w-75">
               <div>
                 <div className="col">
@@ -248,7 +243,9 @@ const CarsPage = (props: Props) => {
                 <button
                   type="button"
                   className="btn btn-danger "
-                  onClick={()=>{ handleGiveUp(resetForm )}}
+                  onClick={() => {
+                    handleGiveUp(resetForm);
+                  }}
                 >
                   {t("giveup")}
                 </button>
@@ -272,14 +269,10 @@ const CarsPage = (props: Props) => {
             {/* Aside-Mobile-Start */}
             <div className="d-md-none">
               <div
+                onClick={handleHamburgerClick}
                 className="text-end btn btn-primary me-2"
-                onFocus={() => setMenuIsOpened(false)}
               >
-                <LuFilter
-                  className="text-light"
-                  size={20}
-                  onClick={handleHamburgerClick}
-                />
+                <LuFilter className="text-light" size={20} />
                 <span>Filter</span>
               </div>
             </div>

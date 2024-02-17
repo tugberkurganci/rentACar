@@ -7,11 +7,15 @@ import { useTranslation } from "react-i18next";
 import "../../components/Dashboard/CarPanel/carPanel.css";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import "./carDetail.css";
+import { loadCar } from "../../store/rentalStore/rentalSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const CarDetail = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const { t } = useTranslation();
   const [car, setCar] = useState<CarModel>();
@@ -20,15 +24,14 @@ const CarDetail = (props: Props) => {
       const response = await axiosInstance(`/v1/cars/${id}`);
       setCar(response.data);
       setIsLoading(false);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
   useEffect(() => {
     fetchCar();
   }, []);
   return (
-    //TODO: UI
     <div className="row col-12 col-md-8 justify-content-center align-items-start">
       {isLoading && (
         <div className="display-1">
@@ -100,6 +103,7 @@ const CarDetail = (props: Props) => {
               <Link
                 to={`/checkout/${car?.id}`}
                 className="btn btn-primary mx-2 w-100"
+                onClick={() => dispatch(loadCar(car?.id))}
               >
                 {t("rent")}
               </Link>

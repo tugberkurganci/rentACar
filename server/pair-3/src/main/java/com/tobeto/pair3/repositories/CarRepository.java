@@ -15,7 +15,7 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car,Integer> {
     boolean existsByPlate(String plate);
 
-    @Query("SELECT DISTINCT new com.tobeto.pair3.services.dtos.responses.GetCarResponse(c.id, c.kilometer, c.plate, c.year, c.dailyPrice, c.model.name,c.color.name,c.image) " +
+    @Query("SELECT DISTINCT new com.tobeto.pair3.services.dtos.responses.GetCarResponse(c.id, c.kilometer, c.plate, c.year, c.dailyPrice, c.model.name,c.color.name,c.image,c.currentLocation.name) " +
             "FROM Car c WHERE "+
             "c.plate LIKE %:searchKey% OR " +
             "c.model.name LIKE %:searchKey% OR " +

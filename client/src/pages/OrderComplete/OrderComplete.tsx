@@ -8,9 +8,6 @@ const OrderComplete = (props: Props) => {
   const location = useLocation();
   const { t } = useTranslation();
   const { rental } = location.state || {};
-  useEffect(() => {
-    console.log(rental);
-  }, []);
 
   return (
     <div className="container d-flex justify-content-center align-items-start">
@@ -49,7 +46,7 @@ const OrderComplete = (props: Props) => {
         </div>
         <div className="btn btn-success mt-3 ">
           <Link to={"/"} className="text-light text-decoration-none">
-           <div>{t("look")}</div> 
+            <div>{t("look")}</div>
           </Link>
         </div>
       </div>

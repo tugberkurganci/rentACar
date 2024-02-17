@@ -25,7 +25,6 @@ const UserUpdate = ({ editable, user }: Props) => {
         image: image,
       });
       toast.success("User updated");
-      console.log(response);
 
       setInitialValues({
         id: 1,
@@ -46,7 +45,6 @@ const UserUpdate = ({ editable, user }: Props) => {
           formikErrors[field] = message;
         });
         setErrors(formikErrors);
-        console.log(error);
       } else {
         toast.error(error.response.data.message);
       }

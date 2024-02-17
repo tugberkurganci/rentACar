@@ -24,7 +24,6 @@ const SignIn = (props: Props) => {
   const { t } = useTranslation();
   const rentalState = useSelector((store: any) => store.rental);
 
-
   const initialValues: SignInFormValues = {
     email: "",
     password: "",
@@ -56,9 +55,11 @@ const SignIn = (props: Props) => {
       // Handle the response or redirect to another page if needed
       setResponseAlert("success"); // Set the alert type to success
 
-      if(rentalState.carId>0){navigate(`/checkout/${rentalState.carId}`)}
-      else{navigate("/");}
-      
+      if (rentalState.carId > 0) {
+        navigate(`/checkout/${rentalState.carId}`);
+      } else {
+        navigate("/");
+      }
     } catch (error: any) {
       if (error.response.data.validationErrors) {
         const validationErrors: Record<string, string> =
@@ -96,14 +97,25 @@ const SignIn = (props: Props) => {
                   name="password"
                   type="password"
                 />
-
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? `${t("loading")}` : `${t("login")}`}
-                </button>
+                <div className="d-flex flex-row justify-content-between">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? `${t("loading")}` : `${t("login")}`}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-block"
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      navigate("/vite-deploy/sign-up");
+                    }}
+                  >
+                    {isSubmitting ? `${t("loading")}` : `${t("signUp")}`}
+                  </button>
+                </div>
               </Form>
             )}
           </Formik>

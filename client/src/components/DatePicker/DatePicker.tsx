@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import { LocationModel } from "../../models/LocationModel";
 import FormikSelect from "../FormikSelect/FormikSelect";
 
-
 type Props = {};
 
 const DatePicker = (props: Props) => {
@@ -41,7 +40,6 @@ const DatePicker = (props: Props) => {
       const response = await axiosInstance.post("/v1/cars/rentable-cars", {
         ...values,
       });
-      console.log(values);
       dispatch(loadRental(values));
       //İf no response throw tastify error
       navigate(`/cars`, {
@@ -77,9 +75,7 @@ const DatePicker = (props: Props) => {
     try {
       const response = await axiosInstance.get("v1/locations");
       setLocations(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const handleChangeInput = (handleChange: any, e: any, values: any) => {
     handleChange(e);

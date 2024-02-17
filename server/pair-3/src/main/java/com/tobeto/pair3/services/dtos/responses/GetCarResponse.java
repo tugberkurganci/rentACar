@@ -44,6 +44,7 @@ public class GetCarResponse {
 
     private String status;
 
+
     public GetCarResponse(int id, int kilometer, String plate, int year, BigDecimal dailyPrice, String modelName, String colorName, String image,String location) {
         this.id = id;
         this.kilometer = kilometer;

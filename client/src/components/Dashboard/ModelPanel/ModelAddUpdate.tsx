@@ -29,8 +29,6 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
     values: ModelType,
     { setErrors }: FormikHelpers<ModelType>
   ) => {
-    console.log(values);
-
     let response;
 
     try {
@@ -47,7 +45,6 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
       }
 
       toast.success("Model updated successfully");
-      console.log(response);
       setEditable(false);
 
       setInitialValues({
@@ -65,7 +62,6 @@ const ModelAddUpdate = ({ model, setEditable, urlType }: Props) => {
           formikErrors[field] = message;
         });
         setErrors(formikErrors);
-        console.log(error);
       } else {
         toast.error(error.response.data.message);
       }

@@ -62,9 +62,6 @@ const CreditCardInfo = (props: Props) => {
     setIsFrontAnimEnd(false);
     setIsBackAnimEnd(false);
   };
-  useEffect(() => {
-    console.log(isFlipped);
-  }, [isFlipped]);
 
   return (
     <div className="my-4 d-flex flex-column gap-4">

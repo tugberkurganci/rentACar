@@ -30,8 +30,8 @@ const Checkout = (props: Props) => {
       const response = await axiosInstance(`/v1/cars/${id}`);
 
       setCar(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -55,7 +55,6 @@ const Checkout = (props: Props) => {
       });
     } catch (error: any) {
       toast.error(error?.response.data.message);
-      console.log(error);
       if (authState.id === 0) {
         navigate("/login");
       }
@@ -71,8 +70,8 @@ const Checkout = (props: Props) => {
         carId: id,
       });
       setTotalPrice(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
