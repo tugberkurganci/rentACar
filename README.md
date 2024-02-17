@@ -46,7 +46,7 @@ The contributors to this project are individuals who actively participated in To
 To run the project locally and experience the skills developed in Tobeto's full-stack training, follow these steps:
 
 **Requirements**
-- Java Development Kit (JDK) 8 veya üstü
+- Java Development Kit (JDK) 8 or higher
 - Node.js ve Node Package Manager (NPM)
 - Git
 
