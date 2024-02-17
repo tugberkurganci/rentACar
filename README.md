@@ -130,7 +130,7 @@ The car rental website has a monolithic structure where all functionalities are 
 ### Architectural Diagram
 Below is a diagram illustrating the project architecture of the car rental website:
 
-![Architectural Diagram](.\assets\Mimari_Diagramı.jpg)
+![Architectural Diagram](./client/src/assets/Mimari_Diagramı.jpg)
 
 ---
 <span id="techs"> </span>
@@ -203,7 +203,7 @@ The technologies and tools utilized in the development process include:
 ## Database Structure
 The database structure of the car rental website can be examined below:
 
-![Database diagram](.\assets\ERD_RentACar.jpg)
+![Database diagram](./client/src/assets/ERD_RentACar.jpg)
 
 **1. Brands Table**
 
@@ -302,7 +302,7 @@ After starting the project, you can access all API definitions from the followin
 
 Below are sample API definitions for the car rental website:
 
-![Api Definition Example](.\assets\Cars_endpoints.jpg)
+![Api Definition Example](./client/src/assets/Cars_endpoints.jpg)
 
 **Get List of Rentable Cars** 
 
@@ -350,7 +350,7 @@ Multiple Used Components:
 - **Formik Input:** Contains components such as input, label, and error message. Used for form inputs.
 - **Pagination:** Component created for pagination on the Admin page.
 
-![Components](.\assets\components.jpg)
+![Components](./client/src/assets/components.jpg)
 
 ---
 <span id="tests"> </span>
