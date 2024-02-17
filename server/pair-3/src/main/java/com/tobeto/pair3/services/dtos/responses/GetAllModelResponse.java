@@ -9,11 +9,8 @@ public class GetAllModelResponse {
     private Integer id;
     private String name;
     private Integer brandId;
+    private String image;
+    private String brandName;
 
-    public GetAllModelResponse(Model model) {
-        this.id= model.getId();
-        this.name= model.getName();
-        this.brandId= model.getBrand().getId();
 
-    }
 }

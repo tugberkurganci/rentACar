@@ -1,0 +1,70 @@
+.credit-card-input input {
+    border: 1px solid #393939;
+    border-radius: 5px;
+    outline: 0;
+    padding-left: 8px;
+}
+
+.credit-card-input input:hover {
+    border: 1px solid #0d6efd;
+    cursor: text;
+}
+
+.credit-card-input input:focus {
+    border: 1px solid #ffc107;
+}
+
+.credit-card-visual {
+    display: flex;
+    justify-content: space-between;
+    perspective: 1000px;
+    width: 300px;
+    height: 200px;
+    transition: 1s all ease-in-out;
+}
+
+.cvv {
+    width: 50px;
+}
+
+.front {
+    perspective: 1000px;
+
+    animation-name: rotate-90;
+    animation-duration: 0.5s;
+    transform: rotateY(90deg);
+    backface-visibility: hidden;
+}
+
+.back {
+    perspective: 1000px;
+    backface-visibility: hidden;
+
+    animation-name: rotate-90-back;
+    animation-duration: 0.5s;
+
+}
+
+
+
+@keyframes rotate-90 {
+    from {
+        transform: rotateY(0deg);
+
+    }
+
+    to {
+        transform: rotateY(90deg);
+
+    }
+}
+
+@keyframes rotate-90-back {
+    from {
+        transform: rotateY(90deg);
+    }
+
+    to {
+        transform: rotateY(0deg);
+    }
+}

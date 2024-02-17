@@ -1,0 +1,17 @@
+.ops {
+    font-size: 80px;
+    background: linear-gradient(to right, #1b75fc, #c8ff02);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+@media screen and (min-width:768px) {
+    .ops {
+        font-size: 200px;
+        background: linear-gradient(to right, #1b75fc, #c8ff02);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+    }
+}

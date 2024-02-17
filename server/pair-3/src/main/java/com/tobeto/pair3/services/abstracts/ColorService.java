@@ -1,5 +1,6 @@
 package com.tobeto.pair3.services.abstracts;
 
+import com.tobeto.pair3.entities.Color;
 import com.tobeto.pair3.services.dtos.requests.CreateColorRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateColorRequest;
 import com.tobeto.pair3.services.dtos.responses.GetAllColorResponse;
@@ -10,7 +11,7 @@ import java.util.List;
 public interface ColorService {
 
 
-    public  void add(CreateColorRequest createColorRequest);
+    void add(CreateColorRequest createColorRequest);
 
   void update(UpdateColorRequest updateColorRequest);
 
@@ -18,7 +19,10 @@ public interface ColorService {
     List<GetAllColorResponse> getAll();
 
     GetColorResponse getById(int id);
-    boolean existsColorById(Integer id);
+
+    Color getOriginalColorById(int colorId);
+
+    Color findByColorName(String colorName);
 }
 
 

@@ -16,4 +16,5 @@ public class GetUserResponse {
     private String email;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+    private String image;
 }

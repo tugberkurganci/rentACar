@@ -3,9 +3,12 @@ package com.tobeto.pair3.controllers;
 import com.tobeto.pair3.services.abstracts.RentalService;
 import com.tobeto.pair3.services.dtos.requests.CreateRentalRequest;
 import com.tobeto.pair3.services.dtos.requests.UpdateRentalRequest;
+import com.tobeto.pair3.services.dtos.responses.GetCarResponse;
 import com.tobeto.pair3.services.dtos.responses.GetRentalResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +26,12 @@ public class RentalController {
     @GetMapping
     public List<GetRentalResponse> getAll() {
         return rentalService.getAll();
+    }
+
+    @GetMapping("/rentals-userid")
+    public List<GetRentalResponse> getRentalsByUserId(@RequestParam("user") int id ){
+
+        return rentalService.getRentalsByUserId(id);
     }
 
     @GetMapping("{id}")
@@ -47,5 +56,9 @@ public class RentalController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") int id) {
         rentalService.delete(id);
+    }
+    @GetMapping("/via-page")
+    public Page<GetRentalResponse> getAllViaPage(Pageable pageable){
+        return rentalService.getAllViaPage(pageable);
     }
 }

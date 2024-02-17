@@ -1,7 +1,9 @@
 package com.tobeto.pair3.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "rentals")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rental {
 
 
@@ -42,12 +46,27 @@ public class Rental {
     private Car car;
 
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "rental")
+    @OneToMany(mappedBy = "rental",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Invoice> invoices;
+
+    @ManyToOne
+    @JoinColumn(name = "pick_up_location")
+    private Location pickUpLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "drop_off_location")
+    private Location dropOffLocation;
+
+
+    public Rental (LocalDate startDate,LocalDate endDate){
+        this.startDate=startDate;
+        this.endDate=endDate;
+    }
 
 
 }

@@ -11,12 +11,5 @@ public class GetModelResponse {
     private Integer id;
     private String name;
     private Integer brandId;
-    public GetModelResponse(Model model) {
-        this.id= model.getId();
-        this.name= model.getName();
-        this.brandId= model.getBrand().getId();
-
-    }
-
 
 }

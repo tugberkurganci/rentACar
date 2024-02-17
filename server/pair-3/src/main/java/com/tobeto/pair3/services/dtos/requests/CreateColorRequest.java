@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class CreateColorRequest {
 
-    @Size(min = 2,message = "Color name must contain more than 2  letter  ")
+    @Size(min = 2,message = "{rentACar.constraint.name.size}")
     private String name;
 
 

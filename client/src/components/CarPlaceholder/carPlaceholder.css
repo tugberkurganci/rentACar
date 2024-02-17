@@ -1,0 +1,55 @@
+.gradient-animation {
+    background: linear-gradient(to right, #ccc, #ddd, #ccc);
+    /* Gradient renkleri */
+    animation: gradientAnimation 2s infinite alternate;
+    /* Animasyon */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.placeholder {
+    background: linear-gradient(to right, #ccc, #ddd, #ccc);
+    /* Gradient renkleri */
+    animation: gradientAnimation 2s infinite alternate;
+    /* Animasyon */
+    height: auto;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.placeholder-box {
+    background: linear-gradient(to right, #ccc, #ddd, #ccc);
+    /* Placeholder kutularının gradient renkleri */
+    height: 100%;
+}
+
+.card {
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    height: 400px;
+
+}
+
+#img {
+    width: min-content;
+    min-height: 150px;
+    height: auto;
+}

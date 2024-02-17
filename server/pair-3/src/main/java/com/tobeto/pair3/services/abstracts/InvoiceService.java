@@ -23,12 +23,5 @@ public interface InvoiceService {
     void delete(int id);
 
 
-
-
-
-
-
-
-
-
+    List<GetInvoiceResponse> getInvoicesByRentalId(int id);
 }

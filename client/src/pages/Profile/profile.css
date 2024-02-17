@@ -1,0 +1,57 @@
+.rotate {
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+}
+
+.start-rotation {
+    animation: rotateAnimation 0.5s ease-in-out;
+}
+
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.start-height {
+    animation: heightUpAnimation 1s ease;
+}
+
+.expanded {
+
+    transition: max-height 1s ease-in-out;
+}
+
+.profile-img img {
+    max-width: 100%;
+    height: 300px;
+    display: block;
+}
+
+.card {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes heightUpAnimation {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+
+    to {
+        opacity: 1;
+        max-height: 300px;
+    }
+}
